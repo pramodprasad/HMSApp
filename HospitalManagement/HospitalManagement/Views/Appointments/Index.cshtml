@@ -1,0 +1,114 @@
+﻿@model IEnumerable<HMS.Entity.Appointment>
+
+@{
+    ViewBag.Title = "Hospital Management | Appointment Master";
+}
+
+<h4>Appointment</h4>
+
+<p>
+    @Html.ActionLink("Old Patient", "Search","Patient") | @Html.ActionLink("New Patient", "Create", "Patient")
+</p>
+<table id="appointmentTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("Patient Name")
+            </th>
+            <th>
+                @Html.DisplayName("Patient Type")
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AppointmentDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VisitStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsReferal)
+            </th>
+            <th>
+                @Html.DisplayName("Department")
+            </th>
+            <th>
+                @Html.DisplayName("Doctor Name")
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PatientDetail.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PatientType.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AppointmentDate)
+                    @Html.ValidationMessageFor(modelItem => item.AppointmentDate)
+                </td>
+                <td>
+                    @if(item.VisitStatus == 0)
+                    {
+                        @Html.Display("Visited")
+                    }
+                    else
+                    {
+                        @Html.Display("Not Visited")
+                    }
+                </td>
+                <td>
+                    @if (item.IsReferal == 0)
+                    {
+                        @Html.Display("Yes")
+                    }
+                    else
+                    {
+                        @Html.Display("No")
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Specialization.Name)
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.Doctor.EmployeeDetail.FirstName) @Html.DisplayFor(modelItem => item.Doctor.EmployeeDetail.LastName)</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+
+                    @if(item.AppointmentDate.Date == DateTime.Now.Date)
+                    {
+                        <text>
+                            |
+                        </text>
+                        @*@Html.ActionLink("Add Visit", "Create", "PatientVisit", new { id = item.PatientDetails_ID })*@
+                        <a href="@Url.Action("Create", "PatientVisit", new { id = item.PatientDetails_ID })">Add Visit</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script>
+    $('#appointmentTable').dataTable({
+
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#AppointmentDate').datepicker({
+            dateFormat: "dd/mm/yy",
+            showStatus: true,
+            showWeeks: true,
+            currentText: 'Now',
+            autoSize: true,
+            gotoCurrent: true,
+            showAnim: 'blind',
+            highlightWeek: true
+        });
+    });
+</script>
+

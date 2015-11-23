@@ -1,0 +1,134 @@
+﻿@model HospitalManagement.ViewModels.AddVisitViewModel
+
+@{
+    ViewBag.Title = "Hospital Management | Add Patient Visit";
+    if(Request.IsAjaxRequest())
+    {
+        this.Layout = null;
+    }
+
+}
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4> Create Patient Visit</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        <div class="form-group">
+            @Html.LabelFor(model => model.Appointment.PatientDetail.FullName,"Patient Name", new { @class = "control-label col-md-4" })
+            <div class="col-md-6">
+                @Html.TextBoxFor(model => model.Appointment.PatientDetail.FullName, htmlAttributes: new { @class = "form-control", @readonly = true } )
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Appointment.PatientType_ID, "Patient Type", new { @class = "control-label col-md-4" })
+            <div class="col-md-6">
+                @Html.DropDownListFor(model => model.Appointment.PatientType_ID, ViewBag.PatientType as SelectList, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Appointment.PatientType_ID)
+            </div>
+        </div>
+
+        @* Appointment fields*@
+        <div class="form-group">
+            @Html.LabelFor(model => model.Appointment.Specialization_ID, "Department", new { @class = "control-label col-md-4" })
+            <div class="col-md-6">
+                @Html.DropDownListFor(model => model.Appointment.Specialization_ID, ViewBag.Specialization as SelectList, htmlAttributes: new { @class = "form-control", @onchange = "FillDoctors()" })
+                @Html.ValidationMessageFor(model => model.Appointment.Specialization_ID)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Appointment.Doctor_ID, "Doctor", new { @class = "control-label col-md-4" })
+            <div class="col-md-6">
+                @Html.DropDownListFor(model => model.Appointment.Doctor_ID, ViewBag.Doctor as SelectList, htmlAttributes: new { @class = "form-control" } )
+                @Html.ValidationMessageFor(model => model.Appointment.Doctor_ID)
+            </div>
+        </div>
+        @* Patient visit fields*@
+        <div class="form-group">
+            @Html.LabelFor(model => model.PatientVisit.RegistrationAmount, new { @class = "control-label col-md-4" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.PatientVisit.RegistrationAmount, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PatientVisit.RegistrationAmount)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PatientVisit.DiscountAmount, new { @class = "control-label col-md-4" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.PatientVisit.DiscountAmount, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PatientVisit.DiscountAmount)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PatientVisit.PayAmount, new { @class = "control-label col-md-4" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.PatientVisit.PayAmount, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PatientVisit.PayAmount)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PatientVisit.PaymentMode_ID, "Payment Mode", new { @class = "control-label col-md-4" })
+            <div class="col-md-6">
+                @Html.DropDownListFor(model => model.PatientVisit.PaymentMode_ID, ViewBag.PaymentMode_ID as SelectList, "----Select----", htmlAttributes : new { @class = "form-control" } )
+                @Html.ValidationMessageFor(model => model.PatientVisit.PaymentMode_ID)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.PatientVisit.PatientStatus, new { @class = "control-label col-md-4" })
+            <div class="col-md-6">
+                @Html.DropDownListFor(model => model.PatientVisit.PatientStatus, new SelectList(
+                              new List<Object>{
+                                   new { value = 0 , text = "Visited"  },
+                                   new { value = 1 , text = "Not Visited" },
+                                   new{value = 2, text = "ReScheduled"}
+                                },
+                              "value",
+                              "text"
+                               ), "----Select----", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PatientVisit.PatientStatus)
+            </div>
+        </div>
+        @Html.HiddenFor(m => m.PatientVisit.Appointment_ID)
+        @Html.HiddenFor(m => m.PatientVisit.VisitedDate)
+        @Html.HiddenFor(m => m.PatientVisit.UpdatedDate)
+        @Html.HiddenFor(m => m.PatientVisit.CreatedBy)
+        @Html.HiddenFor(m => m.Appointment.ID)
+        @Html.HiddenFor(m => m.Appointment.CreatedDate)
+        @Html.HiddenFor(m => m.Appointment.CreatedBy)
+        @Html.HiddenFor(m => m.Appointment.BranchDetails_ID)
+        @Html.HiddenFor(m => m.Appointment.ShiftType_ID)
+        @Html.HiddenFor(m => m.Appointment.PatientDetails_ID)
+        @Html.HiddenFor(m => m.Appointment.PatientDetail.FatherOrHusbandName)
+        @Html.HiddenFor(m => m.Appointment.PatientDetail.Address)
+        <div class="form-group">
+            <div class="col-md-offset-4 col-md-6">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<script>
+    function FillDoctors() {
+        var specId = $('#Appointment_Specialization_ID').val();
+        $.ajax({
+            url: '/PatientVisit/FillDoctor',
+            type: "GET",
+            dataType: "JSON",
+            data: { SpecializationId: specId},
+            success: function (result) {
+                $("#Appointment_Doctor_ID").html("");// clear before appending new list 
+                $("#Appointment_Doctor_ID").append($('<option></option>').html('----Select----')); // Bind default select option
+                $.each(result, function (i, obj) {
+                    $("#Appointment_Doctor_ID").append(
+                        $('<option></option>').val(obj.Value).html(obj.Text));
+                });
+            }
+        });
+    }
+</script>

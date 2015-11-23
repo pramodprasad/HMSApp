@@ -1,0 +1,105 @@
+﻿@model IEnumerable<HMS.Entity.VisitReason>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Visit Reason</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", null, htmlAttributes: new { @class="button-link", @style="padding-top: 5px;"})
+</p>
+<table id="visitReasonTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.VisitPurpose)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Details)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VisitPurpose)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Details)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "visiteReasonDetail"}) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "visiteReasonDetail" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "visiteReasonDetail" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="modal fade" id="visitReasonModal" tabindex="-1" role="dialog" aria-labelledby="visitReasonlable" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" id="visitReasonContent" style="font-size: 14px; border-radius: 0px;">
+            <img src="~/Images/closebox.png" data-dismiss="modal" aria-hidden="false" />
+            <div class="modal-body" id="visitReasonBody" style="padding-top:0px;padding-bottom:0px;margin-top:0px; min-height:150px;margin-bottom:20px;">
+
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $('#visitReasonTable').DataTable({
+        //"bPaginate": false,
+        "bLengthChange": false,
+        //"bFilter": true,
+        //"bInfo": false,
+        //"bAutoWidth": false,
+        //"info":     false,
+        "aoColumnDefs": [
+            { 'bSortable': false, 'aTargets': [2] }
+        ]
+    });
+
+    $(document).ready(function () {
+        $(function () {
+            $('.visiteReasonDetail').click(function () {
+                var url = $(this).attr('href');
+                $('#visitReasonBody').html('');
+                $('#visitReasonBody').load(url, function () {
+                    $('#visitReasonModal').modal({
+                        keyboard: true
+                    }, 'show');
+                    bindServiceForm(this);
+                });
+                return false;
+            });
+        });
+
+        function bindServiceForm(dialog) {
+            $('form', dialog).submit(function () {
+                $.ajax({
+                    url: this.action,
+                    type: this.method,
+                    data: $(this).serialize(),
+                    success: function (result) {
+                        var value = $(result).find(".validation-summary-errors ul li").length;
+                        if (value == 0) {
+                            window.location.reload(true);
+                        }
+                        else {
+                            $('#visitReasonBody').html('');
+                            $('#visitReasonBody').html(result);
+                            $("form").data("validator", null);
+                            $.validator.unobtrusive.parse($("form"));
+                            bindServiceForm();
+                        }
+                    }
+                });
+                return false;
+            });
+        }
+    });
+</script>

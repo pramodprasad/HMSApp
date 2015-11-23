@@ -1,0 +1,87 @@
+﻿@model HMS.Entity.RoomDetail
+
+@{
+    ViewBag.Title = "Hospital Management | Create New Room";
+}
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Create new room</h4>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <fieldset style="width:100%;border: 2px #eeeeee solid;">
+            <br />
+            <div style="width:100%; float:left;">
+                <div class="left-div col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-4">Ward</label>
+                        <div class="col-md-8">
+                            @Html.DropDownList("Ward_ID", null,"----Select----", htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Ward_ID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="right-div col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.RoomNo, htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.RoomNo, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.RoomNo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="width:100%; float:left;">
+                <div class="left-div col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.RoomCost, htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.RoomCost, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.RoomCost, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="right-div col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.TotalBed, htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.TotalBed, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.TotalBed, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="width:100%; float:left;">
+                <div class="left-div col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Details, htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.Details, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Details, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="right-div col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control", @style = "height:16px; width:16px;" } })
+                            @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="button-link" />&nbsp;&nbsp;&nbsp;&nbsp;@Html.ActionLink("Back to List", "Index", null, htmlAttributes: new { @class = "button-link", @style = "padding-top:5px;" })
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,110 @@
+﻿@model IEnumerable<HMS.Entity.PatientVisit>
+@{
+    ViewBag.Title = "Hospital Management | Add Diagnostics";
+}
+
+<table id="servicePaymentTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Appointment.PatientDetail.FullName)
+            </th>
+            <th>
+                @Html.DisplayName("Doctor")
+            </th>
+            <th>
+                @Html.DisplayName("Visit Date")
+            </th>
+            <th>
+                @Html.DisplayName("Shift")
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Appointment.PatientDetail.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Appointment.Doctor.EmployeeDetail.FirstName) @Html.DisplayFor(modelItem => item.Appointment.Doctor.EmployeeDetail.LastName)
+                </td>
+                <td>
+                    @String.Format("{0:d}", item.VisitedDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Appointment.ShiftType.Name)
+                </td>
+                <td>
+                    @Html.ActionLink("Add Service", "Create", "ServicePayments", new { id = item.Appointment.ID }, htmlAttributes: new { @class = "servicePayments" })|
+                    @Html.ActionLink("Add Lab Test", "Create", "LabPayments", new { id = item.Appointment.ID }, htmlAttributes: new { @class = "servicePayments" }) |
+                    @Html.ActionLink("Add Consultation", "Create", "ConsultationPayments", new { id = item.Appointment.ID }, htmlAttributes: new { @class = "servicePayments" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="modal fade" id="servicePaymentModal" tabindex="-1" role="dialog" aria-labelledby="servicePaymentlable" aria-hidden="true">
+    <div class="modal-dialog" style="width:600px;">
+        <div class="modal-content" id="servicePaymentContent" style="font-size: 14px; border-radius: 0px;">
+            <img src="~/Images/closebox.png" data-dismiss="modal" aria-hidden="false" />
+            <div class="modal-body" id="servicePaymentBody" style="padding-top:0px;padding-bottom:0px;margin-top:0px; min-height:150px;margin-bottom:20px;">
+
+            </div>
+        </div>
+    </div>
+</div>
+    <script>
+        $(document).ready(function () {
+            $('#servicePaymentTable').DataTable({
+                //"bPaginate": false,
+                "bLengthChange": false,
+                //"bFilter": true,
+                //"bInfo": false,
+                //"bAutoWidth": false,
+                //"info":     false,
+                "aoColumnDefs": [
+                    { 'bSortable': false, 'aTargets': [4] }
+                ]
+            });
+            //$(function () {
+            //    $('.servicePayments').click(function () {
+            //        var url = $(this).attr('href');
+            //        $('#servicePaymentBody').html('');
+            //        $('#servicePaymentBody').load(url, function () {
+            //            $('#servicePaymentModal').modal({
+            //                keyboard: true
+            //            }, 'show');
+            //            serviceAddForm(this);
+            //        });
+            //        return false;
+            //    });
+            //});
+
+            //function serviceAddForm(dialog) {
+            //    $('form', dialog).submit(function () {
+            //        $.ajax({
+            //            url: this.action,
+            //            type: this.method,
+            //            data: $(this).serialize(),
+            //            success: function (result) {
+            //                var value = $(result).find(".validation-summary-errors ul li").length;
+            //                if (value == 0) {
+            //                    window.location.reload(true);
+            //                }
+            //                else {
+            //                    $('#servicePaymentBody').html('');
+            //                    $('#servicePaymentBody').html(result);
+            //                    $("form").data("validator", null);
+            //                    $.validator.unobtrusive.parse($("form"));
+            //                    serviceAddForm();
+            //                }
+            //            }
+            //        });
+            //        return false;
+            //    });
+            //}
+        });
+    </script>

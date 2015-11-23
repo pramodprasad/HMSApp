@@ -1,0 +1,60 @@
+﻿@using HospitalManagement.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Log in";
+    this.Layout = null;
+    <link rel="icon" href="~/Images/fevi.png" type="image/x-icon" />
+    <link href="/Content/style.css" rel="stylesheet" />
+    <link href="/Content/left_menu.css" rel="stylesheet" />
+    <link href="/Content/responsive.css" rel="stylesheet" media="all and (max-width: 768px)" />
+}
+
+<body id="login_main">
+    <div class="login_bg">
+        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="login_box">
+                <h2>&nbsp;</h2>
+                <table>
+                    <tr>
+                        <td><strong>Username</strong></td>
+                        <td>
+                        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Password</strong></td>
+                    <td>
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                </td>
+            </tr>
+
+            <tr>
+                <td>&nbsp;</td>
+                <td><a href="#">Forget Password</a></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="right">
+                    <input type="submit" class="logbtn" value="Login" />
+                    &nbsp;
+                    <input type="button" value="Reset" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="right">@Html.ValidationSummary()</td>
+            </tr>
+            <tr>
+                <td colspan="2"><p>&copy; 2015 Hospital Website</p></td>
+            </tr>
+        </table>
+        </div>
+        }
+    </div>
+    <div class="blank">&nbsp;</div>
+    <div class="blank_res">&nbsp;</div>
+</body>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

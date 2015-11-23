@@ -1,0 +1,245 @@
+﻿@model HospitalManagement.ViewModels.PatientViewModel
+
+@{
+    ViewBag.Title = "Hospital Management | Patient Master";
+}
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Create New Patient</h4>
+
+        <fieldset style="width:100%; border: 2px #eeeeee solid;">
+            <br />
+           <div style="width:100%;float:left;">
+               <div class="left-div col-md-6">
+                   <div class="form-group">
+                       @Html.LabelFor(model => model.PatientDetails.FullName, htmlAttributes: new { @class = "control-label col-md-4" })
+                       <div class="col-md-8">
+                           @Html.EditorFor(model => model.PatientDetails.FullName, new { htmlAttributes = new { @class = "form-control" } })
+                           @Html.ValidationMessageFor(model => model.PatientDetails.FullName, "", new { @class = "text-danger" })
+                       </div>
+                   </div>
+               </div>
+               <div class="right-div col-md-6" >
+                   <div class="form-group">
+                       @Html.LabelFor(model => model.PatientDetails.DOB, htmlAttributes: new { @class = "control-label col-md-4" })
+                       <div class="col-md-8">
+                           @Html.EditorFor(model => model.PatientDetails.DOB, new { htmlAttributes = new { @class = "form-control dateControl" } })
+                           @Html.ValidationMessageFor(model => model.PatientDetails.DOB, "", new { @class = "text-danger" })
+                       </div>
+                   </div>
+               </div>
+           </div>
+            <div style="width:100%;float:left;">
+                <div class="left-div col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.PatientDetails.FatherOrHusbandName, htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.TextBoxFor(model => model.PatientDetails.FatherOrHusbandName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.PatientDetails.FatherOrHusbandName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="right-div col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.PatientDetails.ContactNo, htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.TextBoxFor(model => model.PatientDetails.ContactNo, new { @class = "form-control" } )
+                            @Html.ValidationMessageFor(model => model.PatientDetails.ContactNo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="width:100%;float:left;">
+                <div class="left-div col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.PatientDetails.OtherContactNo, htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.TextBoxFor(model => model.PatientDetails.OtherContactNo, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.PatientDetails.OtherContactNo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="right-div col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.PatientDetails.Address, htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.PatientDetails.Address, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.PatientDetails.Address, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="width:100%;float:left;">
+                <div class="left-div col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-4">@Html.DisplayNameFor(model => model.PatientDetails.City)</label>
+                        <div class="col-md-8">
+                            @Html.DropDownListFor(model => model.PatientDetails.City_ID, ViewBag.City as SelectList, "Please select a city", htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.PatientDetails.City_ID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="right-div col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.PatientDetails.MarritalStatus, htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.DropDownListFor(model => model.PatientDetails.MarritalStatus, new SelectList(
+                              new List<Object>{
+                                   new { value = 0 , text = "Married"  },
+                                   new { value = 1 , text = "UnMarried" }
+                                },
+                              "value",
+                              "text"
+                               ), "----Select----", htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.PatientDetails.MarritalStatus, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @* Fields for appointment section*@
+            <div style="width:100%;float:left;">
+                <div class="left-div col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Appointment.AppointmentDate,"Appointment Date", htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.Appointment.AppointmentDate, new { htmlAttributes = new { @class = "form-control dateControl" } })
+                            @Html.ValidationMessageFor(model => model.Appointment.AppointmentDate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="right-div col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Appointment.ShiftType_ID, "Shift Type", htmlAttributes: new { @class = "control-label col-md-4 " })
+                        <div class="col-md-8">
+                            @Html.DropDownListFor(model => model.Appointment.ShiftType_ID, ViewBag.ShiftType as SelectList, "----Select----", htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Appointment.ShiftType_ID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="width:100%;float:left;">
+                <div class="left-div col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-4">Specialization</label>
+                        <div class="col-md-8">
+                            @Html.DropDownListFor(model => model.Appointment.Specialization_ID, ViewBag.Specialization as SelectList, "----Select----", htmlAttributes: new { @class = "form-control", @onchange = "FillDoctors()" })
+                            @Html.ValidationMessageFor(model => model.Appointment.Specialization_ID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="right-div col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-4">Doctor</label>
+                        <div class="col-md-8">
+                            @Html.DropDownListFor(model => model.Appointment.Doctor_ID, ViewBag.Doctors as SelectList, "----Select----", htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Appointment.Doctor_ID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="width:100%;float:left;">
+                <div class="left-div col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Appointment.PatientType_ID, "Patient Type", htmlAttributes: new { @class = "control-label col-md-4 " })
+                        <div class="col-md-8">
+                            @Html.DropDownListFor(model => model.Appointment.PatientType_ID, ViewBag.PatientType as SelectList, "----Select----", htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Appointment.PatientType_ID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="right-div col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Appointment.IsReferal, htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.DropDownListFor(model => model.Appointment.IsReferal, new SelectList(
+                              new List<Object>{
+                                   new { value = 0 , text = "Yes"  },
+                                   new { value = 1 , text = "No" }
+                                },
+                              "value",
+                              "text"
+                               ), "----Select----", htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Appointment.IsReferal, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="width:100%;float:left;">
+                <div class="left-div col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Appointment.ReferalDetails, htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.Appointment.ReferalDetails, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Appointment.ReferalDetails, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="right-div col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Appointment.BranchDetails_ID, "Branch", htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.Appointment.ReferalDetails, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.DropDownListFor(model.Appointment.BranchDetails_ID, ViewBag.Branch as SelectList, "----Select----", htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Appointment.BranchDetails_ID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+        </fieldset>
+        <br />
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="button-link" />&nbsp;&nbsp;&nbsp;&nbsp;@Html.ActionLink("Back to List", "Index", null, new { @class="button-link", @style="padding-top:5px;"})
+            </div>
+        </div>
+    </div>
+}
+<script>
+    $(document).ready(function () {
+        $.validator.methods.date = function (value, element) {
+            if ($.browser.webkit) {
+                var d = new Date();
+                return this.optional(element) || !/Invalid|NaN/.test(new Date(d.toLocaleDateString(value)));
+            }
+            else {
+                return this.optional(element) || !/Invalid|NaN/.test(new Date(value));
+            }
+        };
+    });
+
+
+    $('.dateControl').datepicker({ format: "dd/mm/yyyy", useCurrent: false }).on('changeDate', function (e) {
+        $(this).datepicker('hide');
+    });
+
+    function FillDoctors() {
+        var specId = $('#Appointment_Specialization_ID').val();
+        var appointDate = $('#Appointment_AppointmentDate').val();
+        var shiftId = $('#Appointment_ShiftType_ID').val();
+        if(shiftId == '')
+        {
+            alert('Please select shift type.!');
+        }
+
+        $.ajax({
+            url: '/Patient/FillDoctor',
+            type: "GET",
+            dataType: "JSON",
+            data: { SpecializationId: specId, appointmentDay: appointDate, shiftTypeId: shiftId },
+            success: function (result) {
+                $("#Appointment_Doctor_ID").html("");// clear before appending new list 
+                $("#Appointment_Doctor_ID").append($('<option></option>').html('----Select----')); // Bind default select option
+                $.each(result, function (i, obj) {
+                    $("#Appointment_Doctor_ID").append(
+                        $('<option></option>').val(obj.Value).html(obj.Text));
+                });
+            }
+        });
+    }
+</script>

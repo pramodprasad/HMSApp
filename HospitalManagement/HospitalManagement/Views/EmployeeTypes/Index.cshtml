@@ -1,0 +1,113 @@
+﻿@model IEnumerable<HMS.Entity.EmployeeType>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h4> Employee Type Master</h4>
+
+<p>
+    @Html.ActionLink("Create New", "Create", null, new { @class="button-link" , @style="padding-top:5px;"})
+</p>
+<br />
+<table id="empTypeDetails">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedOn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedOn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID }, htmlAttributes: new {@class = "editEmpType" }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ID }, htmlAttributes: new { @class = "editEmpType" }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID }, htmlAttributes: new { @class = "editEmpType" })
+        </td>
+    </tr>
+}
+    </tbody>
+</table>
+<div class="modal fade" id="employeeTypeModal" tabindex="-1" role="dialog" aria-labelledby="editmodellable" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" id="employeeTypeContent" style="font-size: 14px; border-radius: 0px;">
+            <img src="~/Images/closebox.png" data-dismiss="modal" aria-hidden="false" />
+            <div class="modal-body" id="employeeTypeBody" style="padding-top:0px;padding-bottom:0px;margin-top:0px; min-height:150px;margin-bottom:20px;">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#empTypeDetails').DataTable({
+            //"bPaginate": false,
+            "bLengthChange": false,
+            //"bFilter": true,
+            //"bInfo": false,
+            //"bAutoWidth": false,
+            //"info":     false,
+            "aoColumnDefs": [
+                { 'bSortable': false, 'aTargets': [3] }
+            ]
+        });
+
+        $(function () {
+            $('.editEmpType').click(function () {
+                var url = $(this).attr('href');
+                $('#employeeTypeBody').html('');
+                $('#employeeTypeBody').load(url, function () {
+                    $('#employeeTypeModal').modal({
+                        keyboard: true
+                    }, 'show');
+                    bindEmpTypeForm(this);
+                });
+                return false;
+            });
+        });
+
+        function bindEmpTypeForm(dialog) {
+            $('form', dialog).submit(function () {
+                $.ajax({
+                    url: this.action,
+                    type: this.method,
+                    data: $(this).serialize(),
+                    success: function (result) {
+                        var value = $(result).find(".validation-summary-errors ul li").length;
+                        if (value == 0) {
+                            window.location.reload(true);
+                        }
+                        else {
+                            $('#employeeTypeBody').html('');
+                            $('#employeeTypeBody').html(result);
+                            $("form").data("validator", null);
+                            $.validator.unobtrusive.parse($("form"));
+                            bindEmpTypeForm();
+                        }
+                    }
+                });
+                return false;
+            });
+        }
+    });
+</script>

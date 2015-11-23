@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HospitalManagement", "HospitalManagement\HospitalManagement.csproj", "{7AB4999F-BA2E-4FBA-AD80-4E56562D2528}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HMS.BAL", "HMS.BAL\HMS.BAL.csproj", "{7AEFD1BA-F089-4127-8AB7-C3D05EBC2A46}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HMS.Entity", "HMS.Entity\HMS.Entity.csproj", "{C7C4B2BC-7E68-4372-A022-68A66ADD208A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7AB4999F-BA2E-4FBA-AD80-4E56562D2528}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AB4999F-BA2E-4FBA-AD80-4E56562D2528}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AB4999F-BA2E-4FBA-AD80-4E56562D2528}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AB4999F-BA2E-4FBA-AD80-4E56562D2528}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AEFD1BA-F089-4127-8AB7-C3D05EBC2A46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AEFD1BA-F089-4127-8AB7-C3D05EBC2A46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AEFD1BA-F089-4127-8AB7-C3D05EBC2A46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AEFD1BA-F089-4127-8AB7-C3D05EBC2A46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7C4B2BC-7E68-4372-A022-68A66ADD208A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7C4B2BC-7E68-4372-A022-68A66ADD208A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7C4B2BC-7E68-4372-A022-68A66ADD208A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7C4B2BC-7E68-4372-A022-68A66ADD208A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

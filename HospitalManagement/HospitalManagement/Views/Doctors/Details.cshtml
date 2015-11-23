@@ -1,0 +1,120 @@
+﻿@model HMS.Entity.Doctor
+
+@{
+    ViewBag.Title = "Details";
+    this.Layout = null;
+}
+
+<div>
+    <h4>Details of Dr.: @Model.EmployeeDetail.FirstName @Model.EmployeeDetail.LastName</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.OtherDetails)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OtherDetails)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RegistrationNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RegistrationNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedOn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedOn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdatedOn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdatedOn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdatedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdatedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Daywise)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Daywise)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Datewise)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Datewise)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmployeeDetail.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmployeeDetail.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Qualification.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Qualification.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Specialization.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Specialization.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }, htmlAttributes: new { @class = "button-link", @style = "padding-top:5px;", @id = "editDoctor" }) |
+    @Html.ActionLink("Back to List", "Index",null, htmlAttributes: new { @class = "button-link", @style = "padding-top:5px;" })
+</p>
+<script>
+     $(function () {
+         $('#editDoctor').click(function () {
+             var url = $(this).attr('href');
+             $('#doctorModuleBody').html('');
+             $('#doctorModuleBody').load(url, function () {
+                 $('#doctorModal').modal({
+                     keyboard: true
+                 }, 'show');
+                 bindDoctorModuleForm(this);
+             });
+             return false;
+         });
+     });
+</script>

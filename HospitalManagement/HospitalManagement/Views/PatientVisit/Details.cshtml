@@ -1,0 +1,90 @@
+﻿@model HMS.Entity.PatientVisit
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PatientVisit</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.VisitedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VisitedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PatientStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PatientStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdatedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdatedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RegistrationAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RegistrationAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DiscountAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiscountAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PayAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PayAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Appointment.ReferalDetails)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Appointment.ReferalDetails)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaymentMode.Mode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaymentMode.Mode)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

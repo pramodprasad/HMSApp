@@ -1,0 +1,128 @@
+﻿@model HospitalManagement.ViewModels.ShiftMapViewModel
+
+@{
+    ViewBag.Title = "Hospital Management | Shift Mapping";
+    this.Layout = null;
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Shift Mapping</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <br />
+        @if (Model.Doctor.Daywise)
+        {
+            var itemIndex = 0;
+            <table style="width:570px;">
+                <thead>
+                    <tr>
+                        <th>Week Days</th>
+                        <th>Shift Type</th>
+                        <th> Shift Start Time</th>
+                        <th>Shift End Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.AssignedDayData)
+                    {
+                        <tr style="margin-bottom: 10px;">
+                            <td style="float:left;">
+                                @Html.CheckBoxFor(m => m.AssignedDayData[itemIndex].IsSelected, new {autocomplete = "off", @style="margin-left:5px;" })
+                                <span style="margin-left: 20px;"> @Html.DisplayFor(m => m.AssignedDayData[itemIndex].DayName)</span>
+                                @Html.HiddenFor(m => m.AssignedDayData[itemIndex].Day)
+                            </td>
+                            <td style="width:30%;">
+                                @Html.DropDownListFor(model => model.AssignedDayData[itemIndex].ShiftType, ViewBag.Shifts as SelectList, "Select a shift", htmlAttributes: new { @class = "form-control" })
+                            </td>
+                            <td style="width:22%;">
+                                @Html.EditorFor(m => m.AssignedDayData[itemIndex].StartTime, new { htmlAttributes = new { @class = "form-control", @placeholder = "10:00 AM" } })
+                            </td>
+                            <td style="width:22%;">
+                                @Html.EditorFor(m => m.AssignedDayData[itemIndex].EndTime, new { htmlAttributes = new { @class = "form-control", @placeholder = "02:00 PM" } })
+                            </td>
+                        </tr>
+                        itemIndex++;
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            var itemIndex = 0;
+            <a id="AddDateFields" class="button-link" style="padding-top:5px;">Add New Row</a>
+            <br />
+            <br />
+            <table style="width:570px;">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Shift Type</th>
+                        <th> Shift Start Time</th>
+                        <th>Shift End Time</th>
+                    </tr>
+                </thead>
+                <tbody id="dateTbody" data-attr-count="@Model.AssignedDateData.Count">
+                    @foreach (var item in Model.AssignedDateData)
+                    {
+                        <tr>
+                            <td>
+                                @Html.EditorFor(model => model.AssignedDateData[itemIndex].DateAvailable, new { htmlAttributes = new { @class = "form-control DateAvailable", @value = "" } })
+                            </td>
+                            <td style="width:30%">
+                                @Html.DropDownListFor(model => model.AssignedDateData[itemIndex].ShiftType, ViewBag.Shifts as SelectList, "Select a shift", htmlAttributes: new { @class = "form-control" })
+                            </td>
+                            <td style="width:22%">
+                                @Html.EditorFor(model => model.AssignedDateData[itemIndex].StartTime, new { htmlAttributes = new { @class = "form-control" } })
+                            </td>
+                            <td style="width:22%">
+                                @Html.EditorFor(model => model.AssignedDateData[itemIndex].EndTime, new { htmlAttributes = new { @class = "form-control" } })
+                            </td>
+                        </tr>
+                        itemIndex++;
+                    }
+                </tbody>
+            </table>
+        }
+        @Html.HiddenFor(m => m.Doctor.ID)
+        @Html.HiddenFor(m => m.Doctor.EmployeeDetail_ID)
+        @Html.HiddenFor(m => m.Doctor.OtherDetails)
+        @Html.HiddenFor(m => m.Doctor.RegistrationNo)
+        @Html.HiddenFor(m => m.Doctor.Qualification_ID)
+        @Html.HiddenFor(m => m.Doctor.Specialization_ID)
+        @Html.HiddenFor(m => m.Doctor.Daywise)
+        @Html.HiddenFor(m => m.Doctor.Datewise)
+        <br />
+        <div class="form-group">
+            <div class="col-md-offset-4 col-md-10">
+                <input type="submit" value="Save" class="button-link" />
+            </div>
+        </div>
+    </div>
+}
+
+<script>
+    $('.DateAvailable').datepicker({ format: "dd/mm/yyyy", useCurrent: false }).on('changeDate', function (e) {
+        $(this).datepicker('hide');
+    });
+
+    $('#AddDateFields').click(function () {
+        $(".DateAvailable").datepicker("destroy");
+        var count = $('#dateTbody').attr('data-attr-count');
+        var row = '<tr> '+
+            '<td><input class="form-control DateAvailable text-box single-line" data-val="true" data-val-date="The field DateAvailable must be a date." data-val-required="The DateAvailable field is required." id="AssignedDateData_' + count + '__DateAvailable" name="AssignedDateData[' + count + '].DateAvailable" type="datetime" value="01-01-0001 12:00:00 AM"></td>' +
+            '<td style=width:30%;><select class="form-control" data-val="true" data-val-number="The field ShiftType must be a number." data-val-required="The ShiftType field is required." id="AssignedDateData_' + count + '__ShiftType" name="AssignedDateData[' + count + '].ShiftType"><option value="">Select a shift</option> ' +
+            '<option value="1">Morning</option> <option value="2">Evening</option><option value="3">Night</option>" </select></td>' +
+            '<td style=width:22%;><input class="form-control text-box single-line" id="AssignedDateData_' + count + '__StartTime" name="AssignedDateData[' + count + '].StartTime" type="text" value=""></td>' +
+            '<td style=width:22%;><input class="form-control text-box single-line" id="AssignedDateData_' + count + '__EndTime" name="AssignedDateData[' + count + '].EndTime" type="text" value=""></td>'
+        ' </tr>';
+           $('#dateTbody').append(row);
+           $('#dateTbody').attr('data-attr-count', parseInt(count) + 1);
+           $('.DateAvailable').datepicker({ format: "dd/mm/yyyy", useCurrent: false }).on('changeDate', function (e) {
+               $(this).datepicker('hide');
+           });
+    });
+</script>

@@ -1,0 +1,124 @@
+﻿@model IEnumerable<HMS.Entity.Doctor>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Manage Doctor</h2>
+
+<table id="doctorDetailTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.EmployeeDetail.FirstName)
+            </th>
+            <th>
+                Qualification
+            </th>
+            <th>
+                Specialization
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OtherDetails)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RegistrationNo)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmployeeDetail.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Qualification.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Specialization.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OtherDetails)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RegistrationNo)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }, htmlAttributes: new { @class = "doctorModule"}) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }, htmlAttributes: new { @class = "doctorModule" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID }, htmlAttributes: new { @class = "doctorModule" }) |
+                    @Html.ActionLink("Map Shift", "ShiftMapping", new { id = item.ID }, htmlAttributes: new { @class = "doctorModule" }) |
+                    @Html.ActionLink("View Shift", "ShiftDetails", new { id = item.ID }, htmlAttributes: new { @class = "doctorModule" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="modal fade" id="doctorModal" tabindex="-1" role="dialog" aria-labelledby="doctorlable" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" id="doctorContent" style="font-size: 14px; border-radius: 0px;">
+            <img src="~/Images/closebox.png" data-dismiss="modal" aria-hidden="false" />
+            <div class="modal-body" id="doctorModuleBody" style="padding-top:0px;padding-bottom:0px;margin-top:0px; min-height:150px;margin-bottom:20px;">
+
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('#doctorDetailTable').DataTable({
+            //"bPaginate": false,
+            "bLengthChange": false,
+            //"bFilter": true,
+            //"bInfo": false,
+            //"bAutoWidth": false,
+            //"info":     false,
+            "aoColumnDefs": [
+                { 'bSortable': false, 'aTargets': [5] }
+            ]
+        });
+
+        $(function () {
+            $('.doctorModule').click(function () {
+                var url = $(this).attr('href');
+                $('#doctorModuleBody').html('');
+                $('#doctorModuleBody').load(url, function () {
+                    $('#doctorModal').modal({
+                        keyboard: true
+                    }, 'show');
+                    bindDoctorModuleForm(this);
+                });
+                return false;
+            });
+        });
+
+        function bindDoctorModuleForm(dialog) {
+            $('form', dialog).submit(function () {
+                $.ajax({
+                    url: this.action,
+                    type: this.method,
+                    data: $(this).serialize(),
+                    success: function (result) {
+                        var value = $(result).find(".validation-summary-errors ul li").length;
+                        if (value == 0) {
+                            window.location.reload(true);
+                        }
+                        else {
+                            $('#doctorModuleBody').html('');
+                            $('#doctorModuleBody').html(result);
+                            $("form").data("validator", null);
+                            $.validator.unobtrusive.parse($("form"));
+                            bindShiftTypeForm();
+                        }
+                    }
+                });
+                return false;
+            });
+        }
+    });
+</script>

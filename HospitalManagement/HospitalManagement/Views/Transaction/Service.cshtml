@@ -1,0 +1,49 @@
+﻿@model HospitalManagement.ViewModels.ServiceViewModel
+
+@{
+    ViewBag.Title = "Hospital Management | Add Service";
+}
+
+<h2>Search Patient</h2>
+
+@using (Html.BeginForm("Search", "Patient", FormMethod.Get))
+{
+    <div style="float: left; width:100%;margin-bottom:20px;">
+        <div id="txtBox">
+            @Html.Label("Search Patient ")
+            <input type="text" name="searchValue" />
+            @Html.RadioButton("SearchType", "0")
+            @Html.Label("ID")
+            @Html.RadioButton("SearchType", "1", true)
+            @Html.Label("Patient Name")
+            @Html.RadioButton("SearchType", "2")
+            @Html.Label("Father/Husband Name")
+            @Html.RadioButton("SearchType", "3")
+            @Html.Label("Mobile No")
+            <input type="submit" value="Search" id="btnSubmit" class="button-link" />
+        </div>
+    </div>
+    <br />
+}
+
+<div id="DivGrid" style="margin-top:20px;margin-bottom: 20px;">
+    @{
+        WebGrid grid = new WebGrid(source: Model.PatientDetail, canPage: true, rowsPerPage: 4, defaultSort: "ID");
+
+        if (Model.PatientDetail.Count() > 0)
+        {
+            <div><strong> @ViewBag.SearchParameter</strong> | @grid.TotalRowCount @Html.Label("Record(s) found")</div>
+            @grid.GetHtml(tableStyle: "PGrid", headerStyle: "Header", alternatingRowStyle: "altRow", htmlAttributes: new { id = "DataTable", @style = "width: 100%;" }, columns: grid.Columns(
+            grid.Column("ID", "Patient ID"),
+            grid.Column("FullName", "Patient Name"),
+            grid.Column("Age", "Age"),
+            grid.Column("ContactNo", "Mobile"),
+            grid.Column("FatherOrHusbandName", "Husband/Father Name"),
+            grid.Column("", header: "Show Patient Visit", format: @<text>@Html.ActionLink("View Patient Visit", "AddService", "Transaction", new { id = item.ID }, htmlAttributes: new { @class = "serviceAddModal" })</text>)));
+        }
+        else
+        {
+            <hr />@Html.Label("No, Record(s) not found")<hr />
+        }
+    }
+</div>

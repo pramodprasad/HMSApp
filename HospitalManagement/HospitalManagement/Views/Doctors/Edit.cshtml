@@ -1,0 +1,63 @@
+﻿@model HMS.Entity.Doctor
+
+@{
+    ViewBag.Title = "Edit";
+    this.Layout = null;
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Update Dr. @Model.EmployeeDetail.FirstName @Model.EmployeeDetail.LastName Details:</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ID)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.OtherDetails, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.OtherDetails, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.OtherDetails, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.RegistrationNo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.RegistrationNo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.RegistrationNo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.EmployeeDetail_ID, "EmployeeDetail_ID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("EmployeeDetail_ID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.EmployeeDetail_ID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Qualification_ID, "Qualification_ID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Qualification_ID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Qualification_ID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @Html.HiddenFor(model => model.EmployeeDetail_ID)
+        @Html.HiddenFor(model => model.CreatedBy)
+        @Html.HiddenFor(model => model.CreatedOn)
+        @Html.HiddenFor(model => model.UpdatedBy)
+        @Html.HiddenFor(model => model.UpdatedOn)
+        <div class="form-group">
+            <div class="col-md-offset-3 col-md-10">
+                <input type="submit" value="Save" class="button-link" /> | @Html.ActionLink("Back to List", "Index", null, htmlAttributes: new { @class="button-link", @style="padding-top:5px;"})
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

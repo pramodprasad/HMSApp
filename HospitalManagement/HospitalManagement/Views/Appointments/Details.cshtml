@@ -1,0 +1,98 @@
+﻿@model HMS.Entity.Appointment
+
+@{
+    ViewBag.Title = "Hospital Management | Appointment Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Appointment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AppointmentDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AppointmentDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VisitStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VisitStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsReferal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsReferal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReferalDetails)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReferalDetails)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BranchDetail.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BranchDetail.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Doctor.OtherDetails)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Doctor.OtherDetails)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PatientDetail.FullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PatientDetail.FullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Specialization.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Specialization.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

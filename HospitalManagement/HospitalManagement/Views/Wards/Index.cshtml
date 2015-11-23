@@ -1,0 +1,124 @@
+﻿@model IEnumerable<HMS.Entity.Ward>
+
+@{
+    ViewBag.Title = "Hospital Management | Ward Master";
+}
+
+<h2>Ward Master</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", null, htmlAttributes: new { @class = "button-link", @style = "padding-top:5px;" })
+</p>
+<table id="wardMasterTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WardCategory.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalNoOfBed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OtherDetails)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BranchDetail.Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WardCategory.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalNoOfBed)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OtherDetails)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BranchDetail.Name)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "wardDetails" }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "wardDetails" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "wardDetails" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="modal fade" id="wardModal" tabindex="-1" role="dialog" aria-labelledby="wardlable" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" id="wardContent" style="font-size: 14px; border-radius: 0px;">
+            <img src="~/Images/closebox.png" data-dismiss="modal" aria-hidden="false" />
+            <div class="modal-body" id="wardBody" style="padding-top:0px;padding-bottom:0px;margin-top:0px; min-height:150px;margin-bottom:20px;">
+
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $('#wardMasterTable').DataTable({
+        //"bPaginate": false,
+        "bLengthChange": false,
+        //"bFilter": true,
+        //"bInfo": false,
+        //"bAutoWidth": false,
+        //"info":     false,
+        "aoColumnDefs": [
+            { 'bSortable': false, 'aTargets': [5] }
+        ]
+    });
+
+    $(document).ready(function () {
+        $(function () {
+            $('.wardDetails').click(function () {
+                var url = $(this).attr('href');
+                $('#wardBody').html('');
+                $('#wardBody').load(url, function () {
+                    $('#wardModal').modal({
+                        keyboard: true
+                    }, 'show');
+                    bindServiceForm(this);
+                });
+                return false;
+            });
+        });
+
+        function bindServiceForm(dialog) {
+            $('form', dialog).submit(function () {
+                $.ajax({
+                    url: this.action,
+                    type: this.method,
+                    data: $(this).serialize(),
+                    success: function (result) {
+                        var value = $(result).find(".validation-summary-errors ul li").length;
+                        if (value == 0) {
+                            window.location.reload(true);
+                        }
+                        else {
+                            $('#wardBody').html('');
+                            $('#wardBody').html(result);
+                            $("form").data("validator", null);
+                            $.validator.unobtrusive.parse($("form"));
+                            bindServiceForm();
+                        }
+                    }
+                });
+                return false;
+            });
+        }
+
+    });
+</script>

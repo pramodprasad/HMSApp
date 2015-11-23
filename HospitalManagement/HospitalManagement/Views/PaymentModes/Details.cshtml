@@ -1,0 +1,24 @@
+﻿@model HMS.Entity.PaymentMode
+
+@{
+    ViewBag.Title = "Hospital Management | Payment mode details";
+}
+
+<div>
+    <h4>Details for : @Model.Mode</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Mode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mode)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }, htmlAttributes: new { @class="button-link",@style="padding-top:5px;"}) |
+    @Html.ActionLink("Back to List", "Index", null, htmlAttributes: new { @class = "button-link", @style = "padding-top:5px;" })
+</p>

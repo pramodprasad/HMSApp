@@ -1,0 +1,81 @@
+﻿@model HMS.Entity.EmployeeType
+
+@{
+    ViewBag.Title = "Details";
+    this.Layout = null;
+}
+
+<div>
+    <h4>Details of @Model.Description</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedOn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedOn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }, htmlAttributes: new { @class = "button-link", @style = "padding-top: 5px;", @id="detailEditEmpType" }) |
+    @Html.ActionLink("Back to List", "Index", null, htmlAttributes: new { @class = "button-link", @style = "padding-top: 5px;" })
+</p>
+ <script>
+     $(function () {
+         $('#detailEditEmpType').click(function () {
+             var url = $(this).attr('href');
+             $('#editBranchBody').html('');
+             $('#editBranchBody').load(url, function () {
+                 $('#editBranchModal').modal({
+                     keyboard: true
+                 }, 'show');
+                 bindForm(this);
+
+             });
+             return false;
+         });
+     });
+
+     function bindForm(dialog) {
+         $('form', dialog).submit(function () {
+             $.ajax({
+                 url: this.action,
+                 type: this.method,
+                 data: $(this).serialize(),
+                 success: function (result) {
+                     var value = $(result).find(".validation-summary-errors ul li").length;
+                     if (value == 0) {
+                         window.location.reload(true);
+                     }
+                     else {
+                         $('#editBranchBody').html('');
+                         $('#editBranchBody').html(result);
+                         $("form").data("validator", null);
+                         $.validator.unobtrusive.parse($("form"));
+                         bindForm();
+                     }
+                 }
+             });
+             return false;
+         });
+     }
+ </script>

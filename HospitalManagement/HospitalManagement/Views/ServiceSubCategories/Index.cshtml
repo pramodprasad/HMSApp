@@ -1,0 +1,105 @@
+﻿@model IEnumerable<HMS.Entity.ServiceSubCategory>
+
+@{
+    ViewBag.Title = "Index";
+    this.Layout = null;
+}
+
+<h4>Service Sub Category</h4>
+
+<table id="serviceSubCatTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ServiceCharges)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AverageDuration)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Service)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ServiceCharges)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AverageDuration)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Service.Name)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }, htmlAttributes: new { @class = "serviceSubCategory" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID }, htmlAttributes: new { @class = "serviceSubCategory" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    $('#serviceSubCatTable').DataTable({
+        //"bPaginate": false,
+        "bLengthChange": false,
+        //"bFilter": true,
+        //"bInfo": false,
+        //"bAutoWidth": false,
+        //"info":     false,
+        "aoColumnDefs": [
+            { 'bSortable': false, 'aTargets': [4] }
+        ]
+    });
+
+    $(document).ready(function () {
+        $(function () {
+            $('.serviceSubCategory').click(function () {
+                var url = $(this).attr('href');
+                $('#SubCatBody').html('');
+                $('#SubCatBody').load(url, function () {
+                    $('#serviceSubCatModal').modal({
+                        keyboard: true
+                    }, 'show');
+                    bindServiceSubForm(this);
+                });
+                return false;
+            });
+        });
+
+        function bindServiceSubForm(dialog) {
+            $('form', dialog).submit(function () {
+                $.ajax({
+                    url: this.action,
+                    type: this.method,
+                    data: $(this).serialize(),
+                    success: function (result) {
+                        var value = $(result).find(".validation-summary-errors ul li").length;
+                        if (value == 0) {
+                            window.location.reload(true);
+                        }
+                        else {
+                            $('#SubCatBody').html('');
+                            $('#SubCatBody').html(result);
+                            $("form").data("validator", null);
+                            $.validator.unobtrusive.parse($("form"));
+                            bindServiceSubForm();
+                        }
+                    }
+                });
+                return false;
+            });
+        }
+    });
+</script> 

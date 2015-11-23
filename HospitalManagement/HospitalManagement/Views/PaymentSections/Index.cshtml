@@ -1,0 +1,106 @@
+﻿@model IEnumerable<HMS.Entity.PaymentSection>
+
+@{
+    ViewBag.Title = "Hospital Management | Payment Section";
+}
+
+<h4>Payment Section Master</h4>
+
+<p>
+    @Html.ActionLink("Create New", "Create", null, htmlAttributes: new { @class = "button-link", @style = "padding-top:5px;" })
+</p>
+<table id="paymentSection">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Details)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Details)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }, htmlAttributes: new { @class="paymentSection"}) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }, htmlAttributes: new { @class = "paymentSection" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID }, htmlAttributes: new { @class = "paymentSection" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="modal fade" id="paymentSectionModal" tabindex="-1" role="dialog" aria-labelledby="paymentSectionlable" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" id="paymentSectionContent" style="font-size: 14px; border-radius: 0px;">
+            <img src="~/Images/closebox.png" data-dismiss="modal" aria-hidden="false" />
+            <div class="modal-body" id="paymentSectionBody" style="padding-top:0px;padding-bottom:0px;margin-top:0px; min-height:150px;margin-bottom:20px;">
+
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $('#paymentSection').DataTable({
+        //"bPaginate": false,
+        "bLengthChange": false,
+        //"bFilter": true,
+        //"bInfo": false,
+        //"bAutoWidth": false,
+        //"info":     false,
+        "aoColumnDefs": [
+            { 'bSortable': false, 'aTargets': [2] }
+        ]
+    });
+
+    $(document).ready(function () {
+        $(function () {
+            $('.paymentSection').click(function () {
+                var url = $(this).attr('href');
+                $('#paymentSectionBody').html('');
+                $('#paymentSectionBody').load(url, function () {
+                    $('#paymentSectionModal').modal({
+                        keyboard: true
+                    }, 'show');
+                    bindpaymentSectionForm(this);
+                });
+                return false;
+            });
+        });
+
+        function bindpaymentSectionForm(dialog) {
+            $('form', dialog).submit(function () {
+                $.ajax({
+                    url: this.action,
+                    type: this.method,
+                    data: $(this).serialize(),
+                    success: function (result) {
+                        var value = $(result).find(".validation-summary-errors ul li").length;
+                        if (value == 0) {
+                            window.location.reload(true);
+                        }
+                        else {
+                            $('#paymentSectionBody').html('');
+                            $('#paymentSectionBody').html(result);
+                            $("form").data("validator", null);
+                            $.validator.unobtrusive.parse($("form"));
+                            bindpaymentSectionForm();
+                        }
+                    }
+                });
+                return false;
+            });
+        }
+
+    });
+</script>

@@ -1,0 +1,117 @@
+﻿@model IEnumerable<HMS.Entity.LabCategory>
+
+@{
+    ViewBag.Title = "Hospital Management | Lab Type";
+}
+
+<h4>Lab Type Master</h4>
+
+<p>
+    @Html.ActionLink("Create New", "Create", null, htmlAttributes: new { @class="button-link"})
+</p>
+<table id="labTypeDetails">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }, htmlAttributes: new { @class = "labTypeDetails" }) |
+                    @Html.ActionLink("Add LabTest", "Create", "LabTests", new { id = item.ID }, htmlAttributes: new { @class = "labTypeDetails" }) |
+                    @Html.ActionLink("View LabTest", "Index", "LabTests", new { id = item.ID }, htmlAttributes: new { @class = "labTypeDetails" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="modal fade" id="labTypeModal" tabindex="-1" role="dialog" aria-labelledby="labTypelable" aria-hidden="true">
+    <div class="modal-dialog" style="width:840px;">
+        <div class="modal-content" id="labTypeContent" style="font-size: 14px; border-radius: 0px;">
+            <img src="~/Images/closebox.png" data-dismiss="modal" aria-hidden="false" />
+            <div class="modal-body" id="labTypeBody" style="padding-top:0px;padding-bottom:0px;margin-top:0px; min-height:150px;margin-bottom:20px;">
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="labTestModal" tabindex="-1" role="dialog" aria-labelledby="labTestlable" aria-hidden="true">
+    <div class="modal-dialog" style="width:840px;">
+        <div class="modal-content" id="labTestContent" style="font-size: 14px; border-radius: 0px;">
+            <img src="~/Images/closebox.png" data-dismiss="modal" aria-hidden="false" />
+            <div class="modal-body" id="labTestBody" style="padding-top:0px;padding-bottom:0px;margin-top:0px; min-height:150px;margin-bottom:20px;">
+
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $('#labTypeDetails').DataTable({
+        //"bPaginate": false,
+        "bLengthChange": false,
+        //"bFilter": true,
+        //"bInfo": false,
+        //"bAutoWidth": false,
+        //"info":     false,
+        "aoColumnDefs": [
+            { 'bSortable': false, 'aTargets': [2] }
+        ]
+    });
+
+    $(document).ready(function () {
+        $(function () {
+            $('.labTypeDetails').click(function () {
+                var url = $(this).attr('href');
+                $('#labTypeBody').html('');
+                $('#labTypeBody').load(url, function () {
+                    $('#labTypeModal').modal({
+                        keyboard: true
+                    }, 'show');
+                    bindLabTypeForm(this);
+                });
+                return false;
+            });
+        });
+
+        function bindLabTypeForm(dialog) {
+            $('form', dialog).submit(function () {
+                $.ajax({
+                    url: this.action,
+                    type: this.method,
+                    data: $(this).serialize(),
+                    success: function (result) {
+                        var value = $(result).find(".validation-summary-errors ul li").length;
+                        if (value == 0) {
+                            window.location.reload(true);
+                        }
+                        else {
+                            $('#labTypeBody').html('');
+                            $('#labTypeBody').html(result);
+                            $("form").data("validator", null);
+                            $.validator.unobtrusive.parse($("form"));
+                            bindLabTypeForm();
+                        }
+                    }
+                });
+                return false;
+            });
+        }
+
+
+    });
+</script>

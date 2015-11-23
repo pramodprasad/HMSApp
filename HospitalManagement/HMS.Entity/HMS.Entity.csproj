@@ -1,0 +1,232 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C7C4B2BC-7E68-4372-A022-68A66ADD208A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HMS.Entity</RootNamespace>
+    <AssemblyName>HMS.Entity</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Appointment.cs">
+      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetRole.cs">
+      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUser.cs">
+      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserClaim.cs">
+      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserLogin.cs">
+      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BedAllotment.cs">
+      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BranchDetail.cs">
+      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="City.cs">
+      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Country.cs">
+      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="C__MigrationHistory.cs">
+      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Doctor.cs">
+      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DoctorBillDetail.cs">
+      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DoctorVisitPaymentDetail.cs">
+      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeeDetail.cs">
+      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeeType.cs">
+      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HMSEntityModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HMSEntityModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HMSEntityModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HMSEntityModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HMSEntityModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="LabCategory.cs">
+      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LabPayment.cs">
+      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LabTest.cs">
+      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MedicalPaymentDetail.cs">
+      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MetaData.cs" />
+    <Compile Include="PatientBill.cs">
+      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PatientDetail.cs">
+      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PatientType.cs">
+      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PatientVisit.cs">
+      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentMode.cs">
+      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentSection.cs">
+      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Qualification.cs">
+      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RegistrationPaymentDetail.cs">
+      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RoomDetail.cs">
+      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Service.cs">
+      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ServicePayment.cs">
+      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceSubCategory.cs">
+      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ShiftDate.cs">
+      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ShiftDay.cs">
+      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ShiftType.cs">
+      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Specialization.cs">
+      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="State.cs">
+      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Title.cs">
+      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ValidationClass.cs" />
+    <Compile Include="VisitReason.cs">
+      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Ward.cs">
+      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WardCategory.cs">
+      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WardOrRoomChargeDetail.cs">
+      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WeekDay.cs">
+      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="HMSEntityModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>HMSEntityModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="HMSEntityModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HMSEntityModel.edmx</DependentUpon>
+      <LastGenOutput>HMSEntityModel.Context.cs</LastGenOutput>
+    </None>
+    <None Include="HMSEntityModel.edmx.diagram">
+      <DependentUpon>HMSEntityModel.edmx</DependentUpon>
+    </None>
+    <None Include="HMSEntityModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HMSEntityModel.edmx</DependentUpon>
+      <LastGenOutput>HMSEntityModel.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

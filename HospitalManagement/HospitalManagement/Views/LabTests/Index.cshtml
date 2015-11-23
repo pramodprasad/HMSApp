@@ -1,0 +1,110 @@
+﻿@model IEnumerable<HMS.Entity.LabTest>
+
+@{
+    ViewBag.Title = "Hospital Management | Lab Test Management";
+    this.Layout = null;
+}
+
+<h4>Create a new lab test</h4>
+<table id="labTestDetails">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LabTestCost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Remarks)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LabCategory.Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LabTestCost)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Remarks)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LabCategory.Name)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }, htmlAttributes: new { @id = "labTestEdit" })
+                </td>
+            </tr>
+        }
+    </tbody>
+  
+</table>
+
+<script>
+    $('#labTestDetails').DataTable({
+        //"bPaginate": false,
+        "bLengthChange": false,
+        //"bFilter": true,
+        //"bInfo": false,
+        //"bAutoWidth": false,
+        //"info":     false,
+        "aoColumnDefs": [
+            { 'bSortable': false, 'aTargets': [5] }
+        ]
+    });
+
+    $(document).ready(function () {
+        $(function () {
+            $('#labTestEdit').click(function () {
+                var url = $(this).attr('href');
+                $('#labTestBody').html('');
+                $('#labTestBody').load(url, function () {
+                    $('#labTestModal').modal({
+                        keyboard: true
+                    }, 'show');
+                    bindLabTestForm(this);
+                });
+                return false;
+            });
+        });
+
+        function bindLabTestForm(dialog) {
+            $('form', dialog).submit(function () {
+                $.ajax({
+                    url: this.action,
+                    type: this.method,
+                    data: $(this).serialize(),
+                    success: function (result) {
+                        var value = $(result).find(".validation-summary-errors ul li").length;
+                        if (value == 0) {
+                            window.location.reload(true);
+                        }
+                        else {
+                            $('#labTestBody').html('');
+                            $('#labTestBody').html(result);
+                            $("form").data("validator", null);
+                            $.validator.unobtrusive.parse($("form"));
+                            bindLabTestForm();
+                        }
+                    }
+                });
+                return false;
+            });
+        }
+    });
+</script>

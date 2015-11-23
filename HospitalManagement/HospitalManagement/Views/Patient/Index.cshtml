@@ -1,0 +1,192 @@
+﻿@model IEnumerable<HMS.Entity.PatientDetail>
+@using HMS.Entity; 
+@{
+    
+    ViewBag.Title = "Hospital Management | Patient Details";
+    
+}
+
+<h2>Patient Master</h2>
+
+ <br />
+<table id="patientDetails">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Age)
+            </th>
+            <th>
+                Father/Husband Name
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContactNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Age)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FatherOrHusbandName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContactNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.City.name)
+                </td>
+                <td>
+                    
+                    @{
+                        var db = new HMSDBEntities();
+                        var appointment = db.Appointments.Where(a => a.PatientDetails_ID == item.ID).OrderByDescending(a => a.ID).FirstOrDefault();
+                        var visitCount = db.PatientVisits.Where(p => p.Appointment_ID == appointment.ID).Count();
+                        
+                    }
+
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }, htmlAttributes: new { @class="patientdetailModal"}) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }, htmlAttributes: new { @class = "patientdetailModal" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID }, htmlAttributes: new { @class = "patientdetailModal" }) | 
+                   @if(visitCount == 0){ @Html.ActionLink("Add Visit", "Create","PatientVisit", new { id = item.ID }, htmlAttributes: new { @class = "patientdetailModal" })}
+                   else{ <a href="#">Add Visit</a>} |
+                    @Html.ActionLink("Visit Details", "Index", "PatientVisit", new { id = item.ID }, htmlAttributes: new { @class = "patientvisitdetailModal" })
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+<div class="modal fade" id="patientModal" tabindex="-1" role="dialog" aria-labelledby="patientlable" aria-hidden="true">
+    <div class="modal-dialog" style="width:600px;">
+        <div class="modal-content" id="patientContent" style="font-size: 14px; border-radius: 0px;">
+            <img src="~/Images/closebox.png" data-dismiss="modal" aria-hidden="false" />
+            <div class="modal-body" id="patientBody" style="padding-top:0px;padding-bottom:0px;margin-top:0px; min-height:150px;margin-bottom:20px;">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="patientDetailModal" tabindex="-1" role="dialog" aria-labelledby="patientvisitlable" aria-hidden="true" >
+    <div class="modal-dialog" style="width:1140px;">
+        <div class="modal-content" id="patientvisitContent" style="font-size: 14px; border-radius: 0px;">
+            <img src="~/Images/closebox.png" data-dismiss="modal" aria-hidden="false" />
+            <div class="modal-body" id="patientvisitBody" style="padding-top:0px;padding-bottom:0px;margin-top:0px; min-height:150px;margin-bottom:20px;">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#patientDetails').DataTable({
+        //"bPaginate": false,
+        "bLengthChange": false,
+        //"bFilter": true,
+        //"bInfo": false,
+        //"bAutoWidth": false,
+        //"info":     false,
+        "aoColumnDefs": [
+            { 'bSortable': false, 'aTargets': [6] }
+        ]
+    });
+
+    $(document).ready(function () {
+        $(function () {
+            $('.patientdetailModal').click(function () {
+                var url = $(this).attr('href');
+                $('#patientBody').html('');
+                $('#patientBody').load(url, function () {
+                    $('#patientModal').modal({
+                        keyboard: true
+                    }, 'show');
+                    bindServiceForm(this);
+                });
+                return false;
+            });
+        });
+
+        $(function () {
+            $('.patientvisitdetailModal').click(function () {
+                var url = $(this).attr('href');
+                $('#patientvisitBody').html('');
+                $('#patientvisitBody').load(url, function () {
+                    $('#patientDetailModal').modal({
+                        keyboard: true
+                    }, 'show');
+                    bindpaientForm(this);
+                });
+                return false;
+            });
+        });
+
+        function bindServiceForm(dialog) {
+            $('form', dialog).submit(function () {
+                $.ajax({
+                    url: this.action,
+                    type: this.method,
+                    data: $(this).serialize(),
+                    success: function (result) {
+                        var value = $(result).find(".validation-summary-errors ul li").length;
+                        if (value == 0) {
+                            window.location.reload(true);
+                        }
+                        else {
+                            $('#patientBody').html('');
+                            $('#patientBody').html(result);
+                            $("form").data("validator", null);
+                            $.validator.unobtrusive.parse($("form"));
+                            bindServiceForm();
+                        }
+                    }
+                });
+                return false;
+            });
+        }
+
+        function bindpaientForm(dialog) {
+            $('form', dialog).submit(function () {
+                $.ajax({
+                    url: this.action,
+                    type: this.method,
+                    data: $(this).serialize(),
+                    success: function (result) {
+                        var value = $(result).find(".validation-summary-errors ul li").length;
+                        if (value == 0) {
+                            window.location.reload(true);
+                        }
+                        else {
+                            $('#patientvisitBody').html('');
+                            $('#patientvisitBody').html(result);
+                            $("form").data("validator", null);
+                            $.validator.unobtrusive.parse($("form"));
+                            bindServiceForm();
+                        }
+                    }
+                });
+                return false;
+            });
+        }
+
+    });
+</script>  

@@ -1,0 +1,40 @@
+﻿@model HMS.Entity.RoomDetail
+
+@{
+    ViewBag.Title = "Hospital Management | Room details";
+    this.Layout = null;
+}
+
+<div>
+    <h4>Room Details</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Details)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Details)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalBed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalBed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ward.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ward.Name)
+        </dd>
+
+    </dl>
+</div>
+<p class="col-md-offset-3">
+    @Html.ActionLink("Back to List", "Index", null, htmlAttributes: new { @class = "button-link", @style = "padding-top:5px;" })
+</p>

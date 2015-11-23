@@ -1,0 +1,733 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7AB4999F-BA2E-4FBA-AD80-4E56562D2528}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HospitalManagement</RootNamespace>
+    <AssemblyName>HospitalManagement</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="dotless.Core">
+      <HintPath>..\packages\dotless.1.5.0\lib\dotless.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Data.Edm, Version=5.6.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Data.Edm.5.6.2\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.6.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Data.OData.5.6.2\lib\net40\Microsoft.Data.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Services.Client, Version=5.6.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Data.Services.Client.5.6.2\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Configuration">
+      <HintPath>..\packages\Microsoft.WindowsAzure.ConfigurationManager.2.0.3\lib\net40\Microsoft.WindowsAzure.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Diagnostics, Version=2.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.ServiceRuntime, Version=2.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Storage">
+      <HintPath>..\packages\WindowsAzure.Storage.4.3.0\lib\net40\Microsoft.WindowsAzure.Storage.dll</HintPath>
+    </Reference>
+    <Reference Include="MvcSiteMapProvider">
+      <HintPath>..\packages\MvcSiteMapProvider.MVC5.Core.4.6.18\lib\net45\MvcSiteMapProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="MvcSiteMapProvider.WebActivator">
+      <HintPath>..\packages\MvcSiteMapProvider.MVC5.4.6.18\lib\net45\MvcSiteMapProvider.WebActivator.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Common">
+      <HintPath>..\packages\Ninject.Web.Common.3.2.0.0\lib\net45-full\Ninject.Web.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Mvc">
+      <HintPath>..\packages\Ninject.MVC5.3.2.1.0\lib\net45-full\Ninject.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Spatial, Version=5.6.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\System.Spatial.5.6.2\lib\net40\System.Spatial.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=__MvcPagesVersion__, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.2\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.2\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebActivatorEx">
+      <HintPath>..\packages\WebActivatorEx.2.0.1\lib\net40\WebActivatorEx.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.1.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.1.0\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.1.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.3.0.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.3.0.0\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.3.0.0\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.3.0.0\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.3.0.0\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\NinjectWebCommon.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AppointmentsController.cs" />
+    <Compile Include="Controllers\BranchDetailsController.cs" />
+    <Compile Include="Controllers\CitiesController.cs" />
+    <Compile Include="Controllers\CountriesController.cs" />
+    <Compile Include="Controllers\DoctorsController.cs" />
+    <Compile Include="Controllers\EmployeeDetailsController.cs" />
+    <Compile Include="Controllers\EmployeeTypesController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LabCategoriesController.cs" />
+    <Compile Include="Controllers\LabPaymentsController.cs" />
+    <Compile Include="Controllers\LabTestsController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PatientController.cs" />
+    <Compile Include="Controllers\PatientTypesController.cs" />
+    <Compile Include="Controllers\PatientVisitController.cs" />
+    <Compile Include="Controllers\PaymentModesController.cs" />
+    <Compile Include="Controllers\PaymentSectionsController.cs" />
+    <Compile Include="Controllers\RoomDetailsController.cs" />
+    <Compile Include="Controllers\ServicePaymentsController.cs" />
+    <Compile Include="Controllers\ServicesController.cs" />
+    <Compile Include="Controllers\ServiceSubCategoriesController.cs" />
+    <Compile Include="Controllers\ShiftTypesController.cs" />
+    <Compile Include="Controllers\StatesController.cs" />
+    <Compile Include="Controllers\TitlesController.cs" />
+    <Compile Include="Controllers\TransactionController.cs" />
+    <Compile Include="Controllers\VisitReasonsController.cs" />
+    <Compile Include="Controllers\WardCategoriesController.cs" />
+    <Compile Include="Controllers\WardsController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\UserTypeModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\AddVisitViewModel.cs" />
+    <Compile Include="ViewModels\AssignedDayData.cs" />
+    <Compile Include="ViewModels\AssignedShift.cs" />
+    <Compile Include="ViewModels\AssignedWeekDays.cs" />
+    <Compile Include="ViewModels\DoctorViewModel.cs" />
+    <Compile Include="ViewModels\LabViewModel.cs" />
+    <Compile Include="ViewModels\PatientViewModel.cs" />
+    <Compile Include="ViewModels\RegDetailsViewModel.cs" />
+    <Compile Include="ViewModels\ServiceViewModel.cs" />
+    <Compile Include="ViewModels\ShiftMapViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap-datepicker.css" />
+    <Content Include="Content\bootstrap-datepicker.min.css" />
+    <Content Include="Content\bootstrap-datepicker.standalone.css" />
+    <Content Include="Content\bootstrap-datepicker.standalone.min.css" />
+    <Content Include="Content\bootstrap-datepicker3.css" />
+    <Content Include="Content\bootstrap-datepicker3.min.css" />
+    <Content Include="Content\bootstrap-datepicker3.standalone.css" />
+    <Content Include="Content\bootstrap-datepicker3.standalone.min.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\dataTables.autoFill.css" />
+    <Content Include="Content\DataTables\css\dataTables.autoFill.min.css" />
+    <Content Include="Content\DataTables\css\dataTables.bootstrap.css" />
+    <Content Include="Content\DataTables\css\dataTables.colReorder.css" />
+    <Content Include="Content\DataTables\css\dataTables.colReorder.min.css" />
+    <Content Include="Content\DataTables\css\dataTables.colVis.css" />
+    <Content Include="Content\DataTables\css\dataTables.colvis.jqueryui.css" />
+    <Content Include="Content\DataTables\css\dataTables.colVis.min.css" />
+    <Content Include="Content\DataTables\css\dataTables.fixedColumns.css" />
+    <Content Include="Content\DataTables\css\dataTables.fixedColumns.min.css" />
+    <Content Include="Content\DataTables\css\dataTables.fixedHeader.css" />
+    <Content Include="Content\DataTables\css\dataTables.fixedHeader.min.css" />
+    <Content Include="Content\DataTables\css\dataTables.foundation.css" />
+    <Content Include="Content\DataTables\css\dataTables.jqueryui.css" />
+    <Content Include="Content\DataTables\css\dataTables.keyTable.css" />
+    <Content Include="Content\DataTables\css\dataTables.keyTable.min.css" />
+    <Content Include="Content\DataTables\css\dataTables.responsive.css" />
+    <Content Include="Content\DataTables\css\dataTables.scroller.css" />
+    <Content Include="Content\DataTables\css\dataTables.scroller.min.css" />
+    <Content Include="Content\DataTables\css\dataTables.tableTools.css" />
+    <Content Include="Content\DataTables\css\dataTables.tableTools.min.css" />
+    <Content Include="Content\DataTables\css\jquery.dataTables.css" />
+    <Content Include="Content\DataTables\css\jquery.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\jquery.dataTables_themeroller.css" />
+    <Content Include="Content\DataTables\images\background.png" />
+    <Content Include="Content\DataTables\images\back_disabled.png" />
+    <Content Include="Content\DataTables\images\back_enabled.png" />
+    <Content Include="Content\DataTables\images\back_enabled_hover.png" />
+    <Content Include="Content\DataTables\images\collection.png" />
+    <Content Include="Content\DataTables\images\collection_hover.png" />
+    <Content Include="Content\DataTables\images\copy.png" />
+    <Content Include="Content\DataTables\images\copy_hover.png" />
+    <Content Include="Content\DataTables\images\csv.png" />
+    <Content Include="Content\DataTables\images\csv_hover.png" />
+    <Content Include="Content\DataTables\images\details_close.png" />
+    <Content Include="Content\DataTables\images\details_open.png" />
+    <Content Include="Content\DataTables\images\filler.png" />
+    <Content Include="Content\DataTables\images\forward_disabled.png" />
+    <Content Include="Content\DataTables\images\forward_enabled.png" />
+    <Content Include="Content\DataTables\images\forward_enabled_hover.png" />
+    <Content Include="Content\DataTables\images\insert.png" />
+    <Content Include="Content\DataTables\images\loading-background.png" />
+    <Content Include="Content\DataTables\images\pdf.png" />
+    <Content Include="Content\DataTables\images\pdf_hover.png" />
+    <Content Include="Content\DataTables\images\print.png" />
+    <Content Include="Content\DataTables\images\print_hover.png" />
+    <Content Include="Content\DataTables\images\sort_asc.png" />
+    <Content Include="Content\DataTables\images\sort_asc_disabled.png" />
+    <Content Include="Content\DataTables\images\sort_both.png" />
+    <Content Include="Content\DataTables\images\sort_desc.png" />
+    <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
+    <Content Include="Content\DataTables\images\xls.png" />
+    <Content Include="Content\DataTables\images\xls_hover.png" />
+    <Content Include="Content\DataTables\swf\copy_csv_xls.swf" />
+    <Content Include="Content\DataTables\swf\copy_csv_xls_pdf.swf" />
+    <Content Include="Content\left_menu.css" />
+    <Content Include="Content\responsive.css" />
+    <Content Include="Content\style.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Icon.png" />
+    <Content Include="Images\add.png" />
+    <Content Include="Images\all_in_one.png" />
+    <Content Include="Images\arrow.png" />
+    <Content Include="Images\bottom_vector.png" />
+    <Content Include="Images\cancel.png" />
+    <Content Include="Images\closebox.png" />
+    <Content Include="Images\delete.png" />
+    <Content Include="Images\dssd.png" />
+    <Content Include="Images\fevi.png" />
+    <Content Include="Images\footer_logo.png" />
+    <Content Include="Images\go.png" />
+    <Content Include="Images\header_bg.png" />
+    <Content Include="Images\icons\01.png" />
+    <Content Include="Images\icons\010.png" />
+    <Content Include="Images\icons\011.png" />
+    <Content Include="Images\icons\012.png" />
+    <Content Include="Images\icons\02.png" />
+    <Content Include="Images\icons\03.png" />
+    <Content Include="Images\icons\04.png" />
+    <Content Include="Images\icons\05.png" />
+    <Content Include="Images\icons\06.png" />
+    <Content Include="Images\icons\07.png" />
+    <Content Include="Images\icons\08.png" />
+    <Content Include="Images\icons\09.png" />
+    <Content Include="Images\icons\alerts.png" />
+    <Content Include="Images\icons\approval.png" />
+    <Content Include="Images\icons\calendar.png" />
+    <Content Include="Images\icons\change_cam.png" />
+    <Content Include="Images\icons\change_pass.png" />
+    <Content Include="Images\icons\dashboard.png" />
+    <Content Include="Images\icons\home.png" />
+    <Content Include="Images\icons\left_panel.png" />
+    <Content Include="Images\icons\logout.png" />
+    <Content Include="Images\icons\l_circular.png" />
+    <Content Include="Images\icons\l_news.png" />
+    <Content Include="Images\icons\my_profile.png" />
+    <Content Include="Images\login_bg.png" />
+    <Content Include="Images\login_head.png" />
+    <Content Include="Images\login_i.png" />
+    <Content Include="Images\login_res_pic.png" />
+    <Content Include="Images\logo.png" />
+    <Content Include="Images\no_image.png" />
+    <Content Include="Images\page_btn_icon.png" />
+    <Content Include="Images\print.png" />
+    <Content Include="Images\save.png" />
+    <Content Include="Images\search.png" />
+    <Content Include="Images\trans.png" />
+    <Content Include="Images\view.png" />
+    <Content Include="Mvc.sitemap">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\DataTables\css\dataTables.responsive.scss" />
+    <Content Include="Content\DataTables\css\dataTables.jqueryui.scss" />
+    <None Include="MvcSiteMapSchema.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\bootstrap-datepicker.js" />
+    <Content Include="Scripts\bootstrap-datepicker.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.autoFill.js" />
+    <Content Include="Scripts\DataTables\dataTables.autoFill.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.bootstrap.js" />
+    <Content Include="Scripts\DataTables\dataTables.colReorder.js" />
+    <Content Include="Scripts\DataTables\dataTables.colReorder.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.colVis.js" />
+    <Content Include="Scripts\DataTables\dataTables.colVis.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.fixedColumns.js" />
+    <Content Include="Scripts\DataTables\dataTables.fixedColumns.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.fixedHeader.js" />
+    <Content Include="Scripts\DataTables\dataTables.fixedHeader.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.foundation.js" />
+    <Content Include="Scripts\DataTables\dataTables.jqueryui.js" />
+    <Content Include="Scripts\DataTables\dataTables.keyTable.js" />
+    <Content Include="Scripts\DataTables\dataTables.keyTable.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.responsive.js" />
+    <Content Include="Scripts\DataTables\dataTables.responsive.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.scroller.js" />
+    <Content Include="Scripts\DataTables\dataTables.scroller.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.tableTools.js" />
+    <Content Include="Scripts\DataTables\dataTables.tableTools.min.js" />
+    <Content Include="Scripts\DataTables\jquery.dataTables.js" />
+    <Content Include="Scripts\DataTables\jquery.dataTables.min.js" />
+    <Content Include="Scripts\easyResponsiveTabs.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.dateselect.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ar.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.az.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.bg.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.bs.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ca.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.cs.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.cy.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.da.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.de.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.el.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.en-GB.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.es.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.et.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.eu.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.fa.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.fi.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.fo.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.fr-CH.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.fr.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.gl.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.he.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.hr.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.hu.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.hy.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.id.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.is.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.it-CH.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.it.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ja.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ka.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.kh.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.kk.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.kr.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.lt.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.lv.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.me.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.mk.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ms.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.nb.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.nl-BE.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.nl.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.no.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.pl.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.pt-BR.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.pt.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ro.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.rs-latin.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.rs.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ru.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sk.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sl.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sq.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sr-latin.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sr.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sv.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sw.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.th.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.tr.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.uk.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.vi.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.zh-TW.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\npm.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\SendCode.cshtml" />
+    <Content Include="Views\Account\VerifyCode.cshtml" />
+    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\ManageLogins.cshtml" />
+    <Content Include="Views\Manage\SetPassword.cshtml" />
+    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapTitleHelperModel.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapPathHelperModel.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapNodeModelList.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapNodeModel.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapHelperModel.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\MetaRobotsHelperModel.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\MenuHelperModel.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\CanonicalHelperModel.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\MainMenu.cshtml" />
+    <Content Include="Views\EmployeeTypes\Create.cshtml" />
+    <Content Include="Views\EmployeeTypes\Delete.cshtml" />
+    <Content Include="Views\EmployeeTypes\Details.cshtml" />
+    <Content Include="Views\EmployeeTypes\Edit.cshtml" />
+    <Content Include="Views\EmployeeTypes\Index.cshtml" />
+    <Content Include="Views\Account\EmpDetails.cshtml" />
+    <Content Include="Views\Patient\Create.cshtml" />
+    <Content Include="Views\Patient\Delete.cshtml" />
+    <Content Include="Views\Patient\Details.cshtml" />
+    <Content Include="Views\Patient\Edit.cshtml" />
+    <Content Include="Views\Patient\Index.cshtml" />
+    <Content Include="Views\PatientTypes\Create.cshtml" />
+    <Content Include="Views\PatientTypes\Delete.cshtml" />
+    <Content Include="Views\PatientTypes\Details.cshtml" />
+    <Content Include="Views\PatientTypes\Edit.cshtml" />
+    <Content Include="Views\PatientTypes\Index.cshtml" />
+    <Content Include="Views\Doctors\Delete.cshtml" />
+    <Content Include="Views\Doctors\Details.cshtml" />
+    <Content Include="Views\Doctors\Edit.cshtml" />
+    <Content Include="Views\Doctors\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\AssignedShift.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\AssignedWeekDays.cshtml" />
+    <Content Include="Views\BranchDetails\Create.cshtml" />
+    <Content Include="Views\BranchDetails\Delete.cshtml" />
+    <Content Include="Views\BranchDetails\Details.cshtml" />
+    <Content Include="Views\BranchDetails\Edit.cshtml" />
+    <Content Include="Views\BranchDetails\Index.cshtml" />
+    <Content Include="Views\ShiftTypes\Create.cshtml" />
+    <Content Include="Views\ShiftTypes\Delete.cshtml" />
+    <Content Include="Views\ShiftTypes\Details.cshtml" />
+    <Content Include="Views\ShiftTypes\Edit.cshtml" />
+    <Content Include="Views\ShiftTypes\Index.cshtml" />
+    <Content Include="Views\Services\Create.cshtml" />
+    <Content Include="Views\Services\Delete.cshtml" />
+    <Content Include="Views\Services\Details.cshtml" />
+    <Content Include="Views\Services\Edit.cshtml" />
+    <Content Include="Views\Services\Index.cshtml" />
+    <Content Include="Views\Titles\Create.cshtml" />
+    <Content Include="Views\Titles\Delete.cshtml" />
+    <Content Include="Views\Titles\Details.cshtml" />
+    <Content Include="Views\Titles\Edit.cshtml" />
+    <Content Include="Views\Titles\Index.cshtml" />
+    <Content Include="Views\PaymentSections\Create.cshtml" />
+    <Content Include="Views\PaymentSections\Delete.cshtml" />
+    <Content Include="Views\PaymentSections\Details.cshtml" />
+    <Content Include="Views\PaymentSections\Edit.cshtml" />
+    <Content Include="Views\PaymentSections\Index.cshtml" />
+    <Content Include="Views\Wards\Create.cshtml" />
+    <Content Include="Views\Wards\Delete.cshtml" />
+    <Content Include="Views\Wards\Details.cshtml" />
+    <Content Include="Views\Wards\Edit.cshtml" />
+    <Content Include="Views\Wards\Index.cshtml" />
+    <Content Include="Views\VisitReasons\Create.cshtml" />
+    <Content Include="Views\VisitReasons\Delete.cshtml" />
+    <Content Include="Views\VisitReasons\Details.cshtml" />
+    <Content Include="Views\VisitReasons\Edit.cshtml" />
+    <Content Include="Views\VisitReasons\Index.cshtml" />
+    <Content Include="Views\RoomDetails\Create.cshtml" />
+    <Content Include="Views\RoomDetails\Delete.cshtml" />
+    <Content Include="Views\RoomDetails\Details.cshtml" />
+    <Content Include="Views\RoomDetails\Edit.cshtml" />
+    <Content Include="Views\RoomDetails\Index.cshtml" />
+    <Content Include="Views\Countries\Create.cshtml" />
+    <Content Include="Views\Countries\Delete.cshtml" />
+    <Content Include="Views\Countries\Details.cshtml" />
+    <Content Include="Views\Countries\Edit.cshtml" />
+    <Content Include="Views\Countries\Index.cshtml" />
+    <Content Include="Views\States\Create.cshtml" />
+    <Content Include="Views\States\Delete.cshtml" />
+    <Content Include="Views\States\Details.cshtml" />
+    <Content Include="Views\States\Edit.cshtml" />
+    <Content Include="Views\States\Index.cshtml" />
+    <Content Include="Views\Cities\Create.cshtml" />
+    <Content Include="Views\Cities\Delete.cshtml" />
+    <Content Include="Views\Cities\Details.cshtml" />
+    <Content Include="Views\Cities\Edit.cshtml" />
+    <Content Include="Views\Cities\Index.cshtml" />
+    <Content Include="Views\PaymentModes\Create.cshtml" />
+    <Content Include="Views\PaymentModes\Delete.cshtml" />
+    <Content Include="Views\PaymentModes\Details.cshtml" />
+    <Content Include="Views\PaymentModes\Edit.cshtml" />
+    <Content Include="Views\PaymentModes\Index.cshtml" />
+    <Content Include="Views\EmployeeDetails\Create.cshtml" />
+    <Content Include="Views\EmployeeDetails\Delete.cshtml" />
+    <Content Include="Views\EmployeeDetails\Details.cshtml" />
+    <Content Include="Views\EmployeeDetails\Edit.cshtml" />
+    <Content Include="Views\EmployeeDetails\Index.cshtml" />
+    <Content Include="Views\ServiceSubCategories\Create.cshtml" />
+    <Content Include="Views\ServiceSubCategories\Delete.cshtml" />
+    <Content Include="Views\ServiceSubCategories\Details.cshtml" />
+    <Content Include="Views\ServiceSubCategories\Edit.cshtml" />
+    <Content Include="Views\ServiceSubCategories\Index.cshtml" />
+    <Content Include="Views\Doctors\ShiftMapping.cshtml" />
+    <Content Include="Views\LabCategories\Create.cshtml" />
+    <Content Include="Views\LabCategories\Edit.cshtml" />
+    <Content Include="Views\LabCategories\Index.cshtml" />
+    <Content Include="Views\LabTests\Create.cshtml" />
+    <Content Include="Views\LabTests\Edit.cshtml" />
+    <Content Include="Views\LabTests\Index.cshtml" />
+    <Content Include="Views\Appointments\Create.cshtml" />
+    <Content Include="Views\Appointments\Delete.cshtml" />
+    <Content Include="Views\Appointments\Details.cshtml" />
+    <Content Include="Views\Appointments\Edit.cshtml" />
+    <Content Include="Views\Appointments\Index.cshtml" />
+    <Content Include="Views\Patient\Search.cshtml" />
+    <Content Include="Views\Transaction\Service.cshtml" />
+    <Content Include="Views\Transaction\AddService.cshtml" />
+    <Content Include="Views\ServicePayments\Create.cshtml" />
+    <Content Include="Views\ServicePayments\Delete.cshtml" />
+    <Content Include="Views\ServicePayments\Details.cshtml" />
+    <Content Include="Views\ServicePayments\Edit.cshtml" />
+    <Content Include="Views\ServicePayments\Index.cshtml" />
+    <Content Include="Views\PatientVisit\Create.cshtml" />
+    <Content Include="Views\PatientVisit\Delete.cshtml" />
+    <Content Include="Views\PatientVisit\Details.cshtml" />
+    <Content Include="Views\PatientVisit\Edit.cshtml" />
+    <Content Include="Views\PatientVisit\Index.cshtml" />
+    <Content Include="Views\LabPayments\Create.cshtml" />
+    <Content Include="Views\LabPayments\Delete.cshtml" />
+    <Content Include="Views\LabPayments\Details.cshtml" />
+    <Content Include="Views\LabPayments\Edit.cshtml" />
+    <Content Include="Views\LabPayments\Index.cshtml" />
+    <Content Include="Views\WardCategories\Create.cshtml" />
+    <Content Include="Views\WardCategories\Delete.cshtml" />
+    <Content Include="Views\WardCategories\Details.cshtml" />
+    <Content Include="Views\WardCategories\Edit.cshtml" />
+    <Content Include="Views\WardCategories\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+    <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HMS.BAL\HMS.BAL.csproj">
+      <Project>{7aefd1ba-f089-4127-8ab7-c3d05ebc2a46}</Project>
+      <Name>HMS.BAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HMS.Entity\HMS.Entity.csproj">
+      <Project>{c7c4b2bc-7e68-4372-a022-68a66add208a}</Project>
+      <Name>HMS.Entity</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>64582</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:64582/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

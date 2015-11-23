@@ -1,0 +1,25 @@
+*{ margin:0; padding:0;}
+.icon1{float:left; background:url(../Images/icons/01.png) no-repeat center; width:29px; margin:5px 3px; height:29px;}
+.icon2{float:left; background:url(../Images/icons/02.png) no-repeat center; width:29px; margin:5px 3px; height:29px;}
+.icon3{float:left; background:url(../Images/icons/03.png) no-repeat center; width:29px; margin:5px 3px; height:29px;}
+.icon4{float:left; background:url(../Images/icons/04.png) no-repeat center; width:29px; margin:5px 3px; height:29px;}
+.icon5{float:left; background:url(../Images/icons/05.png) no-repeat center; width:29px; margin:5px 3px; height:29px;}
+.icon6{float:left; background:url(../Images/icons/06.png) no-repeat center; width:29px; margin:5px 3px; height:29px;}
+.icon7{float:left; background:url(../Images/icons/07.png) no-repeat center; width:29px; margin:5px 3px; height:29px;}
+.icon8{float:left; background:url(../Images/icons/08.png) no-repeat center; width:29px; margin:5px 3px; height:29px;}
+.icon9{float:left; background:url(../Images/icons/09.png) no-repeat center; width:29px; margin:5px 3px; height:29px;}
+.icon10{float:left; background:url(../Images/icons/010.png) no-repeat center; width:29px; margin:5px 3px; height:29px;}
+.icon11{float:left; background:url(../Images/icons/011.png) no-repeat center; width:29px; margin:5px 3px; height:29px;}
+.icon12{float:left; background:url(../Images/icons/012.png) no-repeat center; width:29px; margin:5px 3px; height:29px;}
+
+
+.vertical-nav{width:243px; border:1px solid #EEE;float:left;font-family:Segoe UI, Arial;position:relative; z-index: 0; list-style:none;background:#fff; margin:0;padding:0}
+.vertical-nav li{display:block;width:94%;  border-bottom:1px dashed #EEE; float:left; margin:0 3%; z-index: 0; font-size:14px;position:relative;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;padding:0}
+
+.vertical-nav li a{width:100%; display:block;color:#333;text-decoration:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;-o-transition:all .3s ease-in-out;-webkit-transition:all .3s ease-in-out;-moz-transition:all .3s ease-in-out;transition:all .3s ease-in-out;line-height:40px;}
+.vertical-nav li a span{}
+.vertical-nav li a:hover{color:#50a7d2 !important;}
+@media screen and (max-width:768px){
+.vertical-nav{width:100%; border:none;}
+.vertical-nav li{width:99%; margin:0 1%;}
+}

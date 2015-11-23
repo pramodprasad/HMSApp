@@ -1,0 +1,173 @@
+﻿@model HMS.Entity.ServicePayment
+
+@{
+    ViewBag.Title = "Hospital Management | Add Service Payment";
+    //this.Layout = null;
+}
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>
+            Add service
+        </h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <fieldset style="width:100%;border: 2px #eeeeee solid;">
+            <br />
+            <div style="width:100%; float:left;">
+                <div class="left-div col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Service_ID, "Service Category", htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.DropDownList("Service_ID", null, "----Select----", htmlAttributes: new { @class = "form-control", @onchange = "FillSubCategory()" })
+                            @Html.ValidationMessageFor(model => model.Service_ID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="right-div col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ServiceSubCategory_ID, "Service Type", htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.DropDownList("ServiceSubCategory_ID", null, "----Select----", htmlAttributes: new { @class = "form-control", @onchange = "FillServiceCharge()" })
+                            @Html.ValidationMessageFor(model => model.ServiceSubCategory_ID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="width:100%; float:left;">
+                <div class="left-div col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ServiceUnit,"Qty.", htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.ServiceUnit, new { htmlAttributes = new { @class = "form-control", @onchange = "updateValues()" } })
+                            @Html.ValidationMessageFor(model => model.ServiceUnit, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="right-div col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ServiceCharge, "Service Charge", htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.ServiceCharge, new { htmlAttributes = new { @class = "form-control", @onchange = "updateValues()" } })
+                            @Html.ValidationMessageFor(model => model.ServiceCharge, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="width:100%; float:left;">
+                <div class="left-div col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Discount, htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.Discount, new { htmlAttributes = new { @class = "form-control", @onchange = "updateValues()" } })
+                            @Html.ValidationMessageFor(model => model.Discount, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="right-div col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.NetAmount, "Net Amount", htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.NetAmount, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.NetAmount, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="width:100%; float:left;">
+                <div class="left-div col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.PaidAmount, "Paid Amt.", htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.PaidAmount, new { htmlAttributes = new { @class = "form-control", @onchange = "updateValues()" } })
+                            @Html.ValidationMessageFor(model => model.PaidAmount, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="right-div col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DueAmount, "Due Amt.", htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.DueAmount, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.DueAmount, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="width:100%; float:left;">
+                <div class="left-div col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Doctor_ID, "Doctor", htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.DropDownList("Doctor_ID",  null, "----Select----", htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Doctor_ID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="right-div col-md-6">
+
+                </div>
+            </div>
+            @Html.HiddenFor(m => m.Appointment_ID)
+        </fieldset>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+</div>
+}
+
+<script>
+    function FillSubCategory() {
+        var specId = $('#Service_ID').val();
+        $.ajax({
+            url: '/ServicePayments/FillServiceSubCat',
+            type: "GET",
+            dataType: "JSON",
+            data: { serviceID: specId},
+            success: function (result) {
+                $("#ServiceSubCategory_ID").html("");// clear before appending new list 
+                $("#ServiceSubCategory_ID").append($('<option></option>').html('----Select----')); // Bind default select option
+                $.each(result, function (i, obj) {
+                    $("#ServiceSubCategory_ID").append(
+                        $('<option></option>').val(obj.Value).html(obj.Text));
+                });
+            }
+        });
+    }
+
+    function FillServiceCharge() {
+        var subCatId = $('#ServiceSubCategory_ID').val();
+        $.ajax({
+            url: '/ServicePayments/FillServiceCharge',
+            type: "GET",
+            dataType: "JSON",
+            data: { serviceSubCatId: subCatId },
+            success: function (result) {
+                $('#ServiceCharge').val(result);
+                $('#NetAmount').val(result);
+                $('#DueAmount').val(result);
+            }
+        });
+    }
+
+    function updateValues()
+    {
+        var qty = $('#ServiceUnit').val();
+        var serviceCharge = $('#ServiceCharge').val();
+        var discount = $('#Discount').val();
+        var paidAmt = $('#PaidAmount').val();
+        // Manipulate all fields on the basis of above values
+        var netAmt = ((parseFloat(qty) * parseFloat(serviceCharge)) - (parseFloat(discount)));
+        var dueAmt = (netAmt - (parseFloat(paidAmt)));
+
+        $('#NetAmount').val(netAmt);
+        $('#DueAmount').val(dueAmt);
+    }
+</script>

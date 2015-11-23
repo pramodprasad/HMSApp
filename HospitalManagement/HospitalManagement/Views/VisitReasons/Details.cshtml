@@ -1,0 +1,33 @@
+﻿@model HMS.Entity.VisitReason
+
+@{
+    ViewBag.Title = "Hospital Management | Visit Reason Details";
+    this.Layout = null;
+}
+
+<div>
+    <h4>Details for : @Model.VisitPurpose</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.VisitPurpose)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VisitPurpose)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Details)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Details)
+        </dd>
+
+    </dl>
+</div>
+<p class="col-md-offset-3">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }, htmlAttributes: new { @class="button-link"}) |
+    @Html.ActionLink("Back to List", "Index", null, htmlAttributes: new { @class="button-link"})
+</p>

@@ -1,0 +1,101 @@
+﻿@model HMS.Entity.PatientVisit
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>PatientVisit</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.ID)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.VisitedDate, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.VisitedDate)
+                @Html.ValidationMessageFor(model => model.VisitedDate)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PatientStatus, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PatientStatus)
+                @Html.ValidationMessageFor(model => model.PatientStatus)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UpdatedDate, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UpdatedDate)
+                @Html.ValidationMessageFor(model => model.UpdatedDate)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.RegistrationAmount, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.RegistrationAmount)
+                @Html.ValidationMessageFor(model => model.RegistrationAmount)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DiscountAmount, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DiscountAmount)
+                @Html.ValidationMessageFor(model => model.DiscountAmount)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PayAmount, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PayAmount)
+                @Html.ValidationMessageFor(model => model.PayAmount)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CreatedBy, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CreatedBy)
+                @Html.ValidationMessageFor(model => model.CreatedBy)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Appointment_ID, "Appointment_ID", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Appointment_ID", String.Empty)
+                @Html.ValidationMessageFor(model => model.Appointment_ID)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PaymentMode_ID, "PaymentMode_ID", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("PaymentMode_ID", String.Empty)
+                @Html.ValidationMessageFor(model => model.PaymentMode_ID)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

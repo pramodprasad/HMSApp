@@ -1,0 +1,63 @@
+﻿@model MenuHelperModel
+
+@helper  TopMenu(List<SiteMapNodeModel> nodeList)
+{
+    foreach (SiteMapNodeModel node in nodeList.Where(n => !n.IsRootNode && (n.Attributes["visibility"].ToString() == "MainMenu")))
+    {
+        string url = node.IsClickable ? node.Url : "#";
+
+        if (!@node.Children.Any())
+        {
+            <li><a href="@url" class="menu">@node.Title</a></li>
+        }
+        else
+        {
+            <li class="dropdown"><a href="@url" class="menu dropdown-toggle" data-toggle="dropdown">@node.Title <b class="caret"></b></a>@DropDownMenu(@node.Children)</li>
+        }
+
+    }
+}
+
+@helper DropDownMenu(SiteMapNodeModelList nodeList)
+{
+    <ul class="dropdown-menu dropdown-menu-large row" role="menu">
+        @foreach (SiteMapNodeModel node in nodeList)
+        {
+            string url = node.IsClickable ? node.Url : "#";
+
+            if (!node.Children.Any())
+            {
+                <li><a href="@url">@node.Title</a></li>
+            }
+            else
+            {
+                if (node != nodeList.First())
+                {
+                    <span><br /></span>
+                }
+                <li class="dropdown-header">@node.Title</li>@DropDownSubMenu(@node.Children)
+            }
+        }
+    </ul>
+}
+
+@helper DropDownSubMenu(SiteMapNodeModelList nodeList)
+{
+    foreach (SiteMapNodeModel node in nodeList)
+    {
+
+        string url = node.IsClickable ? node.Url : "#";
+
+        if (!node.Children.Any())
+        {
+            <li><a href="@url">@node.Title</a></li>
+        }
+        else
+        {
+            <li class="dropdown-header"><a href="@url">@node.Title</a>@DropDownSubMenu(@node.Children)</li>
+        }
+    }
+}
+
+
+@TopMenu(Model.Nodes)

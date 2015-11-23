@@ -1,0 +1,137 @@
+﻿@model HMS.Entity.Appointment
+
+@{
+    ViewBag.Title = "Hospital Management | Create Appointment";
+    this.Layout = null;
+}
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal" style="margin-left:20px; margin-right:20px;">
+        <h4>Add New Appointment</h4>
+        <hr />
+       @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.AppointmentDate,"Appointment Date", htmlAttributes: new { @class = "control-label col-md-4 " })
+            <div class="col-md-8">
+                @Html.EditorFor(model => model.AppointmentDate, new { htmlAttributes = new { @class = "form-control DateAvailable"} })
+                @Html.ValidationMessageFor(model => model.AppointmentDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.PatientType_ID, "Patient Type", htmlAttributes: new { @class = "control-label col-md-4 " })
+            <div class="col-md-8">
+                @Html.DropDownListFor(model => model.PatientType_ID, ViewBag.PatientType as SelectList, "----Select----", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PatientType_ID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.ShiftType_ID, "Shift Type", htmlAttributes: new { @class = "control-label col-md-4 " })
+            <div class="col-md-8">
+                @Html.DropDownListFor(model => model.ShiftType_ID, ViewBag.ShiftType as SelectList,"----Select----", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ShiftType_ID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Specialization_ID, "Department", htmlAttributes: new { @class = "control-label col-md-4" })
+            <div class="col-md-8">
+                @Html.DropDownList("Specialization_ID", null, "----Select----", htmlAttributes: new { @class = "form-control", @onchange = "FillDoctors()" })
+                @Html.ValidationMessageFor(model => model.Specialization_ID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Doctor_ID, "Doctor", htmlAttributes: new { @class = "control-label col-md-4" })
+            <div class="col-md-8">
+                @Html.DropDownList("Doctor_ID", null, "----Select----", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Doctor_ID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.VisitStatus,"Visit Status", htmlAttributes: new { @class = "control-label col-md-4" })
+            <div class="col-md-8">
+                @Html.DropDownList("VisitStatus", new SelectList(
+                  new List<Object>{ 
+                       new { value = 0 , text = "Visited"  },
+                       new { value = 1 , text = "Not Visited" },
+                       new { value = 2 , text = "Other"}
+                    },
+                  "value",
+                  "text"
+                   ), "----Select----", htmlAttributes: new { @class="form-control"})
+                @Html.ValidationMessageFor(model => model.VisitStatus, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.IsReferal, htmlAttributes: new { @class = "control-label col-md-4" })
+            <div class="col-md-8">
+                @Html.DropDownList("IsReferal", new SelectList(
+                  new List<Object>{
+                       new { value = 0 , text = "Yes"  },
+                       new { value = 1 , text = "No" }
+                    },
+                  "value",
+                  "text"
+                   ), "----Select----", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.IsReferal, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.ReferalDetails, htmlAttributes: new { @class = "control-label col-md-4" })
+            <div class="col-md-8">
+                @Html.EditorFor(model => model.ReferalDetails, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ReferalDetails, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BranchDetails_ID, "Branch", htmlAttributes: new { @class = "control-label col-md-4" })
+            <div class="col-md-8">
+                @Html.DropDownList("BranchDetails_ID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.BranchDetails_ID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @Html.HiddenFor(m => m.CreatedBy)
+        @Html.HiddenFor(m => m.CreatedDate)
+        @Html.HiddenFor(m => m.Doctor_ID)
+        @Html.HiddenFor(m => m.PatientDetails_ID)
+      <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<script>
+    $('.DateAvailable').datepicker({ format: "dd/mm/yyyy", useCurrent: false }).on('changeDate', function (e) {
+        $(this).datepicker('hide');
+    });
+
+    function FillDoctors() {
+        var specId = $('#Specialization_ID').val();
+        var appointDate = $('#AppointmentDate').val();
+        var shiftId = $('#ShiftType_ID').val();
+        if (shiftId == '') {
+            alert('Please select shift type.!');
+        }
+        $.ajax({
+            url: '/Patient/FillDoctor',
+            type: "GET",
+            dataType: "JSON",
+            data: { SpecializationId: specId, appointmentDay: appointDate, shiftTypeId: shiftId },
+            success: function (result) {
+                $("#Doctor_ID").html("");// clear before appending new list 
+                $("#Doctor_ID").append($('<option></option>').html('----Select----')); // Bind default select option
+                $.each(result, function (i, obj) {
+                    $("#Doctor_ID").append(
+                        $('<option></option>').val(obj.Value).html(obj.Text));
+                });
+            }
+        });
+    }
+</script>

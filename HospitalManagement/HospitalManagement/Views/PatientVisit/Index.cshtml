@@ -1,0 +1,84 @@
+﻿@model IEnumerable<HMS.Entity.PatientVisit>
+
+@{
+    ViewBag.Title = "Hospital Management | Patient Visit Details";
+    this.Layout = null;
+}
+
+<h4>Patient Visit Details</h4>
+
+<table id="patientVisitTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.VisitedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PatientStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpdatedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RegistrationAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiscountAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PayAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Appointment.ReferalDetails)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaymentMode.Mode)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VisitedDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PatientStatus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UpdatedDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RegistrationAmount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiscountAmount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PayAmount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedBy)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Appointment.ReferalDetails)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaymentMode.Mode)
+                </td>
+                @*<td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>*@
+            </tr>
+        }
+    </tbody>
+</table>
+<script>
+    $('#patientVisitTable').dataTable();
+</script>

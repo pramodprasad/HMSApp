@@ -1,0 +1,159 @@
+﻿@model HMS.Entity.BranchDetail
+
+@{
+    ViewBag.Title = "Details";
+    this.Layout = null;
+}
+
+<div>
+    <h4>Branch details for : @Model.Name</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneNoPri)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNoPri)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneNoSec)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNoSec)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MobileNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MobileNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FaxNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FaxNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailInfo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailInfo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailCustomerCare)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailCustomerCare)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WebAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WebAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedOn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedOn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.City.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.City.name)
+        </dd>
+
+    </dl>
+</div>
+<p style="text-align: center;">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }, htmlAttributes: new { @style="padding-top:5px;", @class="button-link", @id = "editDetailLink"}) | @Html.ActionLink("Back to List", "Index", null, htmlAttributes: new { @style = "padding-top:5px;", @class="button-link" })
+</p>
+<script>
+    $(function () {
+        $('#editDetailLink').click(function () {
+            var url = $(this).attr('href');
+            $('#editBranchBody').html('');
+            $('#editBranchBody').load(url, function () {
+                $('#editBranchModal').modal({
+                    keyboard: true
+                }, 'show');
+                bindForm(this);
+            });
+            return false;
+        });
+    });
+
+    function bindForm(dialog) {
+        $('form', dialog).submit(function () {
+            $.ajax({
+                url: this.action,
+                type: this.method,
+                data: $(this).serialize(),
+                success: function (result) {
+                    var value = $(result).find(".validation-summary-errors ul li").length;
+                    if (value == 0) {
+                        window.location.reload(true);
+                    }
+                    else {
+                        $('#modal-body').html('');
+                        $('#modal-body').html(result);
+                        $("form").data("validator", null);
+                        $.validator.unobtrusive.parse($("form"));
+                        bindForm();
+                    }
+                }
+            });
+            return false;
+        });
+    }
+</script>

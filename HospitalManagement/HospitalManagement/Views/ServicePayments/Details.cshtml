@@ -1,0 +1,130 @@
+﻿@model HMS.Entity.ServicePayment
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ServicePayment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ServiceUnit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ServiceUnit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ServiceCharge)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ServiceCharge)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Discount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Discount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NetAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NetAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaidAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaidAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DueAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DueAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdatedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdatedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdatedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdatedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Doctor.OtherDetails)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Doctor.OtherDetails)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PatientStatu.ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PatientStatu.ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Service.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Service.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ServiceSubCategory.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ServiceSubCategory.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

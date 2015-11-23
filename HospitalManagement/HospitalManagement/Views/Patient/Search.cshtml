@@ -1,0 +1,107 @@
+﻿@model IEnumerable<HMS.Entity.PatientDetail>
+
+@{
+    ViewBag.Title = "Hospital Management | Search Patient";
+}
+
+<h2>Patient Search</h2>
+
+@using (Html.BeginForm("Search", "Patient", FormMethod.Get))
+{
+    <div style="float: left; width:100%;margin-bottom:20px;">
+        <div id="txtBox">
+            @Html.Label("Search Patient ")
+            <input type="text" name="searchValue" />
+            @Html.RadioButton("SearchType", "0")
+            @Html.Label("ID")
+            @Html.RadioButton("SearchType", "1", true)
+            @Html.Label("Patient Name")
+            @Html.RadioButton("SearchType", "2")
+            @Html.Label("Father/Husband Name")
+            @Html.RadioButton("SearchType", "3")
+            @Html.Label("Mobile No")
+            <br />
+            @Html.Label("Patient Type")
+            @Html.DropDownList("PatientType", @ViewBag.PatientType as SelectList, "----Select----", htmlAttributes: new { @style = "width: 150px; margin-left: 15px;" })
+
+            <input type="submit" value="Search" id="btnSubmit" class="button-link"/>
+        </div>
+    </div>
+    <br />
+}
+
+<div id="DivGrid" style="margin-top:20px;">
+    @{
+        WebGrid grid = new WebGrid(source: Model, canPage: true, rowsPerPage: 4, defaultSort: "ID");
+
+        if (Model.Count() > 0)
+        {
+            <div><strong> @ViewBag.SearchParameter</strong> | @grid.TotalRowCount @Html.Label("Record(s) found")</div>
+            @grid.GetHtml(tableStyle: "PGrid", headerStyle: "Header", alternatingRowStyle: "altRow", htmlAttributes: new { id = "DataTable" , @style="width: 100%;"}, columns: grid.Columns(
+            grid.Column("ID", "Patient ID"),
+            grid.Column("FullName", "Patient Name"),
+            grid.Column("Age", "Age"),
+            grid.Column("ContactNo", "Mobile"),
+            grid.Column("FatherOrHusbandName", "Husband/Father Name"),
+            grid.Column("", header: "Add Appointment", format: @<text>@Html.ActionLink("Add appointment", "Create", "Appointments", new { id = item.ID }, htmlAttributes: new { @class = "appointmentModal" })</text>)));
+        }
+        else
+        {
+            <hr />@Html.Label("No, Record(s) not found")<hr />
+        }
+    }
+</div>
+
+
+<div class="modal fade" id="appointmentModal" tabindex="-1" role="dialog" aria-labelledby="appointmentlable" aria-hidden="true">
+    <div class="modal-dialog" style="width:600px;">
+        <div class="modal-content" id="appointmentContent" style="font-size: 14px; border-radius: 0px;">
+            <img src="~/Images/closebox.png" data-dismiss="modal" aria-hidden="false" />
+            <div class="modal-body" id="appointmentBody" style="padding-top:0px;padding-bottom:0px;margin-top:0px; min-height:150px;margin-bottom:20px;">
+
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+    $(document).ready(function () {
+        $(function () {
+            $('.appointmentModal').click(function () {
+                var url = $(this).attr('href');
+                $('#appointmentBody').html('');
+                $('#appointmentBody').load(url, function () {
+                    $('#appointmentModal').modal({
+                        keyboard: true
+                    }, 'show');
+                    bindappointForm(this);
+                });
+                return false;
+            });
+        });
+
+        function bindappointForm(dialog) {
+            $('form', dialog).submit(function () {
+                $.ajax({
+                    url: this.action,
+                    type: this.method,
+                    data: $(this).serialize(),
+                    success: function (result) {
+                        var value = $(result).find(".validation-summary-errors ul li").length;
+                        if (value == 0) {
+                            window.location.reload(true);
+                        }
+                        else {
+                            $('#appointmentBody').html('');
+                            $('#appointmentBody').html(result);
+                            $("form").data("validator", null);
+                            $.validator.unobtrusive.parse($("form"));
+                            bindappointForm();
+                        }
+                    }
+                });
+                return false;
+            });
+        }
+    });
+</script>

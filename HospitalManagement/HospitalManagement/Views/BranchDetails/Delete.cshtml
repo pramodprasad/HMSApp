@@ -1,0 +1,126 @@
+﻿@model HMS.Entity.BranchDetail
+
+@{
+    ViewBag.Title = "Delete";
+    this.Layout = null;
+}
+
+<div>
+    <h4>Are you sure you want to delete this branch ?</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneNoPri)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNoPri)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneNoSec)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNoSec)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MobileNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MobileNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FaxNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FaxNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailInfo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailInfo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailCustomerCare)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailCustomerCare)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WebAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WebAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedOn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedOn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.City.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.City.name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color" style="text-align:center;">
+            <input type="submit" value="Delete" class="button-link" /> |
+            @Html.ActionLink("Back to List", "Index",null , htmlAttributes: new { @style = "padding-top:5px;", @class="button-link" })
+        </div>
+    }
+</div>

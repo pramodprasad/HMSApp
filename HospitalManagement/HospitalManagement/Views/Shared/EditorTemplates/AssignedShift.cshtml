@@ -1,0 +1,7 @@
+﻿@model HospitalManagement.ViewModels.AssignedShift
+
+<fieldset>
+    @Html.HiddenFor(model =>model.ID)
+    @Html.CheckBoxFor(model => model.IsSelected)
+    @Html.LabelFor(model => model.Name)
+</fieldset>

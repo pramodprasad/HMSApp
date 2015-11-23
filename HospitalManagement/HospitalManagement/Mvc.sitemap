@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mvcSiteMap xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0"
+            xsi:schemaLocation="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0 MvcSiteMapSchema.xsd">
+
+  <mvcSiteMapNode title="Home" controller="Home" action="Index" visibility="MainMenu" >
+    <mvcSiteMapNode title="Masters" clickable="false" visibility="MainMenu">
+      <mvcSiteMapNode title="Create Branch" controller="BranchDetails" action="Index" visibility="MainMenu"></mvcSiteMapNode>
+      <mvcSiteMapNode title="Create Employee Type" controller="EmployeeTypes" action="Index" visibility="MainMenu"/>
+      <mvcSiteMapNode title="Create Employee" controller="Account" action="EmpDetails" visibility="MainMenu"/>
+      <mvcSiteMapNode title="Doctor Master" controller="Doctors" action="Index" visibility="MainMenu"/>
+      <mvcSiteMapNode title="Create Shift Type" controller="ShiftTypes" action="Index" visibility="MainMenu"/>
+      <mvcSiteMapNode title="Service Master" controller="Services" action="Index" visibility="MainMenu"/>
+      <mvcSiteMapNode title="Week Days Master" controller="WeekDays" action="Index" visibility="MainMenu"/>
+      <mvcSiteMapNode title="Payment Section Master" controller="PaymentSections" action="Index" visibility="MainMenu"/>
+      <mvcSiteMapNode title="Ward Master" controller="Wards" action="Index" visibility="MainMenu"/>
+      <mvcSiteMapNode title="Visit Reasons" controller="VisitReasons" action="Index" visibility="MainMenu"/>
+      <mvcSiteMapNode title="Room Master" controller="RoomDetails" action="Index" visibility="MainMenu"/>
+      <mvcSiteMapNode title="Payment Mode Master" controller="PaymentModes" action="Index" visibility="MainMenu"/>
+    </mvcSiteMapNode>
+    <mvcSiteMapNode title="Patient Manager" clickable="false" visibility="MainMenu">
+      <mvcSiteMapNode title="Create Patient Type" controller="PatientTypes" action="Index" visibility="MainMenu"></mvcSiteMapNode>
+      <mvcSiteMapNode title="Create Patient" controller="Patient" action="Index" visibility="MainMenu"></mvcSiteMapNode>
+    </mvcSiteMapNode>    
+    <mvcSiteMapNode title="Transaction Manager" controller="Transactions" action="Index" visibility="MainMenu" clickable="false">
+      <mvcSiteMapNode title="Transaction Chaining" controller="Transactions" action="chaining" visibility="MainMenu"></mvcSiteMapNode>
+    </mvcSiteMapNode>
+    <mvcSiteMapNode title="Bills" controller="Bills" action="Index" visibility="MainMenu" clickable="false">
+      <mvcSiteMapNode title="Transaction Chaining" controller="Transactions" action="chaining" visibility="MainMenu"></mvcSiteMapNode>
+    </mvcSiteMapNode>
+    <mvcSiteMapNode title="Lab Manager" controller="Labs" action="Index" visibility="MainMenu" clickable="false">
+      <mvcSiteMapNode title="Transaction Chaining" controller="Transactions" action="chaining" visibility="MainMenu"></mvcSiteMapNode>
+    </mvcSiteMapNode>
+    <mvcSiteMapNode title="Report Manager" controller="Reports" action="Index" visibility="MainMenu" clickable="false">
+      <mvcSiteMapNode title="Transaction Chaining" controller="Transactions" action="chaining" visibility="MainMenu"></mvcSiteMapNode>
+    </mvcSiteMapNode>
+  </mvcSiteMapNode>
+</mvcSiteMap>

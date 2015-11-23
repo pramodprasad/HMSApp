@@ -1,0 +1,220 @@
+﻿/*/*/*/*body {
+    /*padding-top: 50px;
+    padding-bottom: 20px;*/
+}
+
+/* Set padding to keep content from hitting the edges */
+/*.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}*/
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+/*.dl-horizontal dt {
+    white-space: normal;
+}*/
+
+/* Set width on the form input elements since they're 100% wide by default */
+/*input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.table-css{
+    border: 1px solid #D8D8D8;
+
+}
+.table-body
+{
+    border: 0px !important;
+
+}
+.table-header{
+    background-color: #337ab7;
+
+}
+
+thead{
+      background-color: #337ab7;
+      color:#fff;
+}
+
+table.dataTable thead th, table.dataTable thead td
+{
+
+}
+
+.odd
+{
+    background-color: #ffffff !important;
+}
+
+.even{
+    background-color: #D8D8D8!important;
+
+}
+
+.link-style{
+    color: #333333 !important;
+    font-weight:700;
+
+}
+
+.navbar-decoration
+{
+  width: 100%;
+  position: relative;
+  border: none;
+  margin-top: 0px;
+  background-color: white;
+  z-index: 999;
+}
+.navbar-inverse-decoration
+{
+  width: 100%;
+  position: relative;
+  border: none;
+  margin-top: -20px;
+  z-index: 998;
+}
+
+.navbar-collapse .navbar-nav.navbar-left:first-child
+{
+  margin-left: 120px;
+}
+
+.navbar-navmenu-decoration
+{
+  margin-top: 2px;
+  margin-left: -15px;
+  width: 100% !important;
+}
+
+.navbar-nav > li
+{
+
+    margin-top: -2px !important;
+    text-align: center;
+    border-top: 1px #337ab7 solid;
+}
+
+.navbar-navigation > li > a
+{
+    padding-bottom: 0px;
+    padding-top: 2px !important;
+    line-height: 30px;
+    font-size: 15px;
+    height: 33px !important;
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+
+    opacity: 1 !important;
+}
+
+.navbar-nav .open .dropdown-menu > li > a,
+.navbar-nav .open .dropdown-menu .dropdown-header
+{
+    padding: 0px;
+}
+
+.navbar-inverse .navbar-nav > li 
+{
+    border-right: 1px solid #fff;
+}
+{
+    border-left: 1px solid #fff;
+}
+
+ul.nav li.dropdown:hover > ul.dropdown-menu 
+{
+    display: block;
+}
+
+.navbar
+{
+    min-height: 30px !important;
+    border-radius: 0px !important;
+}
+
+.navbar-inverse .navbar-nav > li > a
+{
+    color: #fff !important;
+}
+
+.navbar-inverse {
+  background-color: #337ab7;
+  border-color: #080808;
+}
+
+
+@media only screen and (min-device-width : 220px) and (max-device-width : 1024px) and (orientation: potrait) 
+{
+    .navbar-nav > li{
+        text-align: left !important;
+    }
+}
+
+@media only screen and (min-device-width : 220px) and (max-device-width : 1024px) and (orientation: landscape) 
+{
+        .navbar-nav > li{
+        text-align: center !important;
+
+    }
+}
+
+.navbar-navigation>li:hover
+{
+    background-color: #fff;
+
+}
+
+.navbar-inverse .navbar-nav > li:hover > a
+{
+    color: #333 !important;
+}
+
+.right-div{
+    float: right;
+}
+
+.left-div{
+    float: left;
+}*/
+
+.button-link {
+    min-height:30px;
+    width:150px;
+    text-align:center;
+    background:#337ab7;
+    color: #FFF;
+    border:none;
+    display:inline-block;
+    border-radius: 4px;
+}
+
+.button-link:hover,.button-link:active {
+    background: #0055AA;
+    text-decoration: none;
+    color:#000000;
+    cursor:pointer;
+}
+
+.modal-content img {
+    position: absolute;
+    top: -13px;
+    right: -12px;
+    z-index: 50;
+    opacity: 1;
+    cursor: pointer !important;
+}
+
+table{
+    border : 1px #333 solid;
+}
+
+th, td{
+        padding: 5px !important;
+}

@@ -1,0 +1,1797 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HMSDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="HMSDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="C__MigrationHistory" EntityType="HMSDbModel.C__MigrationHistory" />
+    <EntitySet Name="Appointments" EntityType="HMSDbModel.Appointment" />
+    <EntitySet Name="AspNetRoles" EntityType="HMSDbModel.AspNetRole" />
+    <EntitySet Name="AspNetUserClaims" EntityType="HMSDbModel.AspNetUserClaim" />
+    <EntitySet Name="AspNetUserLogins" EntityType="HMSDbModel.AspNetUserLogin" />
+    <EntitySet Name="AspNetUsers" EntityType="HMSDbModel.AspNetUser" />
+    <EntitySet Name="BedAllotments" EntityType="HMSDbModel.BedAllotment" />
+    <EntitySet Name="BranchDetails" EntityType="HMSDbModel.BranchDetail" />
+    <EntitySet Name="Cities" EntityType="HMSDbModel.City" />
+    <EntitySet Name="Countries" EntityType="HMSDbModel.Country" />
+    <EntitySet Name="DoctorBillDetails" EntityType="HMSDbModel.DoctorBillDetail" />
+    <EntitySet Name="Doctors" EntityType="HMSDbModel.Doctor" />
+    <EntitySet Name="DoctorVisitPaymentDetails" EntityType="HMSDbModel.DoctorVisitPaymentDetail" />
+    <EntitySet Name="EmployeeDetails" EntityType="HMSDbModel.EmployeeDetail" />
+    <EntitySet Name="EmployeeTypes" EntityType="HMSDbModel.EmployeeType" />
+    <EntitySet Name="LabCategories" EntityType="HMSDbModel.LabCategory" />
+    <EntitySet Name="LabPayments" EntityType="HMSDbModel.LabPayment" />
+    <EntitySet Name="LabTests" EntityType="HMSDbModel.LabTest" />
+    <EntitySet Name="MedicalPaymentDetails" EntityType="HMSDbModel.MedicalPaymentDetail" />
+    <EntitySet Name="PatientBills" EntityType="HMSDbModel.PatientBill" />
+    <EntitySet Name="PatientDetails" EntityType="HMSDbModel.PatientDetail" />
+    <EntitySet Name="PatientTypes" EntityType="HMSDbModel.PatientType" />
+    <EntitySet Name="PatientVisits" EntityType="HMSDbModel.PatientVisit" />
+    <EntitySet Name="PaymentModes" EntityType="HMSDbModel.PaymentMode" />
+    <EntitySet Name="PaymentSections" EntityType="HMSDbModel.PaymentSection" />
+    <EntitySet Name="Qualifications" EntityType="HMSDbModel.Qualification" />
+    <EntitySet Name="RegistrationPaymentDetails" EntityType="HMSDbModel.RegistrationPaymentDetail" />
+    <EntitySet Name="RoomDetails" EntityType="HMSDbModel.RoomDetail" />
+    <EntitySet Name="ServicePayments" EntityType="HMSDbModel.ServicePayment" />
+    <EntitySet Name="Services" EntityType="HMSDbModel.Service" />
+    <EntitySet Name="ServiceSubCategories" EntityType="HMSDbModel.ServiceSubCategory" />
+    <EntitySet Name="ShiftDates" EntityType="HMSDbModel.ShiftDate" />
+    <EntitySet Name="ShiftDays" EntityType="HMSDbModel.ShiftDay" />
+    <EntitySet Name="ShiftTypes" EntityType="HMSDbModel.ShiftType" />
+    <EntitySet Name="Specializations" EntityType="HMSDbModel.Specialization" />
+    <EntitySet Name="States" EntityType="HMSDbModel.State" />
+    <EntitySet Name="Titles" EntityType="HMSDbModel.Title" />
+    <EntitySet Name="VisitReasons" EntityType="HMSDbModel.VisitReason" />
+    <EntitySet Name="WardCategories" EntityType="HMSDbModel.WardCategory" />
+    <EntitySet Name="WardOrRoomChargeDetails" EntityType="HMSDbModel.WardOrRoomChargeDetail" />
+    <EntitySet Name="Wards" EntityType="HMSDbModel.Ward" />
+    <EntitySet Name="WeekDays" EntityType="HMSDbModel.WeekDay" />
+    <AssociationSet Name="FK_dbo_Appointments_dbo_BranchDetails_BranchDetails_ID" Association="HMSDbModel.FK_dbo_Appointments_dbo_BranchDetails_BranchDetails_ID">
+      <End Role="BranchDetail" EntitySet="BranchDetails" />
+      <End Role="Appointment" EntitySet="Appointments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Appointments_dbo_Doctors_Doctor_ID" Association="HMSDbModel.FK_dbo_Appointments_dbo_Doctors_Doctor_ID">
+      <End Role="Doctor" EntitySet="Doctors" />
+      <End Role="Appointment" EntitySet="Appointments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Appointments_dbo_PatientDetails_PatientDetails_ID" Association="HMSDbModel.FK_dbo_Appointments_dbo_PatientDetails_PatientDetails_ID">
+      <End Role="PatientDetail" EntitySet="PatientDetails" />
+      <End Role="Appointment" EntitySet="Appointments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Appointments_dbo_PatientTypes_PatientType_ID" Association="HMSDbModel.FK_dbo_Appointments_dbo_PatientTypes_PatientType_ID">
+      <End Role="PatientType" EntitySet="PatientTypes" />
+      <End Role="Appointment" EntitySet="Appointments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Appointments_dbo_ShiftTypes_ShiftType_ID" Association="HMSDbModel.FK_dbo_Appointments_dbo_ShiftTypes_ShiftType_ID">
+      <End Role="ShiftType" EntitySet="ShiftTypes" />
+      <End Role="Appointment" EntitySet="Appointments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Appointments_dbo_Specializations_Specialization_ID" Association="HMSDbModel.FK_dbo_Appointments_dbo_Specializations_Specialization_ID">
+      <End Role="Specialization" EntitySet="Specializations" />
+      <End Role="Appointment" EntitySet="Appointments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_BedAllotments_dbo_Appointments_Appointment_ID" Association="HMSDbModel.FK_dbo_BedAllotments_dbo_Appointments_Appointment_ID">
+      <End Role="Appointment" EntitySet="Appointments" />
+      <End Role="BedAllotment" EntitySet="BedAllotments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_DoctorVisitPaymentDetails_dbo_Appointments_Appointment_ID" Association="HMSDbModel.FK_dbo_DoctorVisitPaymentDetails_dbo_Appointments_Appointment_ID">
+      <End Role="Appointment" EntitySet="Appointments" />
+      <End Role="DoctorVisitPaymentDetail" EntitySet="DoctorVisitPaymentDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_LabPayments_dbo_Appointments_Appointment_ID" Association="HMSDbModel.FK_dbo_LabPayments_dbo_Appointments_Appointment_ID">
+      <End Role="Appointment" EntitySet="Appointments" />
+      <End Role="LabPayment" EntitySet="LabPayments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_MedicalPaymentDetails_dbo_Appointments_Appointment_ID" Association="HMSDbModel.FK_dbo_MedicalPaymentDetails_dbo_Appointments_Appointment_ID">
+      <End Role="Appointment" EntitySet="Appointments" />
+      <End Role="MedicalPaymentDetail" EntitySet="MedicalPaymentDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_PatientBills_dbo_Appointments_Appointment_ID" Association="HMSDbModel.FK_dbo_PatientBills_dbo_Appointments_Appointment_ID">
+      <End Role="Appointment" EntitySet="Appointments" />
+      <End Role="PatientBill" EntitySet="PatientBills" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_PatientVisits_dbo_Appointments_Appointment_ID" Association="HMSDbModel.FK_dbo_PatientVisits_dbo_Appointments_Appointment_ID">
+      <End Role="Appointment" EntitySet="Appointments" />
+      <End Role="PatientVisit" EntitySet="PatientVisits" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_RegistrationPaymentDetails_dbo_Appointments_Appointment_ID" Association="HMSDbModel.FK_dbo_RegistrationPaymentDetails_dbo_Appointments_Appointment_ID">
+      <End Role="Appointment" EntitySet="Appointments" />
+      <End Role="RegistrationPaymentDetail" EntitySet="RegistrationPaymentDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_ServicePayments_dbo_Appointments_Appointment_ID" Association="HMSDbModel.FK_dbo_ServicePayments_dbo_Appointments_Appointment_ID">
+      <End Role="Appointment" EntitySet="Appointments" />
+      <End Role="ServicePayment" EntitySet="ServicePayments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_WardOrRoomChargeDetails_dbo_Appointments_Appointment_ID" Association="HMSDbModel.FK_dbo_WardOrRoomChargeDetails_dbo_Appointments_Appointment_ID">
+      <End Role="Appointment" EntitySet="Appointments" />
+      <End Role="WardOrRoomChargeDetail" EntitySet="WardOrRoomChargeDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="HMSDbModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="HMSDbModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_BedAllotments_dbo_RoomDetails_RoomDetails_ID" Association="HMSDbModel.FK_dbo_BedAllotments_dbo_RoomDetails_RoomDetails_ID">
+      <End Role="RoomDetail" EntitySet="RoomDetails" />
+      <End Role="BedAllotment" EntitySet="BedAllotments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_BranchDetails_dbo_Cities_City_ID" Association="HMSDbModel.FK_dbo_BranchDetails_dbo_Cities_City_ID">
+      <End Role="City" EntitySet="Cities" />
+      <End Role="BranchDetail" EntitySet="BranchDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_EmployeeDetails_dbo_BranchDetails_BranchDetail_ID" Association="HMSDbModel.FK_dbo_EmployeeDetails_dbo_BranchDetails_BranchDetail_ID">
+      <End Role="BranchDetail" EntitySet="BranchDetails" />
+      <End Role="EmployeeDetail" EntitySet="EmployeeDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_PatientBills_dbo_BranchDetails_BranchDetail_ID" Association="HMSDbModel.FK_dbo_PatientBills_dbo_BranchDetails_BranchDetail_ID">
+      <End Role="BranchDetail" EntitySet="BranchDetails" />
+      <End Role="PatientBill" EntitySet="PatientBills" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_ServiceSubCategories_dbo_BranchDetails_BranchDetail_ID" Association="HMSDbModel.FK_dbo_ServiceSubCategories_dbo_BranchDetails_BranchDetail_ID">
+      <End Role="BranchDetail" EntitySet="BranchDetails" />
+      <End Role="ServiceSubCategory" EntitySet="ServiceSubCategories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Wards_dbo_BranchDetails_BranchDetail_ID" Association="HMSDbModel.FK_dbo_Wards_dbo_BranchDetails_BranchDetail_ID">
+      <End Role="BranchDetail" EntitySet="BranchDetails" />
+      <End Role="Ward" EntitySet="Wards" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Cities_dbo_States_State_ID" Association="HMSDbModel.FK_dbo_Cities_dbo_States_State_ID">
+      <End Role="State" EntitySet="States" />
+      <End Role="City" EntitySet="Cities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_EmployeeDetails_dbo_Cities_City_ID" Association="HMSDbModel.FK_dbo_EmployeeDetails_dbo_Cities_City_ID">
+      <End Role="City" EntitySet="Cities" />
+      <End Role="EmployeeDetail" EntitySet="EmployeeDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_PatientDetails_dbo_Cities_City_ID" Association="HMSDbModel.FK_dbo_PatientDetails_dbo_Cities_City_ID">
+      <End Role="City" EntitySet="Cities" />
+      <End Role="PatientDetail" EntitySet="PatientDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_States_dbo_Countries_Country_ID" Association="HMSDbModel.FK_dbo_States_dbo_Countries_Country_ID">
+      <End Role="Country" EntitySet="Countries" />
+      <End Role="State" EntitySet="States" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_DoctorBillDetails_dbo_Doctors_Doctor_ID" Association="HMSDbModel.FK_dbo_DoctorBillDetails_dbo_Doctors_Doctor_ID">
+      <End Role="Doctor" EntitySet="Doctors" />
+      <End Role="DoctorBillDetail" EntitySet="DoctorBillDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_DoctorBillDetails_dbo_PatientDetails_PatientDetails_ID" Association="HMSDbModel.FK_dbo_DoctorBillDetails_dbo_PatientDetails_PatientDetails_ID">
+      <End Role="PatientDetail" EntitySet="PatientDetails" />
+      <End Role="DoctorBillDetail" EntitySet="DoctorBillDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_DoctorBillDetails_dbo_PatientTypes_PatientType_ID" Association="HMSDbModel.FK_dbo_DoctorBillDetails_dbo_PatientTypes_PatientType_ID">
+      <End Role="PatientType" EntitySet="PatientTypes" />
+      <End Role="DoctorBillDetail" EntitySet="DoctorBillDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_DoctorBillDetails_dbo_PaymentModes_PaymentMode_ID" Association="HMSDbModel.FK_dbo_DoctorBillDetails_dbo_PaymentModes_PaymentMode_ID">
+      <End Role="PaymentMode" EntitySet="PaymentModes" />
+      <End Role="DoctorBillDetail" EntitySet="DoctorBillDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Doctors_dbo_EmployeeDetails_EmployeeDetail_ID" Association="HMSDbModel.FK_dbo_Doctors_dbo_EmployeeDetails_EmployeeDetail_ID">
+      <End Role="EmployeeDetail" EntitySet="EmployeeDetails" />
+      <End Role="Doctor" EntitySet="Doctors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Doctors_dbo_Qualifications_Qualification_ID" Association="HMSDbModel.FK_dbo_Doctors_dbo_Qualifications_Qualification_ID">
+      <End Role="Qualification" EntitySet="Qualifications" />
+      <End Role="Doctor" EntitySet="Doctors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Doctors_dbo_Specializations_Specialization_ID" Association="HMSDbModel.FK_dbo_Doctors_dbo_Specializations_Specialization_ID">
+      <End Role="Specialization" EntitySet="Specializations" />
+      <End Role="Doctor" EntitySet="Doctors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_DoctorVisitPaymentDetails_dbo_Doctors_Doctor_ID" Association="HMSDbModel.FK_dbo_DoctorVisitPaymentDetails_dbo_Doctors_Doctor_ID">
+      <End Role="Doctor" EntitySet="Doctors" />
+      <End Role="DoctorVisitPaymentDetail" EntitySet="DoctorVisitPaymentDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_LabPayments_dbo_Doctors_Doctor_ID" Association="HMSDbModel.FK_dbo_LabPayments_dbo_Doctors_Doctor_ID">
+      <End Role="Doctor" EntitySet="Doctors" />
+      <End Role="LabPayment" EntitySet="LabPayments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_MedicalPaymentDetails_dbo_Doctors_Doctor_ID" Association="HMSDbModel.FK_dbo_MedicalPaymentDetails_dbo_Doctors_Doctor_ID">
+      <End Role="Doctor" EntitySet="Doctors" />
+      <End Role="MedicalPaymentDetail" EntitySet="MedicalPaymentDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_RegistrationPaymentDetails_dbo_Doctors_Doctor_ID" Association="HMSDbModel.FK_dbo_RegistrationPaymentDetails_dbo_Doctors_Doctor_ID">
+      <End Role="Doctor" EntitySet="Doctors" />
+      <End Role="RegistrationPaymentDetail" EntitySet="RegistrationPaymentDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_ServicePayments_dbo_Doctors_Doctor_ID" Association="HMSDbModel.FK_dbo_ServicePayments_dbo_Doctors_Doctor_ID">
+      <End Role="Doctor" EntitySet="Doctors" />
+      <End Role="ServicePayment" EntitySet="ServicePayments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_ShiftDates_dbo_Doctors_Doctor_ID" Association="HMSDbModel.FK_dbo_ShiftDates_dbo_Doctors_Doctor_ID">
+      <End Role="Doctor" EntitySet="Doctors" />
+      <End Role="ShiftDate" EntitySet="ShiftDates" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_ShiftDays_dbo_Doctors_Doctor_ID" Association="HMSDbModel.FK_dbo_ShiftDays_dbo_Doctors_Doctor_ID">
+      <End Role="Doctor" EntitySet="Doctors" />
+      <End Role="ShiftDay" EntitySet="ShiftDays" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_ShiftTypes_dbo_Doctors_Doctor_ID" Association="HMSDbModel.FK_dbo_ShiftTypes_dbo_Doctors_Doctor_ID">
+      <End Role="Doctor" EntitySet="Doctors" />
+      <End Role="ShiftType" EntitySet="ShiftTypes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_DoctorVisitPaymentDetails_dbo_PaymentModes_PaymentMode_ID" Association="HMSDbModel.FK_dbo_DoctorVisitPaymentDetails_dbo_PaymentModes_PaymentMode_ID">
+      <End Role="PaymentMode" EntitySet="PaymentModes" />
+      <End Role="DoctorVisitPaymentDetail" EntitySet="DoctorVisitPaymentDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_DoctorVisitPaymentDetails_dbo_PaymentSections_PaymentSection_ID" Association="HMSDbModel.FK_dbo_DoctorVisitPaymentDetails_dbo_PaymentSections_PaymentSection_ID">
+      <End Role="PaymentSection" EntitySet="PaymentSections" />
+      <End Role="DoctorVisitPaymentDetail" EntitySet="DoctorVisitPaymentDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_EmployeeDetails_dbo_EmployeeTypes_EmployeeType_ID" Association="HMSDbModel.FK_dbo_EmployeeDetails_dbo_EmployeeTypes_EmployeeType_ID">
+      <End Role="EmployeeType" EntitySet="EmployeeTypes" />
+      <End Role="EmployeeDetail" EntitySet="EmployeeDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_EmployeeDetails_dbo_Titles_Title_ID" Association="HMSDbModel.FK_dbo_EmployeeDetails_dbo_Titles_Title_ID">
+      <End Role="Title" EntitySet="Titles" />
+      <End Role="EmployeeDetail" EntitySet="EmployeeDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_PatientBills_dbo_EmployeeDetails_EmployeeDetail_ID" Association="HMSDbModel.FK_dbo_PatientBills_dbo_EmployeeDetails_EmployeeDetail_ID">
+      <End Role="EmployeeDetail" EntitySet="EmployeeDetails" />
+      <End Role="PatientBill" EntitySet="PatientBills" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_RegistrationPaymentDetails_dbo_EmployeeDetails_EmployeeDetail_ID" Association="HMSDbModel.FK_dbo_RegistrationPaymentDetails_dbo_EmployeeDetails_EmployeeDetail_ID">
+      <End Role="EmployeeDetail" EntitySet="EmployeeDetails" />
+      <End Role="RegistrationPaymentDetail" EntitySet="RegistrationPaymentDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_LabPayments_dbo_LabCategories_LabCategory_ID" Association="HMSDbModel.FK_dbo_LabPayments_dbo_LabCategories_LabCategory_ID">
+      <End Role="LabCategory" EntitySet="LabCategories" />
+      <End Role="LabPayment" EntitySet="LabPayments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_LabTests_dbo_LabCategories_LabCategory_ID" Association="HMSDbModel.FK_dbo_LabTests_dbo_LabCategories_LabCategory_ID">
+      <End Role="LabCategory" EntitySet="LabCategories" />
+      <End Role="LabTest" EntitySet="LabTests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_LabPayments_dbo_LabTests_LabTest_ID" Association="HMSDbModel.FK_dbo_LabPayments_dbo_LabTests_LabTest_ID">
+      <End Role="LabTest" EntitySet="LabTests" />
+      <End Role="LabPayment" EntitySet="LabPayments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_MedicalPaymentDetails_dbo_PaymentModes_PaymentMode_ID" Association="HMSDbModel.FK_dbo_MedicalPaymentDetails_dbo_PaymentModes_PaymentMode_ID">
+      <End Role="PaymentMode" EntitySet="PaymentModes" />
+      <End Role="MedicalPaymentDetail" EntitySet="MedicalPaymentDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_MedicalPaymentDetails_dbo_PaymentSections_PaymentSection_ID" Association="HMSDbModel.FK_dbo_MedicalPaymentDetails_dbo_PaymentSections_PaymentSection_ID">
+      <End Role="PaymentSection" EntitySet="PaymentSections" />
+      <End Role="MedicalPaymentDetail" EntitySet="MedicalPaymentDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_PatientBills_dbo_PaymentModes_PaymentMode_ID" Association="HMSDbModel.FK_dbo_PatientBills_dbo_PaymentModes_PaymentMode_ID">
+      <End Role="PaymentMode" EntitySet="PaymentModes" />
+      <End Role="PatientBill" EntitySet="PatientBills" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_PatientBills_dbo_PaymentSections_PaymentSection_ID" Association="HMSDbModel.FK_dbo_PatientBills_dbo_PaymentSections_PaymentSection_ID">
+      <End Role="PaymentSection" EntitySet="PaymentSections" />
+      <End Role="PatientBill" EntitySet="PatientBills" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_PatientVisits_dbo_PaymentModes_PaymentMode_ID" Association="HMSDbModel.FK_dbo_PatientVisits_dbo_PaymentModes_PaymentMode_ID">
+      <End Role="PaymentMode" EntitySet="PaymentModes" />
+      <End Role="PatientVisit" EntitySet="PatientVisits" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_RegistrationPaymentDetails_dbo_PaymentModes_PaymentMode_ID" Association="HMSDbModel.FK_dbo_RegistrationPaymentDetails_dbo_PaymentModes_PaymentMode_ID">
+      <End Role="PaymentMode" EntitySet="PaymentModes" />
+      <End Role="RegistrationPaymentDetail" EntitySet="RegistrationPaymentDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_RegistrationPaymentDetails_dbo_PaymentSections_PaymentSection_ID" Association="HMSDbModel.FK_dbo_RegistrationPaymentDetails_dbo_PaymentSections_PaymentSection_ID">
+      <End Role="PaymentSection" EntitySet="PaymentSections" />
+      <End Role="RegistrationPaymentDetail" EntitySet="RegistrationPaymentDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_RoomDetails_dbo_Wards_Ward_ID" Association="HMSDbModel.FK_dbo_RoomDetails_dbo_Wards_Ward_ID">
+      <End Role="Ward" EntitySet="Wards" />
+      <End Role="RoomDetail" EntitySet="RoomDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_WardOrRoomChargeDetails_dbo_RoomDetails_RoomDetails_ID" Association="HMSDbModel.FK_dbo_WardOrRoomChargeDetails_dbo_RoomDetails_RoomDetails_ID">
+      <End Role="RoomDetail" EntitySet="RoomDetails" />
+      <End Role="WardOrRoomChargeDetail" EntitySet="WardOrRoomChargeDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_ServicePayments_dbo_Services_Service_ID" Association="HMSDbModel.FK_dbo_ServicePayments_dbo_Services_Service_ID">
+      <End Role="Service" EntitySet="Services" />
+      <End Role="ServicePayment" EntitySet="ServicePayments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_ServicePayments_dbo_ServiceSubCategories_ServiceSubCategory_ID" Association="HMSDbModel.FK_dbo_ServicePayments_dbo_ServiceSubCategories_ServiceSubCategory_ID">
+      <End Role="ServiceSubCategory" EntitySet="ServiceSubCategories" />
+      <End Role="ServicePayment" EntitySet="ServicePayments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_ServiceSubCategories_dbo_Services_Service_ID" Association="HMSDbModel.FK_dbo_ServiceSubCategories_dbo_Services_Service_ID">
+      <End Role="Service" EntitySet="Services" />
+      <End Role="ServiceSubCategory" EntitySet="ServiceSubCategories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_ShiftDates_dbo_ShiftTypes_ShiftType_ID" Association="HMSDbModel.FK_dbo_ShiftDates_dbo_ShiftTypes_ShiftType_ID">
+      <End Role="ShiftType" EntitySet="ShiftTypes" />
+      <End Role="ShiftDate" EntitySet="ShiftDates" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_ShiftDays_dbo_ShiftTypes_ShiftType_ID" Association="HMSDbModel.FK_dbo_ShiftDays_dbo_ShiftTypes_ShiftType_ID">
+      <End Role="ShiftType" EntitySet="ShiftTypes" />
+      <End Role="ShiftDay" EntitySet="ShiftDays" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_ShiftDays_dbo_WeekDays_WeekDays_ID" Association="HMSDbModel.FK_dbo_ShiftDays_dbo_WeekDays_WeekDays_ID">
+      <End Role="WeekDay" EntitySet="WeekDays" />
+      <End Role="ShiftDay" EntitySet="ShiftDays" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Wards_dbo_WardCategories_WardCategory_ID" Association="HMSDbModel.FK_dbo_Wards_dbo_WardCategories_WardCategory_ID">
+      <End Role="WardCategory" EntitySet="WardCategories" />
+      <End Role="Ward" EntitySet="Wards" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserRoles" Association="HMSDbModel.AspNetUserRoles">
+      <End Role="AspNetRole" EntitySet="AspNetRoles" />
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Appointment">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int64" Nullable="false" />
+    <Property Name="Doctor_ID" Type="Int64" />
+    <Property Name="Specialization_ID" Type="Int32" />
+    <Property Name="AppointmentDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="BranchDetails_ID" Type="Int32" />
+    <Property Name="PatientDetails_ID" Type="Int64" />
+    <Property Name="ShiftType_ID" Type="Int32" />
+    <Property Name="IsReferal" Type="Int32" Nullable="false" />
+    <Property Name="ReferalDetails" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="VisitStatus" Type="Int32" Nullable="false" />
+    <Property Name="PatientType_ID" Type="Int32" />
+    <NavigationProperty Name="BranchDetail" Relationship="HMSDbModel.FK_dbo_Appointments_dbo_BranchDetails_BranchDetails_ID" FromRole="Appointment" ToRole="BranchDetail" />
+    <NavigationProperty Name="Doctor" Relationship="HMSDbModel.FK_dbo_Appointments_dbo_Doctors_Doctor_ID" FromRole="Appointment" ToRole="Doctor" />
+    <NavigationProperty Name="PatientDetail" Relationship="HMSDbModel.FK_dbo_Appointments_dbo_PatientDetails_PatientDetails_ID" FromRole="Appointment" ToRole="PatientDetail" />
+    <NavigationProperty Name="PatientType" Relationship="HMSDbModel.FK_dbo_Appointments_dbo_PatientTypes_PatientType_ID" FromRole="Appointment" ToRole="PatientType" />
+    <NavigationProperty Name="ShiftType" Relationship="HMSDbModel.FK_dbo_Appointments_dbo_ShiftTypes_ShiftType_ID" FromRole="Appointment" ToRole="ShiftType" />
+    <NavigationProperty Name="Specialization" Relationship="HMSDbModel.FK_dbo_Appointments_dbo_Specializations_Specialization_ID" FromRole="Appointment" ToRole="Specialization" />
+    <NavigationProperty Name="BedAllotments" Relationship="HMSDbModel.FK_dbo_BedAllotments_dbo_Appointments_Appointment_ID" FromRole="Appointment" ToRole="BedAllotment" />
+    <NavigationProperty Name="DoctorVisitPaymentDetails" Relationship="HMSDbModel.FK_dbo_DoctorVisitPaymentDetails_dbo_Appointments_Appointment_ID" FromRole="Appointment" ToRole="DoctorVisitPaymentDetail" />
+    <NavigationProperty Name="LabPayments" Relationship="HMSDbModel.FK_dbo_LabPayments_dbo_Appointments_Appointment_ID" FromRole="Appointment" ToRole="LabPayment" />
+    <NavigationProperty Name="MedicalPaymentDetails" Relationship="HMSDbModel.FK_dbo_MedicalPaymentDetails_dbo_Appointments_Appointment_ID" FromRole="Appointment" ToRole="MedicalPaymentDetail" />
+    <NavigationProperty Name="PatientBills" Relationship="HMSDbModel.FK_dbo_PatientBills_dbo_Appointments_Appointment_ID" FromRole="Appointment" ToRole="PatientBill" />
+    <NavigationProperty Name="PatientVisits" Relationship="HMSDbModel.FK_dbo_PatientVisits_dbo_Appointments_Appointment_ID" FromRole="Appointment" ToRole="PatientVisit" />
+    <NavigationProperty Name="RegistrationPaymentDetails" Relationship="HMSDbModel.FK_dbo_RegistrationPaymentDetails_dbo_Appointments_Appointment_ID" FromRole="Appointment" ToRole="RegistrationPaymentDetail" />
+    <NavigationProperty Name="ServicePayments" Relationship="HMSDbModel.FK_dbo_ServicePayments_dbo_Appointments_Appointment_ID" FromRole="Appointment" ToRole="ServicePayment" />
+    <NavigationProperty Name="WardOrRoomChargeDetails" Relationship="HMSDbModel.FK_dbo_WardOrRoomChargeDetails_dbo_Appointments_Appointment_ID" FromRole="Appointment" ToRole="WardOrRoomChargeDetail" />
+  </EntityType>
+  <EntityType Name="AspNetRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUsers" Relationship="HMSDbModel.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaim">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="HMSDbModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaim" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogin">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="HMSDbModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="HMSEmpID" Type="Int64" Nullable="false" />
+    <Property Name="BranchID" Type="Int64" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUserClaims" Relationship="HMSDbModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
+    <NavigationProperty Name="AspNetUserLogins" Relationship="HMSDbModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
+    <NavigationProperty Name="AspNetRoles" Relationship="HMSDbModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+  </EntityType>
+  <EntityType Name="BedAllotment">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DateOfAllotment" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="NoOfDays" Type="Int32" Nullable="false" />
+    <Property Name="IsOccupied" Type="Boolean" Nullable="false" />
+    <Property Name="RoomDetails_ID" Type="Int32" />
+    <Property Name="Appointment_ID" Type="Int32" />
+    <NavigationProperty Name="Appointment" Relationship="HMSDbModel.FK_dbo_BedAllotments_dbo_Appointments_Appointment_ID" FromRole="BedAllotment" ToRole="Appointment" />
+    <NavigationProperty Name="RoomDetail" Relationship="HMSDbModel.FK_dbo_BedAllotments_dbo_RoomDetails_RoomDetails_ID" FromRole="BedAllotment" ToRole="RoomDetail" />
+  </EntityType>
+  <EntityType Name="BranchDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNoPri" Type="Int64" Nullable="false" />
+    <Property Name="PhoneNoSec" Type="Int64" Nullable="false" />
+    <Property Name="MobileNo" Type="Int64" Nullable="false" />
+    <Property Name="FaxNo" Type="Int64" Nullable="false" />
+    <Property Name="EmailInfo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="EmailCustomerCare" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="WebAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int64" Nullable="false" />
+    <Property Name="City_ID" Type="Int32" />
+    <NavigationProperty Name="Appointments" Relationship="HMSDbModel.FK_dbo_Appointments_dbo_BranchDetails_BranchDetails_ID" FromRole="BranchDetail" ToRole="Appointment" />
+    <NavigationProperty Name="City" Relationship="HMSDbModel.FK_dbo_BranchDetails_dbo_Cities_City_ID" FromRole="BranchDetail" ToRole="City" />
+    <NavigationProperty Name="EmployeeDetails" Relationship="HMSDbModel.FK_dbo_EmployeeDetails_dbo_BranchDetails_BranchDetail_ID" FromRole="BranchDetail" ToRole="EmployeeDetail" />
+    <NavigationProperty Name="PatientBills" Relationship="HMSDbModel.FK_dbo_PatientBills_dbo_BranchDetails_BranchDetail_ID" FromRole="BranchDetail" ToRole="PatientBill" />
+    <NavigationProperty Name="ServiceSubCategories" Relationship="HMSDbModel.FK_dbo_ServiceSubCategories_dbo_BranchDetails_BranchDetail_ID" FromRole="BranchDetail" ToRole="ServiceSubCategory" />
+    <NavigationProperty Name="Wards" Relationship="HMSDbModel.FK_dbo_Wards_dbo_BranchDetails_BranchDetail_ID" FromRole="BranchDetail" ToRole="Ward" />
+  </EntityType>
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="State_ID" Type="Int32" />
+    <NavigationProperty Name="BranchDetails" Relationship="HMSDbModel.FK_dbo_BranchDetails_dbo_Cities_City_ID" FromRole="City" ToRole="BranchDetail" />
+    <NavigationProperty Name="State" Relationship="HMSDbModel.FK_dbo_Cities_dbo_States_State_ID" FromRole="City" ToRole="State" />
+    <NavigationProperty Name="EmployeeDetails" Relationship="HMSDbModel.FK_dbo_EmployeeDetails_dbo_Cities_City_ID" FromRole="City" ToRole="EmployeeDetail" />
+    <NavigationProperty Name="PatientDetails" Relationship="HMSDbModel.FK_dbo_PatientDetails_dbo_Cities_City_ID" FromRole="City" ToRole="PatientDetail" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CountryCode" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="States" Relationship="HMSDbModel.FK_dbo_States_dbo_Countries_Country_ID" FromRole="Country" ToRole="State" />
+  </EntityType>
+  <EntityType Name="DoctorBillDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VisitCharge" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="ConsultantCharge" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="OperationCharge" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="OtherChargeAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="OtherChargeDetails" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AdvancePayAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="TotalAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="PaidAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="DuesAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="PaidBy" Type="Int64" Nullable="false" />
+    <Property Name="PaidOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="PaymentStatusID" Type="Int64" Nullable="false" />
+    <Property Name="Doctor_ID" Type="Int64" />
+    <Property Name="PatientDetails_ID" Type="Int64" />
+    <Property Name="PatientType_ID" Type="Int32" />
+    <Property Name="PaymentMode_ID" Type="Int32" />
+    <NavigationProperty Name="Doctor" Relationship="HMSDbModel.FK_dbo_DoctorBillDetails_dbo_Doctors_Doctor_ID" FromRole="DoctorBillDetail" ToRole="Doctor" />
+    <NavigationProperty Name="PatientDetail" Relationship="HMSDbModel.FK_dbo_DoctorBillDetails_dbo_PatientDetails_PatientDetails_ID" FromRole="DoctorBillDetail" ToRole="PatientDetail" />
+    <NavigationProperty Name="PatientType" Relationship="HMSDbModel.FK_dbo_DoctorBillDetails_dbo_PatientTypes_PatientType_ID" FromRole="DoctorBillDetail" ToRole="PatientType" />
+    <NavigationProperty Name="PaymentMode" Relationship="HMSDbModel.FK_dbo_DoctorBillDetails_dbo_PaymentModes_PaymentMode_ID" FromRole="DoctorBillDetail" ToRole="PaymentMode" />
+  </EntityType>
+  <EntityType Name="Doctor">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OtherDetails" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="RegistrationNo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedBy" Type="Int32" Nullable="false" />
+    <Property Name="EmployeeDetail_ID" Type="Int64" />
+    <Property Name="Daywise" Type="Boolean" Nullable="false" />
+    <Property Name="Datewise" Type="Boolean" Nullable="false" />
+    <Property Name="Qualification_ID" Type="Int32" />
+    <Property Name="Specialization_ID" Type="Int32" />
+    <NavigationProperty Name="Appointments" Relationship="HMSDbModel.FK_dbo_Appointments_dbo_Doctors_Doctor_ID" FromRole="Doctor" ToRole="Appointment" />
+    <NavigationProperty Name="DoctorBillDetails" Relationship="HMSDbModel.FK_dbo_DoctorBillDetails_dbo_Doctors_Doctor_ID" FromRole="Doctor" ToRole="DoctorBillDetail" />
+    <NavigationProperty Name="EmployeeDetail" Relationship="HMSDbModel.FK_dbo_Doctors_dbo_EmployeeDetails_EmployeeDetail_ID" FromRole="Doctor" ToRole="EmployeeDetail" />
+    <NavigationProperty Name="Qualification" Relationship="HMSDbModel.FK_dbo_Doctors_dbo_Qualifications_Qualification_ID" FromRole="Doctor" ToRole="Qualification" />
+    <NavigationProperty Name="Specialization" Relationship="HMSDbModel.FK_dbo_Doctors_dbo_Specializations_Specialization_ID" FromRole="Doctor" ToRole="Specialization" />
+    <NavigationProperty Name="DoctorVisitPaymentDetails" Relationship="HMSDbModel.FK_dbo_DoctorVisitPaymentDetails_dbo_Doctors_Doctor_ID" FromRole="Doctor" ToRole="DoctorVisitPaymentDetail" />
+    <NavigationProperty Name="LabPayments" Relationship="HMSDbModel.FK_dbo_LabPayments_dbo_Doctors_Doctor_ID" FromRole="Doctor" ToRole="LabPayment" />
+    <NavigationProperty Name="MedicalPaymentDetails" Relationship="HMSDbModel.FK_dbo_MedicalPaymentDetails_dbo_Doctors_Doctor_ID" FromRole="Doctor" ToRole="MedicalPaymentDetail" />
+    <NavigationProperty Name="RegistrationPaymentDetails" Relationship="HMSDbModel.FK_dbo_RegistrationPaymentDetails_dbo_Doctors_Doctor_ID" FromRole="Doctor" ToRole="RegistrationPaymentDetail" />
+    <NavigationProperty Name="ServicePayments" Relationship="HMSDbModel.FK_dbo_ServicePayments_dbo_Doctors_Doctor_ID" FromRole="Doctor" ToRole="ServicePayment" />
+    <NavigationProperty Name="ShiftDates" Relationship="HMSDbModel.FK_dbo_ShiftDates_dbo_Doctors_Doctor_ID" FromRole="Doctor" ToRole="ShiftDate" />
+    <NavigationProperty Name="ShiftDays" Relationship="HMSDbModel.FK_dbo_ShiftDays_dbo_Doctors_Doctor_ID" FromRole="Doctor" ToRole="ShiftDay" />
+    <NavigationProperty Name="ShiftTypes" Relationship="HMSDbModel.FK_dbo_ShiftTypes_dbo_Doctors_Doctor_ID" FromRole="Doctor" ToRole="ShiftType" />
+  </EntityType>
+  <EntityType Name="DoctorVisitPaymentDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VisitAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="PaymentStatus" Type="Int64" Nullable="false" />
+    <Property Name="PaymentReceivedBy" Type="Int64" Nullable="false" />
+    <Property Name="PaymentReceivedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DiscountAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="DiscountedBy" Type="Int64" Nullable="false" />
+    <Property Name="DiscountDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="PaymentDetails" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Doctor_ID" Type="Int64" />
+    <Property Name="PaymentMode_ID" Type="Int32" />
+    <Property Name="PaymentSection_ID" Type="Int32" />
+    <Property Name="Appointment_ID" Type="Int32" />
+    <NavigationProperty Name="Appointment" Relationship="HMSDbModel.FK_dbo_DoctorVisitPaymentDetails_dbo_Appointments_Appointment_ID" FromRole="DoctorVisitPaymentDetail" ToRole="Appointment" />
+    <NavigationProperty Name="Doctor" Relationship="HMSDbModel.FK_dbo_DoctorVisitPaymentDetails_dbo_Doctors_Doctor_ID" FromRole="DoctorVisitPaymentDetail" ToRole="Doctor" />
+    <NavigationProperty Name="PaymentMode" Relationship="HMSDbModel.FK_dbo_DoctorVisitPaymentDetails_dbo_PaymentModes_PaymentMode_ID" FromRole="DoctorVisitPaymentDetail" ToRole="PaymentMode" />
+    <NavigationProperty Name="PaymentSection" Relationship="HMSDbModel.FK_dbo_DoctorVisitPaymentDetails_dbo_PaymentSections_PaymentSection_ID" FromRole="DoctorVisitPaymentDetail" ToRole="PaymentSection" />
+  </EntityType>
+  <EntityType Name="EmployeeDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MobileNo" Type="Int64" Nullable="false" />
+    <Property Name="OtherContactNo" Type="Int64" Nullable="false" />
+    <Property Name="Address1" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Address2" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="AadharNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="VoterIDNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="DriverLicenceNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="BranchDetail_ID" Type="Int32" />
+    <Property Name="City_ID" Type="Int32" />
+    <Property Name="EmployeeType_ID" Type="Int32" />
+    <Property Name="Title_ID" Type="Int32" />
+    <NavigationProperty Name="BranchDetail" Relationship="HMSDbModel.FK_dbo_EmployeeDetails_dbo_BranchDetails_BranchDetail_ID" FromRole="EmployeeDetail" ToRole="BranchDetail" />
+    <NavigationProperty Name="City" Relationship="HMSDbModel.FK_dbo_EmployeeDetails_dbo_Cities_City_ID" FromRole="EmployeeDetail" ToRole="City" />
+    <NavigationProperty Name="Doctors" Relationship="HMSDbModel.FK_dbo_Doctors_dbo_EmployeeDetails_EmployeeDetail_ID" FromRole="EmployeeDetail" ToRole="Doctor" />
+    <NavigationProperty Name="EmployeeType" Relationship="HMSDbModel.FK_dbo_EmployeeDetails_dbo_EmployeeTypes_EmployeeType_ID" FromRole="EmployeeDetail" ToRole="EmployeeType" />
+    <NavigationProperty Name="Title" Relationship="HMSDbModel.FK_dbo_EmployeeDetails_dbo_Titles_Title_ID" FromRole="EmployeeDetail" ToRole="Title" />
+    <NavigationProperty Name="PatientBills" Relationship="HMSDbModel.FK_dbo_PatientBills_dbo_EmployeeDetails_EmployeeDetail_ID" FromRole="EmployeeDetail" ToRole="PatientBill" />
+    <NavigationProperty Name="RegistrationPaymentDetails" Relationship="HMSDbModel.FK_dbo_RegistrationPaymentDetails_dbo_EmployeeDetails_EmployeeDetail_ID" FromRole="EmployeeDetail" ToRole="RegistrationPaymentDetail" />
+  </EntityType>
+  <EntityType Name="EmployeeType">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="EmployeeDetails" Relationship="HMSDbModel.FK_dbo_EmployeeDetails_dbo_EmployeeTypes_EmployeeType_ID" FromRole="EmployeeType" ToRole="EmployeeDetail" />
+  </EntityType>
+  <EntityType Name="LabCategory">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="LabPayments" Relationship="HMSDbModel.FK_dbo_LabPayments_dbo_LabCategories_LabCategory_ID" FromRole="LabCategory" ToRole="LabPayment" />
+    <NavigationProperty Name="LabTests" Relationship="HMSDbModel.FK_dbo_LabTests_dbo_LabCategories_LabCategory_ID" FromRole="LabCategory" ToRole="LabTest" />
+  </EntityType>
+  <EntityType Name="LabPayment">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <Property Name="LabCharge" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="Discount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="NetAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="PaidAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="DueAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Appointment_ID" Type="Int32" />
+    <Property Name="Doctor_ID" Type="Int64" />
+    <Property Name="LabCategory_ID" Type="Int32" />
+    <Property Name="LabTest_ID" Type="Int32" />
+    <NavigationProperty Name="Appointment" Relationship="HMSDbModel.FK_dbo_LabPayments_dbo_Appointments_Appointment_ID" FromRole="LabPayment" ToRole="Appointment" />
+    <NavigationProperty Name="Doctor" Relationship="HMSDbModel.FK_dbo_LabPayments_dbo_Doctors_Doctor_ID" FromRole="LabPayment" ToRole="Doctor" />
+    <NavigationProperty Name="LabCategory" Relationship="HMSDbModel.FK_dbo_LabPayments_dbo_LabCategories_LabCategory_ID" FromRole="LabPayment" ToRole="LabCategory" />
+    <NavigationProperty Name="LabTest" Relationship="HMSDbModel.FK_dbo_LabPayments_dbo_LabTests_LabTest_ID" FromRole="LabPayment" ToRole="LabTest" />
+  </EntityType>
+  <EntityType Name="LabTest">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="LabTestCost" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="Remarks" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <Property Name="LabCategory_ID" Type="Int32" />
+    <NavigationProperty Name="LabCategory" Relationship="HMSDbModel.FK_dbo_LabTests_dbo_LabCategories_LabCategory_ID" FromRole="LabTest" ToRole="LabCategory" />
+    <NavigationProperty Name="LabPayments" Relationship="HMSDbModel.FK_dbo_LabPayments_dbo_LabTests_LabTest_ID" FromRole="LabTest" ToRole="LabPayment" />
+  </EntityType>
+  <EntityType Name="MedicalPaymentDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MedicalAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="PaymentStatus" Type="Int64" Nullable="false" />
+    <Property Name="PaymentReceivedBy" Type="Int64" Nullable="false" />
+    <Property Name="PaymentReceivedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DiscountAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="DiscountedBy" Type="Int64" Nullable="false" />
+    <Property Name="DiscountDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="PaymentDetails" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Doctor_ID" Type="Int64" />
+    <Property Name="PaymentMode_ID" Type="Int32" />
+    <Property Name="PaymentSection_ID" Type="Int32" />
+    <Property Name="Appointment_ID" Type="Int32" />
+    <NavigationProperty Name="Appointment" Relationship="HMSDbModel.FK_dbo_MedicalPaymentDetails_dbo_Appointments_Appointment_ID" FromRole="MedicalPaymentDetail" ToRole="Appointment" />
+    <NavigationProperty Name="Doctor" Relationship="HMSDbModel.FK_dbo_MedicalPaymentDetails_dbo_Doctors_Doctor_ID" FromRole="MedicalPaymentDetail" ToRole="Doctor" />
+    <NavigationProperty Name="PaymentMode" Relationship="HMSDbModel.FK_dbo_MedicalPaymentDetails_dbo_PaymentModes_PaymentMode_ID" FromRole="MedicalPaymentDetail" ToRole="PaymentMode" />
+    <NavigationProperty Name="PaymentSection" Relationship="HMSDbModel.FK_dbo_MedicalPaymentDetails_dbo_PaymentSections_PaymentSection_ID" FromRole="MedicalPaymentDetail" ToRole="PaymentSection" />
+  </EntityType>
+  <EntityType Name="PatientBill">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ServiceAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="LabAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="WardAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="MedicalAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="RegistrationAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="DoctorVisitAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="OtherChargeAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="TotalAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="AdvancePaymentAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="BalanceAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="PaymentAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="DuesAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="PaymentDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="PaymentDetails" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="BranchDetail_ID" Type="Int32" />
+    <Property Name="EmployeeDetail_ID" Type="Int64" />
+    <Property Name="PaymentMode_ID" Type="Int32" />
+    <Property Name="PaymentSection_ID" Type="Int32" />
+    <Property Name="Appointment_ID" Type="Int32" />
+    <NavigationProperty Name="Appointment" Relationship="HMSDbModel.FK_dbo_PatientBills_dbo_Appointments_Appointment_ID" FromRole="PatientBill" ToRole="Appointment" />
+    <NavigationProperty Name="BranchDetail" Relationship="HMSDbModel.FK_dbo_PatientBills_dbo_BranchDetails_BranchDetail_ID" FromRole="PatientBill" ToRole="BranchDetail" />
+    <NavigationProperty Name="EmployeeDetail" Relationship="HMSDbModel.FK_dbo_PatientBills_dbo_EmployeeDetails_EmployeeDetail_ID" FromRole="PatientBill" ToRole="EmployeeDetail" />
+    <NavigationProperty Name="PaymentMode" Relationship="HMSDbModel.FK_dbo_PatientBills_dbo_PaymentModes_PaymentMode_ID" FromRole="PatientBill" ToRole="PaymentMode" />
+    <NavigationProperty Name="PaymentSection" Relationship="HMSDbModel.FK_dbo_PatientBills_dbo_PaymentSections_PaymentSection_ID" FromRole="PatientBill" ToRole="PaymentSection" />
+  </EntityType>
+  <EntityType Name="PatientDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FullName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Age" Type="Int32" Nullable="false" />
+    <Property Name="FatherOrHusbandName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ContactNo" Type="Int64" Nullable="false" />
+    <Property Name="OtherContactNo" Type="Int64" Nullable="false" />
+    <Property Name="DateOfRegistration" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Address" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int64" Nullable="false" />
+    <Property Name="City_ID" Type="Int32" />
+    <Property Name="MarritalStatus" Type="Int32" Nullable="false" />
+    <Property Name="DOB" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Appointments" Relationship="HMSDbModel.FK_dbo_Appointments_dbo_PatientDetails_PatientDetails_ID" FromRole="PatientDetail" ToRole="Appointment" />
+    <NavigationProperty Name="City" Relationship="HMSDbModel.FK_dbo_PatientDetails_dbo_Cities_City_ID" FromRole="PatientDetail" ToRole="City" />
+    <NavigationProperty Name="DoctorBillDetails" Relationship="HMSDbModel.FK_dbo_DoctorBillDetails_dbo_PatientDetails_PatientDetails_ID" FromRole="PatientDetail" ToRole="DoctorBillDetail" />
+  </EntityType>
+  <EntityType Name="PatientType">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Details" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Appointments" Relationship="HMSDbModel.FK_dbo_Appointments_dbo_PatientTypes_PatientType_ID" FromRole="PatientType" ToRole="Appointment" />
+    <NavigationProperty Name="DoctorBillDetails" Relationship="HMSDbModel.FK_dbo_DoctorBillDetails_dbo_PatientTypes_PatientType_ID" FromRole="PatientType" ToRole="DoctorBillDetail" />
+  </EntityType>
+  <EntityType Name="PatientVisit">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VisitedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="PatientStatus" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="RegistrationAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="DiscountAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="PayAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="CreatedBy" Type="Int64" Nullable="false" />
+    <Property Name="Appointment_ID" Type="Int32" />
+    <Property Name="PaymentMode_ID" Type="Int32" />
+    <NavigationProperty Name="Appointment" Relationship="HMSDbModel.FK_dbo_PatientVisits_dbo_Appointments_Appointment_ID" FromRole="PatientVisit" ToRole="Appointment" />
+    <NavigationProperty Name="PaymentMode" Relationship="HMSDbModel.FK_dbo_PatientVisits_dbo_PaymentModes_PaymentMode_ID" FromRole="PatientVisit" ToRole="PaymentMode" />
+  </EntityType>
+  <EntityType Name="PaymentMode">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Mode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DoctorBillDetails" Relationship="HMSDbModel.FK_dbo_DoctorBillDetails_dbo_PaymentModes_PaymentMode_ID" FromRole="PaymentMode" ToRole="DoctorBillDetail" />
+    <NavigationProperty Name="DoctorVisitPaymentDetails" Relationship="HMSDbModel.FK_dbo_DoctorVisitPaymentDetails_dbo_PaymentModes_PaymentMode_ID" FromRole="PaymentMode" ToRole="DoctorVisitPaymentDetail" />
+    <NavigationProperty Name="MedicalPaymentDetails" Relationship="HMSDbModel.FK_dbo_MedicalPaymentDetails_dbo_PaymentModes_PaymentMode_ID" FromRole="PaymentMode" ToRole="MedicalPaymentDetail" />
+    <NavigationProperty Name="PatientBills" Relationship="HMSDbModel.FK_dbo_PatientBills_dbo_PaymentModes_PaymentMode_ID" FromRole="PaymentMode" ToRole="PatientBill" />
+    <NavigationProperty Name="PatientVisits" Relationship="HMSDbModel.FK_dbo_PatientVisits_dbo_PaymentModes_PaymentMode_ID" FromRole="PaymentMode" ToRole="PatientVisit" />
+    <NavigationProperty Name="RegistrationPaymentDetails" Relationship="HMSDbModel.FK_dbo_RegistrationPaymentDetails_dbo_PaymentModes_PaymentMode_ID" FromRole="PaymentMode" ToRole="RegistrationPaymentDetail" />
+  </EntityType>
+  <EntityType Name="PaymentSection">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Details" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DoctorVisitPaymentDetails" Relationship="HMSDbModel.FK_dbo_DoctorVisitPaymentDetails_dbo_PaymentSections_PaymentSection_ID" FromRole="PaymentSection" ToRole="DoctorVisitPaymentDetail" />
+    <NavigationProperty Name="MedicalPaymentDetails" Relationship="HMSDbModel.FK_dbo_MedicalPaymentDetails_dbo_PaymentSections_PaymentSection_ID" FromRole="PaymentSection" ToRole="MedicalPaymentDetail" />
+    <NavigationProperty Name="PatientBills" Relationship="HMSDbModel.FK_dbo_PatientBills_dbo_PaymentSections_PaymentSection_ID" FromRole="PaymentSection" ToRole="PatientBill" />
+    <NavigationProperty Name="RegistrationPaymentDetails" Relationship="HMSDbModel.FK_dbo_RegistrationPaymentDetails_dbo_PaymentSections_PaymentSection_ID" FromRole="PaymentSection" ToRole="RegistrationPaymentDetail" />
+  </EntityType>
+  <EntityType Name="Qualification">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Doctors" Relationship="HMSDbModel.FK_dbo_Doctors_dbo_Qualifications_Qualification_ID" FromRole="Qualification" ToRole="Doctor" />
+  </EntityType>
+  <EntityType Name="RegistrationPaymentDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RegistrationAmt" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="PaymentStatus" Type="Int64" Nullable="false" />
+    <Property Name="PaymentReceivedBy" Type="Int64" Nullable="false" />
+    <Property Name="PaymentReceivedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DiscountAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="DiscountedBy" Type="Int64" Nullable="false" />
+    <Property Name="DiscountDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="PaymentDetails" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Doctor_ID" Type="Int64" />
+    <Property Name="EmployeeDetail_ID" Type="Int64" />
+    <Property Name="PaymentMode_ID" Type="Int32" />
+    <Property Name="PaymentSection_ID" Type="Int32" />
+    <Property Name="Appointment_ID" Type="Int32" />
+    <NavigationProperty Name="Appointment" Relationship="HMSDbModel.FK_dbo_RegistrationPaymentDetails_dbo_Appointments_Appointment_ID" FromRole="RegistrationPaymentDetail" ToRole="Appointment" />
+    <NavigationProperty Name="Doctor" Relationship="HMSDbModel.FK_dbo_RegistrationPaymentDetails_dbo_Doctors_Doctor_ID" FromRole="RegistrationPaymentDetail" ToRole="Doctor" />
+    <NavigationProperty Name="EmployeeDetail" Relationship="HMSDbModel.FK_dbo_RegistrationPaymentDetails_dbo_EmployeeDetails_EmployeeDetail_ID" FromRole="RegistrationPaymentDetail" ToRole="EmployeeDetail" />
+    <NavigationProperty Name="PaymentMode" Relationship="HMSDbModel.FK_dbo_RegistrationPaymentDetails_dbo_PaymentModes_PaymentMode_ID" FromRole="RegistrationPaymentDetail" ToRole="PaymentMode" />
+    <NavigationProperty Name="PaymentSection" Relationship="HMSDbModel.FK_dbo_RegistrationPaymentDetails_dbo_PaymentSections_PaymentSection_ID" FromRole="RegistrationPaymentDetail" ToRole="PaymentSection" />
+  </EntityType>
+  <EntityType Name="RoomDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Details" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="TotalBed" Type="Int32" Nullable="false" />
+    <Property Name="Ward_ID" Type="Int32" />
+    <Property Name="RoomNo" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="RoomCost" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="BedAllotments" Relationship="HMSDbModel.FK_dbo_BedAllotments_dbo_RoomDetails_RoomDetails_ID" FromRole="RoomDetail" ToRole="BedAllotment" />
+    <NavigationProperty Name="Ward" Relationship="HMSDbModel.FK_dbo_RoomDetails_dbo_Wards_Ward_ID" FromRole="RoomDetail" ToRole="Ward" />
+    <NavigationProperty Name="WardOrRoomChargeDetails" Relationship="HMSDbModel.FK_dbo_WardOrRoomChargeDetails_dbo_RoomDetails_RoomDetails_ID" FromRole="RoomDetail" ToRole="WardOrRoomChargeDetail" />
+  </EntityType>
+  <EntityType Name="ServicePayment">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ServiceUnit" Type="Int32" Nullable="false" />
+    <Property Name="ServiceCharge" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="Discount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="NetAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="PaidAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="DueAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Doctor_ID" Type="Int64" />
+    <Property Name="Service_ID" Type="Int64" />
+    <Property Name="ServiceSubCategory_ID" Type="Int64" />
+    <Property Name="Appointment_ID" Type="Int32" />
+    <NavigationProperty Name="Appointment" Relationship="HMSDbModel.FK_dbo_ServicePayments_dbo_Appointments_Appointment_ID" FromRole="ServicePayment" ToRole="Appointment" />
+    <NavigationProperty Name="Doctor" Relationship="HMSDbModel.FK_dbo_ServicePayments_dbo_Doctors_Doctor_ID" FromRole="ServicePayment" ToRole="Doctor" />
+    <NavigationProperty Name="Service" Relationship="HMSDbModel.FK_dbo_ServicePayments_dbo_Services_Service_ID" FromRole="ServicePayment" ToRole="Service" />
+    <NavigationProperty Name="ServiceSubCategory" Relationship="HMSDbModel.FK_dbo_ServicePayments_dbo_ServiceSubCategories_ServiceSubCategory_ID" FromRole="ServicePayment" ToRole="ServiceSubCategory" />
+  </EntityType>
+  <EntityType Name="Service">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ServicePayments" Relationship="HMSDbModel.FK_dbo_ServicePayments_dbo_Services_Service_ID" FromRole="Service" ToRole="ServicePayment" />
+    <NavigationProperty Name="ServiceSubCategories" Relationship="HMSDbModel.FK_dbo_ServiceSubCategories_dbo_Services_Service_ID" FromRole="Service" ToRole="ServiceSubCategory" />
+  </EntityType>
+  <EntityType Name="ServiceSubCategory">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ServiceCharges" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="AverageDuration" Type="Int32" Nullable="false" />
+    <Property Name="BranchDetail_ID" Type="Int32" />
+    <Property Name="Service_ID" Type="Int64" />
+    <NavigationProperty Name="BranchDetail" Relationship="HMSDbModel.FK_dbo_ServiceSubCategories_dbo_BranchDetails_BranchDetail_ID" FromRole="ServiceSubCategory" ToRole="BranchDetail" />
+    <NavigationProperty Name="ServicePayments" Relationship="HMSDbModel.FK_dbo_ServicePayments_dbo_ServiceSubCategories_ServiceSubCategory_ID" FromRole="ServiceSubCategory" ToRole="ServicePayment" />
+    <NavigationProperty Name="Service" Relationship="HMSDbModel.FK_dbo_ServiceSubCategories_dbo_Services_Service_ID" FromRole="ServiceSubCategory" ToRole="Service" />
+  </EntityType>
+  <EntityType Name="ShiftDate">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DayAvailable" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="StartTime" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="EndTime" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <Property Name="ShiftType_ID" Type="Int32" />
+    <Property Name="Doctor_ID" Type="Int64" />
+    <NavigationProperty Name="Doctor" Relationship="HMSDbModel.FK_dbo_ShiftDates_dbo_Doctors_Doctor_ID" FromRole="ShiftDate" ToRole="Doctor" />
+    <NavigationProperty Name="ShiftType" Relationship="HMSDbModel.FK_dbo_ShiftDates_dbo_ShiftTypes_ShiftType_ID" FromRole="ShiftDate" ToRole="ShiftType" />
+  </EntityType>
+  <EntityType Name="ShiftDay">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StartTime" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="EndTime" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <Property Name="ShiftType_ID" Type="Int32" />
+    <Property Name="WeekDays_ID" Type="Int32" />
+    <Property Name="Doctor_ID" Type="Int64" />
+    <NavigationProperty Name="Doctor" Relationship="HMSDbModel.FK_dbo_ShiftDays_dbo_Doctors_Doctor_ID" FromRole="ShiftDay" ToRole="Doctor" />
+    <NavigationProperty Name="ShiftType" Relationship="HMSDbModel.FK_dbo_ShiftDays_dbo_ShiftTypes_ShiftType_ID" FromRole="ShiftDay" ToRole="ShiftType" />
+    <NavigationProperty Name="WeekDay" Relationship="HMSDbModel.FK_dbo_ShiftDays_dbo_WeekDays_WeekDays_ID" FromRole="ShiftDay" ToRole="WeekDay" />
+  </EntityType>
+  <EntityType Name="ShiftType">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Doctor_ID" Type="Int64" />
+    <Property Name="ShiftCharge" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <NavigationProperty Name="Appointments" Relationship="HMSDbModel.FK_dbo_Appointments_dbo_ShiftTypes_ShiftType_ID" FromRole="ShiftType" ToRole="Appointment" />
+    <NavigationProperty Name="Doctor" Relationship="HMSDbModel.FK_dbo_ShiftTypes_dbo_Doctors_Doctor_ID" FromRole="ShiftType" ToRole="Doctor" />
+    <NavigationProperty Name="ShiftDates" Relationship="HMSDbModel.FK_dbo_ShiftDates_dbo_ShiftTypes_ShiftType_ID" FromRole="ShiftType" ToRole="ShiftDate" />
+    <NavigationProperty Name="ShiftDays" Relationship="HMSDbModel.FK_dbo_ShiftDays_dbo_ShiftTypes_ShiftType_ID" FromRole="ShiftType" ToRole="ShiftDay" />
+  </EntityType>
+  <EntityType Name="Specialization">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Appointments" Relationship="HMSDbModel.FK_dbo_Appointments_dbo_Specializations_Specialization_ID" FromRole="Specialization" ToRole="Appointment" />
+    <NavigationProperty Name="Doctors" Relationship="HMSDbModel.FK_dbo_Doctors_dbo_Specializations_Specialization_ID" FromRole="Specialization" ToRole="Doctor" />
+  </EntityType>
+  <EntityType Name="State">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Country_ID" Type="Int32" />
+    <NavigationProperty Name="Cities" Relationship="HMSDbModel.FK_dbo_Cities_dbo_States_State_ID" FromRole="State" ToRole="City" />
+    <NavigationProperty Name="Country" Relationship="HMSDbModel.FK_dbo_States_dbo_Countries_Country_ID" FromRole="State" ToRole="Country" />
+  </EntityType>
+  <EntityType Name="Title">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="EmployeeDetails" Relationship="HMSDbModel.FK_dbo_EmployeeDetails_dbo_Titles_Title_ID" FromRole="Title" ToRole="EmployeeDetail" />
+  </EntityType>
+  <EntityType Name="VisitReason">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VisitPurpose" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Details" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="WardCategory">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Wards" Relationship="HMSDbModel.FK_dbo_Wards_dbo_WardCategories_WardCategory_ID" FromRole="WardCategory" ToRole="Ward" />
+  </EntityType>
+  <EntityType Name="WardOrRoomChargeDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="RoomCharge" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="OtherDetails" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="OtherCharge" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="DiscountAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="DiscountedBy" Type="Int64" Nullable="false" />
+    <Property Name="DiscountReason" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="RoomDetails_ID" Type="Int32" />
+    <Property Name="Appointment_ID" Type="Int32" />
+    <NavigationProperty Name="Appointment" Relationship="HMSDbModel.FK_dbo_WardOrRoomChargeDetails_dbo_Appointments_Appointment_ID" FromRole="WardOrRoomChargeDetail" ToRole="Appointment" />
+    <NavigationProperty Name="RoomDetail" Relationship="HMSDbModel.FK_dbo_WardOrRoomChargeDetails_dbo_RoomDetails_RoomDetails_ID" FromRole="WardOrRoomChargeDetail" ToRole="RoomDetail" />
+  </EntityType>
+  <EntityType Name="Ward">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TotalNoOfBed" Type="Int32" Nullable="false" />
+    <Property Name="OtherDetails" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="BranchDetail_ID" Type="Int32" />
+    <Property Name="WardCategory_ID" Type="Int32" />
+    <NavigationProperty Name="BranchDetail" Relationship="HMSDbModel.FK_dbo_Wards_dbo_BranchDetails_BranchDetail_ID" FromRole="Ward" ToRole="BranchDetail" />
+    <NavigationProperty Name="RoomDetails" Relationship="HMSDbModel.FK_dbo_RoomDetails_dbo_Wards_Ward_ID" FromRole="Ward" ToRole="RoomDetail" />
+    <NavigationProperty Name="WardCategory" Relationship="HMSDbModel.FK_dbo_Wards_dbo_WardCategories_WardCategory_ID" FromRole="Ward" ToRole="WardCategory" />
+  </EntityType>
+  <EntityType Name="WeekDay">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NameOfTheDay" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ShiftDays" Relationship="HMSDbModel.FK_dbo_ShiftDays_dbo_WeekDays_WeekDays_ID" FromRole="WeekDay" ToRole="ShiftDay" />
+  </EntityType>
+  <Association Name="FK_dbo_Appointments_dbo_BranchDetails_BranchDetails_ID">
+    <End Type="HMSDbModel.BranchDetail" Role="BranchDetail" Multiplicity="0..1" />
+    <End Type="HMSDbModel.Appointment" Role="Appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BranchDetail">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Appointment">
+        <PropertyRef Name="BranchDetails_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Appointments_dbo_Doctors_Doctor_ID">
+    <End Type="HMSDbModel.Doctor" Role="Doctor" Multiplicity="0..1" />
+    <End Type="HMSDbModel.Appointment" Role="Appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Doctor">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Appointment">
+        <PropertyRef Name="Doctor_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Appointments_dbo_PatientDetails_PatientDetails_ID">
+    <End Type="HMSDbModel.PatientDetail" Role="PatientDetail" Multiplicity="0..1" />
+    <End Type="HMSDbModel.Appointment" Role="Appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PatientDetail">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Appointment">
+        <PropertyRef Name="PatientDetails_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Appointments_dbo_PatientTypes_PatientType_ID">
+    <End Type="HMSDbModel.PatientType" Role="PatientType" Multiplicity="0..1" />
+    <End Type="HMSDbModel.Appointment" Role="Appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PatientType">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Appointment">
+        <PropertyRef Name="PatientType_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Appointments_dbo_ShiftTypes_ShiftType_ID">
+    <End Type="HMSDbModel.ShiftType" Role="ShiftType" Multiplicity="0..1" />
+    <End Type="HMSDbModel.Appointment" Role="Appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ShiftType">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Appointment">
+        <PropertyRef Name="ShiftType_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Appointments_dbo_Specializations_Specialization_ID">
+    <End Type="HMSDbModel.Specialization" Role="Specialization" Multiplicity="0..1" />
+    <End Type="HMSDbModel.Appointment" Role="Appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Specialization">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Appointment">
+        <PropertyRef Name="Specialization_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_BedAllotments_dbo_Appointments_Appointment_ID">
+    <End Type="HMSDbModel.Appointment" Role="Appointment" Multiplicity="0..1" />
+    <End Type="HMSDbModel.BedAllotment" Role="BedAllotment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Appointment">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BedAllotment">
+        <PropertyRef Name="Appointment_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_DoctorVisitPaymentDetails_dbo_Appointments_Appointment_ID">
+    <End Type="HMSDbModel.Appointment" Role="Appointment" Multiplicity="0..1" />
+    <End Type="HMSDbModel.DoctorVisitPaymentDetail" Role="DoctorVisitPaymentDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Appointment">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DoctorVisitPaymentDetail">
+        <PropertyRef Name="Appointment_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_LabPayments_dbo_Appointments_Appointment_ID">
+    <End Type="HMSDbModel.Appointment" Role="Appointment" Multiplicity="0..1" />
+    <End Type="HMSDbModel.LabPayment" Role="LabPayment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Appointment">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="LabPayment">
+        <PropertyRef Name="Appointment_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_MedicalPaymentDetails_dbo_Appointments_Appointment_ID">
+    <End Type="HMSDbModel.Appointment" Role="Appointment" Multiplicity="0..1" />
+    <End Type="HMSDbModel.MedicalPaymentDetail" Role="MedicalPaymentDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Appointment">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MedicalPaymentDetail">
+        <PropertyRef Name="Appointment_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_PatientBills_dbo_Appointments_Appointment_ID">
+    <End Type="HMSDbModel.Appointment" Role="Appointment" Multiplicity="0..1" />
+    <End Type="HMSDbModel.PatientBill" Role="PatientBill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Appointment">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PatientBill">
+        <PropertyRef Name="Appointment_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_PatientVisits_dbo_Appointments_Appointment_ID">
+    <End Type="HMSDbModel.Appointment" Role="Appointment" Multiplicity="0..1" />
+    <End Type="HMSDbModel.PatientVisit" Role="PatientVisit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Appointment">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PatientVisit">
+        <PropertyRef Name="Appointment_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_RegistrationPaymentDetails_dbo_Appointments_Appointment_ID">
+    <End Type="HMSDbModel.Appointment" Role="Appointment" Multiplicity="0..1" />
+    <End Type="HMSDbModel.RegistrationPaymentDetail" Role="RegistrationPaymentDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Appointment">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="RegistrationPaymentDetail">
+        <PropertyRef Name="Appointment_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_ServicePayments_dbo_Appointments_Appointment_ID">
+    <End Type="HMSDbModel.Appointment" Role="Appointment" Multiplicity="0..1" />
+    <End Type="HMSDbModel.ServicePayment" Role="ServicePayment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Appointment">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ServicePayment">
+        <PropertyRef Name="Appointment_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_WardOrRoomChargeDetails_dbo_Appointments_Appointment_ID">
+    <End Type="HMSDbModel.Appointment" Role="Appointment" Multiplicity="0..1" />
+    <End Type="HMSDbModel.WardOrRoomChargeDetail" Role="WardOrRoomChargeDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Appointment">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="WardOrRoomChargeDetail">
+        <PropertyRef Name="Appointment_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Type="HMSDbModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="HMSDbModel.AspNetUserClaim" Role="AspNetUserClaim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaim">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Type="HMSDbModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="HMSDbModel.AspNetUserLogin" Role="AspNetUserLogin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogin">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_BedAllotments_dbo_RoomDetails_RoomDetails_ID">
+    <End Type="HMSDbModel.RoomDetail" Role="RoomDetail" Multiplicity="0..1" />
+    <End Type="HMSDbModel.BedAllotment" Role="BedAllotment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoomDetail">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BedAllotment">
+        <PropertyRef Name="RoomDetails_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_BranchDetails_dbo_Cities_City_ID">
+    <End Type="HMSDbModel.City" Role="City" Multiplicity="0..1" />
+    <End Type="HMSDbModel.BranchDetail" Role="BranchDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BranchDetail">
+        <PropertyRef Name="City_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_EmployeeDetails_dbo_BranchDetails_BranchDetail_ID">
+    <End Type="HMSDbModel.BranchDetail" Role="BranchDetail" Multiplicity="0..1" />
+    <End Type="HMSDbModel.EmployeeDetail" Role="EmployeeDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BranchDetail">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="EmployeeDetail">
+        <PropertyRef Name="BranchDetail_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_PatientBills_dbo_BranchDetails_BranchDetail_ID">
+    <End Type="HMSDbModel.BranchDetail" Role="BranchDetail" Multiplicity="0..1" />
+    <End Type="HMSDbModel.PatientBill" Role="PatientBill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BranchDetail">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PatientBill">
+        <PropertyRef Name="BranchDetail_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_ServiceSubCategories_dbo_BranchDetails_BranchDetail_ID">
+    <End Type="HMSDbModel.BranchDetail" Role="BranchDetail" Multiplicity="0..1" />
+    <End Type="HMSDbModel.ServiceSubCategory" Role="ServiceSubCategory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BranchDetail">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ServiceSubCategory">
+        <PropertyRef Name="BranchDetail_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Wards_dbo_BranchDetails_BranchDetail_ID">
+    <End Type="HMSDbModel.BranchDetail" Role="BranchDetail" Multiplicity="0..1" />
+    <End Type="HMSDbModel.Ward" Role="Ward" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BranchDetail">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Ward">
+        <PropertyRef Name="BranchDetail_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Cities_dbo_States_State_ID">
+    <End Type="HMSDbModel.State" Role="State" Multiplicity="0..1" />
+    <End Type="HMSDbModel.City" Role="City" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="State">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="City">
+        <PropertyRef Name="State_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_EmployeeDetails_dbo_Cities_City_ID">
+    <End Type="HMSDbModel.City" Role="City" Multiplicity="0..1" />
+    <End Type="HMSDbModel.EmployeeDetail" Role="EmployeeDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="EmployeeDetail">
+        <PropertyRef Name="City_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_PatientDetails_dbo_Cities_City_ID">
+    <End Type="HMSDbModel.City" Role="City" Multiplicity="0..1" />
+    <End Type="HMSDbModel.PatientDetail" Role="PatientDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PatientDetail">
+        <PropertyRef Name="City_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_States_dbo_Countries_Country_ID">
+    <End Type="HMSDbModel.Country" Role="Country" Multiplicity="0..1" />
+    <End Type="HMSDbModel.State" Role="State" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="State">
+        <PropertyRef Name="Country_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_DoctorBillDetails_dbo_Doctors_Doctor_ID">
+    <End Type="HMSDbModel.Doctor" Role="Doctor" Multiplicity="0..1" />
+    <End Type="HMSDbModel.DoctorBillDetail" Role="DoctorBillDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Doctor">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DoctorBillDetail">
+        <PropertyRef Name="Doctor_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_DoctorBillDetails_dbo_PatientDetails_PatientDetails_ID">
+    <End Type="HMSDbModel.PatientDetail" Role="PatientDetail" Multiplicity="0..1" />
+    <End Type="HMSDbModel.DoctorBillDetail" Role="DoctorBillDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PatientDetail">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DoctorBillDetail">
+        <PropertyRef Name="PatientDetails_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_DoctorBillDetails_dbo_PatientTypes_PatientType_ID">
+    <End Type="HMSDbModel.PatientType" Role="PatientType" Multiplicity="0..1" />
+    <End Type="HMSDbModel.DoctorBillDetail" Role="DoctorBillDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PatientType">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DoctorBillDetail">
+        <PropertyRef Name="PatientType_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_DoctorBillDetails_dbo_PaymentModes_PaymentMode_ID">
+    <End Type="HMSDbModel.PaymentMode" Role="PaymentMode" Multiplicity="0..1" />
+    <End Type="HMSDbModel.DoctorBillDetail" Role="DoctorBillDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PaymentMode">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DoctorBillDetail">
+        <PropertyRef Name="PaymentMode_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Doctors_dbo_EmployeeDetails_EmployeeDetail_ID">
+    <End Type="HMSDbModel.EmployeeDetail" Role="EmployeeDetail" Multiplicity="0..1" />
+    <End Type="HMSDbModel.Doctor" Role="Doctor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmployeeDetail">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Doctor">
+        <PropertyRef Name="EmployeeDetail_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Doctors_dbo_Qualifications_Qualification_ID">
+    <End Type="HMSDbModel.Qualification" Role="Qualification" Multiplicity="0..1" />
+    <End Type="HMSDbModel.Doctor" Role="Doctor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Qualification">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Doctor">
+        <PropertyRef Name="Qualification_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Doctors_dbo_Specializations_Specialization_ID">
+    <End Type="HMSDbModel.Specialization" Role="Specialization" Multiplicity="0..1" />
+    <End Type="HMSDbModel.Doctor" Role="Doctor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Specialization">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Doctor">
+        <PropertyRef Name="Specialization_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_DoctorVisitPaymentDetails_dbo_Doctors_Doctor_ID">
+    <End Type="HMSDbModel.Doctor" Role="Doctor" Multiplicity="0..1" />
+    <End Type="HMSDbModel.DoctorVisitPaymentDetail" Role="DoctorVisitPaymentDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Doctor">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DoctorVisitPaymentDetail">
+        <PropertyRef Name="Doctor_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_LabPayments_dbo_Doctors_Doctor_ID">
+    <End Type="HMSDbModel.Doctor" Role="Doctor" Multiplicity="0..1" />
+    <End Type="HMSDbModel.LabPayment" Role="LabPayment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Doctor">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="LabPayment">
+        <PropertyRef Name="Doctor_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_MedicalPaymentDetails_dbo_Doctors_Doctor_ID">
+    <End Type="HMSDbModel.Doctor" Role="Doctor" Multiplicity="0..1" />
+    <End Type="HMSDbModel.MedicalPaymentDetail" Role="MedicalPaymentDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Doctor">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MedicalPaymentDetail">
+        <PropertyRef Name="Doctor_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_RegistrationPaymentDetails_dbo_Doctors_Doctor_ID">
+    <End Type="HMSDbModel.Doctor" Role="Doctor" Multiplicity="0..1" />
+    <End Type="HMSDbModel.RegistrationPaymentDetail" Role="RegistrationPaymentDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Doctor">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="RegistrationPaymentDetail">
+        <PropertyRef Name="Doctor_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_ServicePayments_dbo_Doctors_Doctor_ID">
+    <End Type="HMSDbModel.Doctor" Role="Doctor" Multiplicity="0..1" />
+    <End Type="HMSDbModel.ServicePayment" Role="ServicePayment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Doctor">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ServicePayment">
+        <PropertyRef Name="Doctor_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_ShiftDates_dbo_Doctors_Doctor_ID">
+    <End Type="HMSDbModel.Doctor" Role="Doctor" Multiplicity="0..1" />
+    <End Type="HMSDbModel.ShiftDate" Role="ShiftDate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Doctor">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ShiftDate">
+        <PropertyRef Name="Doctor_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_ShiftDays_dbo_Doctors_Doctor_ID">
+    <End Type="HMSDbModel.Doctor" Role="Doctor" Multiplicity="0..1" />
+    <End Type="HMSDbModel.ShiftDay" Role="ShiftDay" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Doctor">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ShiftDay">
+        <PropertyRef Name="Doctor_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_ShiftTypes_dbo_Doctors_Doctor_ID">
+    <End Type="HMSDbModel.Doctor" Role="Doctor" Multiplicity="0..1" />
+    <End Type="HMSDbModel.ShiftType" Role="ShiftType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Doctor">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ShiftType">
+        <PropertyRef Name="Doctor_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_DoctorVisitPaymentDetails_dbo_PaymentModes_PaymentMode_ID">
+    <End Type="HMSDbModel.PaymentMode" Role="PaymentMode" Multiplicity="0..1" />
+    <End Type="HMSDbModel.DoctorVisitPaymentDetail" Role="DoctorVisitPaymentDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PaymentMode">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DoctorVisitPaymentDetail">
+        <PropertyRef Name="PaymentMode_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_DoctorVisitPaymentDetails_dbo_PaymentSections_PaymentSection_ID">
+    <End Type="HMSDbModel.PaymentSection" Role="PaymentSection" Multiplicity="0..1" />
+    <End Type="HMSDbModel.DoctorVisitPaymentDetail" Role="DoctorVisitPaymentDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PaymentSection">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DoctorVisitPaymentDetail">
+        <PropertyRef Name="PaymentSection_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_EmployeeDetails_dbo_EmployeeTypes_EmployeeType_ID">
+    <End Type="HMSDbModel.EmployeeType" Role="EmployeeType" Multiplicity="0..1" />
+    <End Type="HMSDbModel.EmployeeDetail" Role="EmployeeDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmployeeType">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="EmployeeDetail">
+        <PropertyRef Name="EmployeeType_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_EmployeeDetails_dbo_Titles_Title_ID">
+    <End Type="HMSDbModel.Title" Role="Title" Multiplicity="0..1" />
+    <End Type="HMSDbModel.EmployeeDetail" Role="EmployeeDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Title">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="EmployeeDetail">
+        <PropertyRef Name="Title_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_PatientBills_dbo_EmployeeDetails_EmployeeDetail_ID">
+    <End Type="HMSDbModel.EmployeeDetail" Role="EmployeeDetail" Multiplicity="0..1" />
+    <End Type="HMSDbModel.PatientBill" Role="PatientBill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmployeeDetail">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PatientBill">
+        <PropertyRef Name="EmployeeDetail_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_RegistrationPaymentDetails_dbo_EmployeeDetails_EmployeeDetail_ID">
+    <End Type="HMSDbModel.EmployeeDetail" Role="EmployeeDetail" Multiplicity="0..1" />
+    <End Type="HMSDbModel.RegistrationPaymentDetail" Role="RegistrationPaymentDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmployeeDetail">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="RegistrationPaymentDetail">
+        <PropertyRef Name="EmployeeDetail_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_LabPayments_dbo_LabCategories_LabCategory_ID">
+    <End Type="HMSDbModel.LabCategory" Role="LabCategory" Multiplicity="0..1" />
+    <End Type="HMSDbModel.LabPayment" Role="LabPayment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LabCategory">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="LabPayment">
+        <PropertyRef Name="LabCategory_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_LabTests_dbo_LabCategories_LabCategory_ID">
+    <End Type="HMSDbModel.LabCategory" Role="LabCategory" Multiplicity="0..1" />
+    <End Type="HMSDbModel.LabTest" Role="LabTest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LabCategory">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="LabTest">
+        <PropertyRef Name="LabCategory_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_LabPayments_dbo_LabTests_LabTest_ID">
+    <End Type="HMSDbModel.LabTest" Role="LabTest" Multiplicity="0..1" />
+    <End Type="HMSDbModel.LabPayment" Role="LabPayment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LabTest">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="LabPayment">
+        <PropertyRef Name="LabTest_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_MedicalPaymentDetails_dbo_PaymentModes_PaymentMode_ID">
+    <End Type="HMSDbModel.PaymentMode" Role="PaymentMode" Multiplicity="0..1" />
+    <End Type="HMSDbModel.MedicalPaymentDetail" Role="MedicalPaymentDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PaymentMode">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MedicalPaymentDetail">
+        <PropertyRef Name="PaymentMode_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_MedicalPaymentDetails_dbo_PaymentSections_PaymentSection_ID">
+    <End Type="HMSDbModel.PaymentSection" Role="PaymentSection" Multiplicity="0..1" />
+    <End Type="HMSDbModel.MedicalPaymentDetail" Role="MedicalPaymentDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PaymentSection">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MedicalPaymentDetail">
+        <PropertyRef Name="PaymentSection_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_PatientBills_dbo_PaymentModes_PaymentMode_ID">
+    <End Type="HMSDbModel.PaymentMode" Role="PaymentMode" Multiplicity="0..1" />
+    <End Type="HMSDbModel.PatientBill" Role="PatientBill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PaymentMode">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PatientBill">
+        <PropertyRef Name="PaymentMode_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_PatientBills_dbo_PaymentSections_PaymentSection_ID">
+    <End Type="HMSDbModel.PaymentSection" Role="PaymentSection" Multiplicity="0..1" />
+    <End Type="HMSDbModel.PatientBill" Role="PatientBill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PaymentSection">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PatientBill">
+        <PropertyRef Name="PaymentSection_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_PatientVisits_dbo_PaymentModes_PaymentMode_ID">
+    <End Type="HMSDbModel.PaymentMode" Role="PaymentMode" Multiplicity="0..1" />
+    <End Type="HMSDbModel.PatientVisit" Role="PatientVisit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PaymentMode">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PatientVisit">
+        <PropertyRef Name="PaymentMode_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_RegistrationPaymentDetails_dbo_PaymentModes_PaymentMode_ID">
+    <End Type="HMSDbModel.PaymentMode" Role="PaymentMode" Multiplicity="0..1" />
+    <End Type="HMSDbModel.RegistrationPaymentDetail" Role="RegistrationPaymentDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PaymentMode">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="RegistrationPaymentDetail">
+        <PropertyRef Name="PaymentMode_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_RegistrationPaymentDetails_dbo_PaymentSections_PaymentSection_ID">
+    <End Type="HMSDbModel.PaymentSection" Role="PaymentSection" Multiplicity="0..1" />
+    <End Type="HMSDbModel.RegistrationPaymentDetail" Role="RegistrationPaymentDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PaymentSection">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="RegistrationPaymentDetail">
+        <PropertyRef Name="PaymentSection_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_RoomDetails_dbo_Wards_Ward_ID">
+    <End Type="HMSDbModel.Ward" Role="Ward" Multiplicity="0..1" />
+    <End Type="HMSDbModel.RoomDetail" Role="RoomDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ward">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="RoomDetail">
+        <PropertyRef Name="Ward_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_WardOrRoomChargeDetails_dbo_RoomDetails_RoomDetails_ID">
+    <End Type="HMSDbModel.RoomDetail" Role="RoomDetail" Multiplicity="0..1" />
+    <End Type="HMSDbModel.WardOrRoomChargeDetail" Role="WardOrRoomChargeDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoomDetail">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="WardOrRoomChargeDetail">
+        <PropertyRef Name="RoomDetails_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_ServicePayments_dbo_Services_Service_ID">
+    <End Type="HMSDbModel.Service" Role="Service" Multiplicity="0..1" />
+    <End Type="HMSDbModel.ServicePayment" Role="ServicePayment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Service">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ServicePayment">
+        <PropertyRef Name="Service_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_ServicePayments_dbo_ServiceSubCategories_ServiceSubCategory_ID">
+    <End Type="HMSDbModel.ServiceSubCategory" Role="ServiceSubCategory" Multiplicity="0..1" />
+    <End Type="HMSDbModel.ServicePayment" Role="ServicePayment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ServiceSubCategory">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ServicePayment">
+        <PropertyRef Name="ServiceSubCategory_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_ServiceSubCategories_dbo_Services_Service_ID">
+    <End Type="HMSDbModel.Service" Role="Service" Multiplicity="0..1" />
+    <End Type="HMSDbModel.ServiceSubCategory" Role="ServiceSubCategory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Service">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ServiceSubCategory">
+        <PropertyRef Name="Service_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_ShiftDates_dbo_ShiftTypes_ShiftType_ID">
+    <End Type="HMSDbModel.ShiftType" Role="ShiftType" Multiplicity="0..1" />
+    <End Type="HMSDbModel.ShiftDate" Role="ShiftDate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ShiftType">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ShiftDate">
+        <PropertyRef Name="ShiftType_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_ShiftDays_dbo_ShiftTypes_ShiftType_ID">
+    <End Type="HMSDbModel.ShiftType" Role="ShiftType" Multiplicity="0..1" />
+    <End Type="HMSDbModel.ShiftDay" Role="ShiftDay" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ShiftType">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ShiftDay">
+        <PropertyRef Name="ShiftType_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_ShiftDays_dbo_WeekDays_WeekDays_ID">
+    <End Type="HMSDbModel.WeekDay" Role="WeekDay" Multiplicity="0..1" />
+    <End Type="HMSDbModel.ShiftDay" Role="ShiftDay" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WeekDay">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ShiftDay">
+        <PropertyRef Name="WeekDays_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Wards_dbo_WardCategories_WardCategory_ID">
+    <End Type="HMSDbModel.WardCategory" Role="WardCategory" Multiplicity="0..1" />
+    <End Type="HMSDbModel.Ward" Role="Ward" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WardCategory">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Ward">
+        <PropertyRef Name="WardCategory_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AspNetUserRoles">
+    <End Type="HMSDbModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+    <End Type="HMSDbModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+  </Association>
+</Schema>

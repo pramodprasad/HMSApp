@@ -1,0 +1,9 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    <table style="border: none !important;">
+        <tr>
+            <td><strong>Welcome :</strong> <span>&nbsp; @User.Identity.GetUserName()</span></td>
+        </tr>
+    </table>
+}

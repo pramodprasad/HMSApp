@@ -1,0 +1,53 @@
+select{ border:1px solid #EEE; width:160px; border-radius:3px; padding:3px; margin:2px; background:#FFF; color:#666; box-shadow:2px 2px 5px #EEE inset;}
+textarea{ border:1px solid #EEE; width:150px; min-height:40px; resize:vertical; border-radius:3px; padding:3px; margin:2px; background:#FFF;  box-shadow:2px 2px 5px #EEE inset;}
+
+.login_bg{ background:url(../Images/header_bg.png); width:100%; height:auto;}
+.blank{ display:none;}
+.blank_res{ display:block;}
+.login_res_logo{ width:100%; text-align:center; display:block;}
+.welcome_box{ width:92%; height:auto; border-bottom:1px solid #EEE; float:left; text-align:justify; margin:2%; padding:2%;}
+.welcome_box h2{font-size:13px; border-bottom:1px solid #EEE;}
+.welcome_box p{ width:100%; padding-top:8px; float:left; font-size:11px; font-weight:normal; color:#333; line-height:20px;}
+.login_box table a{margin-right:10px;}
+.login_box{ width:300px; height:auto; overflow:hidden; float:none; margin:2% auto !important;}
+.login_box h2{ width:300px; height:51px; background:url(../Images/login_head.png) no-repeat left; float:left;}
+.field{width:215px;}
+.field1{width:225px;}
+.login_box input[type="button"]{margin-right:5px;}
+.login_box table img{margin-right:5px;}
+.login_box table p{margin:0 1%;width: 98%;}
+/*******Index*********/
+
+#header{width:100%; margin:0;}
+.header{height:auto; overflow:hidden; width:100%; margin:0;}
+.logo_left{ float:left; text-align:center; width:100%; margin:5px 0; border-bottom:5px solid #EEE;}
+.logo_right{ display:none;}
+.nav-custom{ width:100%; padding:0 0 5px 0; margin:0; border:none;border-bottom: 5px solid #EEE; height:auto;}
+.nav-custom ul{padding:1%;}
+.nav-custom li{padding:10px;height:auto; min-width:65px; border-left:none!important;}
+.nav-custom li a{ font-size:11px;}
+.header table{width:96%; margin:2%;}
+
+.container{width:100%;}
+.left_section{width:97%;margin:1%;}
+.left_heading{width:96.5%;background:#FFF; padding:2%;}
+.bottom_logo{ display:none;}
+
+.right_section{width:97%;margin:1%; float:left;}
+.right_heading{width:96.5%; background:#FFF; padding:2%;}
+
+.box1,.box2,.box3{width:100%; overflow:hidden; min-height:inherit; height:auto; margin:0 0 1% 0;border-bottom:none;}
+.box1 strong,.box2 strong,.box3 strong{width:97%;}
+.box1 table,.box2 table,.box3 table{border-collapse:separate;}
+
+.latest{ float:left; width:99.5%; margin:1% 0; overflow:hidden;}
+.lat_head1{ float:left; background:url(../Images/icons/l_circular.png) no-repeat left; width:100%; padding:15px 15px 15px 35px; font-weight:bold; font-family:Verdana, Geneva, sans-serif; font-size:12px; color:#333;border-bottom:1px solid #DDD;}
+.lat_head2{ float:left; background:url(../Images/icons/l_news.png) no-repeat left; width:100%; padding:15px 15px 15px 35px; font-weight:bold; font-family:Verdana, Geneva, sans-serif; font-size:12px; color:#333;border-bottom:1px solid #DDD;}
+
+.inner_container{width:96%; padding:2%;}
+.footer{width:100%;}
+.page_btn{ margin:0; line-height:40px;}
+.all_in_one_heading{width:98%;overflow:hidden; background:#FFF; padding:2% 1%;}
+
+
+

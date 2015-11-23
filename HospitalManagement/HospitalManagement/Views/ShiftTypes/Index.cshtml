@@ -1,0 +1,109 @@
+﻿@model IEnumerable<HMS.Entity.ShiftType>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Shift Type Master</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table id="shiftDetailTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShiftCharge)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShiftCharge)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }, htmlAttributes: new { @class = "shiftTypeEdit" }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }, htmlAttributes: new { @class = "shiftTypeEdit" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID }, htmlAttributes: new { @class = "shiftTypeEdit" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="modal fade" id="shiftTypeModal" tabindex="-1" role="dialog" aria-labelledby="shiftTypelable" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" id="shiftTypeContent" style="font-size: 14px; border-radius: 0px;">
+            <img src="~/Images/closebox.png" data-dismiss="modal" aria-hidden="false" />
+            <div class="modal-body" id="shiftTypeBody" style="padding-top:0px;padding-bottom:0px;margin-top:0px; min-height:150px;margin-bottom:20px;">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#shiftDetailTable').DataTable({
+        //"bPaginate": false,
+        "bLengthChange": false,
+        //"bFilter": true,
+        //"bInfo": false,
+        //"bAutoWidth": false,
+        //"info":     false,
+        "aoColumnDefs": [
+            { 'bSortable': false, 'aTargets': [1] }
+        ]
+    });
+
+    $(document).ready(function () {
+        $('#branchTable').DataTable();
+
+        $(function () {
+            $('.shiftTypeEdit').click(function () {
+                var url = $(this).attr('href');
+                $('#shiftTypeBody').html('');
+                $('#shiftTypeBody').load(url, function () {
+                    $('#shiftTypeModal').modal({
+                        keyboard: true
+                    }, 'show');
+                    bindShiftTypeForm(this);
+                });
+                return false;
+            });
+        });
+
+        function bindShiftTypeForm(dialog) {
+            $('form', dialog).submit(function () {
+                $.ajax({
+                    url: this.action,
+                    type: this.method,
+                    data: $(this).serialize(),
+                    success: function (result) {
+                        var value = $(result).find(".validation-summary-errors ul li").length;
+                        if (value == 0) {
+                            window.location.reload(true);
+                        }
+                        else {
+                            $('#shiftTypeBody').html('');
+                            $('#shiftTypeBody').html(result);
+                            $("form").data("validator", null);
+                            $.validator.unobtrusive.parse($("form"));
+                            bindShiftTypeForm();
+                        }
+                    }
+                });
+                return false;
+            });
+        }
+    });
+</script>

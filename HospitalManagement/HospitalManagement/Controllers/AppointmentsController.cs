@@ -10,6 +10,7 @@ using HMS.Entity;
 
 namespace HospitalManagement.Controllers
 {
+    //Controller for appointment module
     public class AppointmentsController : Controller
     {
         private HMSDBEntities db = new HMSDBEntities();

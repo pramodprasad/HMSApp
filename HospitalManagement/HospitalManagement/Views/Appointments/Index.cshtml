@@ -84,7 +84,6 @@
                         <text>
                             |
                         </text>
-                        @*@Html.ActionLink("Add Visit", "Create", "PatientVisit", new { id = item.PatientDetails_ID })*@
                         <a href="@Url.Action("Create", "PatientVisit", new { id = item.PatientDetails_ID })">Add Visit</a>
                     }
                 </td>

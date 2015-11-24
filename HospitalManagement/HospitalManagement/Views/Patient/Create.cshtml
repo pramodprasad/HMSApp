@@ -182,8 +182,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.Appointment.BranchDetails_ID, "Branch", htmlAttributes: new { @class = "control-label col-md-4" })
                         <div class="col-md-8">
-                            @Html.EditorFor(model => model.Appointment.ReferalDetails, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.DropDownListFor(model.Appointment.BranchDetails_ID, ViewBag.Branch as SelectList, "----Select----", htmlAttributes: new { @class = "form-control" })
+                            @Html.DropDownListFor(model => model.Appointment.BranchDetails_ID, ViewBag.Branch as SelectList, "----Select----", htmlAttributes: new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.Appointment.BranchDetails_ID, "", new { @class = "text-danger" })
                         </div>
                     </div>

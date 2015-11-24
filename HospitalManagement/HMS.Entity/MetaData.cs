@@ -417,7 +417,6 @@ namespace HMS.Entity
         public long PatientDetails_ID { get; set; }
         [Required(ErrorMessage = "Shift field is required.")]
         public int ShiftType_ID { get; set; }
-        [Required(ErrorMessage = "Patient type is required.")]
         public int PatientType_ID { get; set; }
         [Required(ErrorMessage = "IsReferal is required.")]
         public int IsReferal { get; set; }

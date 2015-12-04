@@ -298,3 +298,15 @@ C:\Users\Pramod\Documents\GitHub\HMSApp\HospitalManagement\HMS.BAL\bin\Debug\Ent
 C:\Users\Pramod\Documents\GitHub\HMSApp\HospitalManagement\HMS.BAL\obj\Debug\HMS.BAL.csprojResolveAssemblyReference.cache
 C:\Users\Pramod\Documents\GitHub\HMSApp\HospitalManagement\HMS.BAL\obj\Debug\HMS.BAL.dll
 C:\Users\Pramod\Documents\GitHub\HMSApp\HospitalManagement\HMS.BAL\obj\Debug\HMS.BAL.pdb
+C:\Users\Tanmay\Documents\GitHub\HMSApp\HospitalManagement\HMS.BAL\bin\Debug\HMS.BAL.dll.config
+C:\Users\Tanmay\Documents\GitHub\HMSApp\HospitalManagement\HMS.BAL\bin\Debug\HMS.BAL.dll
+C:\Users\Tanmay\Documents\GitHub\HMSApp\HospitalManagement\HMS.BAL\bin\Debug\HMS.BAL.pdb
+C:\Users\Tanmay\Documents\GitHub\HMSApp\HospitalManagement\HMS.BAL\bin\Debug\EntityFramework.dll
+C:\Users\Tanmay\Documents\GitHub\HMSApp\HospitalManagement\HMS.BAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Tanmay\Documents\GitHub\HMSApp\HospitalManagement\HMS.BAL\bin\Debug\HMS.Entity.dll
+C:\Users\Tanmay\Documents\GitHub\HMSApp\HospitalManagement\HMS.BAL\bin\Debug\HMS.Entity.pdb
+C:\Users\Tanmay\Documents\GitHub\HMSApp\HospitalManagement\HMS.BAL\bin\Debug\EntityFramework.xml
+C:\Users\Tanmay\Documents\GitHub\HMSApp\HospitalManagement\HMS.BAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Tanmay\Documents\GitHub\HMSApp\HospitalManagement\HMS.BAL\obj\Debug\HMS.BAL.csprojResolveAssemblyReference.cache
+C:\Users\Tanmay\Documents\GitHub\HMSApp\HospitalManagement\HMS.BAL\obj\Debug\HMS.BAL.dll
+C:\Users\Tanmay\Documents\GitHub\HMSApp\HospitalManagement\HMS.BAL\obj\Debug\HMS.BAL.pdb

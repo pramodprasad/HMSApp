@@ -74,13 +74,15 @@ namespace HospitalManagement.Controllers
                     appointment.Doctor_ID = model.Appointment.Doctor_ID;
                     appointment.Specialization_ID = model.Appointment.Specialization_ID;
                     appointment.PatientType_ID = model.Appointment.PatientType_ID;
+                    appointment.VisitStatus = 1;//Patient is 1- visited , 0- not visited
                     db.Entry(appointment).State = EntityState.Modified;
                     db.SaveChanges();
                 }
 
                 db.PatientVisits.Add(model.PatientVisit);
                 db.SaveChanges();
-                return RedirectToAction("Index", "Patient");
+               // return RedirectToAction("VisitedPatient", "Appointments");
+                return RedirectToAction("GetVisitedPatientDetails");
             }
 
             ViewBag.PaymentMode_ID = new SelectList(db.PaymentModes, "ID", "Mode", model.PatientVisit.PaymentMode_ID);
@@ -151,6 +153,13 @@ namespace HospitalManagement.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult GetVisitedPatientDetails()
+        {
+            List<PatientVisit> visitedpatient = new List<PatientVisit>();
+            visitedpatient = db.PatientVisits.Include(p => p.Appointment).Include(a => a.Appointment.PatientDetail).Include(a => a.Appointment.Doctor.EmployeeDetail).Include(a => a.Appointment.ShiftType).Where(w => w.Appointment.VisitStatus == 1).ToList();
+            return View(visitedpatient.OrderByDescending(a => a.VisitedDate).ToList());
+        }
+
         public JsonResult FillDoctor(int SpecializationId)
         {
 
@@ -164,6 +173,14 @@ namespace HospitalManagement.Controllers
                 }
             }
             return Json(doctorList, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult OutPatientSlip()
+        {
+            PatientVisit visitedpatient = new PatientVisit();
+            visitedpatient = db.PatientVisits.Include(p => p.Appointment).Include(a => a.Appointment.PatientDetail).Include(a => a.Appointment.Doctor.EmployeeDetail).Include(a => a.Appointment.ShiftType).Where(w => w.Appointment.VisitStatus == 1 && w.PayAmount > 0 && w.ID == 3).FirstOrDefault();
+            return View(visitedpatient);
+
         }
 
         protected override void Dispose(bool disposing)

@@ -19,10 +19,10 @@
                 @Html.DisplayName("Patient Type")
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.AppointmentDate)
+                @Html.DisplayName("Appointment Date")               
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.VisitStatus)
+                @Html.DisplayName("Visit Status")                
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.IsReferal)
@@ -53,21 +53,21 @@
                 <td>
                     @if(item.VisitStatus == 0)
                     {
-                        @Html.Display("Visited")
+                        @Html.DisplayName("Not Visited")
                     }
                     else
                     {
-                        @Html.Display("Not Visited")
+                        @Html.DisplayName("Visited")
                     }
                 </td>
                 <td>
                     @if (item.IsReferal == 0)
                     {
-                        @Html.Display("Yes")
+                        @Html.DisplayName("No")
                     }
                     else
                     {
-                        @Html.Display("No")
+                        @Html.DisplayName("Yes")
                     }
                 </td>
                 <td>
@@ -77,9 +77,9 @@
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
                     @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-
-                    @if(item.AppointmentDate.Date == DateTime.Now.Date)
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID }) 
+                    @*item.AppointmentDate.Date == DateTime.Now.Date*@
+                    @if(true)
                     {
                         <text>
                             |

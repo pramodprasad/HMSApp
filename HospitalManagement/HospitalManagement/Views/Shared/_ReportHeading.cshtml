@@ -1,0 +1,160 @@
+﻿@model HMS.Entity.BranchDetail
+
+<style type="text/css">
+    <!--
+    .style3 {
+        font-family: "Times New Roman", Times, serif;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .style4 {
+        font-family: "Times New Roman", Times, serif;
+    }
+
+    .style5 {
+        font-size: 12px;
+    }
+
+    .style6 {
+        font-family: "Times New Roman", Times, serif;
+        font-size: 12px;
+    }
+    -->
+</style>
+
+<table width="480" height="125" border="1" cellpadding="0" cellspacing="0">
+    <tr>
+        <td align="center" class="style3"><div>THAKRAL NURSING &amp; MATERNITY HOME</div></td>
+    </tr>
+    <tr>
+        <td align="center" class="style5">
+            <div>
+                316/6, Shivaji Nagar, Opp. S.P Office, Behind Petrol Pump, Sohna Alwar Road
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" class="style5"><div>Gurgaon - 122001, Haryana</div></td>
+    </tr>
+    <tr>
+        <td align="center" class="style5"><div>Tel. : - 0124-4281301, 02, 03, 04, 2331133, 2329387, Fax : - 0124-4281301</div></td>
+    </tr>
+    <tr>
+        <td align="center" class="style5"><div>Email : tnmh@rediffmail.com, info@thakralnursinghome.com </div></td>
+    </tr>
+    <tr>
+        <td align="center" class="style5"><div>website : www.thakralnursinghome.com</div></td>
+    </tr>
+</table>
+
+@*<table width="480" border="1" cellspacing="0" cellpadding="0">
+    <tr>
+        <td><div>@Html.DisplayFor(model => model.Name)</div></td>
+    </tr>
+    <tr>
+        <td><div>@Html.DisplayFor(model => model.Address)</div></td>
+    </tr>
+    <tr>
+        <td>City: <div>@Html.DisplayFor(model => model.City.name)</div>State : <div>@Html.DisplayFor(model => model.City.State.Name)</div> Country : <div>@Html.DisplayFor(model => model.City.State.Country.Name)</div></td>
+    </tr>
+    <tr>
+        <td>Phone No:&nbsp;<div>, @Html.DisplayFor(model => model.PhoneNoSec)</div>Mobile No:<div></div></td>
+    </tr>
+    <tr>
+        <td>Fax :<div>@Html.DisplayFor(model => model.FaxNo)</div></td>
+    </tr>
+    <tr>
+        <td>Email :<div>@Html.DisplayFor(model => model.EmailInfo), @Html.DisplayFor(model => model.EmailCustomerCare)</div></td>
+    </tr>
+    <tr>
+        <td>Visit us:<div>@Html.DisplayFor(model => model.WebAddress)</div></td>
+    </tr>    
+    <tr>
+        <td><div></div></td>
+    </tr>
+</table>*@
+
+@*<div>
+    <h4>BranchDetail</h4>
+    <hr />
+    <dl class="dl-horizontal"> 
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+        <dt>@Html.Display("City:")</dt> <dd>@Html.DisplayFor(model => model.City.name) State :@Html.DisplayFor(model => model.City.State.Name) Country : @Html.DisplayFor(model => model.City.State.Country.Name) </dd>>
+        <dt>@Html.Display("Phone No.:")</dt><dd>@Html.DisplayFor(model => model.PhoneNoPri)</dd><dd>@Html.DisplayFor(model => model.PhoneNoSec)</dd>
+        <dt>
+            @Html.DisplayName("Mobile No.:")
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MobileNo)
+        </dd>
+         <dt>
+            @Html.DisplayNameFor(model => model.FaxNo)
+        </dt> 
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailInfo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailInfo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailCustomerCare)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailCustomerCare)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WebAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WebAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedOn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedOn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.City.name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.City.name)
+        </dd>
+
+    </dl>
+</div>*@
+@*<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>*@

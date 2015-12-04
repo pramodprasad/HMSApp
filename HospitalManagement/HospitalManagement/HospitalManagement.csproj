@@ -678,6 +678,10 @@
     <Content Include="Views\WardCategories\Details.cshtml" />
     <Content Include="Views\WardCategories\Edit.cshtml" />
     <Content Include="Views\WardCategories\Index.cshtml" />
+    <Content Include="Views\Appointments\VisitedPatient.cshtml" />
+    <Content Include="Views\PatientVisit\GetVisitedPatientDetails.cshtml" />
+    <Content Include="Views\PatientVisit\OutPatientSlip.cshtml" />
+    <Content Include="Views\Shared\_ReportHeading.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

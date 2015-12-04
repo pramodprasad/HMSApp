@@ -60,15 +60,15 @@
                     @{
                         var db = new HMSDBEntities();
                         var appointment = db.Appointments.Where(a => a.PatientDetails_ID == item.ID).OrderByDescending(a => a.ID).FirstOrDefault();
-                        var visitCount = db.PatientVisits.Where(p => p.Appointment_ID == appointment.ID).Count();
+                        //var visitCount = db.PatientVisits.Where(p => p.Appointment_ID == appointment.ID).Count();
                         
                     }
 
                     @Html.ActionLink("Edit", "Edit", new { id = item.ID }, htmlAttributes: new { @class="patientdetailModal"}) |
                     @Html.ActionLink("Details", "Details", new { id = item.ID }, htmlAttributes: new { @class = "patientdetailModal" }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ID }, htmlAttributes: new { @class = "patientdetailModal" }) | 
-                   @if(visitCount == 0){ @Html.ActionLink("Add Visit", "Create","PatientVisit", new { id = item.ID }, htmlAttributes: new { @class = "patientdetailModal" })}
-                   else{ <a href="#">Add Visit</a>} |
+                    @*@Html.ActionLink("Delete", "Delete", new { id = item.ID }, htmlAttributes: new { @class = "patientdetailModal" }) |*@ 
+                   @*@if(visitCount == 0){ @Html.ActionLink("Add Visit", "Create","PatientVisit", new { id = item.ID }, htmlAttributes: new { @class = "patientdetailModal" })}
+                   else{ <a href="#">Add Visit</a>} |*@
                     @Html.ActionLink("Visit Details", "Index", "PatientVisit", new { id = item.ID }, htmlAttributes: new { @class = "patientvisitdetailModal" })
                 </td>
             </tr>

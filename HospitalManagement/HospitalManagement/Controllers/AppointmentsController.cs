@@ -18,9 +18,17 @@ namespace HospitalManagement.Controllers
         // GET: Appointments
         public ActionResult Index()
         {
-            var appointments = db.Appointments.Include(a => a.BranchDetail).Include(a => a.Doctor).Include(a => a.PatientDetail).Include(a => a.Specialization).Include(a => a.PatientType).OrderByDescending(a => a.CreatedDate);
-            return View(appointments.ToList());
-        }
+            List<Appointment> appointmentList = new List<Appointment>();
+            var appointments = db.Appointments.Include(a => a.BranchDetail).Include(a => a.Doctor).Include(a => a.PatientDetail).Include(a => a.Specialization).Include(a => a.PatientType).Where(a => a.VisitStatus == 0 ).ToList();
+            foreach (var item in appointments)
+            {
+                if (DateTime.Now.Date == item.AppointmentDate.Date)
+                {
+                    appointmentList.Add(item);
+                }
+            }
+            return View(appointmentList.OrderByDescending(a => a.CreatedDate).ToList());
+         }
 
         // GET: Appointments/Details/5
         public ActionResult Details(int? id)
@@ -159,6 +167,13 @@ namespace HospitalManagement.Controllers
             db.Appointments.Remove(appointment);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult VisitedPatient()
+        {
+            List<Appointment> appointment = new List<Appointment>();
+            appointment = db.Appointments.Include(a => a.PatientDetail).Include(a => a.PatientType).Include(a => a.Doctor).ToList();
+            return View(appointment);
         }
 
         protected override void Dispose(bool disposing)

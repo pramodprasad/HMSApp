@@ -1,0 +1,76 @@
+﻿@model IEnumerable<HMS.Entity.PatientVisit>
+
+@{
+    ViewBag.Title = "Hospital Management | Visited Patient";
+}
+
+<h4>Visited Patient Details</h4>
+
+<table id="tblvisitedpatient">
+    <tr>
+        <th>
+            @Html.DisplayName("Appointment ID")
+        </th>
+        <th>
+            @Html.DisplayName("Visited Date")
+        </th>
+        <th>
+           @Html.DisplayName("Patient")
+        </th>
+        <th>
+            @Html.DisplayName("Patient Type")
+        </th>
+        <th>
+            @Html.DisplayName("Department")
+        </th>
+        <th>
+            @Html.DisplayName("Doctor")
+        </th>
+        <th>
+            @Html.DisplayName("Paid Amount")
+        </th>        
+     
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Appointment.ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VisitedDate)
+        </td>       
+        <td>
+            @Html.DisplayFor(modelItem => item.Appointment.PatientDetail.FullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Appointment.PatientType.Details)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Appointment.Specialization.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Appointment.Doctor.EmployeeDetail.FirstName) @Html.DisplayFor(modelItem => item.Appointment.Doctor.EmployeeDetail.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PayAmount)
+        </td>
+      
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Slip", "Delete", new { id=item.ID }) |
+            @Html.ActionLink("Prescription", "Delete", new { id = item.ID })
+        </td>
+    </tr>
+}
+
+</table>
+
+<script>
+    $('#tblvisitedpatient').dataTable({
+
+    });
+</script>
+

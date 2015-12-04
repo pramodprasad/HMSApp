@@ -1,0 +1,196 @@
+﻿@model HMS.Entity.PatientVisit
+
+@{
+    ViewBag.Title = "Out Patient Slip";
+    this.Layout = null;
+}
+
+<h2>Out Patient Slip</h2>
+
+@*<div class="header">
+    @Html.Partial("_ReportHeading")
+</div>*@
+
+<table width="486" height="304" border="1" cellpadding="0" cellspacing="0">
+    <tr>
+        <td colspan="4" align="center" class="style4">
+            <!--This table is use for Partial view -->            
+               @* @Html.Partial("_ReportHeading")*@   
+            <table width="480" height="125" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td align="center" class="style3"><div>THAKRAL NURSING &amp; MATERNITY HOME</div></td>
+                </tr>
+                <tr>
+                    <td align="center" class="style5">                       
+                            316/6, Shivaji Nagar, Opp. S.P Office, Behind Petrol Pump, Sohna Alwar Road             
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" class="style5"><div>Gurgaon - 122001, Haryana</div></td>
+                </tr>
+                <tr>
+                    <td align="center" class="style5"><div>Tel. : - 0124-4281301, 02, 03, 04, 2331133, 2329387, Fax : - 0124-4281301</div></td>
+                </tr>
+                <tr>
+                    <td align="center" class="style5"><div>Email : tnmh@rediffmail.com, info@thakralnursinghome.com </div></td>
+                </tr>
+                <tr>
+                    <td align="center" class="style5"><div>website : www.thakralnursinghome.com</div></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="4"><div align="center">RECEIPT</div></td>
+    </tr>
+    <tr>
+        <td width="91"><span class="style4">Rcpt No. : 6</span></td>
+        <td width="126"><span class="style4">Rcpt Date : @Html.DisplayFor(model => model.VisitedDate.Date)</span></td>
+        <td width="152"><span class="style4">Patient Id.: @Html.DisplayFor(model => model.Appointment_ID)</span></td>
+        <td width="107"><span class="style4">Age/Sex: @Html.DisplayFor(model => model.Appointment.PatientDetail.Age)/Male</span></td>
+    </tr>
+    <tr>
+        <td colspan="4"><span class="style4">Recieved with thanks from @Html.DisplayFor(model => model.Appointment.PatientDetail.FullName) F/W/o :@Html.DisplayFor(model => model.Appointment.PatientDetail.FatherOrHusbandName)</span></td>
+    </tr>
+    <tr>
+        <td colspan="4"><span class="style4">a sum of Rs. 300.00 ( THREE HUNDRED ONLY )</span></td>
+    </tr>
+    <tr>
+        <td colspan="4"><span class="style4">on the account of Consultation charges of @Html.DisplayFor(model => model.Appointment.Doctor.EmployeeDetail.FirstName) @Html.DisplayFor(model => model.Appointment.Doctor.EmployeeDetail.LastName)</span></td>
+    </tr>
+    <tr>
+        <td><span class="style4">- Non Refundable</span></td>
+        <td><span class="style4">REFUNDED</span></td>
+        <td><div align="right" class="style4">Prepared By :</div></td>
+        <td><span class="style4">Admin</span></td>
+    </tr>
+    <tr>
+        <td colspan="3"><div align="center" class="style4">APPOINTMENT</div></td>
+        <td rowspan="3"><div align="center" class="style4">Signature</div></td>
+    </tr>
+    <tr>
+        <td><div align="center" class="style7">DATE</div></td>
+        <td><div align="center" class="style7">TIME</div></td>
+        <td><div align="center" class="style7">No.</div></td>
+    </tr>
+    <tr>
+        <td><span class="style4"></span></td>
+        <td><span class="style4"></span></td>
+        <td><span class="style4"></span></td>
+    </tr>
+</table>
+@*<div>
+    <h4>PatientVisit</h4>
+    <hr />
+
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.VisitedDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.VisitedDate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PatientStatus)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PatientStatus)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.UpdatedDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.UpdatedDate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.RegistrationAmount)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.RegistrationAmount)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.DiscountAmount)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DiscountAmount)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PayAmount)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PayAmount)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CreatedBy)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CreatedBy)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Appointment.ReferalDetails)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Appointment.ReferalDetails)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PaymentMode.Mode)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PaymentMode.Mode)
+            </dd>
+
+        </dl>
+    </div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>*@
+
+<style type="text/css">
+    <!--
+    .style3 {
+        font-family: "Times New Roman", Times, serif;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .style4 {
+        font-family: "Times New Roman", Times, serif;
+    }
+
+    .style5 {
+        font-size: 12px;
+    }
+
+    .style6 {
+        font-family: "Times New Roman", Times, serif;
+        font-size: 12px;
+    }
+
+    .style4 {
+        font-size: 12px;
+    }
+
+    .style7 {
+        font-family: "Times New Roman", Times, serif;
+        font-size: 12px;
+    }
+    -->
+</style>

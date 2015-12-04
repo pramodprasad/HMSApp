@@ -101,21 +101,26 @@
                         @*<li><a href="@Url.Action("Index", "LabTests")"><span class="icon2"></span>Lab Test</a></li>*@
                         <li><a href="@Url.Action("Index", "VisitReasons")"><span class="icon2"></span>Visit Reason Master</a></li>
                     </div>
-                    <li class="menu_head"><a href="@Url.Action("Index", "Patient")"><span class="icon7"></span>Patient Master</a></li>
+                    <li class="menu_head"><a href="#"><span class="icon7"></span>Patient Master</a></li>
+                        <div class="menu_body">
+                        <li><a href="@Url.Action("Index", "Patient")"><span class="icon2"></span>Patient Details</a></li>
+                        <li><a href="@Url.Action("GetVisitedPatientDetails", "PatientVisit")"><span class="icon2"></span>Visited Patient</a></li>
+                        </div>
+                    @*<li class="menu_head"><a href="@Url.Action("Index", "Patient")"><span class="icon7"></span>Patient Master</a></li>*@
                     <li class="menu_head"><a href="#"><span class="icon3"></span>Bills</a></li>
                     <li class="menu_head"><a href="#"><span class="icon5"></span>Transaction</a></li>
-                    <div class="menu_body">
-                        <li><a href="@Url.Action("Service", "Transaction")"><span class="icon2"></span>Add Services</a></li>
-                        @*<li><a href="@Url.Action("LabTest", "Transaction")"><span class="icon2"></span>Add Lab Test</a></li>
-                        <li><a href="@Url.Action("Consultation", "Transaction")"><span class="icon2"></span>Add Consultation</a></li>
-                        <li><a href="@Url.Action("Others", "Transaction")"><span class="icon2"></span>Add Others</a></li>*@
-                    </div>
-                    <li class="menu_head"><a href="#"><span class="icon6"></span>Medicine Tables</a></li>
-                    <li class="menu_head"><a href="#"><span class="icon7"></span>Medicine List</a></li>
-                    <li class="menu_head"><a href="@Url.Action("Index", "EmployeeDetails")"><span class="icon8"></span>Employee in Hospital</a></li>
-                    <li class="menu_head"><a href="@Url.Action("Index","Doctors")"><span class="icon10"></span>Hospital Consultants</a></li>
-                    <li class="menu_head" style="border:none;"><a href="#"><span class="icon11"></span>Medical Reports</a></li>
-                </ul>
+                        <div class="menu_body">
+                            <li><a href="@Url.Action("Service", "Transaction")"><span class="icon2"></span>Add Services</a></li>
+                            @*<li><a href="@Url.Action("LabTest", "Transaction")"><span class="icon2"></span>Add Lab Test</a></li>
+                <li><a href="@Url.Action("Consultation", "Transaction")"><span class="icon2"></span>Add Consultation</a></li>
+                <li><a href="@Url.Action("Others", "Transaction")"><span class="icon2"></span>Add Others</a></li>*@
+                        </div>
+                        <li class="menu_head"><a href="#"><span class="icon6"></span>Medicine Tables</a></li>
+                        <li class="menu_head"><a href="#"><span class="icon7"></span>Medicine List</a></li>
+                        <li class="menu_head"><a href="@Url.Action("Index", "EmployeeDetails")"><span class="icon8"></span>Employee in Hospital</a></li>
+                        <li class="menu_head"><a href="@Url.Action("Index","Doctors")"><span class="icon10"></span>Hospital Consultants</a></li>
+                        <li class="menu_head" style="border:none;"><a href="#"><span class="icon11"></span>Medical Reports</a></li>
+</ul>
             </div>
             </div>
             <div class="right_section">

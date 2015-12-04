@@ -126,7 +126,7 @@
                     <div class="form-group">
                         <label class="control-label col-md-4">Specialization</label>
                         <div class="col-md-8">
-                            @Html.DropDownListFor(model => model.Appointment.Specialization_ID, ViewBag.Specialization as SelectList, "----Select----", htmlAttributes: new { @class = "form-control", @onchange = "FillDoctors()" })
+                            @Html.DropDownListFor(model => model.Appointment.Specialization_ID, ViewBag.Specialization as SelectList, "----Select----", htmlAttributes: new { @class = "form-control" }) @*, @onchange = "FillDoctors()"*@
                             @Html.ValidationMessageFor(model => model.Appointment.Specialization_ID, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -212,33 +212,93 @@
         };
     });
 
+    $('#PatientDetails_DOB').on("change", function () {
+        validateDOB();
+    });
+    $('#Appointment_AppointmentDate').on("change", function () {
+        validateAppoint();
+    });
+    function validateDOB()
+    {
+        var selectedDate = $('#PatientDetails_DOB').val();
+        var splitDate = selectedDate.split("/");
+        var alertReason = 'Entry Date must be less than or equal to Current Date.';
+        var currentDate = new Date();
+        var curr_day = currentDate.getDate();
+        var curr_month = currentDate.getMonth() + 1;
+        var curr_year = currentDate.getFullYear();
+        var flag;
+        flag = 0;
+        if (splitDate[2] > curr_year && splitDate[2] != curr_year) {
+            alert(alertReason);
+            $('#PatientDetails_DOB').val('')
+            return false;
+        }
+        else if (splitDate[1] > curr_month && splitDate[1] != curr_month) {
+            alert(alertReason);
+            $('#PatientDetails_DOB').val('')
+            return false;
+        }
+        else if (splitDate[0] > curr_day && splitDate[0] != curr_day && splitDate[2] == curr_year && splitDate[1] == curr_month) {
+            alert(alertReason);
+            $('#PatientDetails_DOB').val('')
+            return false;
+        }
+    }
+
+    function validateAppoint() {
+        var selectedDate = $('#Appointment_AppointmentDate').val();
+        var splitDate = selectedDate.split("/");
+        var alertReason = 'Appointment Date must be greater than or equal to Current Date.';
+        var currentDate = new Date();
+        var curr_day = currentDate.getDate();
+        var curr_month = currentDate.getMonth() + 1;
+        var curr_year = currentDate.getFullYear();
+        var flag;
+        flag = 0;
+        if (splitDate[2] < curr_year && splitDate[2] != curr_year) {
+            alert(alertReason);
+            $('#Appointment_AppointmentDate').val('')
+            return false;
+        }
+        else if (splitDate[1] < curr_month && splitDate[1] != curr_month) {
+            alert(alertReason);
+            $('#Appointment_AppointmentDate').val('')
+            return false;
+        }
+        else if (splitDate[0] < curr_day && splitDate[0] != curr_day && splitDate[2] == curr_year && splitDate[1] == curr_month) {
+            alert(alertReason);
+            $('#Appointment_AppointmentDate').val('')
+            return false;
+        }
+    }
 
     $('.dateControl').datepicker({ format: "dd/mm/yyyy", useCurrent: false }).on('changeDate', function (e) {
         $(this).datepicker('hide');
     });
 
-    function FillDoctors() {
-        var specId = $('#Appointment_Specialization_ID').val();
-        var appointDate = $('#Appointment_AppointmentDate').val();
-        var shiftId = $('#Appointment_ShiftType_ID').val();
-        if(shiftId == '')
-        {
-            alert('Please select shift type.!');
-        }
+    //function FillDoctors() {
+    //    var specId = $('#Appointment_Specialization_ID').val();
+    //    var appointDate = $('#Appointment_AppointmentDate').val();
+    //    var shiftId = $('#Appointment_ShiftType_ID').val();
+    //    if(shiftId == '')
+    //    {
+    //        alert('Please select shift type.!');
+    //    }
 
-        $.ajax({
-            url: '/Patient/FillDoctor',
-            type: "GET",
-            dataType: "JSON",
-            data: { SpecializationId: specId, appointmentDay: appointDate, shiftTypeId: shiftId },
-            success: function (result) {
-                $("#Appointment_Doctor_ID").html("");// clear before appending new list 
-                $("#Appointment_Doctor_ID").append($('<option></option>').html('----Select----')); // Bind default select option
-                $.each(result, function (i, obj) {
-                    $("#Appointment_Doctor_ID").append(
-                        $('<option></option>').val(obj.Value).html(obj.Text));
-                });
-            }
-        });
-    }
+    //    $.ajax({
+    //        url: '/Patient/FillDoctor',
+    //        type: "GET",
+    //        dataType: "JSON",
+    //        data: { SpecializationId: specId, appointmentDay: appointDate, shiftTypeId: shiftId },
+    //        success: function (result) {
+    //            $("#Appointment_Doctor_ID").html("");// clear before appending new list 
+    //            $("#Appointment_Doctor_ID").append($('<option></option>').html('----Select----')); // Bind default select option
+    //            $.each(result, function (i, obj) {
+    //                $("#Appointment_Doctor_ID").append(
+    //                    $('<option></option>').val(obj.Value).html(obj.Text));
+    //            });
+    //        }
+    //    });
+    //}
 </script>

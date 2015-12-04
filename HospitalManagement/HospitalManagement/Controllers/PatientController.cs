@@ -240,28 +240,28 @@ namespace HospitalManagement.Controllers
             return RedirectToAction("Index");
         }
 
-        public JsonResult FillDoctor(int SpecializationId, string appointmentDay, int shiftTypeId)
-        {
-            var appDate = DateTime.Parse(appointmentDay);
-            var day = Convert.ToInt32(appDate.DayOfWeek);
-            var dateDay = appDate.Day;
-            var doctors = db.Doctors.Include("EmployeeDetail").Include("ShiftDates").Include("ShiftDays").Where(m => m.Specialization_ID == SpecializationId).ToList();
-            List<SelectListItem> doctorList = new List<SelectListItem>();
-            if (doctors.Count() > 0)
-            {
-                foreach (var item in doctors)
-                {
-                    var shiftDayCount = item.ShiftDays.Where(a => a.WeekDays_ID == day && a.ShiftType_ID == shiftTypeId).FirstOrDefault();
-                    var shiftDateCount = item.ShiftDates.Where(a => a.DayAvailable.Day == dateDay && a.ShiftType_ID == shiftTypeId).FirstOrDefault();
-                    if (shiftDateCount != null || shiftDayCount != null)
-                    {
-                        doctorList.Add(new SelectListItem { Text = item.EmployeeDetail.FirstName, Value = item.ID.ToString() });
-                    }
+        //public JsonResult FillDoctor(int SpecializationId, string appointmentDay, int shiftTypeId)
+        //{
+        //    var appDate = DateTime.Parse(appointmentDay);
+        //    var day = Convert.ToInt32(appDate.DayOfWeek);
+        //    var dateDay = appDate.Day;
+        //    var doctors = db.Doctors.Include("EmployeeDetail").Include("ShiftDates").Include("ShiftDays").Where(m => m.Specialization_ID == SpecializationId).ToList();
+        //    List<SelectListItem> doctorList = new List<SelectListItem>();
+        //    if (doctors.Count() > 0)
+        //    {
+        //        foreach (var item in doctors)
+        //        {
+        //            var shiftDayCount = item.ShiftDays.Where(a => a.WeekDays_ID == day && a.ShiftType_ID == shiftTypeId).FirstOrDefault();
+        //            var shiftDateCount = item.ShiftDates.Where(a => a.DayAvailable.Day == dateDay && a.ShiftType_ID == shiftTypeId).FirstOrDefault();
+        //            if (shiftDateCount != null || shiftDayCount != null)
+        //            {
+        //                doctorList.Add(new SelectListItem { Text = item.EmployeeDetail.FirstName, Value = item.ID.ToString() });
+        //            }
 
-                }
-            }
-            return Json(doctorList, JsonRequestBehavior.AllowGet);
-        }
+        //        }
+        //    }
+        //    return Json(doctorList, JsonRequestBehavior.AllowGet);
+        //}
 
         protected override void Dispose(bool disposing)
         {

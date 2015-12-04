@@ -12,6 +12,12 @@
     @Scripts.Render("~/bundles/datatable")
     @Scripts.Render("~/bundles/bootstrap")
     <link href="/Content/responsive.css" rel="stylesheet" media="all and (max-width: 768px)" />
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#menuwrapper ul li").mouseover(function (e) { $(this).addClass(" iehover "); });
+            $("#menuwrapper ul li").mouseout(function (e) { $(this).removeClass(" iehover "); });
+        });
+    </script>
 </head>
 <body>
     <div id="header">
@@ -82,67 +88,69 @@
 
                 <ul class="vertical-nav">
                     <li class="menu_head"><a href="@Url.Action("Index", "Appointments")"><span class="icon1"></span>Appointments</a></li>
-                    <li class="menu_head"><a href="#"><span class="icon3"></span>Masters</a></li>
-                    <div class="menu_body">
-                        <li><a href="@Url.Action("Index", "Countries")"><span class="icon2"></span>Countries</a></li>
-                        <li><a href="@Url.Action("Index", "States")"><span class="icon2"></span>States</a></li>
-                        <li><a href="@Url.Action("Index", "Cities")"><span class="icon2"></span>Cities</a></li>
-                        <li><a href="@Url.Action("Index", "BranchDetails")"><span class="icon2"></span>Branch</a></li>                   
-                        <li><a href="@Url.Action("Index", "EmployeeTypes")"><span class="icon2"></span>Employee Type</a></li>
-                        <li><a href="@Url.Action("Index", "ShiftTypes")"><span class="icon2"></span>Shift Type</a></li>
-                        <li><a href="@Url.Action("Index", "Services")"><span class="icon2"></span>Service Master</a></li>
-                        <li><a href="@Url.Action("Index", "Wards")"><span class="icon2"></span>Wards</a></li>
-                        <li><a href="@Url.Action("Index", "WardCategories")"><span class="icon2"></span>Ward Categories</a></li>
-                        <li><a href="@Url.Action("Index", "RoomDetails")"><span class="icon2"></span>Room</a></li>
-                        <li><a href="@Url.Action("Index", "PaymentSections")"><span class="icon2"></span>Payment Section</a></li>
-                        <li><a href="@Url.Action("Index", "PaymentModes")"><span class="icon2"></span>Payment Mode</a></li>
-                        <li><a href="@Url.Action("Index", "PatientTypes")"><span class="icon2"></span>Patient Types</a></li>
-                        <li><a href="@Url.Action("Index", "LabCategories")"><span class="icon2"></span>Lab Master</a></li>
-                        @*<li><a href="@Url.Action("Index", "LabTests")"><span class="icon2"></span>Lab Test</a></li>*@
-                        <li><a href="@Url.Action("Index", "VisitReasons")"><span class="icon2"></span>Visit Reason Master</a></li>
-                    </div>
-                    <li class="menu_head"><a href="#"><span class="icon7"></span>Patient Master</a></li>
-                        <div class="menu_body">
-                        <li><a href="@Url.Action("Index", "Patient")"><span class="icon2"></span>Patient Details</a></li>
-                        <li><a href="@Url.Action("GetVisitedPatientDetails", "PatientVisit")"><span class="icon2"></span>Visited Patient</a></li>
-                        </div>
-                    @*<li class="menu_head"><a href="@Url.Action("Index", "Patient")"><span class="icon7"></span>Patient Master</a></li>*@
+                    <li class="menu_head">
+                        <a href="#"><span class="icon3"></span>Masters</a>
+                        <ul class="menu_body">
+                            <li><a href="@Url.Action("Index", "Countries")"><span class="icon2"></span>Countries</a></li>
+                            <li><a href="@Url.Action("Index", "States")"><span class="icon2"></span>States</a></li>
+                            <li><a href="@Url.Action("Index", "Cities")"><span class="icon2"></span>Cities</a></li>
+                            <li><a href="@Url.Action("Index", "BranchDetails")"><span class="icon2"></span>Branch</a></li>
+                            <li><a href="@Url.Action("Index", "EmployeeTypes")"><span class="icon2"></span>Employee Type</a></li>
+                            <li><a href="@Url.Action("Index", "ShiftTypes")"><span class="icon2"></span>Shift Type</a></li>
+                            <li><a href="@Url.Action("Index", "Services")"><span class="icon2"></span>Service Master</a></li>
+                            <li><a href="@Url.Action("Index", "Wards")"><span class="icon2"></span>Wards</a></li>
+                            <li><a href="@Url.Action("Index", "WardCategories")"><span class="icon2"></span>Ward Categories</a></li>
+                            <li><a href="@Url.Action("Index", "RoomDetails")"><span class="icon2"></span>Room</a></li>
+                            <li><a href="@Url.Action("Index", "PaymentSections")"><span class="icon2"></span>Payment Section</a></li>
+                            <li><a href="@Url.Action("Index", "PaymentModes")"><span class="icon2"></span>Payment Mode</a></li>
+                            <li><a href="@Url.Action("Index", "PatientTypes")"><span class="icon2"></span>Patient Types</a></li>
+                            <li><a href="@Url.Action("Index", "LabCategories")"><span class="icon2"></span>Lab Master</a></li>
+                            @*<li><a href="@Url.Action("Index", "LabTests")"><span class="icon2"></span>Lab Test</a></li>*@
+                            <li><a href="@Url.Action("Index", "VisitReasons")"><span class="icon2"></span>Visit Reason Master</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu_head">
+                        <a href="#"><span class="icon7"></span>Patient Master</a>
+                        <ul class="menu_body">
+                            <li><a href="@Url.Action("Index", "Patient")"><span class="icon2"></span>Patient Details</a></li>
+                            <li><a href="@Url.Action("GetVisitedPatientDetails", "PatientVisit")"><span class="icon2"></span>Visited Patient</a></li>
+                        </ul>
+                    </li>
                     <li class="menu_head"><a href="#"><span class="icon3"></span>Bills</a></li>
-                    <li class="menu_head"><a href="#"><span class="icon5"></span>Transaction</a></li>
-                        <div class="menu_body">
+                    <li class="menu_head">
+                        <a href="#"><span class="icon5"></span>Transaction</a>
+                        <ul class="menu_body">
                             <li><a href="@Url.Action("Service", "Transaction")"><span class="icon2"></span>Add Services</a></li>
-                            @*<li><a href="@Url.Action("LabTest", "Transaction")"><span class="icon2"></span>Add Lab Test</a></li>
-                <li><a href="@Url.Action("Consultation", "Transaction")"><span class="icon2"></span>Add Consultation</a></li>
-                <li><a href="@Url.Action("Others", "Transaction")"><span class="icon2"></span>Add Others</a></li>*@
-                        </div>
-                        <li class="menu_head"><a href="#"><span class="icon6"></span>Medicine Tables</a></li>
-                        <li class="menu_head"><a href="#"><span class="icon7"></span>Medicine List</a></li>
-                        <li class="menu_head"><a href="@Url.Action("Index", "EmployeeDetails")"><span class="icon8"></span>Employee in Hospital</a></li>
-                        <li class="menu_head"><a href="@Url.Action("Index","Doctors")"><span class="icon10"></span>Hospital Consultants</a></li>
-                        <li class="menu_head" style="border:none;"><a href="#"><span class="icon11"></span>Medical Reports</a></li>
-</ul>
-            </div>
-            </div>
-            <div class="right_section">
-                <div class="right_heading"><span>DashBoard</span></div>
-                @RenderBody()
+                        </ul>
+                    </li>
+                    <li class="menu_head"><a href="#"><span class="icon6"></span>Medicine Tables</a></li>
+                    <li class="menu_head"><a href="#"><span class="icon7"></span>Medicine List</a></li>
+                    <li class="menu_head"><a href="@Url.Action("Index", "EmployeeDetails")"><span class="icon8"></span>Employee in Hospital</a></li>
+                    <li class="menu_head"><a href="@Url.Action("Index","Doctors")"><span class="icon10"></span>Hospital Consultants</a></li>
+                    <li class="menu_head" style="border:none;"><a href="#"><span class="icon11"></span>Medical Reports</a></li>
+                </ul>
             </div>
         </div>
-        <div style="width:100%">
-            <hr />
-            <footer style="text-align:center;">
-                <p>&copy; @DateTime.Now.Year - Hospital Management</p>
-            </footer>
+        <div class="right_section">
+            <div class="right_heading"><span>DashBoard</span></div>
+            @RenderBody()
         </div>
-        @*@Scripts.Render("~/bundles/bootstrap")*@
+    </div>
+    <div style="width:100%">
+        <hr />
+        <footer style="text-align:center;">
+            <p>&copy; @DateTime.Now.Year - Hospital Management</p>
+        </footer>
+    </div>
+    @*@Scripts.Render("~/bundles/bootstrap")*@
 
-        @RenderSection("scripts", required: false)
+    @RenderSection("scripts", required: false)
 </body>
 </html>
 <script>
     $(document).ready(function () {
         $("#secondpane li.menu_head").mouseover(function () {
-            $('div.menu_body').css({"display":"none"});
+            $('div.menu_body').css({ "display": "none" });
             $(this).next("div.menu_body").show().siblings("div.menu_body").hide();
         });
 

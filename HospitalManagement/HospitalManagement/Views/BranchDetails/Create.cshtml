@@ -38,6 +38,15 @@
             <div style="width:100%; float:left;">
                 <div class="left-div col-md-6">
                     <div class="form-group">
+                        @Html.LabelFor(model => model.Pincode, htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.Pincode, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Pincode, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="right-div col-md-6">
+                    <div class="form-group">
                         @Html.LabelFor(model => model.PhoneNoPri, htmlAttributes: new { @class = "control-label col-md-4" })
                         <div class="col-md-8">
                             @Html.EditorFor(model => model.PhoneNoPri, new { htmlAttributes = new { @class = "form-control" } })
@@ -45,7 +54,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="right-div col-md-6">
+            </div>
+            <div style="width:100%; float:left;">
+                <div class="left-div col-md-6">
                     <div class="form-group">
                         @Html.LabelFor(model => model.PhoneNoSec, htmlAttributes: new { @class = "control-label col-md-4" })
                         <div class="col-md-8">
@@ -54,9 +65,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div style="width:100%; float:left;">
-                <div class="left-div col-md-6">
+                <div class="right-div col-md-6">
                     <div class="form-group">
                         @Html.LabelFor(model => model.MobileNo, htmlAttributes: new { @class = "control-label col-md-4" })
                         <div class="col-md-8">
@@ -65,7 +74,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="right-div col-md-6">
+            </div>
+            <div style="width:100%; float:left;">
+                <div class="left-div col-md-6">
                     <div class="form-group">
                         @Html.LabelFor(model => model.FaxNo, htmlAttributes: new { @class = "control-label col-md-4" })
                         <div class="col-md-8">
@@ -74,9 +85,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div style="width:100%; float:left;">
-                <div class="left-div col-md-6">
+                <div class="right-div col-md-6">
                     <div class="form-group">
                         @Html.LabelFor(model => model.EmailInfo, htmlAttributes: new { @class = "control-label col-md-4" })
                         <div class="col-md-8">
@@ -85,7 +94,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="right-div col-md-6">
+            </div>
+            <div style="width:100%; float:left;">
+                <div class="left-div col-md-6">
                     <div class="form-group">
                         @Html.LabelFor(model => model.EmailCustomerCare, htmlAttributes: new { @class = "control-label col-md-4" })
                         <div class="col-md-8">
@@ -94,9 +105,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div style="width:100%; float:left;">
-                <div class="left-div col-md-6">
+                <div class="right-div col-md-6">
                     <div class="form-group">
                         @Html.LabelFor(model => model.WebAddress, htmlAttributes: new { @class = "control-label col-md-4" })
                         <div class="col-md-8">
@@ -105,7 +114,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="right-div col-md-6">
+            </div>
+            <div style="width:100%; float:left;">
+                <div class="left-div col-md-6">
                     <div class="form-group">
                         @Html.LabelFor(model => model.City_ID, "City", htmlAttributes: new { @class = "control-label col-md-4" })
                         <div class="col-md-8">
@@ -114,21 +125,16 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div style="width:100%; float:left;">
-                <div class="left-div col-md-6">
+                <div class="right-div col-md-6">
                     <div class="form-group">
                         @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-4" })
                         <div class="col-md-8">
                             <div class="checkbox">
-                                @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @style="margin-left:0px;" } })
+                                @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @style = "margin-left:0px;" } })
                                 @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="right-div col-md-6">
-
                 </div>
                 @Html.HiddenFor(model => model.CreatedBy)
             </div>

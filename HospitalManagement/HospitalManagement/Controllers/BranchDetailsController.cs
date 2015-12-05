@@ -65,7 +65,7 @@ namespace HospitalManagement.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name,Address,PhoneNoPri,PhoneNoSec,MobileNo,FaxNo,EmailInfo,EmailCustomerCare,WebAddress,Status,CreatedBy,City_ID")] BranchDetail branchDetail)
+        public ActionResult Create([Bind(Include = "ID,Name,Address,PhoneNoPri,PhoneNoSec,MobileNo,FaxNo,EmailInfo,EmailCustomerCare,WebAddress,Status,CreatedBy,City_ID, Pincode")] BranchDetail branchDetail)
         {
             if (ModelState.IsValid)
             {
@@ -100,7 +100,7 @@ namespace HospitalManagement.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name,Address,PhoneNoPri,PhoneNoSec,MobileNo,FaxNo,EmailInfo,EmailCustomerCare,WebAddress,Status,CreatedOn,CreatedBy,City_ID")] BranchDetail branchDetail)
+        public ActionResult Edit([Bind(Include = "ID,Name,Address,PhoneNoPri,PhoneNoSec,MobileNo,FaxNo,EmailInfo,EmailCustomerCare,WebAddress,Status,CreatedOn,CreatedBy,City_ID,Pincode")] BranchDetail branchDetail)
         {
             if (ModelState.IsValid)
             {

@@ -60,6 +60,8 @@ namespace HMS.Entity
         public string MarritalStatus { get; set; }
         [Required(ErrorMessage="Address is required.")]
         public string Address { get; set; }
+        [Required]
+        public int Gender { get; set; }
     }
 
     //public class PatientStatusMetaData
@@ -345,6 +347,9 @@ namespace HMS.Entity
         public string WebAddress { get; set; }
         [Required]       
         public Nullable<int> City_ID { get; set; }
+        [Required]
+        [RegularExpression("^[0-9]{6}$", ErrorMessage = "Enter 6 digit pincode.")]
+        public int Pincode { get; set; }
     }
 
     public class EmpTypeMetaData

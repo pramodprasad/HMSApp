@@ -36,6 +36,22 @@
             <div style="width:100%;float:left;">
                 <div class="left-div col-md-6">
                     <div class="form-group">
+                        @Html.LabelFor(model => model.PatientDetails.Gender, htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.DropDownListFor(model => model.PatientDetails.Gender, new SelectList(
+                              new List<Object>{
+                                   new { value = 0 , text = "Male"  },
+                                   new { value = 1 , text = "Female" }
+                                },
+                              "value",
+                              "text"
+                               ), "----Select----", htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.PatientDetails.Gender, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="right-div col-md-6">
+                    <div class="form-group">
                         @Html.LabelFor(model => model.PatientDetails.FatherOrHusbandName, htmlAttributes: new { @class = "control-label col-md-4" })
                         <div class="col-md-8">
                             @Html.TextBoxFor(model => model.PatientDetails.FatherOrHusbandName, new { @class = "form-control" })
@@ -43,18 +59,19 @@
                         </div>
                     </div>
                 </div>
-                <div class="right-div col-md-6">
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.PatientDetails.ContactNo, htmlAttributes: new { @class = "control-label col-md-4" })
-                        <div class="col-md-8">
-                            @Html.TextBoxFor(model => model.PatientDetails.ContactNo, new { @class = "form-control" } )
-                            @Html.ValidationMessageFor(model => model.PatientDetails.ContactNo, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </div>
             </div>
             <div style="width:100%;float:left;">
                 <div class="left-div col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.PatientDetails.ContactNo, htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.TextBoxFor(model => model.PatientDetails.ContactNo, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.PatientDetails.ContactNo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                </div>
+                <div class="right-div col-md-6">
                     <div class="form-group">
                         @Html.LabelFor(model => model.PatientDetails.OtherContactNo, htmlAttributes: new { @class = "control-label col-md-4" })
                         <div class="col-md-8">
@@ -63,7 +80,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="right-div col-md-6">
+            </div>
+            <div style="width:100%;float:left;">
+                <div class="left-div col-md-6">
                     <div class="form-group">
                         @Html.LabelFor(model => model.PatientDetails.Address, htmlAttributes: new { @class = "control-label col-md-4" })
                         <div class="col-md-8">
@@ -72,9 +91,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div style="width:100%;float:left;">
-                <div class="left-div col-md-6">
+                <div class="right-div col-md-6">
                     <div class="form-group">
                         <label class="control-label col-md-4">@Html.DisplayNameFor(model => model.PatientDetails.City)</label>
                         <div class="col-md-8">
@@ -83,7 +100,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="right-div col-md-6">
+            </div>
+            <div style="width:100%;float:left;">
+                <div class="left-div col-md-6">
                     <div class="form-group">
                         @Html.LabelFor(model => model.PatientDetails.MarritalStatus, htmlAttributes: new { @class = "control-label col-md-4" })
                         <div class="col-md-8">
@@ -99,19 +118,19 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            @* Fields for appointment section*@
-            <div style="width:100%;float:left;">
-                <div class="left-div col-md-6">
+                <div class="right-div col-md-6">
                     <div class="form-group">
-                        @Html.LabelFor(model => model.Appointment.AppointmentDate,"Appointment Date", htmlAttributes: new { @class = "control-label col-md-4" })
+                        @Html.LabelFor(model => model.Appointment.AppointmentDate, "Appointment Date", htmlAttributes: new { @class = "control-label col-md-4" })
                         <div class="col-md-8">
                             @Html.EditorFor(model => model.Appointment.AppointmentDate, new { htmlAttributes = new { @class = "form-control dateControl" } })
                             @Html.ValidationMessageFor(model => model.Appointment.AppointmentDate, "", new { @class = "text-danger" })
                         </div>
                     </div>
                 </div>
-                <div class="right-div col-md-6">
+            </div>
+            @* Fields for appointment section*@
+            <div style="width:100%;float:left;">
+                <div class="left-div col-md-6">
                     <div class="form-group">
                         @Html.LabelFor(model => model.Appointment.ShiftType_ID, "Shift Type", htmlAttributes: new { @class = "control-label col-md-4 " })
                         <div class="col-md-8">
@@ -120,9 +139,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div style="width:100%;float:left;">
-                <div class="left-div col-md-6">
+                <div class="right-div col-md-6">
                     <div class="form-group">
                         <label class="control-label col-md-4">Specialization</label>
                         <div class="col-md-8">
@@ -131,7 +148,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="right-div col-md-6">
+            </div>
+            <div style="width:100%;float:left;">
+                <div class="left-div col-md-6">
                     <div class="form-group">
                         <label class="control-label col-md-4">Doctor</label>
                         <div class="col-md-8">
@@ -140,9 +159,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div style="width:100%;float:left;">
-                <div class="left-div col-md-6">
+                <div class="right-div col-md-6">
                     <div class="form-group">
                         @Html.LabelFor(model => model.Appointment.PatientType_ID, "Patient Type", htmlAttributes: new { @class = "control-label col-md-4 " })
                         <div class="col-md-8">
@@ -151,7 +168,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="right-div col-md-6">
+            </div>
+            <div style="width:100%;float:left;">
+                <div class="left-div col-md-6">
                     <div class="form-group">
                         @Html.LabelFor(model => model.Appointment.IsReferal, htmlAttributes: new { @class = "control-label col-md-4" })
                         <div class="col-md-8">
@@ -167,9 +186,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div style="width:100%;float:left;">
-                <div class="left-div col-md-6">
+                <div class="right-div col-md-6">
                     <div class="form-group">
                         @Html.LabelFor(model => model.Appointment.ReferalDetails, htmlAttributes: new { @class = "control-label col-md-4" })
                         <div class="col-md-8">
@@ -178,7 +195,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="right-div col-md-6">
+            </div>
+            <div style="width:100%;float:left;">
+                <div class="left-div col-md-6">
                     <div class="form-group">
                         @Html.LabelFor(model => model.Appointment.BranchDetails_ID, "Branch", htmlAttributes: new { @class = "control-label col-md-4" })
                         <div class="col-md-8">
@@ -186,6 +205,9 @@
                             @Html.ValidationMessageFor(model => model.Appointment.BranchDetails_ID, "", new { @class = "text-danger" })
                         </div>
                     </div>
+                </div>
+                <div class="right-div col-md-6">
+                    
                 </div>
             </div>
             <br />

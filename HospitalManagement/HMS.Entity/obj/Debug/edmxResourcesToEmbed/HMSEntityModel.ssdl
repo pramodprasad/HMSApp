@@ -110,6 +110,7 @@
     <Property Name="CreatedOn" Type="datetime" Nullable="false" />
     <Property Name="CreatedBy" Type="bigint" Nullable="false" />
     <Property Name="City_ID" Type="int" />
+    <Property Name="Pincode" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Cities">
     <Key>
@@ -315,6 +316,7 @@
     <Property Name="City_ID" Type="int" />
     <Property Name="MarritalStatus" Type="int" Nullable="false" />
     <Property Name="DOB" Type="datetime" Nullable="false" />
+    <Property Name="Gender" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="PatientTypes">
     <Key>

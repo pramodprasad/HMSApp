@@ -92,6 +92,7 @@
     <EntitySetMapping Name="BranchDetails">
       <EntityTypeMapping TypeName="HMSDbModel.BranchDetail">
         <MappingFragment StoreEntitySet="BranchDetails">
+          <ScalarProperty Name="Pincode" ColumnName="Pincode" />
           <ScalarProperty Name="City_ID" ColumnName="City_ID" />
           <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
           <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
@@ -311,6 +312,7 @@
     <EntitySetMapping Name="PatientDetails">
       <EntityTypeMapping TypeName="HMSDbModel.PatientDetail">
         <MappingFragment StoreEntitySet="PatientDetails">
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
           <ScalarProperty Name="DOB" ColumnName="DOB" />
           <ScalarProperty Name="MarritalStatus" ColumnName="MarritalStatus" />
           <ScalarProperty Name="City_ID" ColumnName="City_ID" />

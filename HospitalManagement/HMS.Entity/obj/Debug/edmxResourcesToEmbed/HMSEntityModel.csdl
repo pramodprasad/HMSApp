@@ -441,6 +441,7 @@
     <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="CreatedBy" Type="Int64" Nullable="false" />
     <Property Name="City_ID" Type="Int32" />
+    <Property Name="Pincode" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Appointments" Relationship="HMSDbModel.FK_dbo_Appointments_dbo_BranchDetails_BranchDetails_ID" FromRole="BranchDetail" ToRole="Appointment" />
     <NavigationProperty Name="City" Relationship="HMSDbModel.FK_dbo_BranchDetails_dbo_Cities_City_ID" FromRole="BranchDetail" ToRole="City" />
     <NavigationProperty Name="EmployeeDetails" Relationship="HMSDbModel.FK_dbo_EmployeeDetails_dbo_BranchDetails_BranchDetail_ID" FromRole="BranchDetail" ToRole="EmployeeDetail" />
@@ -703,6 +704,7 @@
     <Property Name="City_ID" Type="Int32" />
     <Property Name="MarritalStatus" Type="Int32" Nullable="false" />
     <Property Name="DOB" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Gender" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Appointments" Relationship="HMSDbModel.FK_dbo_Appointments_dbo_PatientDetails_PatientDetails_ID" FromRole="PatientDetail" ToRole="Appointment" />
     <NavigationProperty Name="City" Relationship="HMSDbModel.FK_dbo_PatientDetails_dbo_Cities_City_ID" FromRole="PatientDetail" ToRole="City" />
     <NavigationProperty Name="DoctorBillDetails" Relationship="HMSDbModel.FK_dbo_DoctorBillDetails_dbo_PatientDetails_PatientDetails_ID" FromRole="PatientDetail" ToRole="DoctorBillDetail" />

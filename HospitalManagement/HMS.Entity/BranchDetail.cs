@@ -37,6 +37,7 @@ namespace HMS.Entity
         public System.DateTime CreatedOn { get; set; }
         public long CreatedBy { get; set; }
         public Nullable<int> City_ID { get; set; }
+        public int Pincode { get; set; }
     
         public virtual ICollection<Appointment> Appointments { get; set; }
         public virtual City City { get; set; }

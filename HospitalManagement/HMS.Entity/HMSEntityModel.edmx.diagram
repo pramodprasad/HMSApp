@@ -5,48 +5,48 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="a5bcab303a9e4ae8a98c96289d429ec9" Name="Diagram1">
-        <EntityTypeShape EntityType="HMSDbModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="HMSDbModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="6.75" />
         <EntityTypeShape EntityType="HMSDbModel.Appointment" Width="1.5" PointX="3" PointY="30.75" />
-        <EntityTypeShape EntityType="HMSDbModel.AspNetRole" Width="1.5" PointX="3.75" PointY="2.5" />
-        <EntityTypeShape EntityType="HMSDbModel.AspNetUserClaim" Width="1.5" PointX="8.25" PointY="1" />
-        <EntityTypeShape EntityType="HMSDbModel.AspNetUserLogin" Width="1.5" PointX="8.25" PointY="3.75" />
-        <EntityTypeShape EntityType="HMSDbModel.AspNetUser" Width="1.5" PointX="6" PointY="1.125" />
+        <EntityTypeShape EntityType="HMSDbModel.AspNetRole" Width="1.5" PointX="0.75" PointY="2.5" />
+        <EntityTypeShape EntityType="HMSDbModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="3.625" />
+        <EntityTypeShape EntityType="HMSDbModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="HMSDbModel.AspNetUser" Width="1.5" PointX="3" PointY="1.125" />
         <EntityTypeShape EntityType="HMSDbModel.BedAllotment" Width="1.5" PointX="5.25" PointY="27.75" />
-        <EntityTypeShape EntityType="HMSDbModel.BranchDetail" Width="1.5" PointX="0.75" PointY="23.375" />
-        <EntityTypeShape EntityType="HMSDbModel.City" Width="1.5" PointX="1.5" PointY="19.625" />
-        <EntityTypeShape EntityType="HMSDbModel.Country" Width="1.5" PointX="1.5" PointY="13.875" />
-        <EntityTypeShape EntityType="HMSDbModel.DoctorBillDetail" Width="1.5" PointX="14.25" PointY="31.375" />
+        <EntityTypeShape EntityType="HMSDbModel.BranchDetail" Width="1.5" PointX="0.75" PointY="35.875" />
+        <EntityTypeShape EntityType="HMSDbModel.City" Width="1.5" PointX="1.5" PointY="49.25" />
+        <EntityTypeShape EntityType="HMSDbModel.Country" Width="1.5" PointX="1.5" PointY="55.5" />
+        <EntityTypeShape EntityType="HMSDbModel.DoctorBillDetail" Width="1.5" PointX="14.25" PointY="37.375" />
         <EntityTypeShape EntityType="HMSDbModel.Doctor" Width="1.5" PointX="6" PointY="31.125" />
-        <EntityTypeShape EntityType="HMSDbModel.DoctorVisitPaymentDetail" Width="1.5" PointX="11.25" PointY="25.875" />
-        <EntityTypeShape EntityType="HMSDbModel.EmployeeDetail" Width="1.5" PointX="3.75" PointY="43.5" />
-        <EntityTypeShape EntityType="HMSDbModel.EmployeeType" Width="1.5" PointX="1.5" PointY="44.125" />
+        <EntityTypeShape EntityType="HMSDbModel.DoctorVisitPaymentDetail" Width="1.5" PointX="14.25" PointY="31.875" />
+        <EntityTypeShape EntityType="HMSDbModel.EmployeeDetail" Width="1.5" PointX="3.75" PointY="42.875" />
+        <EntityTypeShape EntityType="HMSDbModel.EmployeeType" Width="1.5" PointX="1.5" PointY="45.875" />
         <EntityTypeShape EntityType="HMSDbModel.LabCategory" Width="1.5" PointX="6" PointY="42.625" />
         <EntityTypeShape EntityType="HMSDbModel.LabPayment" Width="1.5" PointX="8.25" PointY="31.625" />
-        <EntityTypeShape EntityType="HMSDbModel.LabTest" Width="1.5" PointX="6" PointY="19.375" />
-        <EntityTypeShape EntityType="HMSDbModel.MedicalPaymentDetail" Width="1.5" PointX="8.25" PointY="25.875" />
-        <EntityTypeShape EntityType="HMSDbModel.PatientBill" Width="1.5" PointX="11.25" PointY="31.125" />
-        <EntityTypeShape EntityType="HMSDbModel.PatientDetail" Width="1.5" PointX="0.75" PointY="36.625" />
-        <EntityTypeShape EntityType="HMSDbModel.PatientType" Width="1.5" PointX="0.75" PointY="28.875" />
-        <EntityTypeShape EntityType="HMSDbModel.PatientVisit" Width="1.5" PointX="5.25" PointY="23.375" />
-        <EntityTypeShape EntityType="HMSDbModel.PaymentMode" Width="1.5" PointX="3" PointY="23.75" />
-        <EntityTypeShape EntityType="HMSDbModel.PaymentSection" Width="1.5" PointX="9" PointY="21.875" />
-        <EntityTypeShape EntityType="HMSDbModel.Qualification" Width="1.5" PointX="3.75" PointY="19.875" />
-        <EntityTypeShape EntityType="HMSDbModel.RegistrationPaymentDetail" Width="1.5" PointX="11.25" PointY="37.625" />
-        <EntityTypeShape EntityType="HMSDbModel.RoomDetail" Width="1.5" PointX="3" PointY="9.5" />
-        <EntityTypeShape EntityType="HMSDbModel.ServicePayment" Width="1.5" PointX="8.25" PointY="37.625" />
-        <EntityTypeShape EntityType="HMSDbModel.Service" Width="1.5" PointX="6" PointY="46.25" />
-        <EntityTypeShape EntityType="HMSDbModel.ServiceSubCategory" Width="1.5" PointX="6" PointY="49" />
-        <EntityTypeShape EntityType="HMSDbModel.ShiftDate" Width="1.5" PointX="13.5" PointY="42.375" />
-        <EntityTypeShape EntityType="HMSDbModel.ShiftDay" Width="1.5" PointX="13.5" PointY="38.25" />
-        <EntityTypeShape EntityType="HMSDbModel.ShiftType" Width="1.5" PointX="8.25" PointY="45.875" />
+        <EntityTypeShape EntityType="HMSDbModel.LabTest" Width="1.5" PointX="6" PointY="24.375" />
+        <EntityTypeShape EntityType="HMSDbModel.MedicalPaymentDetail" Width="1.5" PointX="11.25" PointY="37.875" />
+        <EntityTypeShape EntityType="HMSDbModel.PatientBill" Width="1.5" PointX="14.25" PointY="25.125" />
+        <EntityTypeShape EntityType="HMSDbModel.PatientDetail" Width="1.5" PointX="0.75" PointY="25.875" />
+        <EntityTypeShape EntityType="HMSDbModel.PatientType" Width="1.5" PointX="0.75" PointY="23.125" />
+        <EntityTypeShape EntityType="HMSDbModel.PatientVisit" Width="1.5" PointX="5.25" PointY="38.375" />
+        <EntityTypeShape EntityType="HMSDbModel.PaymentMode" Width="1.5" PointX="12" PointY="22.125" />
+        <EntityTypeShape EntityType="HMSDbModel.PaymentSection" Width="1.5" PointX="12" PointY="18.5" />
+        <EntityTypeShape EntityType="HMSDbModel.Qualification" Width="1.5" PointX="3.75" PointY="24.25" />
+        <EntityTypeShape EntityType="HMSDbModel.RegistrationPaymentDetail" Width="1.5" PointX="11.25" PointY="31.625" />
+        <EntityTypeShape EntityType="HMSDbModel.RoomDetail" Width="1.5" PointX="3" PointY="18.5" />
+        <EntityTypeShape EntityType="HMSDbModel.ServicePayment" Width="1.5" PointX="11.25" PointY="25.625" />
+        <EntityTypeShape EntityType="HMSDbModel.Service" Width="1.5" PointX="9" PointY="24.25" />
+        <EntityTypeShape EntityType="HMSDbModel.ServiceSubCategory" Width="1.5" PointX="9" PointY="20" />
+        <EntityTypeShape EntityType="HMSDbModel.ShiftDate" Width="1.5" PointX="16.5" PointY="34.75" />
+        <EntityTypeShape EntityType="HMSDbModel.ShiftDay" Width="1.5" PointX="16.5" PointY="38.75" />
+        <EntityTypeShape EntityType="HMSDbModel.ShiftType" Width="1.5" PointX="8.25" PointY="38.75" />
         <EntityTypeShape EntityType="HMSDbModel.Specialization" Width="1.5" PointX="0.75" PointY="33" />
-        <EntityTypeShape EntityType="HMSDbModel.State" Width="1.5" PointX="1.5" PointY="16.75" />
-        <EntityTypeShape EntityType="HMSDbModel.Title" Width="1.5" PointX="1.5" PointY="46.875" />
-        <EntityTypeShape EntityType="HMSDbModel.VisitReason" Width="1.5" PointX="0.75" PointY="3.75" />
-        <EntityTypeShape EntityType="HMSDbModel.WardCategory" Width="1.5" PointX="1.5" PointY="6.125" />
-        <EntityTypeShape EntityType="HMSDbModel.WardOrRoomChargeDetail" Width="1.5" PointX="5.25" PointY="38.25" />
-        <EntityTypeShape EntityType="HMSDbModel.Ward" Width="1.5" PointX="0.75" PointY="9.625" />
-        <EntityTypeShape EntityType="HMSDbModel.WeekDay" Width="1.5" PointX="11.25" PointY="44" />
+        <EntityTypeShape EntityType="HMSDbModel.State" Width="1.5" PointX="1.5" PointY="52.375" />
+        <EntityTypeShape EntityType="HMSDbModel.Title" Width="1.5" PointX="1.5" PointY="43.625" />
+        <EntityTypeShape EntityType="HMSDbModel.VisitReason" Width="1.5" PointX="2.75" PointY="6.75" />
+        <EntityTypeShape EntityType="HMSDbModel.WardCategory" Width="1.5" PointX="1.5" PointY="15.125" />
+        <EntityTypeShape EntityType="HMSDbModel.WardOrRoomChargeDetail" Width="1.5" PointX="8.25" PointY="27.25" />
+        <EntityTypeShape EntityType="HMSDbModel.Ward" Width="1.5" PointX="0.75" PointY="18.625" />
+        <EntityTypeShape EntityType="HMSDbModel.WeekDay" Width="1.5" PointX="14.25" PointY="43.375" />
         <AssociationConnector Association="HMSDbModel.FK_dbo_Appointments_dbo_BranchDetails_BranchDetails_ID" />
         <AssociationConnector Association="HMSDbModel.FK_dbo_Appointments_dbo_Doctors_Doctor_ID" />
         <AssociationConnector Association="HMSDbModel.FK_dbo_Appointments_dbo_PatientDetails_PatientDetails_ID" />

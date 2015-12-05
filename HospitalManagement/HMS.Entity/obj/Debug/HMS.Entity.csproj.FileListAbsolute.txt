@@ -268,7 +268,6 @@ C:\Users\Pramod\Documents\GitHub\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\
 C:\Users\Pramod\Documents\GitHub\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\Pramod\Documents\GitHub\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\EntityFramework.xml
 C:\Users\Pramod\Documents\GitHub\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\Pramod\Documents\GitHub\HMSApp\HospitalManagement\HMS.Entity\obj\Debug\HMS.Entity.csprojResolveAssemblyReference.cache
 C:\Users\Pramod\Documents\GitHub\HMSApp\HospitalManagement\HMS.Entity\obj\Debug\HMS.Entity.dll
 C:\Users\Pramod\Documents\GitHub\HMSApp\HospitalManagement\HMS.Entity\obj\Debug\HMS.Entity.pdb
 C:\Users\Tanmay\Documents\GitHub\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\HMS.Entity.dll.config

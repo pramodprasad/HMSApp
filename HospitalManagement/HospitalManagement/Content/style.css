@@ -248,3 +248,9 @@ background:#ff7604;
 .validation-summary-errors ul li{ color: #C00 !important;}
 
 div.validation-summary-errors {color: #C00 !important}
+@media print and (orientation: portrait) {
+        .no-print, .no-print *{
+        visibility: hidden !important;
+        display: none !important;
+    }
+}

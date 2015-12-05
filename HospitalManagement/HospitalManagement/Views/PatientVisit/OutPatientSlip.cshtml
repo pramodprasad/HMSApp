@@ -5,7 +5,15 @@
     this.Layout = null;
 }
 
-<h2>Out Patient Slip</h2>
+<div>
+    <div class="col-md-6">
+        <h4>Out Patient Slip</h4>
+    </div>
+    <div class="col-md-6 no-print" style=" text-align: right; padding-right: 50px;">
+        <button type="button" class="button-link" id="btnPrint">Print</button>
+    </div>
+</div>
+
 
 @*<div class="header">
     @Html.Partial("_ReportHeading")
@@ -15,29 +23,29 @@
     <tr>
         <td colspan="4" align="center" class="style4">
             <!--This table is use for Partial view -->            
-               @* @Html.Partial("_ReportHeading")*@   
-            <table width="480" height="125" border="0" cellpadding="0" cellspacing="0">
-                <tr>
-                    <td align="center" class="style3"><div>THAKRAL NURSING &amp; MATERNITY HOME</div></td>
-                </tr>
-                <tr>
-                    <td align="center" class="style5">                       
-                            316/6, Shivaji Nagar, Opp. S.P Office, Behind Petrol Pump, Sohna Alwar Road             
-                    </td>
-                </tr>
-                <tr>
-                    <td align="center" class="style5"><div>Gurgaon - 122001, Haryana</div></td>
-                </tr>
-                <tr>
-                    <td align="center" class="style5"><div>Tel. : - 0124-4281301, 02, 03, 04, 2331133, 2329387, Fax : - 0124-4281301</div></td>
-                </tr>
-                <tr>
-                    <td align="center" class="style5"><div>Email : tnmh@rediffmail.com, info@thakralnursinghome.com </div></td>
-                </tr>
-                <tr>
-                    <td align="center" class="style5"><div>website : www.thakralnursinghome.com</div></td>
-                </tr>
-            </table>
+                @Html.Partial("_ReportHeading")   @*<table width="480" height="125" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td align="center" class="style3"><div>THAKRAL NURSING &amp; MATERNITY HOME</div></td>
+        </tr>
+        <tr>
+            <td align="center" class="style5">
+                    316/6, Shivaji Nagar, Opp. S.P Office, Behind Petrol Pump, Sohna Alwar Road
+            </td>
+        </tr>
+        <tr>
+            <td align="center" class="style5"><div>Gurgaon - 122001, Haryana</div></td>
+        </tr>
+        <tr>
+            <td align="center" class="style5"><div>Tel. : - 0124-4281301, 02, 03, 04, 2331133, 2329387, Fax : - 0124-4281301</div></td>
+        </tr>
+        <tr>
+            <td align="center" class="style5"><div>Email : tnmh@rediffmail.com, info@thakralnursinghome.com </div></td>
+        </tr>
+        <tr>
+            <td align="center" class="style5"><div>website : www.thakralnursinghome.com</div></td>
+        </tr>
+    </table>*@
+            
         </td>
     </tr>
 
@@ -163,9 +171,8 @@
     @Html.ActionLink("Back to List", "Index")
 </p>*@
 
-<style type="text/css">
-    <!--
-    .style3 {
+@*<style type="text/css">
+     .style3 {
         font-family: "Times New Roman", Times, serif;
         font-size: 14px;
         font-weight: bold;
@@ -192,5 +199,18 @@
         font-family: "Times New Roman", Times, serif;
         font-size: 12px;
     }
-    -->
-</style>
+</style>*@
+<script>
+    $('#btnPrint').click(function (event) {
+        var prtContent = document.getElementById("visitSlipBody");
+        var WinPrint = window.open('', '', 'left=0,top=0');
+        WinPrint.document.write('<html><head></head><body >');
+        WinPrint.document.write(prtContent.innerHTML);
+        WinPrint.document.write('</body></html>');
+        WinPrint.document.close();
+        WinPrint.focus();
+        WinPrint.print();
+        WinPrint.close();
+        return true;
+    });
+</script>

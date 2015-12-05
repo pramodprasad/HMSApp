@@ -175,10 +175,10 @@ namespace HospitalManagement.Controllers
             return Json(doctorList, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult OutPatientSlip()
+        public ActionResult OutPatientSlip(int id)
         {
             PatientVisit visitedpatient = new PatientVisit();
-            visitedpatient = db.PatientVisits.Include(p => p.Appointment).Include(a => a.Appointment.PatientDetail).Include(a => a.Appointment.Doctor.EmployeeDetail).Include(a => a.Appointment.ShiftType).Where(w => w.Appointment.VisitStatus == 1 && w.PayAmount > 0 && w.ID == 3).FirstOrDefault();
+            visitedpatient = db.PatientVisits.Include(p => p.Appointment).Include(a => a.Appointment.PatientDetail).Include(a => a.Appointment.Doctor.EmployeeDetail).Include(a => a.Appointment.ShiftType).Where(w => w.Appointment.VisitStatus == 1 && w.PayAmount > 0 && w.ID == id).FirstOrDefault();
             return View(visitedpatient);
 
         }

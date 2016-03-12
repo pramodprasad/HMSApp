@@ -1,4 +1,5 @@
-﻿<style type="text/css">
+﻿@model HMS.Entity.BranchDetail
+<style type="text/css">
     .style3 {
         font-family: "Times New Roman", Times, serif;
         font-size: 14px;
@@ -19,28 +20,28 @@
     }
 </style>
 
-<table width="480" height="125" border="1" cellpadding="0" cellspacing="0">
+<table width="100%" height="125" border="0" cellpadding="0" cellspacing="0">
     <tr>
         <td align="center" class="style3"><div>THAKRAL NURSING &amp; MATERNITY HOME</div></td>
     </tr>
     <tr>
         <td align="center" class="style5">
             <div>
-                316/6, Shivaji Nagar, Opp. S.P Office, Behind Petrol Pump, Sohna Alwar Road
+                @Html.DisplayFor(model => model.Address)
             </div>
         </td>
     </tr>
     <tr>
-        <td align="center" class="style5"><div>Gurgaon - 122001, Haryana</div></td>
+        <td align="center" class="style5"><div>@Html.DisplayFor(model => model.City.name) - @Html.DisplayFor(model => model.Pincode)</div></td>
     </tr>
     <tr>
-        <td align="center" class="style5"><div>Tel. : - 0124-4281301, 02, 03, 04, 2331133, 2329387, Fax : - 0124-4281301</div></td>
+        <td align="center" class="style5"><div>Tel. : - 0124-@Html.DisplayFor(model => model.PhoneNoPri), @Html.DisplayFor(model => model.PhoneNoSec), @Html.DisplayFor(model => model.MobileNo), Fax : - 0124-@Html.DisplayFor(model => model.FaxNo)</div></td>
     </tr>
     <tr>
-        <td align="center" class="style5"><div>Email : tnmh@rediffmail.com, info@thakralnursinghome.com </div></td>
+        <td align="center" class="style5"><div>Email : @Html.DisplayFor(model => model.EmailCustomerCare), @Html.DisplayFor(model => model.EmailInfo) </div></td>
     </tr>
     <tr>
-        <td align="center" class="style5"><div>website : www.thakralnursinghome.com</div></td>
+        <td align="center" class="style5"><div>website : @Html.DisplayFor(model => model.WebAddress)</div></td>
     </tr>
 </table>
 

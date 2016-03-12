@@ -56,8 +56,8 @@
             <div class="col-md-8">
                 @Html.DropDownList("VisitStatus", new SelectList(
                   new List<Object>{ 
-                       new { value = 0 , text = "Visited"  },
-                       new { value = 1 , text = "Not Visited" },
+                       new { value = 0 , text = "Not Visited"  },
+                       new { value = 1 , text = "Visited" },
                        new { value = 2 , text = "Other"}
                     },
                   "value",
@@ -71,8 +71,8 @@
             <div class="col-md-8">
                 @Html.DropDownList("IsReferal", new SelectList(
                   new List<Object>{
-                       new { value = 0 , text = "Yes"  },
-                       new { value = 1 , text = "No" }
+                       new { value = 0 , text = "No"  },
+                       new { value = 1 , text = "Yes" }
                     },
                   "value",
                   "text"

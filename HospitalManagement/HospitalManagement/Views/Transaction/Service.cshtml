@@ -10,8 +10,7 @@
 {
     <div style="float: left; width:100%;margin-bottom:20px;">
         <div id="txtBox">
-            @Html.Label("Search Patient ")
-            <input type="text" name="searchValue" />
+            @Html.Label("Search Patient ")           
             @Html.RadioButton("SearchType", "0")
             @Html.Label("ID")
             @Html.RadioButton("SearchType", "1", true)
@@ -20,6 +19,7 @@
             @Html.Label("Father/Husband Name")
             @Html.RadioButton("SearchType", "3")
             @Html.Label("Mobile No")
+            <input type="text" name="searchValue" />
             <input type="submit" value="Search" id="btnSubmit" class="button-link" />
         </div>
     </div>
@@ -28,7 +28,7 @@
 
 <div id="DivGrid" style="margin-top:20px;margin-bottom: 20px;">
     @{
-        WebGrid grid = new WebGrid(source: Model.PatientDetail, canPage: true, rowsPerPage: 4, defaultSort: "ID");
+        WebGrid grid = new WebGrid(source: Model.PatientDetail, canPage: true, rowsPerPage: 8, defaultSort: "FullName");
 
         if (Model.PatientDetail.Count() > 0)
         {

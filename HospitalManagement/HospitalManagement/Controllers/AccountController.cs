@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
@@ -281,36 +282,42 @@ namespace HospitalManagement.Controllers
 
         //
         // GET: /Account/ForgotPassword
-        [AllowAnonymous]
-        public ActionResult ForgotPassword()
-        {
-            return View();
-        }
+        //[AllowAnonymous]
+        //public ActionResult ForgotPassword()
+        //{
+        //    return View();
+        //}
 
         //
         // POST: /Account/ForgotPassword
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> ForgotPassword(ForgotPasswordViewModel model)
+        public async Task<ActionResult> ResetPassword(ResetPasswordViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var user = await UserManager.FindByNameAsync(model.Email);
-                if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
+                var currentUser = UserManager.FindById(User.Identity.GetUserId());
+                var currentEmployee = db.EmployeeDetails.Where(user => user.ID == currentUser.HMSEmpID).FirstOrDefault();
+
+                if (currentEmployee.Password == model.Password)
                 {
-                    // Don't reveal that the user does not exist or is not confirmed
-                    return View("ForgotPasswordConfirmation");
+                    ModelState.AddModelError("", "Provided password is same as current password.!");
                 }
+                else
+                {
+                    await UserManager.RemovePasswordAsync(currentUser.Id);
+                    IdentityResult result = await UserManager.AddPasswordAsync(currentUser.Id, model.Password);
+                    if (result.Succeeded)
+                    {
+                        currentEmployee.Password = model.Password;
+                        db.Entry(currentEmployee).State = EntityState.Modified;
+                        db.SaveChanges();
 
-                // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                // Send an email with this link
-                // string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                // var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
-                // await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                // return RedirectToAction("ForgotPasswordConfirmation", "Account");
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
             }
-
             // If we got this far, something failed, redisplay form
             return View(model);
         }
@@ -326,36 +333,36 @@ namespace HospitalManagement.Controllers
         //
         // GET: /Account/ResetPassword
         [AllowAnonymous]
-        public ActionResult ResetPassword(string code)
+        public ActionResult ResetPassword()
         {
-            return code == null ? View("Error") : View();
+            return View();
         }
 
         //
         // POST: /Account/ResetPassword
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> ResetPassword(ResetPasswordViewModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-            var user = await UserManager.FindByNameAsync(model.Email);
-            if (user == null)
-            {
-                // Don't reveal that the user does not exist
-                return RedirectToAction("ResetPasswordConfirmation", "Account");
-            }
-            var result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
-            if (result.Succeeded)
-            {
-                return RedirectToAction("ResetPasswordConfirmation", "Account");
-            }
-            AddErrors(result);
-            return View();
-        }
+        //[HttpPost]
+        //[AllowAnonymous]
+        //[ValidateAntiForgeryToken]
+        //public async Task<ActionResult> ResetPassword(ResetPasswordViewModel model)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return View(model);
+        //    }
+        //    var user = await UserManager.FindByNameAsync(model.Email);
+        //    if (user == null)
+        //    {
+        //        // Don't reveal that the user does not exist
+        //        return RedirectToAction("ResetPasswordConfirmation", "Account");
+        //    }
+        //    var result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
+        //    if (result.Succeeded)
+        //    {
+        //        return RedirectToAction("ResetPasswordConfirmation", "Account");
+        //    }
+        //    AddErrors(result);
+        //    return View();
+        //}
 
         //
         // GET: /Account/ResetPasswordConfirmation
@@ -495,6 +502,34 @@ namespace HospitalManagement.Controllers
         public ActionResult ExternalLoginFailure()
         {
             return View();
+        }
+
+        public ActionResult MyProfile()
+        {
+            var customerId = UserManager.FindById(User.Identity.GetUserId()).HMSEmpID;
+            EmployeeDetail employee = db.EmployeeDetails.Where(emp => emp.ID == customerId).FirstOrDefault();
+            ViewBag.BranchDetail_ID = new SelectList(db.BranchDetails, "ID", "Name");
+            ViewBag.City_ID = new SelectList(db.Cities, "ID", "name");
+            ViewBag.EmployeeType_ID = new SelectList(db.EmployeeTypes, "ID", "Description");
+            ViewBag.Title_ID = new SelectList(db.Titles, "ID", "Name");
+            return View(employee);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> MyProfile(EmployeeDetail model)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(model).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index" , "Home");
+            }
+            ViewBag.BranchDetail_ID = new SelectList(db.BranchDetails, "ID", "Name", model.BranchDetail_ID);
+            ViewBag.City_ID = new SelectList(db.Cities, "ID", "name", model.City_ID);
+            ViewBag.EmployeeType_ID = new SelectList(db.EmployeeTypes, "ID", "Description", model.EmployeeType_ID);
+            ViewBag.Title_ID = new SelectList(db.Titles, "ID", "Name", model.Title_ID);
+            return View(model);
         }
 
         protected override void Dispose(bool disposing)

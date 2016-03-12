@@ -66,6 +66,11 @@ namespace HospitalManagement.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(AddVisitViewModel model)
         {
+            if (ModelState.ContainsKey("Appointment.PatientDetail.Gender"))
+            {
+                ModelState.Remove("Appointment.PatientDetail.Gender");
+            }
+
             if (ModelState.IsValid)
             {
                 Appointment appointment = db.Appointments.Find(model.PatientVisit.Appointment_ID);
@@ -114,7 +119,7 @@ namespace HospitalManagement.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,VisitedDate,PatientStatus,UpdatedDate,RegistrationAmount,DiscountAmount,PayAmount,CreatedBy,Appointment_ID,PaymentMode_ID")] PatientVisit patientvisit)
+        public ActionResult Edit([Bind(Include = "ID,VisitedDate,PatientStatus,UpdatedDate,RegistrationAmount,DiscountAmount,PayAmount,CreatedBy,PaymentMode_ID")] PatientVisit patientvisit)
         {
             if (ModelState.IsValid)
             {
@@ -122,7 +127,7 @@ namespace HospitalManagement.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Appointment_ID = new SelectList(db.Appointments, "ID", "ReferalDetails", patientvisit.Appointment_ID);
+            //ViewBag.Appointment_ID = new SelectList(db.Appointments, "ID", "ReferalDetails", patientvisit.Appointment_ID);
             ViewBag.PaymentMode_ID = new SelectList(db.PaymentModes, "ID", "Mode", patientvisit.PaymentMode_ID);
             return View(patientvisit);
         }
@@ -157,7 +162,7 @@ namespace HospitalManagement.Controllers
         {
             List<PatientVisit> visitedpatient = new List<PatientVisit>();
             visitedpatient = db.PatientVisits.Include(p => p.Appointment).Include(a => a.Appointment.PatientDetail).Include(a => a.Appointment.Doctor.EmployeeDetail).Include(a => a.Appointment.ShiftType).Where(w => w.Appointment.VisitStatus == 1).ToList();
-            return View(visitedpatient.OrderByDescending(a => a.VisitedDate).ToList());
+            return View(visitedpatient.OrderByDescending(a => a.ID).ToList());
         }
 
         public JsonResult FillDoctor(int SpecializationId)
@@ -176,6 +181,14 @@ namespace HospitalManagement.Controllers
         }
 
         public ActionResult OutPatientSlip(int id)
+        {
+            PatientVisit visitedpatient = new PatientVisit();
+            visitedpatient = db.PatientVisits.Include(p => p.Appointment).Include(a => a.Appointment.PatientDetail).Include(a => a.Appointment.Doctor.EmployeeDetail.BranchDetail).Include(a => a.Appointment.Doctor.EmployeeDetail).Include(a => a.Appointment.ShiftType).Where(w => w.Appointment.VisitStatus == 1 && w.PayAmount > 0 && w.ID == id).FirstOrDefault();
+            return View(visitedpatient);
+
+        }
+
+        public ActionResult DoctorsPriscription(int id)
         {
             PatientVisit visitedpatient = new PatientVisit();
             visitedpatient = db.PatientVisits.Include(p => p.Appointment).Include(a => a.Appointment.PatientDetail).Include(a => a.Appointment.Doctor.EmployeeDetail).Include(a => a.Appointment.ShiftType).Where(w => w.Appointment.VisitStatus == 1 && w.PayAmount > 0 && w.ID == id).FirstOrDefault();

@@ -27,7 +27,8 @@
                    <div class="form-group">
                        @Html.LabelFor(model => model.PatientDetails.DOB, htmlAttributes: new { @class = "control-label col-md-4" })
                        <div class="col-md-8">
-                           @Html.EditorFor(model => model.PatientDetails.DOB, new { htmlAttributes = new { @class = "form-control dateControl" } })
+                              @*@Html.TextBoxFor(model => model.PatientDetails.DOB, new { @class = "date" })*@
+                           @Html.EditorFor(model => model.PatientDetails.DOB, new { htmlAttributes = new { @class = "form-control dateControl" } }) 
                            @Html.ValidationMessageFor(model => model.PatientDetails.DOB, "", new { @class = "text-danger" })
                        </div>
                    </div>
@@ -122,6 +123,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.Appointment.AppointmentDate, "Appointment Date", htmlAttributes: new { @class = "control-label col-md-4" })
                         <div class="col-md-8">
+                            @*@Html.TextBoxFor(model => model.Appointment.AppointmentDate, new { @class = "date" })*@
                             @Html.EditorFor(model => model.Appointment.AppointmentDate, new { htmlAttributes = new { @class = "form-control dateControl" } })
                             @Html.ValidationMessageFor(model => model.Appointment.AppointmentDate, "", new { @class = "text-danger" })
                         </div>
@@ -323,4 +325,9 @@
     //        }
     //    });
     //}
+</script>
+<script>
+    $(function () {
+        $('.date').datepicker();
+    });
 </script>

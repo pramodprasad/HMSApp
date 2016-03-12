@@ -280,3 +280,92 @@ C:\Users\Tanmay\Documents\GitHub\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\
 C:\Users\Tanmay\Documents\GitHub\HMSApp\HospitalManagement\HMS.Entity\obj\Debug\HMS.Entity.csprojResolveAssemblyReference.cache
 C:\Users\Tanmay\Documents\GitHub\HMSApp\HospitalManagement\HMS.Entity\obj\Debug\HMS.Entity.dll
 C:\Users\Tanmay\Documents\GitHub\HMSApp\HospitalManagement\HMS.Entity\obj\Debug\HMS.Entity.pdb
+D:\Projects\GetHub\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\HMS.Entity.dll.config
+D:\Projects\GetHub\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\HMS.Entity.dll
+D:\Projects\GetHub\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\HMS.Entity.pdb
+D:\Projects\GetHub\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\EntityFramework.dll
+D:\Projects\GetHub\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\EntityFramework.SqlServer.dll
+D:\Projects\GetHub\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\EntityFramework.xml
+D:\Projects\GetHub\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\EntityFramework.SqlServer.xml
+D:\Projects\GetHub\HMSApp\HospitalManagement\HMS.Entity\obj\Debug\HMS.Entity.dll
+D:\Projects\GetHub\HMSApp\HospitalManagement\HMS.Entity\obj\Debug\HMS.Entity.pdb
+D:\RajeshRoshan\08122015\GetHub\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\HMS.Entity.dll.config
+D:\RajeshRoshan\08122015\GetHub\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\HMS.Entity.dll
+D:\RajeshRoshan\08122015\GetHub\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\HMS.Entity.pdb
+D:\RajeshRoshan\08122015\GetHub\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\EntityFramework.dll
+D:\RajeshRoshan\08122015\GetHub\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\EntityFramework.SqlServer.dll
+D:\RajeshRoshan\08122015\GetHub\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\EntityFramework.xml
+D:\RajeshRoshan\08122015\GetHub\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\EntityFramework.SqlServer.xml
+D:\RajeshRoshan\08122015\GetHub\HMSApp\HospitalManagement\HMS.Entity\obj\Debug\HMS.Entity.csprojResolveAssemblyReference.cache
+D:\RajeshRoshan\08122015\GetHub\HMSApp\HospitalManagement\HMS.Entity\obj\Debug\HMS.Entity.dll
+D:\RajeshRoshan\08122015\GetHub\HMSApp\HospitalManagement\HMS.Entity\obj\Debug\HMS.Entity.pdb
+D:\Projects\08122015\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\HMS.Entity.dll.config
+D:\Projects\08122015\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\HMS.Entity.dll
+D:\Projects\08122015\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\HMS.Entity.pdb
+D:\Projects\08122015\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\EntityFramework.dll
+D:\Projects\08122015\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\EntityFramework.SqlServer.dll
+D:\Projects\08122015\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\EntityFramework.xml
+D:\Projects\08122015\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\EntityFramework.SqlServer.xml
+D:\Projects\08122015\HMSApp\HospitalManagement\HMS.Entity\obj\Debug\HMS.Entity.csprojResolveAssemblyReference.cache
+D:\Projects\08122015\HMSApp\HospitalManagement\HMS.Entity\obj\Debug\HMS.Entity.dll
+D:\Projects\08122015\HMSApp\HospitalManagement\HMS.Entity\obj\Debug\HMS.Entity.pdb
+D:\RajeshRoshan\21122015\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\HMS.Entity.dll.config
+D:\RajeshRoshan\21122015\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\HMS.Entity.dll
+D:\RajeshRoshan\21122015\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\HMS.Entity.pdb
+D:\RajeshRoshan\21122015\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\EntityFramework.dll
+D:\RajeshRoshan\21122015\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\EntityFramework.SqlServer.dll
+D:\RajeshRoshan\21122015\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\EntityFramework.xml
+D:\RajeshRoshan\21122015\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\EntityFramework.SqlServer.xml
+D:\RajeshRoshan\21122015\HMSApp\HospitalManagement\HMS.Entity\obj\Debug\HMS.Entity.csprojResolveAssemblyReference.cache
+D:\RajeshRoshan\21122015\HMSApp\HospitalManagement\HMS.Entity\obj\Debug\HMS.Entity.dll
+D:\RajeshRoshan\21122015\HMSApp\HospitalManagement\HMS.Entity\obj\Debug\HMS.Entity.pdb
+F:\New Projects\Rajesh Roshan\21122015\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\HMS.Entity.dll.config
+F:\New Projects\Rajesh Roshan\21122015\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\HMS.Entity.dll
+F:\New Projects\Rajesh Roshan\21122015\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\HMS.Entity.pdb
+F:\New Projects\Rajesh Roshan\21122015\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\EntityFramework.dll
+F:\New Projects\Rajesh Roshan\21122015\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\EntityFramework.SqlServer.dll
+F:\New Projects\Rajesh Roshan\21122015\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\EntityFramework.xml
+F:\New Projects\Rajesh Roshan\21122015\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\EntityFramework.SqlServer.xml
+F:\New Projects\Rajesh Roshan\21122015\HMSApp\HospitalManagement\HMS.Entity\obj\Debug\HMS.Entity.csprojResolveAssemblyReference.cache
+F:\New Projects\Rajesh Roshan\21122015\HMSApp\HospitalManagement\HMS.Entity\obj\Debug\HMS.Entity.dll
+F:\New Projects\Rajesh Roshan\21122015\HMSApp\HospitalManagement\HMS.Entity\obj\Debug\HMS.Entity.pdb
+D:\Projects\21112015\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\HMS.Entity.dll.config
+D:\Projects\21112015\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\HMS.Entity.dll
+D:\Projects\21112015\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\HMS.Entity.pdb
+D:\Projects\21112015\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\EntityFramework.dll
+D:\Projects\21112015\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\EntityFramework.SqlServer.dll
+D:\Projects\21112015\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\EntityFramework.xml
+D:\Projects\21112015\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\EntityFramework.SqlServer.xml
+D:\Projects\21112015\HMSApp\HospitalManagement\HMS.Entity\obj\Debug\HMS.Entity.csprojResolveAssemblyReference.cache
+D:\Projects\21112015\HMSApp\HospitalManagement\HMS.Entity\obj\Debug\HMS.Entity.dll
+D:\Projects\21112015\HMSApp\HospitalManagement\HMS.Entity\obj\Debug\HMS.Entity.pdb
+D:\RajeshRoshan\22122015\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\HMS.Entity.dll.config
+D:\RajeshRoshan\22122015\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\HMS.Entity.dll
+D:\RajeshRoshan\22122015\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\HMS.Entity.pdb
+D:\RajeshRoshan\22122015\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\EntityFramework.dll
+D:\RajeshRoshan\22122015\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\EntityFramework.SqlServer.dll
+D:\RajeshRoshan\22122015\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\EntityFramework.xml
+D:\RajeshRoshan\22122015\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\EntityFramework.SqlServer.xml
+D:\RajeshRoshan\22122015\HMSApp\HospitalManagement\HMS.Entity\obj\Debug\HMS.Entity.csprojResolveAssemblyReference.cache
+D:\RajeshRoshan\22122015\HMSApp\HospitalManagement\HMS.Entity\obj\Debug\HMS.Entity.dll
+D:\RajeshRoshan\22122015\HMSApp\HospitalManagement\HMS.Entity\obj\Debug\HMS.Entity.pdb
+D:\Projects\HospitalManagement\HMS.Entity\bin\Debug\HMS.Entity.dll.config
+D:\Projects\HospitalManagement\HMS.Entity\bin\Debug\HMS.Entity.dll
+D:\Projects\HospitalManagement\HMS.Entity\bin\Debug\HMS.Entity.pdb
+D:\Projects\HospitalManagement\HMS.Entity\bin\Debug\EntityFramework.dll
+D:\Projects\HospitalManagement\HMS.Entity\bin\Debug\EntityFramework.SqlServer.dll
+D:\Projects\HospitalManagement\HMS.Entity\bin\Debug\EntityFramework.xml
+D:\Projects\HospitalManagement\HMS.Entity\bin\Debug\EntityFramework.SqlServer.xml
+D:\Projects\HospitalManagement\HMS.Entity\obj\Debug\HMS.Entity.csprojResolveAssemblyReference.cache
+D:\Projects\HospitalManagement\HMS.Entity\obj\Debug\HMS.Entity.dll
+D:\Projects\HospitalManagement\HMS.Entity\obj\Debug\HMS.Entity.pdb
+G:\NewHMS\HospitalManagement\HMS.Entity\bin\Debug\HMS.Entity.dll.config
+G:\NewHMS\HospitalManagement\HMS.Entity\bin\Debug\HMS.Entity.dll
+G:\NewHMS\HospitalManagement\HMS.Entity\bin\Debug\HMS.Entity.pdb
+G:\NewHMS\HospitalManagement\HMS.Entity\bin\Debug\EntityFramework.dll
+G:\NewHMS\HospitalManagement\HMS.Entity\bin\Debug\EntityFramework.SqlServer.dll
+G:\NewHMS\HospitalManagement\HMS.Entity\bin\Debug\EntityFramework.xml
+G:\NewHMS\HospitalManagement\HMS.Entity\bin\Debug\EntityFramework.SqlServer.xml
+G:\NewHMS\HospitalManagement\HMS.Entity\obj\Debug\HMS.Entity.csprojResolveAssemblyReference.cache
+G:\NewHMS\HospitalManagement\HMS.Entity\obj\Debug\HMS.Entity.dll
+G:\NewHMS\HospitalManagement\HMS.Entity\obj\Debug\HMS.Entity.pdb

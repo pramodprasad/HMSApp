@@ -234,10 +234,10 @@
     <EntitySetMapping Name="LabPayments">
       <EntityTypeMapping TypeName="HMSDbModel.LabPayment">
         <MappingFragment StoreEntitySet="LabPayments">
+          <ScalarProperty Name="PatientVisit_ID" ColumnName="PatientVisit_ID" />
           <ScalarProperty Name="LabTest_ID" ColumnName="LabTest_ID" />
           <ScalarProperty Name="LabCategory_ID" ColumnName="LabCategory_ID" />
           <ScalarProperty Name="Doctor_ID" ColumnName="Doctor_ID" />
-          <ScalarProperty Name="Appointment_ID" ColumnName="Appointment_ID" />
           <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
           <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
           <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
@@ -267,7 +267,7 @@
     <EntitySetMapping Name="MedicalPaymentDetails">
       <EntityTypeMapping TypeName="HMSDbModel.MedicalPaymentDetail">
         <MappingFragment StoreEntitySet="MedicalPaymentDetails">
-          <ScalarProperty Name="Appointment_ID" ColumnName="Appointment_ID" />
+          <ScalarProperty Name="PatientVisit_ID" ColumnName="PatientVisit_ID" />
           <ScalarProperty Name="PaymentSection_ID" ColumnName="PaymentSection_ID" />
           <ScalarProperty Name="PaymentMode_ID" ColumnName="PaymentMode_ID" />
           <ScalarProperty Name="Doctor_ID" ColumnName="Doctor_ID" />
@@ -286,7 +286,7 @@
     <EntitySetMapping Name="PatientBills">
       <EntityTypeMapping TypeName="HMSDbModel.PatientBill">
         <MappingFragment StoreEntitySet="PatientBills">
-          <ScalarProperty Name="Appointment_ID" ColumnName="Appointment_ID" />
+          <ScalarProperty Name="PatientVisit_ID" ColumnName="PatientVisit_ID" />
           <ScalarProperty Name="PaymentSection_ID" ColumnName="PaymentSection_ID" />
           <ScalarProperty Name="PaymentMode_ID" ColumnName="PaymentMode_ID" />
           <ScalarProperty Name="EmployeeDetail_ID" ColumnName="EmployeeDetail_ID" />
@@ -416,7 +416,7 @@
     <EntitySetMapping Name="ServicePayments">
       <EntityTypeMapping TypeName="HMSDbModel.ServicePayment">
         <MappingFragment StoreEntitySet="ServicePayments">
-          <ScalarProperty Name="Appointment_ID" ColumnName="Appointment_ID" />
+          <ScalarProperty Name="PatientVisit_ID" ColumnName="PatientVisit_ID" />
           <ScalarProperty Name="ServiceSubCategory_ID" ColumnName="ServiceSubCategory_ID" />
           <ScalarProperty Name="Service_ID" ColumnName="Service_ID" />
           <ScalarProperty Name="Doctor_ID" ColumnName="Doctor_ID" />

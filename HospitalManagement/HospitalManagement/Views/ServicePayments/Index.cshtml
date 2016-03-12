@@ -1,105 +1,111 @@
 ﻿@model IEnumerable<HMS.Entity.ServicePayment>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Service Payment Details";
 }
 
-<h2>Index</h2>
+<h4>Service Payment Details</h4>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ServiceUnit)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ServiceCharge)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Discount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NetAmount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PaidAmount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DueAmount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedBy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UpdatedBy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UpdatedDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Doctor.OtherDetails)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Service.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ServiceSubCategory.Name)
-        </th>
-        <th></th>
-    </tr>
+<table id="tblServiceDetails" >
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("Patient ID")
+            </th>
+            <th>
+                @Html.DisplayName("Patient Name")
+            </th>
+            <th>
+                @Html.DisplayName("Service Name")
+            </th>
+            <th>
+                @Html.DisplayName("Sub Category")
+            </th>
+            <th>
+                @Html.DisplayName("Service Charge")
+            </th>
+            <th>
+                @Html.DisplayName("Service Unit")
+            </th>
+            <th>
+                @Html.DisplayName("Net Amount")
+            </th>
+            <th>
+                @Html.DisplayName("Discount")
+            </th>
+            <th>
+                @Html.DisplayName("Paid Amount")
+            </th>
+            <th>
+                @Html.DisplayName("Due Amount")
+            </th>
+            <th>
+                @Html.DisplayName("Doctor")
+            </th>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ServiceUnit)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ServiceCharge)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Discount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NetAmount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PaidAmount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DueAmount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UpdatedBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UpdatedDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Doctor.OtherDetails)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Service.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ServiceSubCategory.Name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+            <th>@Html.DisplayName("Actions")</th>
+        </tr>
+        </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PatientVisit.Appointment.PatientDetails_ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PatientVisit.Appointment.PatientDetail.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Service.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ServiceSubCategory.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ServiceCharge)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ServiceUnit)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NetAmount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Discount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaidAmount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DueAmount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Doctor.EmployeeDetail.FirstName) @Html.DisplayFor(modelItem => item.Doctor.EmployeeDetail.LastName)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @*@Html.ActionLink("Details", "Details", new { id = item.ID }) |*@
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID }) |
+                    @Html.ActionLink("Print", "Index", new { id = item.ID })
+                </td>
+            </tr>
+        }
+   </tbody>
 
 </table>
+
+<script>
+    $('#tblServiceDetails').dataTable({
+        //"bPaginate": false,
+        "bLengthChange": false,
+        //"bFilter": true,
+        //"bInfo": false,
+        //"bAutoWidth": false,
+        //"info":     false,
+        "aoColumnDefs": [
+            { 'bSortable': false, 'aTargets': [11] }
+        ]
+    });
+    </script>

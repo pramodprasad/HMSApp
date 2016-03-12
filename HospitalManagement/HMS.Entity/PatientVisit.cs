@@ -14,6 +14,14 @@ namespace HMS.Entity
     
     public partial class PatientVisit
     {
+        public PatientVisit()
+        {
+            this.LabPayments = new HashSet<LabPayment>();
+            this.MedicalPaymentDetails = new HashSet<MedicalPaymentDetail>();
+            this.PatientBills = new HashSet<PatientBill>();
+            this.ServicePayments = new HashSet<ServicePayment>();
+        }
+    
         public int ID { get; set; }
         public System.DateTime VisitedDate { get; set; }
         public int PatientStatus { get; set; }
@@ -26,6 +34,10 @@ namespace HMS.Entity
         public Nullable<int> PaymentMode_ID { get; set; }
     
         public virtual Appointment Appointment { get; set; }
+        public virtual ICollection<LabPayment> LabPayments { get; set; }
+        public virtual ICollection<MedicalPaymentDetail> MedicalPaymentDetails { get; set; }
+        public virtual ICollection<PatientBill> PatientBills { get; set; }
         public virtual PaymentMode PaymentMode { get; set; }
+        public virtual ICollection<ServicePayment> ServicePayments { get; set; }
     }
 }

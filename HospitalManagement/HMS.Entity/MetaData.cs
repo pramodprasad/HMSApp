@@ -348,7 +348,7 @@ namespace HMS.Entity
         [Required]       
         public Nullable<int> City_ID { get; set; }
         [Required]
-        [RegularExpression("^[0-9]{6}$", ErrorMessage = "Enter 6 digit pincode.")]
+        //[RegularExpression("^[0-9]{6}$", ErrorMessage = "Enter 6 digit pincode.")]
         public int Pincode { get; set; }
     }
 
@@ -445,5 +445,7 @@ namespace HMS.Entity
         public decimal PayAmount { get; set; }
         [Display(Name = "Created By")]
         public long CreatedBy { get; set; }
+        [Required(ErrorMessage = "Payment mode is required.")]
+        public int PaymentMode_ID { get; set; }
     }
 }

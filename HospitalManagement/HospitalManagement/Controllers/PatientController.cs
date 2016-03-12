@@ -61,6 +61,13 @@ namespace HospitalManagement.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(PatientViewModel patientDetail)
         {
+
+            var alreadyExists = db.PatientDetails.Where(p => p.FullName == patientDetail.PatientDetails.FullName && p.ContactNo == patientDetail.PatientDetails.ContactNo);
+            if (alreadyExists.Count() > 0)
+            {
+                ModelState.AddModelError("", "Patient with same name and contact no already exists in the system");
+            }
+
             if (ModelState.IsValid)
             {
                 try
@@ -87,7 +94,7 @@ namespace HospitalManagement.Controllers
                     db.SaveChanges();
                     patientDetail.Appointment.CreatedDate = DateTime.Now;
                     patientDetail.Appointment.CreatedBy = Convert.ToInt32(customerId);
-                    patientDetail.Appointment.BranchDetails_ID = Convert.ToInt32(branchId);
+                    patientDetail.Appointment.BranchDetails_ID = Convert.ToInt32(branchId);                    
                     patientDetail.PatientDetails.Appointments.Add(patientDetail.Appointment);
                     db.SaveChanges();
                     return RedirectToAction("Index", "Appointments");
@@ -176,7 +183,7 @@ namespace HospitalManagement.Controllers
             }
             ViewBag.SearchParameter = searchParameter;
             ViewBag.PatientType = new SelectList(db.PatientTypes, "ID", "Type");
-            return View(patients);
+            return View(patients.OrderByDescending(o => o.ID).ToList());
         }
 
         // GET: Patient/Edit/5

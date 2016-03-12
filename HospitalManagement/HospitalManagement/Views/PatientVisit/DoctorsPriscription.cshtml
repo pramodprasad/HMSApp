@@ -1,0 +1,136 @@
+﻿@model HMS.Entity.PatientVisit
+@{
+    ViewBag.Title = "Doctor Prescriptions";
+    this.Layout = null;
+}
+
+<div>
+    <div>
+        <div class="col-md-6">
+            <h4>Prescriptions</h4>
+        </div>
+        <div class="col-md-6 no-print" style=" text-align: right; padding-right: 50px;">
+            <button type="button" class="button-link no-print" id="btnPrint">Print</button>
+        </div>
+    </div>
+    <table width="840" height="1040" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td style="height: 50px;"><div align="right" class="style16">Tel. : - 0124- 2331133, 2329387</div>      <div align="right" class="style16">4281301, 02, 03, 04</div></td>
+        </tr>
+
+        <tr style="height: 160px !important;">
+            <td  align="center" class="style4">@Html.Partial("_ReportHeading", @Model.Appointment.Doctor.EmployeeDetail.BranchDetail)          </td>
+        </tr>
+        <tr style="height: 25px;">
+            <td><div align="center">OPD SLIP</div></td>
+        </tr>
+        <tr>
+            <td height="97">
+                <div align="center">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td align="left">Patient Id.</td>
+                            <td width="5" align="left">:</td>
+                            <td align="left">@Html.DisplayFor(model => model.Appointment_ID)</td>
+                            <td align="left">DATE</td>
+                            <td width="5" align="left">:</td>
+                            <td width="187" class="style8">@String.Format("{0:d}", @DateTime.Now.Date) </td>
+                        </tr>
+                        <tr>
+                            <td align="left">Patient Name</td>
+                            <td width="5" align="left">:</td>
+                            <td align="left">@Html.DisplayFor(model => model.Appointment.PatientDetail.FullName)</td>
+                            <td align="left">Age/ Sex</td>
+                            <td width="5" align="left">:</td>
+                            <td align="left">@Html.DisplayFor(model => model.Appointment.PatientDetail.Age)/@if (Model.Appointment.PatientDetail.Gender.Value == 1)
+                            { <text><span>Male</span></text>}
+                            else
+                            {<text><span>Female</span></text>}</td>
+                        </tr>
+                        <tr>
+                            <td align="left">Consultant</td>
+                            <td width="5" align="left">:</td>
+                            <td align="left">@Html.DisplayFor(model => model.Appointment.Doctor.EmployeeDetail.FirstName) @Html.DisplayFor(model => model.Appointment.Doctor.EmployeeDetail.LastName)</td>
+                            <td align="left">Address</td>
+                            <td width="5" align="left">:</td>
+                            <td align="left">@Html.DisplayFor(model => model.Appointment.PatientDetail.Address)</td>
+                        </tr>
+                        <tr>
+                            <td colspan="6" class="style12">
+                                Note : Consultation charges are valid for 3 days including day of consultation during routine
+                                OPD timing Emergency consultation will be charged extra.)
+                            </td>
+                        </tr>
+                        <tr>                          
+                            <td colspan="6" align="right">Weight : _______Height : ________</td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td height="540" align="left" valign="top">
+                <div align="left">
+                    <table width="241" height="540" border="1" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td class="style16">@Html.DisplayFor(model => model.Appointment.Doctor.Specialization.Name)</td>
+                        </tr>
+                        <tr>
+                            <td class ="style16">@Html.DisplayFor(model => model.Appointment.Doctor.Qualification.Name)</td>
+                        </tr>
+                        <tr>
+                            <td class="style16">Formerly At : </td>
+                        </tr>
+                        <tr>
+                            <td class="style16">Holy Family &amp; Batra Hospital</td>
+                        </tr>
+                        <tr>
+                            <td class="style16">Timing ( Morning ) :</td>
+                        </tr>
+                        <tr>
+                            <td class="style16">10:00 A.M. to 1 PM (Daily), 11 A.M to 1 PM (Sun.)</td>
+                        </tr>
+                        <tr>
+                            <td class="style16">Timing ( Evening ) :</td>
+                        </tr>
+                        <tr>
+                            <td class="style16">6:00 P.M to 8:00 P.M (except Saturday &amp;</td>
+                        </tr>
+                        <tr>
+                            <td class="style16">Visiting Consultant :</td>
+                        </tr>
+                        <tr>
+                            <td class="style16">Max &amp; Artemis Hospital Gurgaon</td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                        </tr>
+                    </table>
+                </div>
+                @*<div align="right"></div>*@
+            </td>
+        </tr>
+
+        @*<tr>
+            <td>&nbsp;</td>
+        </tr>*@
+    </table>
+</div>
+
+<script>
+    $('#btnPrint').click(function (event) {
+        var prtContent = document.getElementById("prescriptionBody");
+        var WinPrint = window.open('', '', 'left=0,top=0');
+        WinPrint.document.write('<html><head></head><body >');
+        WinPrint.document.write(prtContent.innerHTML);
+        WinPrint.document.write('</body></html>');
+        WinPrint.document.close();
+        WinPrint.focus();
+        WinPrint.print();
+        WinPrint.close();
+        return true;
+    });
+</script>

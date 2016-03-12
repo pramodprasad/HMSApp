@@ -682,6 +682,8 @@
     <Content Include="Views\PatientVisit\GetVisitedPatientDetails.cshtml" />
     <Content Include="Views\PatientVisit\OutPatientSlip.cshtml" />
     <Content Include="Views\Shared\_ReportHeading.cshtml" />
+    <Content Include="Views\PatientVisit\DoctorsPriscription.cshtml" />
+    <Content Include="Views\Account\MyProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -64,7 +64,8 @@
                     @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
                     @Html.ActionLink("Details", "Details", new { id = item.ID }) |
                     @Html.ActionLink("Slip", "OutPatientSlip", new { id = item.ID }, htmlAttributes: new { @class = "visitSlipDetails" }) |
-                    @Html.ActionLink("Prescription", "Delete", new { id = item.ID })
+                    @Html.ActionLink("Prescription", "DoctorsPriscription", new { id = item.ID }, htmlAttributes: new { @class = "doctorsPrescriptions" }) |
+                    @Html.ActionLink("Add Service", "AddService", "Transaction", new { id = item.Appointment.PatientDetail.ID }, htmlAttributes: new { @class = "serviceAddModal" })
                 </td>
             </tr>
         }
@@ -75,6 +76,16 @@
         <div class="modal-content" id="visitSlipContent" style="font-size: 14px; border-radius: 0px;">
             <img src="~/Images/closebox.png" data-dismiss="modal" aria-hidden="false" />
             <div class="modal-body" id="visitSlipBody" style="padding-top:0px;padding-bottom:0px;margin-top:0px; min-height:150px;margin-bottom:20px;">
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="doctorsPrescriptions" tabindex="-1" role="dialog" aria-labelledby="visitSliplable" aria-hidden="true">
+    <div class="modal-dialog" style="width:860px;">
+        <div class="modal-content" id="prescriptionContent" style="font-size: 14px; border-radius: 0px;">
+            <img src="~/Images/closebox.png" data-dismiss="modal" aria-hidden="false" />
+            <div class="modal-body" id="prescriptionBody" style="padding-top:0px;padding-bottom:0px;margin-top:0px; min-height:725px;margin-bottom:20px;">
 
             </div>
         </div>
@@ -125,6 +136,48 @@
                             $("form").data("validator", null);
                             $.validator.unobtrusive.parse($("form"));
                             bindVisitSlipForm();
+                        }
+                    }
+                });
+                return false;
+            });
+        }
+
+
+    });
+
+    $(document).ready(function () {
+        $(function () {
+            $('.doctorsPrescriptions').click(function () {
+                var url = $(this).attr('href');
+                $('#prescriptionBody').html('');
+                $('#prescriptionBody').load(url, function () {
+                    $('#doctorsPrescriptions').modal({
+                        keyboard: true
+                    }, 'show');
+                    bindPrescriptionsForm(this);
+                });
+                return false;
+            });
+        });
+
+        function bindPrescriptionsForm(dialog) {
+            $('form', dialog).submit(function () {
+                $.ajax({
+                    url: this.action,
+                    type: this.method,
+                    data: $(this).serialize(),
+                    success: function (result) {
+                        var value = $(result).find(".validation-summary-errors ul li").length;
+                        if (value == 0) {
+                            window.location.reload(true);
+                        }
+                        else {
+                            $('#prescriptionBody').html('');
+                            $('#prescriptionBody').html(result);
+                            $("form").data("validator", null);
+                            $.validator.unobtrusive.parse($("form"));
+                            bindPrescriptionsForm();
                         }
                     }
                 });

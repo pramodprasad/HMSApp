@@ -22,7 +22,7 @@ namespace HospitalManagement.Controllers
             var appointments = db.Appointments.Include(a => a.BranchDetail).Include(a => a.Doctor).Include(a => a.PatientDetail).Include(a => a.Specialization).Include(a => a.PatientType).Where(a => a.VisitStatus == 0 ).ToList();
             foreach (var item in appointments)
             {
-                if (DateTime.Now.Date == item.AppointmentDate.Date)
+                if (DateTime.Now.Year == item.AppointmentDate.Year && DateTime.Now.Month == item.AppointmentDate.Month && DateTime.Now.Day == item.AppointmentDate.Day)
                 {
                     appointmentList.Add(item);
                 }
@@ -69,7 +69,8 @@ namespace HospitalManagement.Controllers
             ViewBag.Doctor_ID = new SelectList(db.Doctors.Include("EmployeeDetail").ToList(), "ID", "EmployeeDetail.FirstName");
             ViewBag.Specialization_ID = new SelectList(db.Specializations, "ID", "Name");
             ViewBag.ShiftType = new SelectList(db.ShiftTypes, "ID", "Name");
-            ViewBag.PatientType = new SelectList(db.PatientTypes, "ID", "Type");
+            ViewBag.PatientType = new SelectList(db.PatientTypes, "ID", "Type");          
+                
             return View(appointment);
         }
 
@@ -98,7 +99,7 @@ namespace HospitalManagement.Controllers
             ViewBag.Doctor_ID = new SelectList(db.Doctors.Include("EmployeeDetail").ToList(), "ID", "EmployeeDetail.FirstName", appointment.Doctor_ID);
             ViewBag.Specialization_ID = new SelectList(db.Specializations, "ID", "Name", appointment.Specialization_ID);
             ViewBag.PatientType = new SelectList(db.PatientTypes, "ID", "Type", appointment.PatientType_ID);
-            ViewBag.ShiftType = new SelectList(db.ShiftTypes, "ID", "Name", appointment.ShiftType_ID);
+            ViewBag.ShiftType = new SelectList(db.ShiftTypes, "ID", "Name", appointment.ShiftType_ID);          
             return View(appointment);
         }
 

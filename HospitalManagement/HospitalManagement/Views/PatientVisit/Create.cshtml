@@ -106,6 +106,7 @@
         @Html.HiddenFor(m => m.Appointment.PatientDetails_ID)
         @Html.HiddenFor(m => m.Appointment.PatientDetail.FatherOrHusbandName)
         @Html.HiddenFor(m => m.Appointment.PatientDetail.Address)
+        @Html.HiddenFor(m => m.Appointment.PatientDetail.Gender)
         <div class="form-group">
             <div class="col-md-offset-4 col-md-6">
                 <input type="submit" value="Create" class="btn btn-default" />
@@ -135,10 +136,10 @@
 
     function updateValues() {
         var regCharge = $('#PatientVisit_RegistrationAmount').val();
-        var discount = $('#PatientVisit.DiscountAmount').val();
+        var discount = $('#PatientVisit_DiscountAmount').val();
         //var paidAmt = $('#PaidAmount').val();
         // Manipulate all fields on the basis of above values
         var netAmt = (parseFloat(regCharge) - parseFloat(discount));
-        $('#PatientVisit.PayAmount').val(netAmt);
+        $('#PatientVisit_PayAmount').val(netAmt);
     }
 </script>

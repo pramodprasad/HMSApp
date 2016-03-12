@@ -7,7 +7,10 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Appointment.PatientDetail.FullName)
+                @Html.DisplayName("Appointment ID")
+            </th>
+            <th>
+                @Html.DisplayName("Name")
             </th>
             <th>
                 @Html.DisplayName("Doctor")
@@ -26,6 +29,9 @@
         {
             <tr>
                 <td>
+                    @Html.DisplayFor(modelItem => item.Appointment.ID)
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.Appointment.PatientDetail.FullName)
                 </td>
                 <td>
@@ -38,9 +44,9 @@
                     @Html.DisplayFor(modelItem => item.Appointment.ShiftType.Name)
                 </td>
                 <td>
-                    @Html.ActionLink("Add Service", "Create", "ServicePayments", new { id = item.Appointment.ID }, htmlAttributes: new { @class = "servicePayments" })|
-                    @Html.ActionLink("Add Lab Test", "Create", "LabPayments", new { id = item.Appointment.ID }, htmlAttributes: new { @class = "servicePayments" }) |
-                    @Html.ActionLink("Add Consultation", "Create", "ConsultationPayments", new { id = item.Appointment.ID }, htmlAttributes: new { @class = "servicePayments" })
+                    @Html.ActionLink("Add Service", "Create", "ServicePayments", new { id = item.ID }, htmlAttributes: new { @class = "servicePayments" })|
+                    @Html.ActionLink("Add Lab Test", "Create", "LabPayments", new { id = item.ID }, htmlAttributes: new { @class = "servicePayments" }) |
+                    @Html.ActionLink("Add Consultation", "Create", "ConsultationPayments", new { id = item.ID }, htmlAttributes: new { @class = "servicePayments" })
                 </td>
             </tr>
         }

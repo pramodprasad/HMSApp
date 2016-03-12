@@ -33,7 +33,7 @@ namespace HMS.Entity
         public Nullable<int> City_ID { get; set; }
         public int MarritalStatus { get; set; }
         public System.DateTime DOB { get; set; }
-        public int Gender { get; set; }
+        public Nullable<int> Gender { get; set; }
     
         public virtual ICollection<Appointment> Appointments { get; set; }
         public virtual City City { get; set; }

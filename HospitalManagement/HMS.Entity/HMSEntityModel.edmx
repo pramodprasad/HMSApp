@@ -115,7 +115,7 @@
           <Property Name="CreatedOn" Type="datetime" Nullable="false" />
           <Property Name="CreatedBy" Type="bigint" Nullable="false" />
           <Property Name="City_ID" Type="int" />
-          <Property Name="Pincode" Type="int" Nullable="false" />
+          <Property Name="Pincode" Type="int" />
         </EntityType>
         <EntityType Name="Cities">
           <Key>
@@ -245,10 +245,10 @@
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
           <Property Name="UpdatedBy" Type="int" Nullable="false" />
           <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
-          <Property Name="Appointment_ID" Type="int" />
           <Property Name="Doctor_ID" Type="bigint" />
           <Property Name="LabCategory_ID" Type="int" />
           <Property Name="LabTest_ID" Type="int" />
+          <Property Name="PatientVisit_ID" Type="int" />
         </EntityType>
         <EntityType Name="LabTests">
           <Key>
@@ -277,7 +277,7 @@
           <Property Name="Doctor_ID" Type="bigint" />
           <Property Name="PaymentMode_ID" Type="int" />
           <Property Name="PaymentSection_ID" Type="int" />
-          <Property Name="Appointment_ID" Type="int" />
+          <Property Name="PatientVisit_ID" Type="int" />
         </EntityType>
         <EntityType Name="PatientBills">
           <Key>
@@ -302,7 +302,7 @@
           <Property Name="EmployeeDetail_ID" Type="bigint" />
           <Property Name="PaymentMode_ID" Type="int" />
           <Property Name="PaymentSection_ID" Type="int" />
-          <Property Name="Appointment_ID" Type="int" />
+          <Property Name="PatientVisit_ID" Type="int" />
         </EntityType>
         <EntityType Name="PatientDetails">
           <Key>
@@ -321,7 +321,7 @@
           <Property Name="City_ID" Type="int" />
           <Property Name="MarritalStatus" Type="int" Nullable="false" />
           <Property Name="DOB" Type="datetime" Nullable="false" />
-          <Property Name="Gender" Type="int" Nullable="false" />
+          <Property Name="Gender" Type="int" />
         </EntityType>
         <EntityType Name="PatientTypes">
           <Key>
@@ -418,7 +418,7 @@
           <Property Name="Doctor_ID" Type="bigint" />
           <Property Name="Service_ID" Type="bigint" />
           <Property Name="ServiceSubCategory_ID" Type="bigint" />
-          <Property Name="Appointment_ID" Type="int" />
+          <Property Name="PatientVisit_ID" Type="int" />
         </EntityType>
         <EntityType Name="Services">
           <Key>
@@ -901,18 +901,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_dbo_LabPayments_dbo_Appointments_Appointment_ID">
-          <End Role="Appointments" Type="Self.Appointments" Multiplicity="0..1" />
-          <End Role="LabPayments" Type="Self.LabPayments" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Appointments">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="LabPayments">
-              <PropertyRef Name="Appointment_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_dbo_LabPayments_dbo_Doctors_Doctor_ID">
           <End Role="Doctors" Type="Self.Doctors" Multiplicity="0..1" />
           <End Role="LabPayments" Type="Self.LabPayments" Multiplicity="*" />
@@ -949,6 +937,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_dbo_LabPayments_dbo_PatientVisits_PatientVisit_ID">
+          <End Role="PatientVisits" Type="Self.PatientVisits" Multiplicity="0..1" />
+          <End Role="LabPayments" Type="Self.LabPayments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PatientVisits">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="LabPayments">
+              <PropertyRef Name="PatientVisit_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_dbo_LabTests_dbo_LabCategories_LabCategory_ID">
           <End Role="LabCategories" Type="Self.LabCategories" Multiplicity="0..1" />
           <End Role="LabTests" Type="Self.LabTests" Multiplicity="*" />
@@ -961,18 +961,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_dbo_MedicalPaymentDetails_dbo_Appointments_Appointment_ID">
-          <End Role="Appointments" Type="Self.Appointments" Multiplicity="0..1" />
-          <End Role="MedicalPaymentDetails" Type="Self.MedicalPaymentDetails" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Appointments">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="MedicalPaymentDetails">
-              <PropertyRef Name="Appointment_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_dbo_MedicalPaymentDetails_dbo_Doctors_Doctor_ID">
           <End Role="Doctors" Type="Self.Doctors" Multiplicity="0..1" />
           <End Role="MedicalPaymentDetails" Type="Self.MedicalPaymentDetails" Multiplicity="*" />
@@ -982,6 +970,18 @@
             </Principal>
             <Dependent Role="MedicalPaymentDetails">
               <PropertyRef Name="Doctor_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_MedicalPaymentDetails_dbo_PatientVisits_PatientVisit_ID">
+          <End Role="PatientVisits" Type="Self.PatientVisits" Multiplicity="0..1" />
+          <End Role="MedicalPaymentDetails" Type="Self.MedicalPaymentDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PatientVisits">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MedicalPaymentDetails">
+              <PropertyRef Name="PatientVisit_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1009,18 +1009,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_dbo_PatientBills_dbo_Appointments_Appointment_ID">
-          <End Role="Appointments" Type="Self.Appointments" Multiplicity="0..1" />
-          <End Role="PatientBills" Type="Self.PatientBills" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Appointments">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="PatientBills">
-              <PropertyRef Name="Appointment_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_dbo_PatientBills_dbo_BranchDetails_BranchDetail_ID">
           <End Role="BranchDetails" Type="Self.BranchDetails" Multiplicity="0..1" />
           <End Role="PatientBills" Type="Self.PatientBills" Multiplicity="*" />
@@ -1042,6 +1030,18 @@
             </Principal>
             <Dependent Role="PatientBills">
               <PropertyRef Name="EmployeeDetail_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_PatientBills_dbo_PatientVisits_PatientVisit_ID">
+          <End Role="PatientVisits" Type="Self.PatientVisits" Multiplicity="0..1" />
+          <End Role="PatientBills" Type="Self.PatientBills" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PatientVisits">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PatientBills">
+              <PropertyRef Name="PatientVisit_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1177,18 +1177,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_dbo_ServicePayments_dbo_Appointments_Appointment_ID">
-          <End Role="Appointments" Type="Self.Appointments" Multiplicity="0..1" />
-          <End Role="ServicePayments" Type="Self.ServicePayments" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Appointments">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="ServicePayments">
-              <PropertyRef Name="Appointment_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_dbo_ServicePayments_dbo_Doctors_Doctor_ID">
           <End Role="Doctors" Type="Self.Doctors" Multiplicity="0..1" />
           <End Role="ServicePayments" Type="Self.ServicePayments" Multiplicity="*" />
@@ -1198,6 +1186,18 @@
             </Principal>
             <Dependent Role="ServicePayments">
               <PropertyRef Name="Doctor_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ServicePayments_dbo_PatientVisits_PatientVisit_ID">
+          <End Role="PatientVisits" Type="Self.PatientVisits" Multiplicity="0..1" />
+          <End Role="ServicePayments" Type="Self.ServicePayments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PatientVisits">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ServicePayments">
+              <PropertyRef Name="PatientVisit_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1541,10 +1541,6 @@
             <End Role="Titles" EntitySet="Titles" />
             <End Role="EmployeeDetails" EntitySet="EmployeeDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK_dbo_LabPayments_dbo_Appointments_Appointment_ID" Association="Self.FK_dbo_LabPayments_dbo_Appointments_Appointment_ID">
-            <End Role="Appointments" EntitySet="Appointments" />
-            <End Role="LabPayments" EntitySet="LabPayments" />
-          </AssociationSet>
           <AssociationSet Name="FK_dbo_LabPayments_dbo_Doctors_Doctor_ID" Association="Self.FK_dbo_LabPayments_dbo_Doctors_Doctor_ID">
             <End Role="Doctors" EntitySet="Doctors" />
             <End Role="LabPayments" EntitySet="LabPayments" />
@@ -1557,16 +1553,20 @@
             <End Role="LabTests" EntitySet="LabTests" />
             <End Role="LabPayments" EntitySet="LabPayments" />
           </AssociationSet>
+          <AssociationSet Name="FK_dbo_LabPayments_dbo_PatientVisits_PatientVisit_ID" Association="Self.FK_dbo_LabPayments_dbo_PatientVisits_PatientVisit_ID">
+            <End Role="PatientVisits" EntitySet="PatientVisits" />
+            <End Role="LabPayments" EntitySet="LabPayments" />
+          </AssociationSet>
           <AssociationSet Name="FK_dbo_LabTests_dbo_LabCategories_LabCategory_ID" Association="Self.FK_dbo_LabTests_dbo_LabCategories_LabCategory_ID">
             <End Role="LabCategories" EntitySet="LabCategories" />
             <End Role="LabTests" EntitySet="LabTests" />
           </AssociationSet>
-          <AssociationSet Name="FK_dbo_MedicalPaymentDetails_dbo_Appointments_Appointment_ID" Association="Self.FK_dbo_MedicalPaymentDetails_dbo_Appointments_Appointment_ID">
-            <End Role="Appointments" EntitySet="Appointments" />
-            <End Role="MedicalPaymentDetails" EntitySet="MedicalPaymentDetails" />
-          </AssociationSet>
           <AssociationSet Name="FK_dbo_MedicalPaymentDetails_dbo_Doctors_Doctor_ID" Association="Self.FK_dbo_MedicalPaymentDetails_dbo_Doctors_Doctor_ID">
             <End Role="Doctors" EntitySet="Doctors" />
+            <End Role="MedicalPaymentDetails" EntitySet="MedicalPaymentDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_MedicalPaymentDetails_dbo_PatientVisits_PatientVisit_ID" Association="Self.FK_dbo_MedicalPaymentDetails_dbo_PatientVisits_PatientVisit_ID">
+            <End Role="PatientVisits" EntitySet="PatientVisits" />
             <End Role="MedicalPaymentDetails" EntitySet="MedicalPaymentDetails" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_MedicalPaymentDetails_dbo_PaymentModes_PaymentMode_ID" Association="Self.FK_dbo_MedicalPaymentDetails_dbo_PaymentModes_PaymentMode_ID">
@@ -1577,16 +1577,16 @@
             <End Role="PaymentSections" EntitySet="PaymentSections" />
             <End Role="MedicalPaymentDetails" EntitySet="MedicalPaymentDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK_dbo_PatientBills_dbo_Appointments_Appointment_ID" Association="Self.FK_dbo_PatientBills_dbo_Appointments_Appointment_ID">
-            <End Role="Appointments" EntitySet="Appointments" />
-            <End Role="PatientBills" EntitySet="PatientBills" />
-          </AssociationSet>
           <AssociationSet Name="FK_dbo_PatientBills_dbo_BranchDetails_BranchDetail_ID" Association="Self.FK_dbo_PatientBills_dbo_BranchDetails_BranchDetail_ID">
             <End Role="BranchDetails" EntitySet="BranchDetails" />
             <End Role="PatientBills" EntitySet="PatientBills" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_PatientBills_dbo_EmployeeDetails_EmployeeDetail_ID" Association="Self.FK_dbo_PatientBills_dbo_EmployeeDetails_EmployeeDetail_ID">
             <End Role="EmployeeDetails" EntitySet="EmployeeDetails" />
+            <End Role="PatientBills" EntitySet="PatientBills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_PatientBills_dbo_PatientVisits_PatientVisit_ID" Association="Self.FK_dbo_PatientBills_dbo_PatientVisits_PatientVisit_ID">
+            <End Role="PatientVisits" EntitySet="PatientVisits" />
             <End Role="PatientBills" EntitySet="PatientBills" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_PatientBills_dbo_PaymentModes_PaymentMode_ID" Association="Self.FK_dbo_PatientBills_dbo_PaymentModes_PaymentMode_ID">
@@ -1633,12 +1633,12 @@
             <End Role="Wards" EntitySet="Wards" />
             <End Role="RoomDetails" EntitySet="RoomDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK_dbo_ServicePayments_dbo_Appointments_Appointment_ID" Association="Self.FK_dbo_ServicePayments_dbo_Appointments_Appointment_ID">
-            <End Role="Appointments" EntitySet="Appointments" />
-            <End Role="ServicePayments" EntitySet="ServicePayments" />
-          </AssociationSet>
           <AssociationSet Name="FK_dbo_ServicePayments_dbo_Doctors_Doctor_ID" Association="Self.FK_dbo_ServicePayments_dbo_Doctors_Doctor_ID">
             <End Role="Doctors" EntitySet="Doctors" />
+            <End Role="ServicePayments" EntitySet="ServicePayments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ServicePayments_dbo_PatientVisits_PatientVisit_ID" Association="Self.FK_dbo_ServicePayments_dbo_PatientVisits_PatientVisit_ID">
+            <End Role="PatientVisits" EntitySet="PatientVisits" />
             <End Role="ServicePayments" EntitySet="ServicePayments" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_ServicePayments_dbo_Services_Service_ID" Association="Self.FK_dbo_ServicePayments_dbo_Services_Service_ID">
@@ -1781,18 +1781,6 @@
             <End Role="Appointment" EntitySet="Appointments" />
             <End Role="DoctorVisitPaymentDetail" EntitySet="DoctorVisitPaymentDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK_dbo_LabPayments_dbo_Appointments_Appointment_ID" Association="HMSDbModel.FK_dbo_LabPayments_dbo_Appointments_Appointment_ID">
-            <End Role="Appointment" EntitySet="Appointments" />
-            <End Role="LabPayment" EntitySet="LabPayments" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_MedicalPaymentDetails_dbo_Appointments_Appointment_ID" Association="HMSDbModel.FK_dbo_MedicalPaymentDetails_dbo_Appointments_Appointment_ID">
-            <End Role="Appointment" EntitySet="Appointments" />
-            <End Role="MedicalPaymentDetail" EntitySet="MedicalPaymentDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_PatientBills_dbo_Appointments_Appointment_ID" Association="HMSDbModel.FK_dbo_PatientBills_dbo_Appointments_Appointment_ID">
-            <End Role="Appointment" EntitySet="Appointments" />
-            <End Role="PatientBill" EntitySet="PatientBills" />
-          </AssociationSet>
           <AssociationSet Name="FK_dbo_PatientVisits_dbo_Appointments_Appointment_ID" Association="HMSDbModel.FK_dbo_PatientVisits_dbo_Appointments_Appointment_ID">
             <End Role="Appointment" EntitySet="Appointments" />
             <End Role="PatientVisit" EntitySet="PatientVisits" />
@@ -1800,10 +1788,6 @@
           <AssociationSet Name="FK_dbo_RegistrationPaymentDetails_dbo_Appointments_Appointment_ID" Association="HMSDbModel.FK_dbo_RegistrationPaymentDetails_dbo_Appointments_Appointment_ID">
             <End Role="Appointment" EntitySet="Appointments" />
             <End Role="RegistrationPaymentDetail" EntitySet="RegistrationPaymentDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_ServicePayments_dbo_Appointments_Appointment_ID" Association="HMSDbModel.FK_dbo_ServicePayments_dbo_Appointments_Appointment_ID">
-            <End Role="Appointment" EntitySet="Appointments" />
-            <End Role="ServicePayment" EntitySet="ServicePayments" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_WardOrRoomChargeDetails_dbo_Appointments_Appointment_ID" Association="HMSDbModel.FK_dbo_WardOrRoomChargeDetails_dbo_Appointments_Appointment_ID">
             <End Role="Appointment" EntitySet="Appointments" />
@@ -1953,6 +1937,14 @@
             <End Role="LabTest" EntitySet="LabTests" />
             <End Role="LabPayment" EntitySet="LabPayments" />
           </AssociationSet>
+          <AssociationSet Name="FK_dbo_LabPayments_dbo_PatientVisits_PatientVisit_ID" Association="HMSDbModel.FK_dbo_LabPayments_dbo_PatientVisits_PatientVisit_ID">
+            <End Role="PatientVisit" EntitySet="PatientVisits" />
+            <End Role="LabPayment" EntitySet="LabPayments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_MedicalPaymentDetails_dbo_PatientVisits_PatientVisit_ID" Association="HMSDbModel.FK_dbo_MedicalPaymentDetails_dbo_PatientVisits_PatientVisit_ID">
+            <End Role="PatientVisit" EntitySet="PatientVisits" />
+            <End Role="MedicalPaymentDetail" EntitySet="MedicalPaymentDetails" />
+          </AssociationSet>
           <AssociationSet Name="FK_dbo_MedicalPaymentDetails_dbo_PaymentModes_PaymentMode_ID" Association="HMSDbModel.FK_dbo_MedicalPaymentDetails_dbo_PaymentModes_PaymentMode_ID">
             <End Role="PaymentMode" EntitySet="PaymentModes" />
             <End Role="MedicalPaymentDetail" EntitySet="MedicalPaymentDetails" />
@@ -1960,6 +1952,10 @@
           <AssociationSet Name="FK_dbo_MedicalPaymentDetails_dbo_PaymentSections_PaymentSection_ID" Association="HMSDbModel.FK_dbo_MedicalPaymentDetails_dbo_PaymentSections_PaymentSection_ID">
             <End Role="PaymentSection" EntitySet="PaymentSections" />
             <End Role="MedicalPaymentDetail" EntitySet="MedicalPaymentDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_PatientBills_dbo_PatientVisits_PatientVisit_ID" Association="HMSDbModel.FK_dbo_PatientBills_dbo_PatientVisits_PatientVisit_ID">
+            <End Role="PatientVisit" EntitySet="PatientVisits" />
+            <End Role="PatientBill" EntitySet="PatientBills" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_PatientBills_dbo_PaymentModes_PaymentMode_ID" Association="HMSDbModel.FK_dbo_PatientBills_dbo_PaymentModes_PaymentMode_ID">
             <End Role="PaymentMode" EntitySet="PaymentModes" />
@@ -1972,6 +1968,10 @@
           <AssociationSet Name="FK_dbo_PatientVisits_dbo_PaymentModes_PaymentMode_ID" Association="HMSDbModel.FK_dbo_PatientVisits_dbo_PaymentModes_PaymentMode_ID">
             <End Role="PaymentMode" EntitySet="PaymentModes" />
             <End Role="PatientVisit" EntitySet="PatientVisits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ServicePayments_dbo_PatientVisits_PatientVisit_ID" Association="HMSDbModel.FK_dbo_ServicePayments_dbo_PatientVisits_PatientVisit_ID">
+            <End Role="PatientVisit" EntitySet="PatientVisits" />
+            <End Role="ServicePayment" EntitySet="ServicePayments" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_RegistrationPaymentDetails_dbo_PaymentModes_PaymentMode_ID" Association="HMSDbModel.FK_dbo_RegistrationPaymentDetails_dbo_PaymentModes_PaymentMode_ID">
             <End Role="PaymentMode" EntitySet="PaymentModes" />
@@ -2057,12 +2057,8 @@
           <NavigationProperty Name="Specialization" Relationship="HMSDbModel.FK_dbo_Appointments_dbo_Specializations_Specialization_ID" FromRole="Appointment" ToRole="Specialization" />
           <NavigationProperty Name="BedAllotments" Relationship="HMSDbModel.FK_dbo_BedAllotments_dbo_Appointments_Appointment_ID" FromRole="Appointment" ToRole="BedAllotment" />
           <NavigationProperty Name="DoctorVisitPaymentDetails" Relationship="HMSDbModel.FK_dbo_DoctorVisitPaymentDetails_dbo_Appointments_Appointment_ID" FromRole="Appointment" ToRole="DoctorVisitPaymentDetail" />
-          <NavigationProperty Name="LabPayments" Relationship="HMSDbModel.FK_dbo_LabPayments_dbo_Appointments_Appointment_ID" FromRole="Appointment" ToRole="LabPayment" />
-          <NavigationProperty Name="MedicalPaymentDetails" Relationship="HMSDbModel.FK_dbo_MedicalPaymentDetails_dbo_Appointments_Appointment_ID" FromRole="Appointment" ToRole="MedicalPaymentDetail" />
-          <NavigationProperty Name="PatientBills" Relationship="HMSDbModel.FK_dbo_PatientBills_dbo_Appointments_Appointment_ID" FromRole="Appointment" ToRole="PatientBill" />
           <NavigationProperty Name="PatientVisits" Relationship="HMSDbModel.FK_dbo_PatientVisits_dbo_Appointments_Appointment_ID" FromRole="Appointment" ToRole="PatientVisit" />
           <NavigationProperty Name="RegistrationPaymentDetails" Relationship="HMSDbModel.FK_dbo_RegistrationPaymentDetails_dbo_Appointments_Appointment_ID" FromRole="Appointment" ToRole="RegistrationPaymentDetail" />
-          <NavigationProperty Name="ServicePayments" Relationship="HMSDbModel.FK_dbo_ServicePayments_dbo_Appointments_Appointment_ID" FromRole="Appointment" ToRole="ServicePayment" />
           <NavigationProperty Name="WardOrRoomChargeDetails" Relationship="HMSDbModel.FK_dbo_WardOrRoomChargeDetails_dbo_Appointments_Appointment_ID" FromRole="Appointment" ToRole="WardOrRoomChargeDetail" />
         </EntityType>
         <EntityType Name="AspNetRole">
@@ -2147,7 +2143,7 @@
           <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CreatedBy" Type="Int64" Nullable="false" />
           <Property Name="City_ID" Type="Int32" />
-          <Property Name="Pincode" Type="Int32" Nullable="false" />
+          <Property Name="Pincode" Type="Int32" />
           <NavigationProperty Name="Appointments" Relationship="HMSDbModel.FK_dbo_Appointments_dbo_BranchDetails_BranchDetails_ID" FromRole="BranchDetail" ToRole="Appointment" />
           <NavigationProperty Name="City" Relationship="HMSDbModel.FK_dbo_BranchDetails_dbo_Cities_City_ID" FromRole="BranchDetail" ToRole="City" />
           <NavigationProperty Name="EmployeeDetails" Relationship="HMSDbModel.FK_dbo_EmployeeDetails_dbo_BranchDetails_BranchDetail_ID" FromRole="BranchDetail" ToRole="EmployeeDetail" />
@@ -2319,14 +2315,14 @@
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="UpdatedBy" Type="Int32" Nullable="false" />
           <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Appointment_ID" Type="Int32" />
           <Property Name="Doctor_ID" Type="Int64" />
           <Property Name="LabCategory_ID" Type="Int32" />
           <Property Name="LabTest_ID" Type="Int32" />
-          <NavigationProperty Name="Appointment" Relationship="HMSDbModel.FK_dbo_LabPayments_dbo_Appointments_Appointment_ID" FromRole="LabPayment" ToRole="Appointment" />
+          <Property Name="PatientVisit_ID" Type="Int32" />
           <NavigationProperty Name="Doctor" Relationship="HMSDbModel.FK_dbo_LabPayments_dbo_Doctors_Doctor_ID" FromRole="LabPayment" ToRole="Doctor" />
           <NavigationProperty Name="LabCategory" Relationship="HMSDbModel.FK_dbo_LabPayments_dbo_LabCategories_LabCategory_ID" FromRole="LabPayment" ToRole="LabCategory" />
           <NavigationProperty Name="LabTest" Relationship="HMSDbModel.FK_dbo_LabPayments_dbo_LabTests_LabTest_ID" FromRole="LabPayment" ToRole="LabTest" />
+          <NavigationProperty Name="PatientVisit" Relationship="HMSDbModel.FK_dbo_LabPayments_dbo_PatientVisits_PatientVisit_ID" FromRole="LabPayment" ToRole="PatientVisit" />
         </EntityType>
         <EntityType Name="LabTest">
           <Key>
@@ -2357,9 +2353,9 @@
           <Property Name="Doctor_ID" Type="Int64" />
           <Property Name="PaymentMode_ID" Type="Int32" />
           <Property Name="PaymentSection_ID" Type="Int32" />
-          <Property Name="Appointment_ID" Type="Int32" />
-          <NavigationProperty Name="Appointment" Relationship="HMSDbModel.FK_dbo_MedicalPaymentDetails_dbo_Appointments_Appointment_ID" FromRole="MedicalPaymentDetail" ToRole="Appointment" />
+          <Property Name="PatientVisit_ID" Type="Int32" />
           <NavigationProperty Name="Doctor" Relationship="HMSDbModel.FK_dbo_MedicalPaymentDetails_dbo_Doctors_Doctor_ID" FromRole="MedicalPaymentDetail" ToRole="Doctor" />
+          <NavigationProperty Name="PatientVisit" Relationship="HMSDbModel.FK_dbo_MedicalPaymentDetails_dbo_PatientVisits_PatientVisit_ID" FromRole="MedicalPaymentDetail" ToRole="PatientVisit" />
           <NavigationProperty Name="PaymentMode" Relationship="HMSDbModel.FK_dbo_MedicalPaymentDetails_dbo_PaymentModes_PaymentMode_ID" FromRole="MedicalPaymentDetail" ToRole="PaymentMode" />
           <NavigationProperty Name="PaymentSection" Relationship="HMSDbModel.FK_dbo_MedicalPaymentDetails_dbo_PaymentSections_PaymentSection_ID" FromRole="MedicalPaymentDetail" ToRole="PaymentSection" />
         </EntityType>
@@ -2386,10 +2382,10 @@
           <Property Name="EmployeeDetail_ID" Type="Int64" />
           <Property Name="PaymentMode_ID" Type="Int32" />
           <Property Name="PaymentSection_ID" Type="Int32" />
-          <Property Name="Appointment_ID" Type="Int32" />
-          <NavigationProperty Name="Appointment" Relationship="HMSDbModel.FK_dbo_PatientBills_dbo_Appointments_Appointment_ID" FromRole="PatientBill" ToRole="Appointment" />
+          <Property Name="PatientVisit_ID" Type="Int32" />
           <NavigationProperty Name="BranchDetail" Relationship="HMSDbModel.FK_dbo_PatientBills_dbo_BranchDetails_BranchDetail_ID" FromRole="PatientBill" ToRole="BranchDetail" />
           <NavigationProperty Name="EmployeeDetail" Relationship="HMSDbModel.FK_dbo_PatientBills_dbo_EmployeeDetails_EmployeeDetail_ID" FromRole="PatientBill" ToRole="EmployeeDetail" />
+          <NavigationProperty Name="PatientVisit" Relationship="HMSDbModel.FK_dbo_PatientBills_dbo_PatientVisits_PatientVisit_ID" FromRole="PatientBill" ToRole="PatientVisit" />
           <NavigationProperty Name="PaymentMode" Relationship="HMSDbModel.FK_dbo_PatientBills_dbo_PaymentModes_PaymentMode_ID" FromRole="PatientBill" ToRole="PaymentMode" />
           <NavigationProperty Name="PaymentSection" Relationship="HMSDbModel.FK_dbo_PatientBills_dbo_PaymentSections_PaymentSection_ID" FromRole="PatientBill" ToRole="PaymentSection" />
         </EntityType>
@@ -2410,7 +2406,7 @@
           <Property Name="City_ID" Type="Int32" />
           <Property Name="MarritalStatus" Type="Int32" Nullable="false" />
           <Property Name="DOB" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Gender" Type="Int32" Nullable="false" />
+          <Property Name="Gender" Type="Int32" />
           <NavigationProperty Name="Appointments" Relationship="HMSDbModel.FK_dbo_Appointments_dbo_PatientDetails_PatientDetails_ID" FromRole="PatientDetail" ToRole="Appointment" />
           <NavigationProperty Name="City" Relationship="HMSDbModel.FK_dbo_PatientDetails_dbo_Cities_City_ID" FromRole="PatientDetail" ToRole="City" />
           <NavigationProperty Name="DoctorBillDetails" Relationship="HMSDbModel.FK_dbo_DoctorBillDetails_dbo_PatientDetails_PatientDetails_ID" FromRole="PatientDetail" ToRole="DoctorBillDetail" />
@@ -2440,7 +2436,11 @@
           <Property Name="Appointment_ID" Type="Int32" />
           <Property Name="PaymentMode_ID" Type="Int32" />
           <NavigationProperty Name="Appointment" Relationship="HMSDbModel.FK_dbo_PatientVisits_dbo_Appointments_Appointment_ID" FromRole="PatientVisit" ToRole="Appointment" />
+          <NavigationProperty Name="LabPayments" Relationship="HMSDbModel.FK_dbo_LabPayments_dbo_PatientVisits_PatientVisit_ID" FromRole="PatientVisit" ToRole="LabPayment" />
+          <NavigationProperty Name="MedicalPaymentDetails" Relationship="HMSDbModel.FK_dbo_MedicalPaymentDetails_dbo_PatientVisits_PatientVisit_ID" FromRole="PatientVisit" ToRole="MedicalPaymentDetail" />
+          <NavigationProperty Name="PatientBills" Relationship="HMSDbModel.FK_dbo_PatientBills_dbo_PatientVisits_PatientVisit_ID" FromRole="PatientVisit" ToRole="PatientBill" />
           <NavigationProperty Name="PaymentMode" Relationship="HMSDbModel.FK_dbo_PatientVisits_dbo_PaymentModes_PaymentMode_ID" FromRole="PatientVisit" ToRole="PaymentMode" />
+          <NavigationProperty Name="ServicePayments" Relationship="HMSDbModel.FK_dbo_ServicePayments_dbo_PatientVisits_PatientVisit_ID" FromRole="PatientVisit" ToRole="ServicePayment" />
         </EntityType>
         <EntityType Name="PaymentMode">
           <Key>
@@ -2533,9 +2533,9 @@
           <Property Name="Doctor_ID" Type="Int64" />
           <Property Name="Service_ID" Type="Int64" />
           <Property Name="ServiceSubCategory_ID" Type="Int64" />
-          <Property Name="Appointment_ID" Type="Int32" />
-          <NavigationProperty Name="Appointment" Relationship="HMSDbModel.FK_dbo_ServicePayments_dbo_Appointments_Appointment_ID" FromRole="ServicePayment" ToRole="Appointment" />
+          <Property Name="PatientVisit_ID" Type="Int32" />
           <NavigationProperty Name="Doctor" Relationship="HMSDbModel.FK_dbo_ServicePayments_dbo_Doctors_Doctor_ID" FromRole="ServicePayment" ToRole="Doctor" />
+          <NavigationProperty Name="PatientVisit" Relationship="HMSDbModel.FK_dbo_ServicePayments_dbo_PatientVisits_PatientVisit_ID" FromRole="ServicePayment" ToRole="PatientVisit" />
           <NavigationProperty Name="Service" Relationship="HMSDbModel.FK_dbo_ServicePayments_dbo_Services_Service_ID" FromRole="ServicePayment" ToRole="Service" />
           <NavigationProperty Name="ServiceSubCategory" Relationship="HMSDbModel.FK_dbo_ServicePayments_dbo_ServiceSubCategories_ServiceSubCategory_ID" FromRole="ServicePayment" ToRole="ServiceSubCategory" />
         </EntityType>
@@ -2786,42 +2786,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_dbo_LabPayments_dbo_Appointments_Appointment_ID">
-          <End Type="HMSDbModel.Appointment" Role="Appointment" Multiplicity="0..1" />
-          <End Type="HMSDbModel.LabPayment" Role="LabPayment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Appointment">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="LabPayment">
-              <PropertyRef Name="Appointment_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_MedicalPaymentDetails_dbo_Appointments_Appointment_ID">
-          <End Type="HMSDbModel.Appointment" Role="Appointment" Multiplicity="0..1" />
-          <End Type="HMSDbModel.MedicalPaymentDetail" Role="MedicalPaymentDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Appointment">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="MedicalPaymentDetail">
-              <PropertyRef Name="Appointment_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_PatientBills_dbo_Appointments_Appointment_ID">
-          <End Type="HMSDbModel.Appointment" Role="Appointment" Multiplicity="0..1" />
-          <End Type="HMSDbModel.PatientBill" Role="PatientBill" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Appointment">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="PatientBill">
-              <PropertyRef Name="Appointment_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_dbo_PatientVisits_dbo_Appointments_Appointment_ID">
           <End Type="HMSDbModel.Appointment" Role="Appointment" Multiplicity="0..1" />
           <End Type="HMSDbModel.PatientVisit" Role="PatientVisit" Multiplicity="*" />
@@ -2842,18 +2806,6 @@
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="RegistrationPaymentDetail">
-              <PropertyRef Name="Appointment_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_ServicePayments_dbo_Appointments_Appointment_ID">
-          <End Type="HMSDbModel.Appointment" Role="Appointment" Multiplicity="0..1" />
-          <End Type="HMSDbModel.ServicePayment" Role="ServicePayment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Appointment">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="ServicePayment">
               <PropertyRef Name="Appointment_ID" />
             </Dependent>
           </ReferentialConstraint>
@@ -3306,6 +3258,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_dbo_LabPayments_dbo_PatientVisits_PatientVisit_ID">
+          <End Type="HMSDbModel.PatientVisit" Role="PatientVisit" Multiplicity="0..1" />
+          <End Type="HMSDbModel.LabPayment" Role="LabPayment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PatientVisit">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="LabPayment">
+              <PropertyRef Name="PatientVisit_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_MedicalPaymentDetails_dbo_PatientVisits_PatientVisit_ID">
+          <End Type="HMSDbModel.PatientVisit" Role="PatientVisit" Multiplicity="0..1" />
+          <End Type="HMSDbModel.MedicalPaymentDetail" Role="MedicalPaymentDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PatientVisit">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MedicalPaymentDetail">
+              <PropertyRef Name="PatientVisit_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_dbo_MedicalPaymentDetails_dbo_PaymentModes_PaymentMode_ID">
           <End Type="HMSDbModel.PaymentMode" Role="PaymentMode" Multiplicity="0..1" />
           <End Type="HMSDbModel.MedicalPaymentDetail" Role="MedicalPaymentDetail" Multiplicity="*" />
@@ -3327,6 +3303,18 @@
             </Principal>
             <Dependent Role="MedicalPaymentDetail">
               <PropertyRef Name="PaymentSection_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_PatientBills_dbo_PatientVisits_PatientVisit_ID">
+          <End Type="HMSDbModel.PatientVisit" Role="PatientVisit" Multiplicity="0..1" />
+          <End Type="HMSDbModel.PatientBill" Role="PatientBill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PatientVisit">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PatientBill">
+              <PropertyRef Name="PatientVisit_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3363,6 +3351,18 @@
             </Principal>
             <Dependent Role="PatientVisit">
               <PropertyRef Name="PaymentMode_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ServicePayments_dbo_PatientVisits_PatientVisit_ID">
+          <End Type="HMSDbModel.PatientVisit" Role="PatientVisit" Multiplicity="0..1" />
+          <End Type="HMSDbModel.ServicePayment" Role="ServicePayment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PatientVisit">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ServicePayment">
+              <PropertyRef Name="PatientVisit_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3741,10 +3741,10 @@
           <EntitySetMapping Name="LabPayments">
             <EntityTypeMapping TypeName="HMSDbModel.LabPayment">
               <MappingFragment StoreEntitySet="LabPayments">
+                <ScalarProperty Name="PatientVisit_ID" ColumnName="PatientVisit_ID" />
                 <ScalarProperty Name="LabTest_ID" ColumnName="LabTest_ID" />
                 <ScalarProperty Name="LabCategory_ID" ColumnName="LabCategory_ID" />
                 <ScalarProperty Name="Doctor_ID" ColumnName="Doctor_ID" />
-                <ScalarProperty Name="Appointment_ID" ColumnName="Appointment_ID" />
                 <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
                 <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
@@ -3774,7 +3774,7 @@
           <EntitySetMapping Name="MedicalPaymentDetails">
             <EntityTypeMapping TypeName="HMSDbModel.MedicalPaymentDetail">
               <MappingFragment StoreEntitySet="MedicalPaymentDetails">
-                <ScalarProperty Name="Appointment_ID" ColumnName="Appointment_ID" />
+                <ScalarProperty Name="PatientVisit_ID" ColumnName="PatientVisit_ID" />
                 <ScalarProperty Name="PaymentSection_ID" ColumnName="PaymentSection_ID" />
                 <ScalarProperty Name="PaymentMode_ID" ColumnName="PaymentMode_ID" />
                 <ScalarProperty Name="Doctor_ID" ColumnName="Doctor_ID" />
@@ -3793,7 +3793,7 @@
           <EntitySetMapping Name="PatientBills">
             <EntityTypeMapping TypeName="HMSDbModel.PatientBill">
               <MappingFragment StoreEntitySet="PatientBills">
-                <ScalarProperty Name="Appointment_ID" ColumnName="Appointment_ID" />
+                <ScalarProperty Name="PatientVisit_ID" ColumnName="PatientVisit_ID" />
                 <ScalarProperty Name="PaymentSection_ID" ColumnName="PaymentSection_ID" />
                 <ScalarProperty Name="PaymentMode_ID" ColumnName="PaymentMode_ID" />
                 <ScalarProperty Name="EmployeeDetail_ID" ColumnName="EmployeeDetail_ID" />
@@ -3923,7 +3923,7 @@
           <EntitySetMapping Name="ServicePayments">
             <EntityTypeMapping TypeName="HMSDbModel.ServicePayment">
               <MappingFragment StoreEntitySet="ServicePayments">
-                <ScalarProperty Name="Appointment_ID" ColumnName="Appointment_ID" />
+                <ScalarProperty Name="PatientVisit_ID" ColumnName="PatientVisit_ID" />
                 <ScalarProperty Name="ServiceSubCategory_ID" ColumnName="ServiceSubCategory_ID" />
                 <ScalarProperty Name="Service_ID" ColumnName="Service_ID" />
                 <ScalarProperty Name="Doctor_ID" ColumnName="Doctor_ID" />

@@ -18,6 +18,7 @@ namespace HMS.Entity
         {
             this.Appointments = new HashSet<Appointment>();
             this.Doctors = new HashSet<Doctor>();
+            this.Doctors1 = new HashSet<Doctor>();
         }
     
         public int ID { get; set; }
@@ -26,5 +27,6 @@ namespace HMS.Entity
     
         public virtual ICollection<Appointment> Appointments { get; set; }
         public virtual ICollection<Doctor> Doctors { get; set; }
+        public virtual ICollection<Doctor> Doctors1 { get; set; }
     }
 }

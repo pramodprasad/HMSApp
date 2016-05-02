@@ -119,7 +119,7 @@ namespace HospitalManagement.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,VisitedDate,PatientStatus,UpdatedDate,RegistrationAmount,DiscountAmount,PayAmount,CreatedBy,PaymentMode_ID")] PatientVisit patientvisit)
+        public ActionResult Edit([Bind(Include = "ID,VisitedDate,PatientStatus,UpdatedDate,RegistrationAmount,DiscountAmount,PayAmount,CreatedBy,Appointment_ID,PaymentMode_ID")] PatientVisit patientvisit)
         {
             if (ModelState.IsValid)
             {
@@ -127,7 +127,7 @@ namespace HospitalManagement.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            //ViewBag.Appointment_ID = new SelectList(db.Appointments, "ID", "ReferalDetails", patientvisit.Appointment_ID);
+            ViewBag.Appointment_ID = new SelectList(db.Appointments, "ID", "ReferalDetails", patientvisit.Appointment_ID);
             ViewBag.PaymentMode_ID = new SelectList(db.PaymentModes, "ID", "Mode", patientvisit.PaymentMode_ID);
             return View(patientvisit);
         }

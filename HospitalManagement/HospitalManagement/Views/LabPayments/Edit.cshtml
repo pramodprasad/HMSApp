@@ -97,6 +97,14 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.Appointment_ID, "Appointment_ID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Appointment_ID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Appointment_ID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
             @Html.LabelFor(model => model.Doctor_ID, "Doctor_ID", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("Doctor_ID", null, htmlAttributes: new { @class = "form-control" })
@@ -119,12 +127,7 @@
                 @Html.ValidationMessageFor(model => model.LabTest_ID, "", new { @class = "text-danger" })
             </div>
         </div>
-        @Html.HiddenFor(m => m.PatientVisit_ID)
-        @Html.HiddenFor(m => m.PatientVisit.Appointment_ID)
-        @Html.HiddenFor(m => m.PatientVisit.Appointment.ID)
-        @Html.HiddenFor(m => m.PatientVisit.Appointment.PatientDetails_ID)
-        @Html.HiddenFor(m => m.PatientVisit.Appointment.PatientType_ID)
-        @Html.HiddenFor(m => m.PatientVisit.Appointment.ShiftType_ID)
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default" />

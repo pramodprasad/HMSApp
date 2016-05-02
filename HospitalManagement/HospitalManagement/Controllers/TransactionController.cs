@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using System.Data.Entity;
 using HospitalManagement.Models;
 using HospitalManagement.ViewModels;
 using HMS.Entity;
@@ -57,7 +56,7 @@ namespace HospitalManagement.Controllers
 
         public ActionResult AddService(int id)
         {
-            var patientList = db.PatientVisits.Include(p  => p.Appointment).Include(p => p.Appointment.PatientDetail).Include(p => p.Appointment.Doctor).Include(p => p.Appointment.Doctor.EmployeeDetail).Include(p => p.Appointment.ShiftType).Where(s => s.Appointment.PatientDetails_ID == id).OrderByDescending(p => p.VisitedDate).ToList();
+            var patientList = db.PatientVisits.Include("Appointment").Include("Appointment.PatientDetail").Include("Appointment.Doctor").Include("Appointment.Doctor.EmployeeDetail").Include("Appointment.ShiftType").Where(s => s.Appointment.PatientDetails_ID == id).OrderByDescending(p => p.VisitedDate).ToList();
             return View(patientList);
             //return View();
         }

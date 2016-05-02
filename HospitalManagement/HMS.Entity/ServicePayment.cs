@@ -28,10 +28,12 @@ namespace HMS.Entity
         public Nullable<long> Doctor_ID { get; set; }
         public Nullable<long> Service_ID { get; set; }
         public Nullable<long> ServiceSubCategory_ID { get; set; }
-        public Nullable<int> PatientVisit_ID { get; set; }
+        public Nullable<int> Appointment_ID { get; set; }
+        public Nullable<long> PaymentStatusID { get; set; }
     
+        public virtual Appointment Appointment { get; set; }
         public virtual Doctor Doctor { get; set; }
-        public virtual PatientVisit PatientVisit { get; set; }
+        public virtual PaymentStau PaymentStau { get; set; }
         public virtual Service Service { get; set; }
         public virtual ServiceSubCategory ServiceSubCategory { get; set; }
     }

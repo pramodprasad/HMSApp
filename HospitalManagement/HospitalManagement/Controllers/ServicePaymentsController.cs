@@ -21,8 +21,7 @@ namespace HospitalManagement.Controllers
         // GET: ServicePayments
         public ActionResult Index()
         {
-            var servicePayments = db.ServicePayments.Include(s => s.Doctor).Include(s => s.PatientVisit)
-                .Include(s => s.PatientVisit.Appointment).Include(s => s.PatientVisit.Appointment.PatientDetail).Include(s => s.Service).Include(s => s.ServiceSubCategory);
+            var servicePayments = db.ServicePayments.Include(s => s.Doctor).Include(s => s.Appointment).Include(s => s.Service).Include(s => s.ServiceSubCategory);
             return View(servicePayments.ToList());
         }
 
@@ -44,11 +43,11 @@ namespace HospitalManagement.Controllers
         // GET: ServicePayments/Create
         public ActionResult Create(int? id)
         {
-            var patientVisit = db.PatientVisits.Include(p => p.Appointment).FirstOrDefault(p => p.ID == id);
+            var appointment = db.Appointments.Include(a => a.PatientDetail).Where(a => a.ID == id).FirstOrDefault();
             ServicePayment model = new ServicePayment();
-            model.PatientVisit = patientVisit;
+            model.Appointment = appointment;
             model.ServiceUnit = 1;
-            model.PatientVisit_ID = patientVisit.ID;
+            model.Appointment_ID = appointment.ID;
             ViewBag.Doctor_ID = new SelectList(db.Doctors.Include(s => s.EmployeeDetail), "ID", "EmployeeDetail.FirstName");
             ViewBag.Service_ID = new SelectList(db.Services, "ID", "Name");
             ViewBag.ServiceSubCategory_ID = new SelectList(db.ServiceSubCategories, "ID", "Name");
@@ -60,11 +59,10 @@ namespace HospitalManagement.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,ServiceUnit,ServiceCharge,Discount,NetAmount,PaidAmount,DueAmount,Doctor_ID,Service_ID,ServiceSubCategory_ID,PatientVisit_ID")] ServicePayment servicePayment)
+        public ActionResult Create([Bind(Include = "ID,ServiceUnit,ServiceCharge,Discount,NetAmount,PaidAmount,DueAmount,Doctor_ID,Service_ID,ServiceSubCategory_ID,Appointment_ID")] ServicePayment servicePayment)
         {
             if (ModelState.IsValid)
             {
-                var patienVisit = db.PatientVisits.Find(servicePayment.PatientVisit_ID);
                 var currentUserId = User.Identity.GetUserId();
                 long customerId = 1;
 
@@ -78,8 +76,7 @@ namespace HospitalManagement.Controllers
                 servicePayment.UpdatedDate = DateTime.Now;
                 servicePayment.CreatedBy = Convert.ToInt32(customerId);
                 servicePayment.UpdatedBy = Convert.ToInt32(customerId);
-                patienVisit.ServicePayments.Add(servicePayment);
-                //db.ServicePayments.Add(servicePayment);
+                db.ServicePayments.Add(servicePayment);
                 db.SaveChanges();
                 return RedirectToAction("Index", "ServicePayments");
             }
@@ -115,7 +112,7 @@ namespace HospitalManagement.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,ServiceUnit,ServiceCharge,Discount,NetAmount,PaidAmount,DueAmount,CreatedBy,CreatedDate,UpdatedBy,UpdatedDate,Doctor_ID,PatientStatus_ID,Service_ID,ServiceSubCategory_ID,PatientVisit_ID")] ServicePayment servicePayment)
+        public ActionResult Edit([Bind(Include = "ID,ServiceUnit,ServiceCharge,Discount,NetAmount,PaidAmount,DueAmount,CreatedBy,CreatedDate,UpdatedBy,UpdatedDate,Doctor_ID,PatientStatus_ID,Service_ID,ServiceSubCategory_ID")] ServicePayment servicePayment)
         {
             if (ModelState.IsValid)
             {

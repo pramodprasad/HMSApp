@@ -21,7 +21,7 @@ namespace HospitalManagement.Controllers
         // GET: LabPayments
         public ActionResult Index()
         {
-            var labPayments = db.LabPayments.Include(l => l.PatientVisit).Include(l => l.Doctor).Include(l => l.LabCategory).Include(l => l.LabTest).Include(s => s.PatientVisit.Appointment).Include(s => s.PatientVisit.Appointment.PatientDetail);
+            var labPayments = db.LabPayments.Include(l => l.Appointment).Include(l => l.Doctor).Include(l => l.LabCategory).Include(l => l.LabTest);
             return View(labPayments.ToList());
         }
 
@@ -43,10 +43,10 @@ namespace HospitalManagement.Controllers
         // GET: LabPayments/Create
         public ActionResult Create(int ? id)
         {
-            var patientVisit = db.PatientVisits.Include(p => p.Appointment).FirstOrDefault(p => p.ID == id);
+            var appointment = db.Appointments.Include(l => l.PatientDetail).Where(a => a.ID == id).FirstOrDefault();
             LabPayment model = new LabPayment();
-            model.PatientVisit = patientVisit;
-            model.PatientVisit_ID = patientVisit.ID;
+            model.Appointment = appointment;
+            model.Appointment_ID = appointment.ID;
             model.Quantity = 1;
             ViewBag.Doctor_ID = new SelectList(db.Doctors.Include(s => s.EmployeeDetail), "ID", "EmployeeDetail.FirstName");
             ViewBag.LabCategory_ID = new SelectList(db.LabCategories, "ID", "Name");
@@ -59,11 +59,10 @@ namespace HospitalManagement.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Quantity,LabCharge,Discount,NetAmount,PaidAmount,DueAmount,Doctor_ID,LabCategory_ID,LabTest_ID,PatientVisit_ID")] LabPayment labPayment)
+        public ActionResult Create([Bind(Include = "ID,Quantity,LabCharge,Discount,NetAmount,PaidAmount,DueAmount,Appointment_ID,Doctor_ID,LabCategory_ID,LabTest_ID")] LabPayment labPayment)
         {
             if (ModelState.IsValid)
             {
-                var patienVisit = db.PatientVisits.Find(labPayment.PatientVisit_ID);
                 var currentUserId = User.Identity.GetUserId();
                 long customerId = 1;
 
@@ -78,13 +77,12 @@ namespace HospitalManagement.Controllers
                 labPayment.CreatedBy = Convert.ToInt32(customerId);
                 labPayment.UpdatedBy = Convert.ToInt32(customerId);
 
-                patienVisit.LabPayments.Add(labPayment);
-
+                db.LabPayments.Add(labPayment);
                 db.SaveChanges();
                 return RedirectToAction("Service", "Transaction");
             }
 
-            //ViewBag.Appointment_ID = new SelectList(db.Appointments, "ID", "ReferalDetails", labPayment.Appointment_ID);
+            ViewBag.Appointment_ID = new SelectList(db.Appointments, "ID", "ReferalDetails", labPayment.Appointment_ID);
             ViewBag.Doctor_ID = new SelectList(db.Doctors, "ID", "OtherDetails", labPayment.Doctor_ID);
             ViewBag.LabCategory_ID = new SelectList(db.LabCategories, "ID", "Name", labPayment.LabCategory_ID);
             ViewBag.LabTest_ID = new SelectList(db.LabTests, "ID", "Name", labPayment.LabTest_ID);
@@ -103,7 +101,7 @@ namespace HospitalManagement.Controllers
             {
                 return HttpNotFound();
             }
-            //ViewBag.Appointment_ID = new SelectList(db.Appointments, "ID", "ReferalDetails", labPayment.Appointment_ID);
+            ViewBag.Appointment_ID = new SelectList(db.Appointments, "ID", "ReferalDetails", labPayment.Appointment_ID);
             ViewBag.Doctor_ID = new SelectList(db.Doctors, "ID", "OtherDetails", labPayment.Doctor_ID);
             ViewBag.LabCategory_ID = new SelectList(db.LabCategories, "ID", "Name", labPayment.LabCategory_ID);
             ViewBag.LabTest_ID = new SelectList(db.LabTests, "ID", "Name", labPayment.LabTest_ID);
@@ -115,7 +113,7 @@ namespace HospitalManagement.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Quantity,LabCharge,Discount,NetAmount,PaidAmount,DueAmount,CreatedBy,CreatedDate,UpdatedBy,UpdatedDate,Doctor_ID,LabCategory_ID,LabTest_ID,PatientVisit_ID")] LabPayment labPayment)
+        public ActionResult Edit([Bind(Include = "ID,Quantity,LabCharge,Discount,NetAmount,PaidAmount,DueAmount,CreatedBy,CreatedDate,UpdatedBy,UpdatedDate,Appointment_ID,Doctor_ID,LabCategory_ID,LabTest_ID")] LabPayment labPayment)
         {
             if (ModelState.IsValid)
             {
@@ -123,7 +121,7 @@ namespace HospitalManagement.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            //ViewBag.Appointment_ID = new SelectList(db.Appointments, "ID", "ReferalDetails", labPayment.Appointment_ID);
+            ViewBag.Appointment_ID = new SelectList(db.Appointments, "ID", "ReferalDetails", labPayment.Appointment_ID);
             ViewBag.Doctor_ID = new SelectList(db.Doctors, "ID", "OtherDetails", labPayment.Doctor_ID);
             ViewBag.LabCategory_ID = new SelectList(db.LabCategories, "ID", "Name", labPayment.LabCategory_ID);
             ViewBag.LabTest_ID = new SelectList(db.LabTests, "ID", "Name", labPayment.LabTest_ID);

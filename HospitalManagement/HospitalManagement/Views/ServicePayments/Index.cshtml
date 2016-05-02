@@ -51,10 +51,10 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.PatientVisit.Appointment.PatientDetails_ID)
+                    @Html.DisplayFor(modelItem => item.Appointment_ID)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.PatientVisit.Appointment.PatientDetail.FullName)
+                    @Html.DisplayFor(modelItem => item.Appointment.PatientDetail.FullName)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Service.Name)
@@ -105,7 +105,7 @@
         //"bAutoWidth": false,
         //"info":     false,
         "aoColumnDefs": [
-            { 'bSortable': false, 'aTargets': [11] }
+            { 'bSortable': false, 'aTargets': [7] }
         ]
     });
     </script>

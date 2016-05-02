@@ -1,0 +1,684 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="HMSMVCModelStoreContainer" CdmEntityContainer="HMSDBEntities">
+    <FunctionImportMapping FunctionImportName="sp_BranchDetails" FunctionName="HMSMVCModel.Store.sp_BranchDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="HMSMVCModel.sp_BranchDetails_Result">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+          <ScalarProperty Name="PhoneNoPri" ColumnName="PhoneNoPri" />
+          <ScalarProperty Name="PhoneNoSec" ColumnName="PhoneNoSec" />
+          <ScalarProperty Name="Pincode" ColumnName="Pincode" />
+          <ScalarProperty Name="EmailInfo" ColumnName="EmailInfo" />
+          <ScalarProperty Name="EmailCustomerCare" ColumnName="EmailCustomerCare" />
+          <ScalarProperty Name="FaxNo" ColumnName="FaxNo" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="WebAddress" ColumnName="WebAddress" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="C__MigrationHistory">
+      <EntityTypeMapping TypeName="HMSMVCModel.C__MigrationHistory">
+        <MappingFragment StoreEntitySet="__MigrationHistory">
+          <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+          <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Appointments">
+      <EntityTypeMapping TypeName="HMSMVCModel.Appointment">
+        <MappingFragment StoreEntitySet="Appointments">
+          <ScalarProperty Name="PatientType_ID" ColumnName="PatientType_ID" />
+          <ScalarProperty Name="VisitStatus" ColumnName="VisitStatus" />
+          <ScalarProperty Name="ReferalDetails" ColumnName="ReferalDetails" />
+          <ScalarProperty Name="IsReferal" ColumnName="IsReferal" />
+          <ScalarProperty Name="ShiftType_ID" ColumnName="ShiftType_ID" />
+          <ScalarProperty Name="PatientDetails_ID" ColumnName="PatientDetails_ID" />
+          <ScalarProperty Name="BranchDetails_ID" ColumnName="BranchDetails_ID" />
+          <ScalarProperty Name="AppointmentDate" ColumnName="AppointmentDate" />
+          <ScalarProperty Name="Specialization_ID" ColumnName="Specialization_ID" />
+          <ScalarProperty Name="Doctor_ID" ColumnName="Doctor_ID" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetRoles">
+      <EntityTypeMapping TypeName="HMSMVCModel.AspNetRole">
+        <MappingFragment StoreEntitySet="AspNetRoles">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserClaims">
+      <EntityTypeMapping TypeName="HMSMVCModel.AspNetUserClaim">
+        <MappingFragment StoreEntitySet="AspNetUserClaims">
+          <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+          <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserLogins">
+      <EntityTypeMapping TypeName="HMSMVCModel.AspNetUserLogin">
+        <MappingFragment StoreEntitySet="AspNetUserLogins">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+          <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUsers">
+      <EntityTypeMapping TypeName="HMSMVCModel.AspNetUser">
+        <MappingFragment StoreEntitySet="AspNetUsers">
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+          <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+          <ScalarProperty Name="HMSEmpID" ColumnName="HMSEmpID" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BedAllotments">
+      <EntityTypeMapping TypeName="HMSMVCModel.BedAllotment">
+        <MappingFragment StoreEntitySet="BedAllotments">
+          <ScalarProperty Name="Appointment_ID" ColumnName="Appointment_ID" />
+          <ScalarProperty Name="RoomDetails_ID" ColumnName="RoomDetails_ID" />
+          <ScalarProperty Name="IsOccupied" ColumnName="IsOccupied" />
+          <ScalarProperty Name="NoOfDays" ColumnName="NoOfDays" />
+          <ScalarProperty Name="DateOfAllotment" ColumnName="DateOfAllotment" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BranchDetails">
+      <EntityTypeMapping TypeName="HMSMVCModel.BranchDetail">
+        <MappingFragment StoreEntitySet="BranchDetails">
+          <ScalarProperty Name="Pincode" ColumnName="Pincode" />
+          <ScalarProperty Name="City_ID" ColumnName="City_ID" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="WebAddress" ColumnName="WebAddress" />
+          <ScalarProperty Name="EmailCustomerCare" ColumnName="EmailCustomerCare" />
+          <ScalarProperty Name="EmailInfo" ColumnName="EmailInfo" />
+          <ScalarProperty Name="FaxNo" ColumnName="FaxNo" />
+          <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+          <ScalarProperty Name="PhoneNoSec" ColumnName="PhoneNoSec" />
+          <ScalarProperty Name="PhoneNoPri" ColumnName="PhoneNoPri" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cities">
+      <EntityTypeMapping TypeName="HMSMVCModel.City">
+        <MappingFragment StoreEntitySet="Cities">
+          <ScalarProperty Name="State_ID" ColumnName="State_ID" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CounterTables">
+      <EntityTypeMapping TypeName="HMSMVCModel.CounterTable">
+        <MappingFragment StoreEntitySet="CounterTable">
+          <ScalarProperty Name="Counter" ColumnName="Counter" />
+          <ScalarProperty Name="CurrentDate" ColumnName="CurrentDate" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Countries">
+      <EntityTypeMapping TypeName="HMSMVCModel.Country">
+        <MappingFragment StoreEntitySet="Countries">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DoctorBillDetails">
+      <EntityTypeMapping TypeName="HMSMVCModel.DoctorBillDetail">
+        <MappingFragment StoreEntitySet="DoctorBillDetails">
+          <ScalarProperty Name="PaymentMode_ID" ColumnName="PaymentMode_ID" />
+          <ScalarProperty Name="PatientType_ID" ColumnName="PatientType_ID" />
+          <ScalarProperty Name="PatientDetails_ID" ColumnName="PatientDetails_ID" />
+          <ScalarProperty Name="Doctor_ID" ColumnName="Doctor_ID" />
+          <ScalarProperty Name="PaymentStatusID" ColumnName="PaymentStatusID" />
+          <ScalarProperty Name="PaidOn" ColumnName="PaidOn" />
+          <ScalarProperty Name="PaidBy" ColumnName="PaidBy" />
+          <ScalarProperty Name="DuesAmount" ColumnName="DuesAmount" />
+          <ScalarProperty Name="PaidAmount" ColumnName="PaidAmount" />
+          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+          <ScalarProperty Name="AdvancePayAmount" ColumnName="AdvancePayAmount" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="OtherChargeDetails" ColumnName="OtherChargeDetails" />
+          <ScalarProperty Name="OtherChargeAmount" ColumnName="OtherChargeAmount" />
+          <ScalarProperty Name="OperationCharge" ColumnName="OperationCharge" />
+          <ScalarProperty Name="ConsultantCharge" ColumnName="ConsultantCharge" />
+          <ScalarProperty Name="VisitCharge" ColumnName="VisitCharge" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Doctors">
+      <EntityTypeMapping TypeName="HMSMVCModel.Doctor">
+        <MappingFragment StoreEntitySet="Doctors">
+          <ScalarProperty Name="VisitingConsultant" ColumnName="VisitingConsultant" />
+          <ScalarProperty Name="FormerlyAt" ColumnName="FormerlyAt" />
+          <ScalarProperty Name="EveningShifDetails" ColumnName="EveningShifDetails" />
+          <ScalarProperty Name="MorningShifDetails" ColumnName="MorningShifDetails" />
+          <ScalarProperty Name="Specialization_ID" ColumnName="Specialization_ID" />
+          <ScalarProperty Name="Qualification_ID" ColumnName="Qualification_ID" />
+          <ScalarProperty Name="Datewise" ColumnName="Datewise" />
+          <ScalarProperty Name="Daywise" ColumnName="Daywise" />
+          <ScalarProperty Name="EmployeeDetail_ID" ColumnName="EmployeeDetail_ID" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="RegistrationNo" ColumnName="RegistrationNo" />
+          <ScalarProperty Name="OtherDetails" ColumnName="OtherDetails" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DoctorVisitPaymentDetails">
+      <EntityTypeMapping TypeName="HMSMVCModel.DoctorVisitPaymentDetail">
+        <MappingFragment StoreEntitySet="DoctorVisitPaymentDetails">
+          <ScalarProperty Name="Appointment_ID" ColumnName="Appointment_ID" />
+          <ScalarProperty Name="PaymentSection_ID" ColumnName="PaymentSection_ID" />
+          <ScalarProperty Name="PaymentMode_ID" ColumnName="PaymentMode_ID" />
+          <ScalarProperty Name="Doctor_ID" ColumnName="Doctor_ID" />
+          <ScalarProperty Name="PaymentDetails" ColumnName="PaymentDetails" />
+          <ScalarProperty Name="DiscountDescription" ColumnName="DiscountDescription" />
+          <ScalarProperty Name="DiscountedBy" ColumnName="DiscountedBy" />
+          <ScalarProperty Name="DiscountAmount" ColumnName="DiscountAmount" />
+          <ScalarProperty Name="PaymentReceivedDate" ColumnName="PaymentReceivedDate" />
+          <ScalarProperty Name="PaymentReceivedBy" ColumnName="PaymentReceivedBy" />
+          <ScalarProperty Name="PaymentStatus" ColumnName="PaymentStatus" />
+          <ScalarProperty Name="VisitAmount" ColumnName="VisitAmount" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmployeeDetails">
+      <EntityTypeMapping TypeName="HMSMVCModel.EmployeeDetail">
+        <MappingFragment StoreEntitySet="EmployeeDetails">
+          <ScalarProperty Name="Title_ID" ColumnName="Title_ID" />
+          <ScalarProperty Name="EmployeeType_ID" ColumnName="EmployeeType_ID" />
+          <ScalarProperty Name="City_ID" ColumnName="City_ID" />
+          <ScalarProperty Name="BranchDetail_ID" ColumnName="BranchDetail_ID" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="DriverLicenceNo" ColumnName="DriverLicenceNo" />
+          <ScalarProperty Name="VoterIDNo" ColumnName="VoterIDNo" />
+          <ScalarProperty Name="AadharNo" ColumnName="AadharNo" />
+          <ScalarProperty Name="Address2" ColumnName="Address2" />
+          <ScalarProperty Name="Address1" ColumnName="Address1" />
+          <ScalarProperty Name="OtherContactNo" ColumnName="OtherContactNo" />
+          <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmployeeTypes">
+      <EntityTypeMapping TypeName="HMSMVCModel.EmployeeType">
+        <MappingFragment StoreEntitySet="EmployeeTypes">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LabCategories">
+      <EntityTypeMapping TypeName="HMSMVCModel.LabCategory">
+        <MappingFragment StoreEntitySet="LabCategories">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LabPayments">
+      <EntityTypeMapping TypeName="HMSMVCModel.LabPayment">
+        <MappingFragment StoreEntitySet="LabPayments">
+          <ScalarProperty Name="LabTest_ID" ColumnName="LabTest_ID" />
+          <ScalarProperty Name="LabCategory_ID" ColumnName="LabCategory_ID" />
+          <ScalarProperty Name="Doctor_ID" ColumnName="Doctor_ID" />
+          <ScalarProperty Name="Appointment_ID" ColumnName="Appointment_ID" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="DueAmount" ColumnName="DueAmount" />
+          <ScalarProperty Name="PaidAmount" ColumnName="PaidAmount" />
+          <ScalarProperty Name="NetAmount" ColumnName="NetAmount" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="LabCharge" ColumnName="LabCharge" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LabTests">
+      <EntityTypeMapping TypeName="HMSMVCModel.LabTest">
+        <MappingFragment StoreEntitySet="LabTests">
+          <ScalarProperty Name="LabCategory_ID" ColumnName="LabCategory_ID" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="LabTestCost" ColumnName="LabTestCost" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MedicalPaymentDetails">
+      <EntityTypeMapping TypeName="HMSMVCModel.MedicalPaymentDetail">
+        <MappingFragment StoreEntitySet="MedicalPaymentDetails">
+          <ScalarProperty Name="Appointment_ID" ColumnName="Appointment_ID" />
+          <ScalarProperty Name="PaymentSection_ID" ColumnName="PaymentSection_ID" />
+          <ScalarProperty Name="PaymentMode_ID" ColumnName="PaymentMode_ID" />
+          <ScalarProperty Name="Doctor_ID" ColumnName="Doctor_ID" />
+          <ScalarProperty Name="PaymentDetails" ColumnName="PaymentDetails" />
+          <ScalarProperty Name="DiscountDescription" ColumnName="DiscountDescription" />
+          <ScalarProperty Name="DiscountedBy" ColumnName="DiscountedBy" />
+          <ScalarProperty Name="DiscountAmount" ColumnName="DiscountAmount" />
+          <ScalarProperty Name="PaymentReceivedDate" ColumnName="PaymentReceivedDate" />
+          <ScalarProperty Name="PaymentReceivedBy" ColumnName="PaymentReceivedBy" />
+          <ScalarProperty Name="PaymentStatusID" ColumnName="PaymentStatusID" />
+          <ScalarProperty Name="MedicalAmount" ColumnName="MedicalAmount" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PatientBills">
+      <EntityTypeMapping TypeName="HMSMVCModel.PatientBill">
+        <MappingFragment StoreEntitySet="PatientBills">
+          <ScalarProperty Name="Appointment_ID" ColumnName="Appointment_ID" />
+          <ScalarProperty Name="PaymentSection_ID" ColumnName="PaymentSection_ID" />
+          <ScalarProperty Name="PaymentMode_ID" ColumnName="PaymentMode_ID" />
+          <ScalarProperty Name="EmployeeDetail_ID" ColumnName="EmployeeDetail_ID" />
+          <ScalarProperty Name="BranchDetail_ID" ColumnName="BranchDetail_ID" />
+          <ScalarProperty Name="PaymentDetails" ColumnName="PaymentDetails" />
+          <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+          <ScalarProperty Name="DuesAmount" ColumnName="DuesAmount" />
+          <ScalarProperty Name="PaymentAmount" ColumnName="PaymentAmount" />
+          <ScalarProperty Name="BalanceAmount" ColumnName="BalanceAmount" />
+          <ScalarProperty Name="AdvancePaymentAmount" ColumnName="AdvancePaymentAmount" />
+          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+          <ScalarProperty Name="OtherChargeAmount" ColumnName="OtherChargeAmount" />
+          <ScalarProperty Name="DoctorVisitAmount" ColumnName="DoctorVisitAmount" />
+          <ScalarProperty Name="RegistrationAmount" ColumnName="RegistrationAmount" />
+          <ScalarProperty Name="MedicalAmount" ColumnName="MedicalAmount" />
+          <ScalarProperty Name="WardAmount" ColumnName="WardAmount" />
+          <ScalarProperty Name="LabAmount" ColumnName="LabAmount" />
+          <ScalarProperty Name="ServiceAmount" ColumnName="ServiceAmount" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PatientDetails">
+      <EntityTypeMapping TypeName="HMSMVCModel.PatientDetail">
+        <MappingFragment StoreEntitySet="PatientDetails">
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="MarritalStatus" ColumnName="MarritalStatus" />
+          <ScalarProperty Name="City_ID" ColumnName="City_ID" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="DateOfRegistration" ColumnName="DateOfRegistration" />
+          <ScalarProperty Name="OtherContactNo" ColumnName="OtherContactNo" />
+          <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+          <ScalarProperty Name="FatherOrHusbandName" ColumnName="FatherOrHusbandName" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PatientStatus">
+      <EntityTypeMapping TypeName="HMSMVCModel.PatientStatu">
+        <MappingFragment StoreEntitySet="PatientStatus">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Details" ColumnName="Details" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PatientTypes">
+      <EntityTypeMapping TypeName="HMSMVCModel.PatientType">
+        <MappingFragment StoreEntitySet="PatientTypes">
+          <ScalarProperty Name="Details" ColumnName="Details" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PatientVisits">
+      <EntityTypeMapping TypeName="HMSMVCModel.PatientVisit">
+        <MappingFragment StoreEntitySet="PatientVisits">
+          <ScalarProperty Name="PaymentMode_ID" ColumnName="PaymentMode_ID" />
+          <ScalarProperty Name="Appointment_ID" ColumnName="Appointment_ID" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="PayAmount" ColumnName="PayAmount" />
+          <ScalarProperty Name="DiscountAmount" ColumnName="DiscountAmount" />
+          <ScalarProperty Name="RegistrationAmount" ColumnName="RegistrationAmount" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="PatientStatusID" ColumnName="PatientStatusID" />
+          <ScalarProperty Name="VisitedDate" ColumnName="VisitedDate" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PaymentModes">
+      <EntityTypeMapping TypeName="HMSMVCModel.PaymentMode">
+        <MappingFragment StoreEntitySet="PaymentModes">
+          <ScalarProperty Name="Mode" ColumnName="Mode" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PaymentSections">
+      <EntityTypeMapping TypeName="HMSMVCModel.PaymentSection">
+        <MappingFragment StoreEntitySet="PaymentSections">
+          <ScalarProperty Name="Details" ColumnName="Details" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PaymentStaus">
+      <EntityTypeMapping TypeName="HMSMVCModel.PaymentStau">
+        <MappingFragment StoreEntitySet="PaymentStaus">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Details" ColumnName="Details" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Qualifications">
+      <EntityTypeMapping TypeName="HMSMVCModel.Qualification">
+        <MappingFragment StoreEntitySet="Qualifications">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RegistrationPaymentDetails">
+      <EntityTypeMapping TypeName="HMSMVCModel.RegistrationPaymentDetail">
+        <MappingFragment StoreEntitySet="RegistrationPaymentDetails">
+          <ScalarProperty Name="PatientVisit_ID" ColumnName="PatientVisit_ID" />
+          <ScalarProperty Name="PaymentSection_ID" ColumnName="PaymentSection_ID" />
+          <ScalarProperty Name="PaymentMode_ID" ColumnName="PaymentMode_ID" />
+          <ScalarProperty Name="EmployeeDetail_ID" ColumnName="EmployeeDetail_ID" />
+          <ScalarProperty Name="Doctor_ID" ColumnName="Doctor_ID" />
+          <ScalarProperty Name="PaymentDetails" ColumnName="PaymentDetails" />
+          <ScalarProperty Name="DiscountDescription" ColumnName="DiscountDescription" />
+          <ScalarProperty Name="DiscountedBy" ColumnName="DiscountedBy" />
+          <ScalarProperty Name="DiscountAmount" ColumnName="DiscountAmount" />
+          <ScalarProperty Name="PaymentReceivedDate" ColumnName="PaymentReceivedDate" />
+          <ScalarProperty Name="PaymentReceivedBy" ColumnName="PaymentReceivedBy" />
+          <ScalarProperty Name="PaymentStatusID" ColumnName="PaymentStatusID" />
+          <ScalarProperty Name="RegistrationAmt" ColumnName="RegistrationAmt" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RoomDetails">
+      <EntityTypeMapping TypeName="HMSMVCModel.RoomDetail">
+        <MappingFragment StoreEntitySet="RoomDetails">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="RoomCost" ColumnName="RoomCost" />
+          <ScalarProperty Name="RoomNo" ColumnName="RoomNo" />
+          <ScalarProperty Name="Ward_ID" ColumnName="Ward_ID" />
+          <ScalarProperty Name="TotalBed" ColumnName="TotalBed" />
+          <ScalarProperty Name="Details" ColumnName="Details" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ServicePayments">
+      <EntityTypeMapping TypeName="HMSMVCModel.ServicePayment">
+        <MappingFragment StoreEntitySet="ServicePayments">
+          <ScalarProperty Name="PaymentStatusID" ColumnName="PaymentStatusID" />
+          <ScalarProperty Name="Appointment_ID" ColumnName="Appointment_ID" />
+          <ScalarProperty Name="ServiceSubCategory_ID" ColumnName="ServiceSubCategory_ID" />
+          <ScalarProperty Name="Service_ID" ColumnName="Service_ID" />
+          <ScalarProperty Name="Doctor_ID" ColumnName="Doctor_ID" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="DueAmount" ColumnName="DueAmount" />
+          <ScalarProperty Name="PaidAmount" ColumnName="PaidAmount" />
+          <ScalarProperty Name="NetAmount" ColumnName="NetAmount" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="ServiceCharge" ColumnName="ServiceCharge" />
+          <ScalarProperty Name="ServiceUnit" ColumnName="ServiceUnit" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Services">
+      <EntityTypeMapping TypeName="HMSMVCModel.Service">
+        <MappingFragment StoreEntitySet="Services">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ServiceSubCategories">
+      <EntityTypeMapping TypeName="HMSMVCModel.ServiceSubCategory">
+        <MappingFragment StoreEntitySet="ServiceSubCategories">
+          <ScalarProperty Name="Service_ID" ColumnName="Service_ID" />
+          <ScalarProperty Name="BranchDetail_ID" ColumnName="BranchDetail_ID" />
+          <ScalarProperty Name="AverageDuration" ColumnName="AverageDuration" />
+          <ScalarProperty Name="ServiceCharges" ColumnName="ServiceCharges" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ShiftDates">
+      <EntityTypeMapping TypeName="HMSMVCModel.ShiftDate">
+        <MappingFragment StoreEntitySet="ShiftDates">
+          <ScalarProperty Name="Doctor_ID" ColumnName="Doctor_ID" />
+          <ScalarProperty Name="ShiftType_ID" ColumnName="ShiftType_ID" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+          <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+          <ScalarProperty Name="DayAvailable" ColumnName="DayAvailable" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ShiftDays">
+      <EntityTypeMapping TypeName="HMSMVCModel.ShiftDay">
+        <MappingFragment StoreEntitySet="ShiftDays">
+          <ScalarProperty Name="Doctor_ID" ColumnName="Doctor_ID" />
+          <ScalarProperty Name="WeekDays_ID" ColumnName="WeekDays_ID" />
+          <ScalarProperty Name="ShiftType_ID" ColumnName="ShiftType_ID" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+          <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ShiftTypes">
+      <EntityTypeMapping TypeName="HMSMVCModel.ShiftType">
+        <MappingFragment StoreEntitySet="ShiftTypes">
+          <ScalarProperty Name="ShiftCharge" ColumnName="ShiftCharge" />
+          <ScalarProperty Name="Doctor_ID" ColumnName="Doctor_ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Specializations">
+      <EntityTypeMapping TypeName="HMSMVCModel.Specialization">
+        <MappingFragment StoreEntitySet="Specializations">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="States">
+      <EntityTypeMapping TypeName="HMSMVCModel.State">
+        <MappingFragment StoreEntitySet="States">
+          <ScalarProperty Name="Country_ID" ColumnName="Country_ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Titles">
+      <EntityTypeMapping TypeName="HMSMVCModel.Title">
+        <MappingFragment StoreEntitySet="Titles">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VisitReasons">
+      <EntityTypeMapping TypeName="HMSMVCModel.VisitReason">
+        <MappingFragment StoreEntitySet="VisitReasons">
+          <ScalarProperty Name="Details" ColumnName="Details" />
+          <ScalarProperty Name="VisitPurpose" ColumnName="VisitPurpose" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WardCategories">
+      <EntityTypeMapping TypeName="HMSMVCModel.WardCategory">
+        <MappingFragment StoreEntitySet="WardCategories">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WardOrRoomChargeDetails">
+      <EntityTypeMapping TypeName="HMSMVCModel.WardOrRoomChargeDetail">
+        <MappingFragment StoreEntitySet="WardOrRoomChargeDetails">
+          <ScalarProperty Name="Appointment_ID" ColumnName="Appointment_ID" />
+          <ScalarProperty Name="RoomDetails_ID" ColumnName="RoomDetails_ID" />
+          <ScalarProperty Name="DiscountReason" ColumnName="DiscountReason" />
+          <ScalarProperty Name="DiscountedBy" ColumnName="DiscountedBy" />
+          <ScalarProperty Name="DiscountAmount" ColumnName="DiscountAmount" />
+          <ScalarProperty Name="OtherCharge" ColumnName="OtherCharge" />
+          <ScalarProperty Name="OtherDetails" ColumnName="OtherDetails" />
+          <ScalarProperty Name="RoomCharge" ColumnName="RoomCharge" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Wards">
+      <EntityTypeMapping TypeName="HMSMVCModel.Ward">
+        <MappingFragment StoreEntitySet="Wards">
+          <ScalarProperty Name="WardCategory_ID" ColumnName="WardCategory_ID" />
+          <ScalarProperty Name="BranchDetail_ID" ColumnName="BranchDetail_ID" />
+          <ScalarProperty Name="OtherDetails" ColumnName="OtherDetails" />
+          <ScalarProperty Name="TotalNoOfBed" ColumnName="TotalNoOfBed" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WeekDays">
+      <EntityTypeMapping TypeName="HMSMVCModel.WeekDay">
+        <MappingFragment StoreEntitySet="WeekDays">
+          <ScalarProperty Name="NameOfTheDay" ColumnName="NameOfTheDay" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="AspNetUserRoles" TypeName="HMSMVCModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+      <EndProperty Name="AspNetUser">
+        <ScalarProperty Name="Id" ColumnName="UserId" />
+      </EndProperty>
+      <EndProperty Name="AspNetRole">
+        <ScalarProperty Name="Id" ColumnName="RoleId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <FunctionImportMapping FunctionImportName="sp_GetPrescription" FunctionName="HMSMVCModel.Store.sp_GetPrescription">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="HMSMVCModel.sp_GetPrescription_Result">
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="PatientVisitID" ColumnName="PatientVisitID" />
+          <ScalarProperty Name="PatientType" ColumnName="PatientType" />
+          <ScalarProperty Name="PatientAddress" ColumnName="PatientAddress" />
+          <ScalarProperty Name="AppointmentID" ColumnName="AppointmentID" />
+          <ScalarProperty Name="PayAmount" ColumnName="PayAmount" />
+          <ScalarProperty Name="VisitedDate" ColumnName="VisitedDate" />
+          <ScalarProperty Name="DoctorName" ColumnName="DoctorName" />
+          <ScalarProperty Name="Specialization" ColumnName="Specialization" />
+          <ScalarProperty Name="Qualification" ColumnName="Qualification" />
+          <ScalarProperty Name="ShiftType" ColumnName="ShiftType" />
+          <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+          <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+          <ScalarProperty Name="NameOfTheDay" ColumnName="NameOfTheDay" />
+          <ScalarProperty Name="MorningShifDetails" ColumnName="MorningShifDetails" />
+          <ScalarProperty Name="EveningShifDetails" ColumnName="EveningShifDetails" />
+          <ScalarProperty Name="FormerlyAt" ColumnName="FormerlyAt" />
+          <ScalarProperty Name="VisitingConsultant" ColumnName="VisitingConsultant" />
+          <ScalarProperty Name="OtherDetails" ColumnName="OtherDetails" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_GetReceipt" FunctionName="HMSMVCModel.Store.sp_GetReceipt">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="HMSMVCModel.sp_GetReceipt_Result">
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="Sex" ColumnName="Sex" />
+          <ScalarProperty Name="PatientVisitID" ColumnName="PatientVisitID" />
+          <ScalarProperty Name="PatientType" ColumnName="PatientType" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="FatherOrHusbandName" ColumnName="FatherOrHusbandName" />
+          <ScalarProperty Name="AppointmentID" ColumnName="AppointmentID" />
+          <ScalarProperty Name="PayAmount" ColumnName="PayAmount" />
+          <ScalarProperty Name="VisitedTime" ColumnName="VisitedTime" />
+          <ScalarProperty Name="Currentdate" ColumnName="Currentdate" />
+          <ScalarProperty Name="VisitedDate" ColumnName="VisitedDate" />
+          <ScalarProperty Name="Counter" ColumnName="Counter" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="Doctorname" ColumnName="Doctorname" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

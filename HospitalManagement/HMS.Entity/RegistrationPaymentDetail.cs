@@ -16,7 +16,7 @@ namespace HMS.Entity
     {
         public long ID { get; set; }
         public decimal RegistrationAmt { get; set; }
-        public long PaymentStatus { get; set; }
+        public long PaymentStatusID { get; set; }
         public long PaymentReceivedBy { get; set; }
         public System.DateTime PaymentReceivedDate { get; set; }
         public decimal DiscountAmount { get; set; }
@@ -27,12 +27,12 @@ namespace HMS.Entity
         public Nullable<long> EmployeeDetail_ID { get; set; }
         public Nullable<int> PaymentMode_ID { get; set; }
         public Nullable<int> PaymentSection_ID { get; set; }
-        public Nullable<int> Appointment_ID { get; set; }
+        public Nullable<int> PatientVisit_ID { get; set; }
     
-        public virtual Appointment Appointment { get; set; }
-        public virtual Doctor Doctor { get; set; }
         public virtual EmployeeDetail EmployeeDetail { get; set; }
+        public virtual PatientVisit PatientVisit { get; set; }
         public virtual PaymentMode PaymentMode { get; set; }
         public virtual PaymentSection PaymentSection { get; set; }
+        public virtual PaymentStau PaymentStau { get; set; }
     }
 }

@@ -44,9 +44,9 @@
                     @Html.DisplayFor(modelItem => item.Appointment.ShiftType.Name)
                 </td>
                 <td>
-                    @Html.ActionLink("Add Service", "Create", "ServicePayments", new { id = item.ID }, htmlAttributes: new { @class = "servicePayments" })|
-                    @Html.ActionLink("Add Lab Test", "Create", "LabPayments", new { id = item.ID }, htmlAttributes: new { @class = "servicePayments" }) |
-                    @Html.ActionLink("Add Consultation", "Create", "ConsultationPayments", new { id = item.ID }, htmlAttributes: new { @class = "servicePayments" })
+                    @Html.ActionLink("Add Service", "Create", "ServicePayments", new { id = item.Appointment.ID }, htmlAttributes: new { @class = "servicePayments" })|
+                    @Html.ActionLink("Add Lab Test", "Create", "LabPayments", new { id = item.Appointment.ID }, htmlAttributes: new { @class = "servicePayments" }) |
+                    @Html.ActionLink("Add Consultation", "Create", "ConsultationPayments", new { id = item.Appointment.ID }, htmlAttributes: new { @class = "servicePayments" })
                 </td>
             </tr>
         }

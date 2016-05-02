@@ -25,14 +25,14 @@ namespace HMS.Entity
         public System.DateTime CreatedDate { get; set; }
         public int UpdatedBy { get; set; }
         public System.DateTime UpdatedDate { get; set; }
+        public Nullable<int> Appointment_ID { get; set; }
         public Nullable<long> Doctor_ID { get; set; }
         public Nullable<int> LabCategory_ID { get; set; }
         public Nullable<int> LabTest_ID { get; set; }
-        public Nullable<int> PatientVisit_ID { get; set; }
     
+        public virtual Appointment Appointment { get; set; }
         public virtual Doctor Doctor { get; set; }
         public virtual LabCategory LabCategory { get; set; }
         public virtual LabTest LabTest { get; set; }
-        public virtual PatientVisit PatientVisit { get; set; }
     }
 }

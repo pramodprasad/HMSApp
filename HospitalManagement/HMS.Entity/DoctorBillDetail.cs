@@ -37,5 +37,6 @@ namespace HMS.Entity
         public virtual PatientDetail PatientDetail { get; set; }
         public virtual PatientType PatientType { get; set; }
         public virtual PaymentMode PaymentMode { get; set; }
+        public virtual PaymentStau PaymentStau { get; set; }
     }
 }

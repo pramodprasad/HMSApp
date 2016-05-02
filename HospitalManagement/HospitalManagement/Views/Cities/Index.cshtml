@@ -9,32 +9,45 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table id="cityTable" class="table">
-    <tr>
-        <th>
-           City Name
-        </th>
-        <th>
-           State Name
-        </th>
-        <th>Actions</th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<table id="cityTable">
+    <thead>
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.State.Name)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-            </td>
+            <th>
+                City Name
+            </th>
+            <th>
+                State Name
+            </th>
+            <th>Actions</th>
         </tr>
-    }
-
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.State.Name)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
+<script>
+    $('#cityTable').DataTable({            //"bPaginate": false,
+        "bLengthChange": false,
+        //"bFilter": true,
+        //"bInfo": false,
+        //"bAutoWidth": false,
+        //"info":     false,
+        "aoColumnDefs": [
+            { 'bSortable': false, 'aTargets': [2] }
+        ]
+    });
+</script>

@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EmpManager.cs" />
+    <Compile Include="ReportsManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -58,7 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HMS.Entity\HMS.Entity.csproj">
-      <Project>{c7c4b2bc-7e68-4372-a022-68a66add208a}</Project>
+      <Project>{b0e22f04-d0b5-4f95-9714-818cfddb196e}</Project>
       <Name>HMS.Entity</Name>
     </ProjectReference>
   </ItemGroup>

@@ -17,6 +17,7 @@ namespace HMS.Entity
         public Qualification()
         {
             this.Doctors = new HashSet<Doctor>();
+            this.Doctors1 = new HashSet<Doctor>();
         }
     
         public int ID { get; set; }
@@ -24,5 +25,6 @@ namespace HMS.Entity
         public bool Status { get; set; }
     
         public virtual ICollection<Doctor> Doctors { get; set; }
+        public virtual ICollection<Doctor> Doctors1 { get; set; }
     }
 }

@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C7C4B2BC-7E68-4372-A022-68A66ADD208A}</ProjectGuid>
+    <ProjectGuid>{B0E22F04-D0B5-4F95-9714-818CFDDB196E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>HMS.Entity</RootNamespace>
@@ -30,13 +30,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -51,170 +49,187 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Appointment.cs">
-      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+      <DependentUpon>HMSDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNetRole.cs">
-      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+      <DependentUpon>HMSDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNetUser.cs">
-      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+      <DependentUpon>HMSDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNetUserClaim.cs">
-      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+      <DependentUpon>HMSDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNetUserLogin.cs">
-      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+      <DependentUpon>HMSDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="BedAllotment.cs">
-      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+      <DependentUpon>HMSDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="BranchDetail.cs">
-      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+      <DependentUpon>HMSDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="City.cs">
-      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+      <DependentUpon>HMSDBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Class1.cs" />
+    <Compile Include="CounterTable.cs">
+      <DependentUpon>HMSDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Country.cs">
-      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+      <DependentUpon>HMSDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="C__MigrationHistory.cs">
-      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+      <DependentUpon>HMSDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Doctor.cs">
-      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+      <DependentUpon>HMSDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="DoctorBillDetail.cs">
-      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+      <DependentUpon>HMSDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="DoctorVisitPaymentDetail.cs">
-      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+      <DependentUpon>HMSDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="EmployeeDetail.cs">
-      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+      <DependentUpon>HMSDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="EmployeeType.cs">
-      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+      <DependentUpon>HMSDBEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="HMSEntityModel.Context.cs">
+    <Compile Include="HMSDBEntities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>HMSEntityModel.Context.tt</DependentUpon>
+      <DependentUpon>HMSDBEntities.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="HMSEntityModel.cs">
+    <Compile Include="HMSDBEntities.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+      <DependentUpon>HMSDBEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="HMSEntityModel.Designer.cs">
+    <Compile Include="HMSDBEntities.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>HMSEntityModel.edmx</DependentUpon>
+      <DependentUpon>HMSDBEntities.edmx</DependentUpon>
     </Compile>
     <Compile Include="LabCategory.cs">
-      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+      <DependentUpon>HMSDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="LabPayment.cs">
-      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+      <DependentUpon>HMSDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="LabTest.cs">
-      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+      <DependentUpon>HMSDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="MedicalPaymentDetail.cs">
-      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+      <DependentUpon>HMSDBEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="MetaData.cs" />
     <Compile Include="PatientBill.cs">
-      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+      <DependentUpon>HMSDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="PatientDetail.cs">
-      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+      <DependentUpon>HMSDBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PatientStatu.cs">
+      <DependentUpon>HMSDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="PatientType.cs">
-      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+      <DependentUpon>HMSDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="PatientVisit.cs">
-      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+      <DependentUpon>HMSDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="PaymentMode.cs">
-      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+      <DependentUpon>HMSDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="PaymentSection.cs">
-      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+      <DependentUpon>HMSDBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentStau.cs">
+      <DependentUpon>HMSDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Qualification.cs">
-      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+      <DependentUpon>HMSDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="RegistrationPaymentDetail.cs">
-      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+      <DependentUpon>HMSDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="RoomDetail.cs">
-      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+      <DependentUpon>HMSDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Service.cs">
-      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+      <DependentUpon>HMSDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="ServicePayment.cs">
-      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+      <DependentUpon>HMSDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="ServiceSubCategory.cs">
-      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+      <DependentUpon>HMSDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="ShiftDate.cs">
-      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+      <DependentUpon>HMSDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="ShiftDay.cs">
-      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+      <DependentUpon>HMSDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="ShiftType.cs">
-      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+      <DependentUpon>HMSDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Specialization.cs">
-      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+      <DependentUpon>HMSDBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_BranchDetails_Result.cs">
+      <DependentUpon>HMSDBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_GetPrescription_Result.cs">
+      <DependentUpon>HMSDBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_GetReceipt_Result.cs">
+      <DependentUpon>HMSDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="State.cs">
-      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+      <DependentUpon>HMSDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Title.cs">
-      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+      <DependentUpon>HMSDBEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="ValidationClass.cs" />
     <Compile Include="VisitReason.cs">
-      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+      <DependentUpon>HMSDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Ward.cs">
-      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+      <DependentUpon>HMSDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="WardCategory.cs">
-      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+      <DependentUpon>HMSDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="WardOrRoomChargeDetail.cs">
-      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+      <DependentUpon>HMSDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="WeekDay.cs">
-      <DependentUpon>HMSEntityModel.tt</DependentUpon>
+      <DependentUpon>HMSDBEntities.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="HMSEntityModel.edmx">
+    <EntityDeploy Include="HMSDBEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>HMSEntityModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>HMSDBEntities.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="App.Config">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="HMSEntityModel.Context.tt">
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="HMSDBEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>HMSEntityModel.edmx</DependentUpon>
-      <LastGenOutput>HMSEntityModel.Context.cs</LastGenOutput>
+      <DependentUpon>HMSDBEntities.edmx</DependentUpon>
+      <LastGenOutput>HMSDBEntities.Context.cs</LastGenOutput>
     </None>
-    <None Include="HMSEntityModel.edmx.diagram">
-      <DependentUpon>HMSEntityModel.edmx</DependentUpon>
+    <None Include="HMSDBEntities.edmx.diagram">
+      <DependentUpon>HMSDBEntities.edmx</DependentUpon>
     </None>
-    <None Include="HMSEntityModel.tt">
+    <None Include="HMSDBEntities.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>HMSEntityModel.edmx</DependentUpon>
-      <LastGenOutput>HMSEntityModel.cs</LastGenOutput>
+      <DependentUpon>HMSDBEntities.edmx</DependentUpon>
+      <LastGenOutput>HMSDBEntities.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>

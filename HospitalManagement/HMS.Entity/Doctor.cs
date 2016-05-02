@@ -21,7 +21,6 @@ namespace HMS.Entity
             this.DoctorVisitPaymentDetails = new HashSet<DoctorVisitPaymentDetail>();
             this.LabPayments = new HashSet<LabPayment>();
             this.MedicalPaymentDetails = new HashSet<MedicalPaymentDetail>();
-            this.RegistrationPaymentDetails = new HashSet<RegistrationPaymentDetail>();
             this.ServicePayments = new HashSet<ServicePayment>();
             this.ShiftDates = new HashSet<ShiftDate>();
             this.ShiftDays = new HashSet<ShiftDay>();
@@ -40,6 +39,10 @@ namespace HMS.Entity
         public bool Datewise { get; set; }
         public Nullable<int> Qualification_ID { get; set; }
         public Nullable<int> Specialization_ID { get; set; }
+        public string MorningShifDetails { get; set; }
+        public string EveningShifDetails { get; set; }
+        public string FormerlyAt { get; set; }
+        public string VisitingConsultant { get; set; }
     
         public virtual ICollection<Appointment> Appointments { get; set; }
         public virtual ICollection<DoctorBillDetail> DoctorBillDetails { get; set; }
@@ -49,10 +52,11 @@ namespace HMS.Entity
         public virtual ICollection<DoctorVisitPaymentDetail> DoctorVisitPaymentDetails { get; set; }
         public virtual ICollection<LabPayment> LabPayments { get; set; }
         public virtual ICollection<MedicalPaymentDetail> MedicalPaymentDetails { get; set; }
-        public virtual ICollection<RegistrationPaymentDetail> RegistrationPaymentDetails { get; set; }
         public virtual ICollection<ServicePayment> ServicePayments { get; set; }
         public virtual ICollection<ShiftDate> ShiftDates { get; set; }
         public virtual ICollection<ShiftDay> ShiftDays { get; set; }
         public virtual ICollection<ShiftType> ShiftTypes { get; set; }
+        public virtual Qualification Qualification1 { get; set; }
+        public virtual Specialization Specialization1 { get; set; }
     }
 }

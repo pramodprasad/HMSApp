@@ -11,7 +11,7 @@
     
     <div class="form-horizontal">
         <h4>
-            Add service for patient: @Model.PatientVisit.Appointment.PatientDetail.FullName
+            Add service for patient: @Model.Appointment.PatientDetail.FullName
         </h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -113,11 +113,7 @@
 
                 </div>
             </div>
-            @Html.HiddenFor(m => m.PatientVisit_ID)
-            @Html.HiddenFor(m => m.PatientVisit.ID)
-            @Html.HiddenFor(m => m.PatientVisit.Appointment_ID)
-            @Html.HiddenFor(m => m.PatientVisit.PaymentMode_ID)
-            @Html.HiddenFor(m => m.PatientVisit.Appointment.ID)
+            @Html.HiddenFor(m => m.Appointment_ID)
         </fieldset>
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">

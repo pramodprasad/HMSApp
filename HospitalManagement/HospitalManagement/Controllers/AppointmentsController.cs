@@ -50,6 +50,8 @@ namespace HospitalManagement.Controllers
         {
             Appointment appointment = new Appointment();
             appointment.AppointmentDate = DateTime.Now;
+            appointment.VisitStatus = 0;
+            appointment.BranchDetails_ID = 1;
             var patient = db.PatientDetails.Where(p => p.ID == id).FirstOrDefault();
             //var patientPrevVisit = db.PatientStatus.Where(p => p.PatientDetails_ID == patient.ID).FirstOrDefault();
             if(patient != null)
@@ -95,7 +97,7 @@ namespace HospitalManagement.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.BranchDetails_ID = new SelectList(db.BranchDetails, "ID", "Name", appointment.BranchDetails_ID);
+            //ViewBag.BranchDetails_ID = new SelectList(db.BranchDetails, "ID", "Name", appointment.BranchDetails_ID);
             ViewBag.Doctor_ID = new SelectList(db.Doctors.Include("EmployeeDetail").ToList(), "ID", "EmployeeDetail.FirstName", appointment.Doctor_ID);
             ViewBag.Specialization_ID = new SelectList(db.Specializations, "ID", "Name", appointment.Specialization_ID);
             ViewBag.PatientType = new SelectList(db.PatientTypes, "ID", "Type", appointment.PatientType_ID);
@@ -115,7 +117,7 @@ namespace HospitalManagement.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.BranchDetails_ID = new SelectList(db.BranchDetails, "ID", "Name", appointment.BranchDetails_ID);
+            //ViewBag.BranchDetails_ID = new SelectList(db.BranchDetails, "ID", "Name", appointment.BranchDetails_ID);
             ViewBag.Doctor_ID = new SelectList(db.Doctors, "ID", "OtherDetails", appointment.Doctor_ID);
             ViewBag.PatientDetails_ID = new SelectList(db.PatientDetails, "ID", "FullName", appointment.PatientDetails_ID);
             ViewBag.Specialization_ID = new SelectList(db.Specializations, "ID", "Name", appointment.Specialization_ID);
@@ -136,7 +138,7 @@ namespace HospitalManagement.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.BranchDetails_ID = new SelectList(db.BranchDetails, "ID", "Name", appointment.BranchDetails_ID);
+            //ViewBag.BranchDetails_ID = new SelectList(db.BranchDetails, "ID", "Name", appointment.BranchDetails_ID);
             ViewBag.Doctor_ID = new SelectList(db.Doctors, "ID", "OtherDetails", appointment.Doctor_ID);
             ViewBag.PatientDetails_ID = new SelectList(db.PatientDetails, "ID", "FullName", appointment.PatientDetails_ID);
             ViewBag.Specialization_ID = new SelectList(db.Specializations, "ID", "Name", appointment.Specialization_ID);

@@ -89,7 +89,7 @@
                     success: function (result) {
                         var value = $(result).find(".validation-summary-errors ul li").length;
                         if (value == 0) {
-                            window.location.reload(true);
+                            window.location.href = "@Url.Action("Index","Appointments")";
                         }
                         else {
                             $('#appointmentBody').html('');

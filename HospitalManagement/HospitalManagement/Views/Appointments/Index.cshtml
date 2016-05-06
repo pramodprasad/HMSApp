@@ -47,8 +47,7 @@
                     @Html.DisplayFor(modelItem => item.PatientType.Type)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.AppointmentDate)
-                    @Html.ValidationMessageFor(modelItem => item.AppointmentDate)
+                  @item.AppointmentDate.ToString("dd/MM/yyyy")
                 </td>
                 <td>
                     @if(item.VisitStatus == 0)
@@ -93,7 +92,15 @@
 </table>
 <script>
     $('#appointmentTable').dataTable({
-
+        //"bPaginate": false,
+        "bLengthChange": false,
+        //"bFilter": true,
+        //"bInfo": false,
+        //"bAutoWidth": false,
+        //"info":     false,
+        "aoColumnDefs": [
+            { 'bSortable': false, 'aTargets': [0, 1, 2, 3, 4, 5, 6, 7] }
+        ]
     });
 </script>
 <script type="text/javascript">

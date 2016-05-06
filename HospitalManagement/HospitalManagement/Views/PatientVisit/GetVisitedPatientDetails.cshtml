@@ -42,7 +42,7 @@
                     @Html.DisplayFor(modelItem => item.Appointment.ID)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.VisitedDate)
+                    @item.VisitedDate.ToString("dd/MM/yyyy")
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Appointment.PatientDetail.FullName)

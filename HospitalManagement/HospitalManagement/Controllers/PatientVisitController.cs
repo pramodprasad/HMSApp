@@ -161,7 +161,7 @@ namespace HospitalManagement.Controllers
         public ActionResult GetVisitedPatientDetails()
         {
             List<PatientVisit> visitedpatient = new List<PatientVisit>();
-            visitedpatient = db.PatientVisits.Include(p => p.Appointment).Include(a => a.Appointment.PatientDetail).Include(a => a.Appointment.Doctor.EmployeeDetail).Include(a => a.Appointment.ShiftType).Where(w => w.Appointment.VisitStatus == 1).ToList();
+            visitedpatient = db.PatientVisits.Include(p => p.Appointment).Include(a => a.Appointment.PatientDetail).Include(a => a.Appointment.Doctor.EmployeeDetail).Include(a => a.Appointment.ShiftType).Where(w => w.Appointment.VisitStatus == 1 && (DbFunctions.TruncateTime(w.VisitedDate) == DbFunctions.TruncateTime(DateTime.Now))).ToList();
             return View(visitedpatient.OrderByDescending(a => a.ID).ToList());
         }
 

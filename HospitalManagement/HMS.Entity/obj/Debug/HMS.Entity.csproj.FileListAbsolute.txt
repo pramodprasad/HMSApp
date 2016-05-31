@@ -8,3 +8,11 @@ G:\MVC\HospitalManagement\HMS.Entity\bin\Debug\EntityFramework.SqlServer.xml
 G:\MVC\HospitalManagement\HMS.Entity\obj\Debug\HMS.Entity.csprojResolveAssemblyReference.cache
 G:\MVC\HospitalManagement\HMS.Entity\obj\Debug\HMS.Entity.dll
 G:\MVC\HospitalManagement\HMS.Entity\obj\Debug\HMS.Entity.pdb
+C:\Users\tanmay\Documents\GitHub\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\HMS.Entity.dll.config
+C:\Users\tanmay\Documents\GitHub\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\HMS.Entity.dll
+C:\Users\tanmay\Documents\GitHub\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\HMS.Entity.pdb
+C:\Users\tanmay\Documents\GitHub\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\EntityFramework.xml
+C:\Users\tanmay\Documents\GitHub\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\tanmay\Documents\GitHub\HMSApp\HospitalManagement\HMS.Entity\obj\Debug\HMS.Entity.csprojResolveAssemblyReference.cache
+C:\Users\tanmay\Documents\GitHub\HMSApp\HospitalManagement\HMS.Entity\obj\Debug\HMS.Entity.dll
+C:\Users\tanmay\Documents\GitHub\HMSApp\HospitalManagement\HMS.Entity\obj\Debug\HMS.Entity.pdb

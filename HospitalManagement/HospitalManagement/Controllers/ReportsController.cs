@@ -25,9 +25,22 @@ namespace HospitalManagement.Controllers
             dt = ReportsManager.GetBranchDetails(2);
 
             ReportClass rptH = new ReportClass();
-            rptH.FileName = Server.MapPath("../Content/crReportHeader.rpt");
+            rptH.FileName = Server.MapPath("../Content/cr_BranchDetails.rpt");
             rptH.Load();
             rptH.SetDataSource(dt);
+            Stream stream = rptH.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+            return File(stream, "application/pdf");
+        }
+
+        public ActionResult GetReceipt()
+        {
+            DataSet ds = new DataSet();
+            ds = ReportsManager.GetReceipt(1008,2);
+
+            ReportClass rptH = new ReportClass();
+            rptH.FileName = Server.MapPath("../Content/cr_RegReceipt.rpt");
+            rptH.Load();
+            rptH.SetDataSource(ds.Tables["dtpatientvisit"]);
             Stream stream = rptH.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
             return File(stream, "application/pdf");
         }

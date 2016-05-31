@@ -20,28 +20,28 @@ namespace HMS.BAL
                if (branchdetails != null)
                {
                    dt = ExtensionMethods.ConvertToDataTable(branchdetails);
-               }
-             
-
-
-               //PropertyInfo[] branchDetailColumns = branchdetails.GetType().GetProperties();
-               //DataTable dt = new DataTable();
-               //foreach (var col in branchDetailColumns)
-               //{
-               //    DataColumn column = new DataColumn();
-               //    column.Caption = col.Name;
-               //    column.DataType = col.PropertyType;
-
-               //    dt.Columns.Add(column);
-               //}
-
-               //foreach (var record in branchDetailColumns)
-               //{
-               //    DataRow row = dt.NewRow();
-               //    for (int i = 0; i < dt.Columns.Count; i++)
-               //        row[i] = branchDetailColumns[i].GetValue(record);
-               //}
+               }     
                return dt;
+           }
+       }
+
+       public static DataSet GetReceipt(int patientvisitid,long branchid )
+       {
+           DataTable dtbranchdetails = new DataTable();
+           DataTable dtpatientvisit = new DataTable();
+           DataSet dsreceipt = new DataSet();
+           using (HMSDBEntities context = new HMSDBEntities())
+           {
+               var branchdetails = context.sp_BranchDetails(branchid);
+               var patientvisit = context.sp_GetReceipt(patientvisitid);
+               if (branchdetails != null && patientvisit != null)
+               {
+                   dtbranchdetails = ExtensionMethods.ConvertToDataTable(branchdetails);
+                   dtpatientvisit = ExtensionMethods.ConvertToDataTable(patientvisit);
+                   dsreceipt.Tables.Add(dtpatientvisit);
+                   dsreceipt.Tables.Add(dtbranchdetails);
+               }
+               return dsreceipt;
            }
        }
       

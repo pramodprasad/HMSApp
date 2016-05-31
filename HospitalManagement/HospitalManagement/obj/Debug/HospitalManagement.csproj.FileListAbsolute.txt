@@ -4014,3 +4014,7 @@ C:\Users\Pramod\Documents\GitHub\HMSApp\HospitalManagement\HospitalManagement\bi
 C:\Users\Pramod\Documents\GitHub\HMSApp\HospitalManagement\HospitalManagement\bin\CrystalDecisions.ReportSource.dll
 C:\Users\Pramod\Documents\GitHub\HMSApp\HospitalManagement\HospitalManagement\bin\CrystalDecisions.Shared.dll
 C:\Users\Pramod\Documents\GitHub\HMSApp\HospitalManagement\HospitalManagement\bin\CrystalDecisions.Web.dll
+C:\Users\tanmay\Documents\GitHub\HMSApp\HospitalManagement\HospitalManagement\bin\CrystalDecisions.CrystalReports.Engine.dll
+C:\Users\tanmay\Documents\GitHub\HMSApp\HospitalManagement\HospitalManagement\bin\CrystalDecisions.ReportSource.dll
+C:\Users\tanmay\Documents\GitHub\HMSApp\HospitalManagement\HospitalManagement\bin\CrystalDecisions.Shared.dll
+C:\Users\tanmay\Documents\GitHub\HMSApp\HospitalManagement\HospitalManagement\bin\CrystalDecisions.Web.dll

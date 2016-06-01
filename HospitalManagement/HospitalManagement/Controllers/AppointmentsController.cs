@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
@@ -83,19 +84,29 @@ namespace HospitalManagement.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Appointment appointment)
         {
-            var checkIfxists = db.Appointments.Where(a => a.PatientDetails_ID == appointment.PatientDetails_ID && (DbFunctions.TruncateTime(a.CreatedDate) == DbFunctions.TruncateTime(DateTime.Now) || DbFunctions.TruncateTime(a.AppointmentDate) == DbFunctions.TruncateTime(appointment.AppointmentDate))).FirstOrDefault();
-            if(checkIfxists != null)
+            int maxAppointCount = Convert.ToInt32(ConfigurationManager.AppSettings["MaxAppointCount"].ToString());
+            var appointCount = db.Appointments.Where(a => DbFunctions.TruncateTime(a.AppointmentDate) == DbFunctions.TruncateTime(DateTime.Now)).Count();
+            if(appointCount < maxAppointCount)
             {
-                ModelState.AddModelError("", "Appointment already created for this patient.");
+                var checkIfxists = db.Appointments.Where(a => a.PatientDetails_ID == appointment.PatientDetails_ID && (DbFunctions.TruncateTime(a.CreatedDate) == DbFunctions.TruncateTime(DateTime.Now) || DbFunctions.TruncateTime(a.AppointmentDate) == DbFunctions.TruncateTime(appointment.AppointmentDate))).FirstOrDefault();
+                if (checkIfxists != null)
+                {
+                    ModelState.AddModelError("", "Appointment already created for this patient.");
+                }
+
+                if (ModelState.IsValid)
+                {
+                    appointment.CreatedDate = DateTime.Now;
+                    db.Appointments.Add(appointment);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("", "The appointment for the selected date not available.");
             }
 
-            if (ModelState.IsValid)
-            {
-                appointment.CreatedDate = DateTime.Now;
-                db.Appointments.Add(appointment);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
 
             //ViewBag.BranchDetails_ID = new SelectList(db.BranchDetails, "ID", "Name", appointment.BranchDetails_ID);
             ViewBag.Doctor_ID = new SelectList(db.Doctors.Include("EmployeeDetail").ToList(), "ID", "EmployeeDetail.FirstName", appointment.Doctor_ID);

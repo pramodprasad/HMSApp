@@ -17,9 +17,11 @@ namespace HMS.Entity
         public PaymentStau()
         {
             this.DoctorBillDetails = new HashSet<DoctorBillDetail>();
+            this.LabPayments = new HashSet<LabPayment>();
             this.MedicalPaymentDetails = new HashSet<MedicalPaymentDetail>();
             this.RegistrationPaymentDetails = new HashSet<RegistrationPaymentDetail>();
             this.ServicePayments = new HashSet<ServicePayment>();
+            this.WardOrRoomChargeDetails = new HashSet<WardOrRoomChargeDetail>();
         }
     
         public long ID { get; set; }
@@ -27,8 +29,10 @@ namespace HMS.Entity
         public bool IsActive { get; set; }
     
         public virtual ICollection<DoctorBillDetail> DoctorBillDetails { get; set; }
+        public virtual ICollection<LabPayment> LabPayments { get; set; }
         public virtual ICollection<MedicalPaymentDetail> MedicalPaymentDetails { get; set; }
         public virtual ICollection<RegistrationPaymentDetail> RegistrationPaymentDetails { get; set; }
         public virtual ICollection<ServicePayment> ServicePayments { get; set; }
+        public virtual ICollection<WardOrRoomChargeDetail> WardOrRoomChargeDetails { get; set; }
     }
 }

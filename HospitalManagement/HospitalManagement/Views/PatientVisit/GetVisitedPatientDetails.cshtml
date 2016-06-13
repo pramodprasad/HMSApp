@@ -10,7 +10,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayName("Appointment ID")
+                @Html.DisplayName("App ID")
             </th>
             <th>
                 @Html.DisplayName("Visited Date")
@@ -28,10 +28,10 @@
                 @Html.DisplayName("Doctor")
             </th>
             <th>
-                @Html.DisplayName("Paid Amount")
+                @Html.DisplayName("Amount")
             </th>
 
-            <th></th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -48,7 +48,7 @@
                     @Html.DisplayFor(modelItem => item.Appointment.PatientDetail.FullName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Appointment.PatientType.Details)
+                    @Html.DisplayFor(modelItem => item.Appointment.PatientType.Type)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Appointment.Specialization.Name)
@@ -63,9 +63,12 @@
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
                     @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                    @Html.ActionLink("Slip", "OutPatientSlip", new { id = item.ID }, htmlAttributes: new { @class = "visitSlipDetails" }) |
-                    @Html.ActionLink("Prescription", "DoctorsPriscription", new { id = item.ID }, htmlAttributes: new { @class = "doctorsPrescriptions" }) |
+                    @Html.ActionLink("Get Receipt", "AssignValueinReport", "Reports", new { id = item.ID }, null) |
+                    @Html.ActionLink("Prescription", "GetPrescriptionReport", "Reports", new { id = item.ID },null) |
                     @Html.ActionLink("Add Service", "AddService", "Transaction", new { id = item.Appointment.PatientDetail.ID }, htmlAttributes: new { @class = "serviceAddModal" })
+
+                    @*@Html.ActionLink("Slip", "OutPatientSlip", new { id = item.ID }, htmlAttributes: new { @class = "visitSlipDetails" }) |*@
+                    @*htmlAttributes: new { @class = "doctorsPrescriptions" }*@
                 </td>
             </tr>
         }

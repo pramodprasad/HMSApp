@@ -11,11 +11,12 @@ using HospitalManagement.Models;
 using HospitalManagement.ViewModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using HMS.BAL;
 namespace HospitalManagement.Controllers
 {
     public class PatientController : Controller
     {
-        private HMSDBEntities db = new HMSDBEntities();
+        private HMSTEntities db = new HMSTEntities();
 
         // GET: Patient
         public ActionResult Index()
@@ -46,7 +47,9 @@ namespace HospitalManagement.Controllers
             appointment.AppointmentDate = DateTime.Now;
             model.Appointment = appointment;
             ViewBag.Specialization = new SelectList(db.Specializations.ToList(), "ID", "Name");
-            ViewBag.Doctors = new SelectList(db.Doctors.Include("EmployeeDetail").ToList(), "ID", "EmployeeDetail.FirstName");
+            List<DoctorName> doctornamelist = UtilityManager.GetName();
+            //ViewBag.Doctors = new SelectList(db.Doctors.Include("EmployeeDetail").ToList(), "ID", "EmployeeDetail.LastName");
+            ViewBag.Doctors = new SelectList(doctornamelist, "ID", "Name");
             ViewBag.City = new SelectList(db.Cities.ToList(), "ID", "Name");
             ViewBag.ShiftType = new SelectList(db.ShiftTypes, "ID", "Name");
             ViewBag.PatientType = new SelectList(db.PatientTypes, "ID", "Type");
@@ -84,17 +87,18 @@ namespace HospitalManagement.Controllers
                     }
 
                     DateTime today = DateTime.Today;
-                    int age = today.Year - patientDetail.PatientDetails.DOB.Year;
-                    if (patientDetail.PatientDetails.DOB.Date > today.AddYears(-age)) age--;
+                    //int age = today.Year - patientDetail.PatientDetails.Age;
+                    patientDetail.PatientDetails.DOB = today.AddYears(- (patientDetail.PatientDetails.Age));
+                    //if (patientDetail.PatientDetails.DOB.Date > today.AddYears(-age)) age--;
 
-                    patientDetail.PatientDetails.Age = age;
+                    //patientDetail.PatientDetails.Age = age;
                     patientDetail.PatientDetails.CreatedOn = DateTime.Now;
                     patientDetail.PatientDetails.DateOfRegistration = DateTime.Now;
                     db.PatientDetails.Add(patientDetail.PatientDetails);
                     db.SaveChanges();
                     patientDetail.Appointment.CreatedDate = DateTime.Now;
                     patientDetail.Appointment.CreatedBy = Convert.ToInt32(customerId);
-                    patientDetail.Appointment.BranchDetails_ID = Convert.ToInt32(branchId);                    
+                    //patientDetail.Appointment.BranchDetails_ID = Convert.ToInt32(branchId);                   
                     patientDetail.PatientDetails.Appointments.Add(patientDetail.Appointment);
                     db.SaveChanges();
                     return RedirectToAction("Index", "Appointments");

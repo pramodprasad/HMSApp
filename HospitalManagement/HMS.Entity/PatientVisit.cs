@@ -31,6 +31,7 @@ namespace HMS.Entity
         public Nullable<int> PaymentMode_ID { get; set; }
     
         public virtual Appointment Appointment { get; set; }
+        public virtual EmployeeDetail EmployeeDetail { get; set; }
         public virtual PatientStatu PatientStatu { get; set; }
         public virtual PaymentMode PaymentMode { get; set; }
         public virtual ICollection<RegistrationPaymentDetail> RegistrationPaymentDetails { get; set; }

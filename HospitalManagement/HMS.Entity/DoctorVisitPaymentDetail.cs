@@ -32,5 +32,6 @@ namespace HMS.Entity
         public virtual Doctor Doctor { get; set; }
         public virtual PaymentMode PaymentMode { get; set; }
         public virtual PaymentSection PaymentSection { get; set; }
+        public virtual EmployeeDetail EmployeeDetail { get; set; }
     }
 }

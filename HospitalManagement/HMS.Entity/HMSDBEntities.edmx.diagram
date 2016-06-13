@@ -4,126 +4,141 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="8057c24446754482b5c9377ac7ee66cc" Name="Diagram1" ZoomLevel="100">
-        <EntityTypeShape EntityType="HMSMVCModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="6.75" />
-        <EntityTypeShape EntityType="HMSMVCModel.Appointment" Width="1.5" PointX="5.25" PointY="29.125" />
-        <EntityTypeShape EntityType="HMSMVCModel.AspNetRole" Width="1.5" PointX="0.75" PointY="2.5" />
-        <EntityTypeShape EntityType="HMSMVCModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="3.625" />
-        <EntityTypeShape EntityType="HMSMVCModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="1" />
-        <EntityTypeShape EntityType="HMSMVCModel.AspNetUser" Width="1.5" PointX="3" PointY="1.125" />
-        <EntityTypeShape EntityType="HMSMVCModel.BedAllotment" Width="1.5" PointX="10.5" PointY="26.875" />
-        <EntityTypeShape EntityType="HMSMVCModel.BranchDetail" Width="1.5" PointX="3" PointY="44" />
-        <EntityTypeShape EntityType="HMSMVCModel.City" Width="1.5" PointX="0.75" PointY="45.375" />
-        <EntityTypeShape EntityType="HMSMVCModel.CounterTable" Width="1.5" PointX="2.75" PointY="6.75" />
-        <EntityTypeShape EntityType="HMSMVCModel.Country" Width="1.5" PointX="1.5" PointY="53.625" />
-        <EntityTypeShape EntityType="HMSMVCModel.DoctorBillDetail" Width="1.5" PointX="5.25" PointY="22.5" />
-        <EntityTypeShape EntityType="HMSMVCModel.Doctor" Width="1.5" PointX="3" PointY="28.75" />
-        <EntityTypeShape EntityType="HMSMVCModel.DoctorVisitPaymentDetail" Width="1.5" PointX="7.5" PointY="24" />
-        <EntityTypeShape EntityType="HMSMVCModel.EmployeeDetail" Width="1.5" PointX="0.75" PointY="24" />
-        <EntityTypeShape EntityType="HMSMVCModel.EmployeeType" Width="1.5" PointX="1.5" PointY="37" />
-        <EntityTypeShape EntityType="HMSMVCModel.LabCategory" Width="1.5" PointX="5.25" PointY="47.875" />
-        <EntityTypeShape EntityType="HMSMVCModel.LabPayment" Width="1.5" PointX="7.5" PointY="35.875" />
-        <EntityTypeShape EntityType="HMSMVCModel.LabTest" Width="1.5" PointX="5.25" PointY="44.5" />
-        <EntityTypeShape EntityType="HMSMVCModel.MedicalPaymentDetail" Width="1.5" PointX="13.5" PointY="25" />
-        <EntityTypeShape EntityType="HMSMVCModel.PatientBill" Width="1.5" PointX="7.5" PointY="29.25" />
-        <EntityTypeShape EntityType="HMSMVCModel.PatientDetail" Width="1.5" PointX="3" PointY="21.25" />
-        <EntityTypeShape EntityType="HMSMVCModel.PatientStatu" Width="1.5" PointX="8.25" PointY="21.25" />
-        <EntityTypeShape EntityType="HMSMVCModel.PatientType" Width="1.5" PointX="3" PointY="18.25" />
-        <EntityTypeShape EntityType="HMSMVCModel.PatientVisit" Width="1.5" PointX="10.5" PointY="30.375" />
-        <EntityTypeShape EntityType="HMSMVCModel.PaymentMode" Width="1.5" PointX="5.25" PointY="36.5" />
-        <EntityTypeShape EntityType="HMSMVCModel.PaymentSection" Width="1.5" PointX="5.25" PointY="19.375" />
-        <EntityTypeShape EntityType="HMSMVCModel.PaymentStau" Width="1.5" PointX="11.25" PointY="23" />
-        <EntityTypeShape EntityType="HMSMVCModel.Qualification" Width="1.5" PointX="0.75" PointY="40.375" />
-        <EntityTypeShape EntityType="HMSMVCModel.RegistrationPaymentDetail" Width="1.5" PointX="15.75" PointY="29.875" />
-        <EntityTypeShape EntityType="HMSMVCModel.RoomDetail" Width="1.5" PointX="8.25" PointY="13.75" />
-        <EntityTypeShape EntityType="HMSMVCModel.ServicePayment" Width="1.5" PointX="10.5" PointY="35.625" />
-        <EntityTypeShape EntityType="HMSMVCModel.Service" Width="1.5" PointX="8.25" PointY="41.5" />
-        <EntityTypeShape EntityType="HMSMVCModel.ServiceSubCategory" Width="1.5" PointX="8.25" PointY="44.125" />
-        <EntityTypeShape EntityType="HMSMVCModel.ShiftDate" Width="1.5" PointX="13.5" PointY="39.75" />
-        <EntityTypeShape EntityType="HMSMVCModel.ShiftDay" Width="1.5" PointX="13.5" PointY="35.625" />
-        <EntityTypeShape EntityType="HMSMVCModel.ShiftType" Width="1.5" PointX="5.25" PointY="40.75" />
-        <EntityTypeShape EntityType="HMSMVCModel.Specialization" Width="1.5" PointX="0.75" PointY="31.125" />
-        <EntityTypeShape EntityType="HMSMVCModel.State" Width="1.5" PointX="1.5" PointY="50.5" />
-        <EntityTypeShape EntityType="HMSMVCModel.Title" Width="1.5" PointX="1.5" PointY="15.625" />
-        <EntityTypeShape EntityType="HMSMVCModel.VisitReason" Width="1.5" PointX="4.75" PointY="6.75" />
-        <EntityTypeShape EntityType="HMSMVCModel.WardCategory" Width="1.5" PointX="3.75" PointY="14.25" />
-        <EntityTypeShape EntityType="HMSMVCModel.WardOrRoomChargeDetail" Width="1.5" PointX="13.5" PointY="30.375" />
-        <EntityTypeShape EntityType="HMSMVCModel.Ward" Width="1.5" PointX="6" PointY="13.75" />
-        <EntityTypeShape EntityType="HMSMVCModel.WeekDay" Width="1.5" PointX="11.25" PointY="42.25" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_Appointments_dbo_BranchDetails_BranchDetails_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_Appointments_dbo_Doctors_Doctor_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_Appointments_dbo_PatientDetails_PatientDetails_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_Appointments_dbo_PatientTypes_PatientType_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_Appointments_dbo_ShiftTypes_ShiftType_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_Appointments_dbo_Specializations_Specialization_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_BedAllotments_dbo_Appointments_Appointment_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_DoctorVisitPaymentDetails_dbo_Appointments_Appointment_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_LabPayments_dbo_Appointments_Appointment_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_MedicalPaymentDetails_dbo_Appointments_Appointment_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_PatientBills_dbo_Appointments_Appointment_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_PatientVisits_dbo_Appointments_Appointment_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_ServicePayments_dbo_Appointments_Appointment_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_WardOrRoomChargeDetails_dbo_Appointments_Appointment_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_BedAllotments_dbo_RoomDetails_RoomDetails_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_BranchDetails_dbo_Cities_City_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_EmployeeDetails_dbo_BranchDetails_BranchDetail_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_PatientBills_dbo_BranchDetails_BranchDetail_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_ServiceSubCategories_dbo_BranchDetails_BranchDetail_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_Wards_dbo_BranchDetails_BranchDetail_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_Cities_dbo_States_State_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_EmployeeDetails_dbo_Cities_City_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_PatientDetails_dbo_Cities_City_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_States_dbo_Countries_Country_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_DoctorBillDetails_dbo_Doctors_Doctor_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_DoctorBillDetails_dbo_PatientDetails_PatientDetails_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_DoctorBillDetails_dbo_PatientTypes_PatientType_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_DoctorBillDetails_dbo_PaymentModes_PaymentMode_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_DoctorBillDetails_PaymentStaus" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_Doctors_dbo_EmployeeDetails_EmployeeDetail_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_Doctors_dbo_Qualifications_Qualification_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_Doctors_dbo_Specializations_Specialization_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_DoctorVisitPaymentDetails_dbo_Doctors_Doctor_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_LabPayments_dbo_Doctors_Doctor_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_MedicalPaymentDetails_dbo_Doctors_Doctor_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_ServicePayments_dbo_Doctors_Doctor_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_ShiftDates_dbo_Doctors_Doctor_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_ShiftDays_dbo_Doctors_Doctor_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_ShiftTypes_dbo_Doctors_Doctor_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_Doctors_Qualifications" />
-        <AssociationConnector Association="HMSMVCModel.FK_Doctors_Specializations" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_DoctorVisitPaymentDetails_dbo_PaymentModes_PaymentMode_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_DoctorVisitPaymentDetails_dbo_PaymentSections_PaymentSection_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_EmployeeDetails_dbo_EmployeeTypes_EmployeeType_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_EmployeeDetails_dbo_Titles_Title_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_PatientBills_dbo_EmployeeDetails_EmployeeDetail_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_RegistrationPaymentDetails_dbo_EmployeeDetails_EmployeeDetail_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_LabPayments_dbo_LabCategories_LabCategory_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_LabTests_dbo_LabCategories_LabCategory_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_LabPayments_dbo_LabTests_LabTest_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_MedicalPaymentDetails_dbo_PaymentModes_PaymentMode_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_MedicalPaymentDetails_dbo_PaymentSections_PaymentSection_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_MedicalPaymentDetails_PaymentStaus" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_PatientBills_dbo_PaymentModes_PaymentMode_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_PatientBills_dbo_PaymentSections_PaymentSection_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_PatientVisits_PatientStatus" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_PatientVisits_dbo_PaymentModes_PaymentMode_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_RegistrationPaymentDetails_dbo_Doctors_Doctor_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_RegistrationPaymentDetails_dbo_PaymentModes_PaymentMode_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_RegistrationPaymentDetails_dbo_PaymentSections_PaymentSection_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_RegistrationPaymentDetails_PaymentStaus" />
-        <AssociationConnector Association="HMSMVCModel.FK_ServicePayments_PaymentStaus" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_RoomDetails_dbo_Wards_Ward_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_WardOrRoomChargeDetails_dbo_RoomDetails_RoomDetails_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_ServicePayments_dbo_Services_Service_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_ServicePayments_dbo_ServiceSubCategories_ServiceSubCategory_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_ServiceSubCategories_dbo_Services_Service_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_ShiftDates_dbo_ShiftTypes_ShiftType_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_ShiftDays_dbo_ShiftTypes_ShiftType_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_ShiftDays_dbo_WeekDays_WeekDays_ID" />
-        <AssociationConnector Association="HMSMVCModel.FK_dbo_Wards_dbo_WardCategories_WardCategory_ID" />
-        <AssociationConnector Association="HMSMVCModel.AspNetUserRoles" />
+      <Diagram DiagramId="2d602ceb525b497cad683ae8e6c59361" Name="Diagram1">
+        <EntityTypeShape EntityType="HMSTModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HMSTModel.Appointment" Width="1.5" PointX="9.75" PointY="38" IsExpanded="true" />
+        <EntityTypeShape EntityType="HMSTModel.AspNetRole" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HMSTModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="HMSTModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HMSTModel.AspNetUser" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HMSTModel.BedAllotment" Width="1.5" PointX="20.25" PointY="39.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HMSTModel.BranchDetail" Width="1.5" PointX="7.5" PointY="36.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HMSTModel.City" Width="1.5" PointX="5.25" PointY="40" IsExpanded="true" />
+        <EntityTypeShape EntityType="HMSTModel.CounterTable" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HMSTModel.Country" Width="1.5" PointX="0.75" PointY="40.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HMSTModel.DoctorBillDetail" Width="1.5" PointX="23.25" PointY="45.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HMSTModel.Doctor" Width="1.5" PointX="15" PointY="41.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HMSTModel.DoctorVisitPaymentDetail" Width="1.5" PointX="17.25" PointY="40.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HMSTModel.EmployeeDetail" Width="1.5" PointX="12.75" PointY="35.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HMSTModel.EmployeeType" Width="1.5" PointX="10.5" PointY="31" IsExpanded="true" />
+        <EntityTypeShape EntityType="HMSTModel.LabCategory" Width="1.5" PointX="18" PointY="54.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HMSTModel.LabPayment" Width="1.5" PointX="20.25" PointY="43.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HMSTModel.LabTest" Width="1.5" PointX="18" PointY="61.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HMSTModel.MedicalEquipment" Width="1.5" PointX="4.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HMSTModel.MedicalPaymentDetail" Width="1.5" PointX="17.25" PointY="46.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HMSTModel.PatientBill" Width="1.5" PointX="21" PointY="32" IsExpanded="true" />
+        <EntityTypeShape EntityType="HMSTModel.PatientDetail" Width="1.5" PointX="7.5" PointY="41.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HMSTModel.PatientStatu" Width="1.5" PointX="12.75" PointY="32" IsExpanded="true" />
+        <EntityTypeShape EntityType="HMSTModel.PatientType" Width="1.5" PointX="21" PointY="56.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HMSTModel.PatientVisit" Width="1.5" PointX="15" PointY="31.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HMSTModel.PaymentMode" Width="1.5" PointX="21" PointY="59.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HMSTModel.PaymentSection" Width="1.5" PointX="15" PointY="25.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HMSTModel.PaymentStau" Width="1.5" PointX="21" PointY="63.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HMSTModel.Qualification" Width="1.5" PointX="12.75" PointY="43.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HMSTModel.RegistrationPaymentDetail" Width="1.5" PointX="17.25" PointY="31.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HMSTModel.RoomDetail" Width="1.5" PointX="18" PointY="37.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HMSTModel.ServicePayment" Width="1.5" PointX="23.25" PointY="38.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HMSTModel.Service" Width="1.5" PointX="7.5" PointY="32.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HMSTModel.ServiceSubCategory" Width="1.5" PointX="9.75" PointY="34.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HMSTModel.ShiftDate" Width="1.5" PointX="19.5" PointY="50.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HMSTModel.ShiftDay" Width="1.5" PointX="22.5" PointY="52.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HMSTModel.ShiftType" Width="1.5" PointX="17.25" PointY="57.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HMSTModel.Specialization" Width="1.5" PointX="12.75" PointY="46.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HMSTModel.State" Width="1.5" PointX="3" PointY="40.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HMSTModel.Title" Width="1.5" PointX="10.5" PointY="45.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HMSTModel.VisitReason" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HMSTModel.WardCategory" Width="1.5" PointX="13.5" PointY="28.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HMSTModel.WardOrRoomChargeDetail" Width="1.5" PointX="23.25" PointY="32.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HMSTModel.Ward" Width="1.5" PointX="15.75" PointY="37.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HMSTModel.WeekDay" Width="1.5" PointX="20.25" PointY="53.875" IsExpanded="true" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_Appointments_dbo_BranchDetails_BranchDetails_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_Appointments_dbo_Doctors_Doctor_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_Appointments_dbo_PatientDetails_PatientDetails_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_Appointments_dbo_PatientTypes_PatientType_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_Appointments_dbo_ShiftTypes_ShiftType_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_Appointments_dbo_Specializations_Specialization_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_BedAllotments_dbo_Appointments_Appointment_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_DoctorVisitPaymentDetails_dbo_Appointments_Appointment_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_LabPayments_dbo_Appointments_Appointment_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_MedicalPaymentDetails_dbo_Appointments_Appointment_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_PatientBills_dbo_Appointments_Appointment_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_PatientVisits_dbo_Appointments_Appointment_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_ServicePayments_dbo_Appointments_Appointment_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_WardOrRoomChargeDetails_dbo_Appointments_Appointment_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_BedAllotments_dbo_RoomDetails_RoomDetails_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_BranchDetails_dbo_Cities_City_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_EmployeeDetails_dbo_BranchDetails_BranchDetail_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_PatientBills_dbo_BranchDetails_BranchDetail_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_ServiceSubCategories_dbo_BranchDetails_BranchDetail_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_Wards_dbo_BranchDetails_BranchDetail_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_Cities_dbo_States_State_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_EmployeeDetails_dbo_Cities_City_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_PatientDetails_dbo_Cities_City_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_States_dbo_Countries_Country_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_DoctorBillDetails_dbo_Doctors_Doctor_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_DoctorBillDetails_dbo_PatientDetails_PatientDetails_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_DoctorBillDetails_dbo_PatientTypes_PatientType_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_DoctorBillDetails_dbo_PaymentModes_PaymentMode_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_DoctorBillDetails_PaymentStaus" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_Doctors_dbo_EmployeeDetails_EmployeeDetail_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_Doctors_dbo_Qualifications_Qualification_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_Doctors_dbo_Specializations_Specialization_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_DoctorVisitPaymentDetails_dbo_Doctors_Doctor_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_LabPayments_dbo_Doctors_Doctor_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_MedicalPaymentDetails_dbo_Doctors_Doctor_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_ServicePayments_dbo_Doctors_Doctor_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_ShiftDates_dbo_Doctors_Doctor_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_ShiftDays_dbo_Doctors_Doctor_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_ShiftTypes_dbo_Doctors_Doctor_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_Doctors_EmployeeDetails" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_Doctors_EmployeeDetails1" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_Doctors_Qualifications" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_Doctors_Specializations" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_DoctorVisitPaymentDetails_dbo_PaymentModes_PaymentMode_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_DoctorVisitPaymentDetails_dbo_PaymentSections_PaymentSection_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_DoctorVisitPaymentDetails_EmployeeDetails" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_EmployeeDetails_dbo_EmployeeTypes_EmployeeType_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_EmployeeDetails_dbo_Titles_Title_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_PatientBills_dbo_EmployeeDetails_EmployeeDetail_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_RegistrationPaymentDetails_dbo_EmployeeDetails_EmployeeDetail_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_LabPayments_EmployeeDetails" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_LabPayments_EmployeeDetails1" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_PatientVisits_EmployeeDetails" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_ServicePayments_EmployeeDetails" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_ServicePayments_EmployeeDetails1" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_WardOrRoomChargeDetails_EmployeeDetails" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_LabPayments_dbo_LabCategories_LabCategory_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_LabTests_dbo_LabCategories_LabCategory_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_LabPayments_dbo_LabTests_LabTest_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_LabPayments_PaymentModes" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_LabPayments_PaymentStaus" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_MedicalPaymentDetails_dbo_PaymentModes_PaymentMode_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_MedicalPaymentDetails_dbo_PaymentSections_PaymentSection_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_MedicalPaymentDetails_PaymentStaus" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_PatientBills_dbo_PaymentModes_PaymentMode_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_PatientBills_dbo_PaymentSections_PaymentSection_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_PatientVisits_PatientStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_PatientVisits_dbo_PaymentModes_PaymentMode_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_RegistrationPaymentDetails_dbo_Doctors_Doctor_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_RegistrationPaymentDetails_dbo_PaymentModes_PaymentMode_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_ServicePayments_PaymentModes" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_WardOrRoomChargeDetails_PaymentModes" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_RegistrationPaymentDetails_dbo_PaymentSections_PaymentSection_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_RegistrationPaymentDetails_PaymentStaus" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_ServicePayments_PaymentStaus" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_WardOrRoomChargeDetails_PaymentStaus" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_RoomDetails_dbo_Wards_Ward_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_WardOrRoomChargeDetails_dbo_RoomDetails_RoomDetails_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_ServicePayments_dbo_Services_Service_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_ServicePayments_dbo_ServiceSubCategories_ServiceSubCategory_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_ServiceSubCategories_dbo_Services_Service_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_ShiftDates_dbo_ShiftTypes_ShiftType_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_ShiftDays_dbo_ShiftTypes_ShiftType_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_ShiftDays_dbo_WeekDays_WeekDays_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.FK_dbo_Wards_dbo_WardCategories_WardCategory_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HMSTModel.AspNetUserRoles" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

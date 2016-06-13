@@ -16,7 +16,7 @@
            <div style="width:100%;float:left;">
                <div class="left-div col-md-6">
                    <div class="form-group">
-                       @Html.LabelFor(model => model.PatientDetails.FullName, htmlAttributes: new { @class = "control-label col-md-4" })
+                       @Html.LabelFor(model => model.PatientDetails.FullName,"Name", htmlAttributes: new { @class = "control-label col-md-4" })
                        <div class="col-md-8">
                            @Html.EditorFor(model => model.PatientDetails.FullName, new { htmlAttributes = new { @class = "form-control" } })
                            @Html.ValidationMessageFor(model => model.PatientDetails.FullName, "", new { @class = "text-danger" })
@@ -25,11 +25,11 @@
                </div>
                <div class="right-div col-md-6" >
                    <div class="form-group">
-                       @Html.LabelFor(model => model.PatientDetails.DOB, htmlAttributes: new { @class = "control-label col-md-4" })
+                       @Html.LabelFor(model => model.PatientDetails.Age, htmlAttributes: new { @class = "control-label col-md-4" })
                        <div class="col-md-8">
                               @*@Html.TextBoxFor(model => model.PatientDetails.DOB, new { @class = "date" })*@
-                           @Html.EditorFor(model => model.PatientDetails.DOB, new { htmlAttributes = new { @class = "form-control dateControl" } }) 
-                           @Html.ValidationMessageFor(model => model.PatientDetails.DOB, "", new { @class = "text-danger" })
+                           @Html.EditorFor(model => model.PatientDetails.Age, new { htmlAttributes = new { @class = "form-control" } }) 
+                           @Html.ValidationMessageFor(model => model.PatientDetails.Age, "", new { @class = "text-danger" })
                        </div>
                    </div>
                </div>
@@ -45,7 +45,7 @@
                                    new { value = 1 , text = "Female" }
                                 },
                               "value",
-                              "text"
+                              "text",1
                                ), "----Select----", htmlAttributes: new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.PatientDetails.Gender, "", new { @class = "text-danger" })
                         </div>
@@ -53,7 +53,7 @@
                 </div>
                 <div class="right-div col-md-6">
                     <div class="form-group">
-                        @Html.LabelFor(model => model.PatientDetails.FatherOrHusbandName, htmlAttributes: new { @class = "control-label col-md-4" })
+                        @Html.LabelFor(model => model.PatientDetails.FatherOrHusbandName,"Father/Husband", htmlAttributes: new { @class = "control-label col-md-4" })
                         <div class="col-md-8">
                             @Html.TextBoxFor(model => model.PatientDetails.FatherOrHusbandName, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.PatientDetails.FatherOrHusbandName, "", new { @class = "text-danger" })
@@ -64,7 +64,7 @@
             <div style="width:100%;float:left;">
                 <div class="left-div col-md-6">
                     <div class="form-group">
-                        @Html.LabelFor(model => model.PatientDetails.ContactNo, htmlAttributes: new { @class = "control-label col-md-4" })
+                        @Html.LabelFor(model => model.PatientDetails.ContactNo, "Contact No.", htmlAttributes: new { @class = "control-label col-md-4" })
                         <div class="col-md-8">
                             @Html.TextBoxFor(model => model.PatientDetails.ContactNo, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.PatientDetails.ContactNo, "", new { @class = "text-danger" })
@@ -74,7 +74,7 @@
                 </div>
                 <div class="right-div col-md-6">
                     <div class="form-group">
-                        @Html.LabelFor(model => model.PatientDetails.OtherContactNo, htmlAttributes: new { @class = "control-label col-md-4" })
+                        @Html.LabelFor(model => model.PatientDetails.OtherContactNo, "Other Contact No.", htmlAttributes: new { @class = "control-label col-md-4" })
                         <div class="col-md-8">
                             @Html.TextBoxFor(model => model.PatientDetails.OtherContactNo, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.PatientDetails.OtherContactNo, "", new { @class = "text-danger" })
@@ -105,7 +105,7 @@
             <div style="width:100%;float:left;">
                 <div class="left-div col-md-6">
                     <div class="form-group">
-                        @Html.LabelFor(model => model.PatientDetails.MarritalStatus, htmlAttributes: new { @class = "control-label col-md-4" })
+                        @Html.LabelFor(model => model.PatientDetails.MarritalStatus,"Marrital Status", htmlAttributes: new { @class = "control-label col-md-4" })
                         <div class="col-md-8">
                             @Html.DropDownListFor(model => model.PatientDetails.MarritalStatus, new SelectList(
                               new List<Object>{
@@ -190,7 +190,7 @@
                 </div>
                 <div class="right-div col-md-6">
                     <div class="form-group">
-                        @Html.LabelFor(model => model.Appointment.ReferalDetails, htmlAttributes: new { @class = "control-label col-md-4" })
+                        @Html.LabelFor(model => model.Appointment.ReferalDetails, "Referal Details", htmlAttributes: new { @class = "control-label col-md-4" })
                         <div class="col-md-8">
                             @Html.EditorFor(model => model.Appointment.ReferalDetails, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.Appointment.ReferalDetails, "", new { @class = "text-danger" })
@@ -236,39 +236,39 @@
         };
     });
 
-    $('#PatientDetails_DOB').on("change", function () {
-        validateDOB();
-    });
+    //$('#PatientDetails_DOB').on("change", function () {
+    //    validateDOB();
+    //});
     $('#Appointment_AppointmentDate').on("change", function () {
         validateAppoint();
     });
-    function validateDOB()
-    {
-        var selectedDate = $('#PatientDetails_DOB').val();
-        var splitDate = selectedDate.split("/");
-        var alertReason = 'Entry Date must be less than or equal to Current Date.';
-        var currentDate = new Date();
-        var curr_day = currentDate.getDate();
-        var curr_month = currentDate.getMonth() + 1;
-        var curr_year = currentDate.getFullYear();
-        var flag;
-        flag = 0;
-        if (splitDate[2] > curr_year && splitDate[2] != curr_year) {
-            alert(alertReason);
-            $('#PatientDetails_DOB').val('')
-            return false;
-        }
-        else if (splitDate[1] > curr_month && splitDate[1] != curr_month) {
-            alert(alertReason);
-            $('#PatientDetails_DOB').val('')
-            return false;
-        }
-        else if (splitDate[0] > curr_day && splitDate[0] != curr_day && splitDate[2] == curr_year && splitDate[1] == curr_month) {
-            alert(alertReason);
-            $('#PatientDetails_DOB').val('')
-            return false;
-        }
-    }
+    //function validateDOB()
+    //{
+    //    var selectedDate = $('#PatientDetails_DOB').val();
+    //    var splitDate = selectedDate.split("/");
+    //    var alertReason = 'Entry Date must be less than or equal to Current Date.';
+    //    var currentDate = new Date();
+    //    var curr_day = currentDate.getDate();
+    //    var curr_month = currentDate.getMonth() + 1;
+    //    var curr_year = currentDate.getFullYear();
+    //    var flag;
+    //    flag = 0;
+    //    if (splitDate[2] > curr_year && splitDate[2] != curr_year) {
+    //        alert(alertReason);
+    //        $('#PatientDetails_DOB').val('')
+    //        return false;
+    //    }
+    //    else if (splitDate[1] > curr_month && splitDate[1] != curr_month) {
+    //        alert(alertReason);
+    //        $('#PatientDetails_DOB').val('')
+    //        return false;
+    //    }
+    //    else if (splitDate[0] > curr_day && splitDate[0] != curr_day && splitDate[2] == curr_year && splitDate[1] == curr_month) {
+    //        alert(alertReason);
+    //        $('#PatientDetails_DOB').val('')
+    //        return false;
+    //    }
+    //}
 
     function validateAppoint() {
         var selectedDate = $('#Appointment_AppointmentDate').val();

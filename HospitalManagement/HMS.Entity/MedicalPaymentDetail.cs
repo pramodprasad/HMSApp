@@ -27,6 +27,11 @@ namespace HMS.Entity
         public Nullable<int> PaymentMode_ID { get; set; }
         public Nullable<int> PaymentSection_ID { get; set; }
         public Nullable<int> Appointment_ID { get; set; }
+        public int Quantity { get; set; }
+        public long MedicalEquipmentID { get; set; }
+        public decimal NetAmount { get; set; }
+        public decimal PayAmount { get; set; }
+        public decimal DueAmount { get; set; }
     
         public virtual Appointment Appointment { get; set; }
         public virtual Doctor Doctor { get; set; }

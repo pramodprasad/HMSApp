@@ -14,7 +14,7 @@ namespace HMS.BAL
        public static DataTable GetBranchDetails( long id)
        {
            DataTable dt = new DataTable();
-           using (HMSDBEntities context = new HMSDBEntities())
+           using (HMSTEntities context = new HMSTEntities())
            {
                var branchdetails = context.sp_BranchDetails(id);
                if (branchdetails != null)
@@ -30,7 +30,7 @@ namespace HMS.BAL
            DataTable dtbranchdetails = new DataTable();
            DataTable dtpatientvisit = new DataTable();
            DataSet dsreceipt = new DataSet();
-           using (HMSDBEntities context = new HMSDBEntities())
+           using (HMSTEntities context = new HMSTEntities())
            {
                var branchdetails = context.sp_BranchDetails(branchid);
                var patientvisit = context.sp_GetReceipt(patientvisitid);

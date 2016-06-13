@@ -19,7 +19,7 @@ namespace HospitalManagement.Controllers
 {
     public class EmployeeDetailsController : Controller
     {
-        private HMSDBEntities db = new HMSDBEntities();
+        private HMSTEntities db = new HMSTEntities();
 
         public EmployeeDetailsController()
             : this(new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext())))

@@ -32,8 +32,8 @@ namespace HMS.Entity
         public string RegistrationNo { get; set; }
         public System.DateTime CreatedOn { get; set; }
         public System.DateTime UpdatedOn { get; set; }
-        public int CreatedBy { get; set; }
-        public int UpdatedBy { get; set; }
+        public long CreatedBy { get; set; }
+        public long UpdatedBy { get; set; }
         public Nullable<long> EmployeeDetail_ID { get; set; }
         public bool Daywise { get; set; }
         public bool Datewise { get; set; }
@@ -56,6 +56,8 @@ namespace HMS.Entity
         public virtual ICollection<ShiftDate> ShiftDates { get; set; }
         public virtual ICollection<ShiftDay> ShiftDays { get; set; }
         public virtual ICollection<ShiftType> ShiftTypes { get; set; }
+        public virtual EmployeeDetail EmployeeDetail1 { get; set; }
+        public virtual EmployeeDetail EmployeeDetail2 { get; set; }
         public virtual Qualification Qualification1 { get; set; }
         public virtual Specialization Specialization1 { get; set; }
     }

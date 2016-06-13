@@ -16,7 +16,7 @@ namespace HospitalManagement.Controllers
 {
     public class ServicePaymentsController : Controller
     {
-        private HMSDBEntities db = new HMSDBEntities();
+        private HMSTEntities db = new HMSTEntities();
 
         // GET: ServicePayments
         public ActionResult Index()
@@ -170,7 +170,7 @@ namespace HospitalManagement.Controllers
         public JsonResult FillServiceCharge(int serviceSubCatId)
         {
             var serviceCharge = db.ServiceSubCategories.Where(s => s.ID == serviceSubCatId).FirstOrDefault().ServiceCharges;
-            if(serviceCharge == null)
+            if(serviceCharge == 0)
             {
                 serviceCharge = 1.0M;
             }

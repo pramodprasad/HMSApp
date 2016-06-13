@@ -25,8 +25,13 @@ namespace HMS.Entity
         public string DiscountReason { get; set; }
         public Nullable<int> RoomDetails_ID { get; set; }
         public Nullable<int> Appointment_ID { get; set; }
+        public long PaymentStatusID { get; set; }
+        public int PaymentModeID { get; set; }
     
         public virtual Appointment Appointment { get; set; }
+        public virtual EmployeeDetail EmployeeDetail { get; set; }
+        public virtual PaymentMode PaymentMode { get; set; }
+        public virtual PaymentStau PaymentStau { get; set; }
         public virtual RoomDetail RoomDetail { get; set; }
     }
 }

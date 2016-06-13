@@ -16,7 +16,7 @@ namespace HospitalManagement.Controllers
 {
     public class LabPaymentsController : Controller
     {
-        private HMSDBEntities db = new HMSDBEntities();
+        private HMSTEntities db = new HMSTEntities();
 
         // GET: LabPayments
         public ActionResult Index()
@@ -157,7 +157,7 @@ namespace HospitalManagement.Controllers
         public JsonResult FillLabCharge(int labCatId)
         {
             var serviceCharge = db.LabTests.Where(s => s.ID== labCatId).FirstOrDefault().LabTestCost;
-            if (serviceCharge == null)
+            if (serviceCharge == 0)
             {
                 serviceCharge = 1.0M;
             }

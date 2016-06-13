@@ -22,7 +22,7 @@ namespace HospitalManagement.Controllers
         public ActionResult GetBranchDetailsCR()
         {
             DataTable dt = new DataTable();
-            dt = ReportsManager.GetBranchDetails(2);
+            dt = ReportsManager.GetBranchDetails(1);
 
             ReportClass rptH = new ReportClass();
             rptH.FileName = Server.MapPath("../Content/cr_BranchDetails.rpt");
@@ -32,17 +32,62 @@ namespace HospitalManagement.Controllers
             return File(stream, "application/pdf");
         }
 
-        public ActionResult GetReceipt()
+        public ActionResult GetReceipt(int id)
         {
             DataSet ds = new DataSet();
-            ds = ReportsManager.GetReceipt(1008,2);
+            ds = ReportsManager.GetReceipt(id, 1);
 
             ReportClass rptH = new ReportClass();
-            rptH.FileName = Server.MapPath("../Content/cr_RegReceipt.rpt");
+            //rptH.FileName = Server.MapPath("../Content/cr_RegReceipt.rpt");
+            rptH.FileName = @"C:/Users/tanmay/Documents/GitHub/HMSApp/HospitalManagement/HospitalManagement/Content/cr_RegReceipt.rpt";
             rptH.Load();
-            rptH.SetDataSource(ds.Tables["dtpatientvisit"]);
+            //rptH.SetDataSource(ds.Tables["dtpatientvisit"]);
+            rptH.SetDataSource(ds.Tables["Table1"]);
             Stream stream = rptH.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
             return File(stream, "application/pdf");
+        }
+
+        public ActionResult AssignValueinReport(int id)
+        {
+            DataTable dtbranchdetails = new DataTable();
+            DataTable dtpatientvisit = new DataTable();
+            using (HMSTEntities context = new HMSTEntities())
+            {
+                var branchdetails = context.sp_BranchDetails(1);
+                var patientvisit = context.sp_GetReceipt(id);
+                dtbranchdetails = ExtensionMethods.ConvertToDataTable(branchdetails);
+                dtpatientvisit = ExtensionMethods.ConvertToDataTable(patientvisit);
+                ReportClass rptH = new ReportClass();
+                //rptH.FileName = Server.MapPath("~/Content/cr_RegReceipt.rpt");
+                rptH.FileName = @"C:/Users/tanmay/Documents/GitHub/HMSApp/HospitalManagement/HospitalManagement/Content/cr_RegReceipt.rpt";
+                rptH.Load();
+                rptH.Subreports["cr_BranchDetails.rpt"].SetDataSource(dtbranchdetails);//datasource for subreport
+                rptH.SetDataSource(dtpatientvisit);//Mainreport datasourcc               
+                Stream stream = rptH.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+                return File(stream, "application/pdf");
+            }
+        }
+
+        public ActionResult GetPrescriptionReport(int id)
+        {
+            DataTable dtbranchdetails = new DataTable();
+            DataTable dtpatientvisit = new DataTable();
+            using (HMSTEntities context = new HMSTEntities())
+            {
+                var branchdetails = context.sp_BranchDetails(1);
+                var patientvisit = context.sp_GetPrescription(id);
+                dtbranchdetails = ExtensionMethods.ConvertToDataTable(branchdetails);
+                dtpatientvisit = ExtensionMethods.ConvertToDataTable(patientvisit);
+                ReportClass rptH = new ReportClass();
+                //rptH.FileName = Server.MapPath("~/Content/cr_Prescription.rpt");
+                rptH.FileName = @"C:/Users/tanmay/Documents/GitHub/HMSApp/HospitalManagement/HospitalManagement/Content/cr_Prescription.rpt";
+                rptH.Load();
+                rptH.Subreports["cr_BranchDetails.rpt"].SetDataSource(dtbranchdetails);//datasource for subreport
+                rptH.SetDataSource(dtpatientvisit);//Mainreport datasourcc       
+                rptH.VerifyDatabase();
+                Stream stream = rptH.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+                return File(stream, "application/pdf");
+            }
         }
 	}
 }

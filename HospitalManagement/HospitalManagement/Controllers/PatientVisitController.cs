@@ -8,12 +8,13 @@ using System.Web;
 using System.Web.Mvc;
 using HMS.Entity;
 using HospitalManagement.ViewModels;
+using HMS.BAL;
 
 namespace HospitalManagement.Controllers
 {
     public class PatientVisitController : Controller
     {
-        private HMSDBEntities db = new HMSDBEntities();
+        private HMSTEntities db = new HMSTEntities();
 
         // GET: /PatientVisit/
         public ActionResult Index(long? id)
@@ -47,15 +48,19 @@ namespace HospitalManagement.Controllers
             patientVisit.CreatedBy = 1;
             patientVisit.VisitedDate = DateTime.Now;
             patientVisit.UpdatedDate = DateTime.Now;
+            //db.ShiftTypes.Where(x => x.ID == appointment.ShiftType_ID).Select(a => a.ShiftCharge).FirstOrDefault();
             patientVisit.RegistrationAmount = appointment.ShiftType.ShiftCharge;
             patientVisit.PayAmount = appointment.ShiftType.ShiftCharge;
             model.PatientVisit = patientVisit;
             model.Appointment = appointment;
             ViewBag.PaymentMode_ID = new SelectList(db.PaymentModes, "ID", "Mode");
             ViewBag.BranchDetails = new SelectList(db.BranchDetails, "ID", "Name");
-            ViewBag.Doctor = new SelectList(db.Doctors.Include("EmployeeDetail").ToList(), "ID", "EmployeeDetail.FirstName");
+            List<DoctorName> doctornamelist = UtilityManager.GetName();            
+            ViewBag.Doctors = new SelectList(doctornamelist, "ID", "Name");
+            //ViewBag.Doctor = new SelectList(db.Doctors.Include("EmployeeDetail").ToList(), "ID", "EmployeeDetail.FirstName");
             ViewBag.Specialization = new SelectList(db.Specializations, "ID", "Name");
             ViewBag.PatientType = new SelectList(db.PatientTypes, "ID", "Type");
+            ViewBag.PatientStatus = new SelectList(db.PatientStatus, "ID", "Details");
             return View(model);
         }
 
@@ -83,7 +88,8 @@ namespace HospitalManagement.Controllers
                     db.Entry(appointment).State = EntityState.Modified;
                     db.SaveChanges();
                 }
-
+                model.PatientVisit.UpdatedDate = DateTime.Now;
+                model.PatientVisit.CreatedBy = 1;
                 db.PatientVisits.Add(model.PatientVisit);
                 db.SaveChanges();
                // return RedirectToAction("VisitedPatient", "Appointments");

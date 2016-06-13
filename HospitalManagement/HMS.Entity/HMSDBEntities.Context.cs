@@ -15,10 +15,10 @@ namespace HMS.Entity
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class HMSDBEntities : DbContext
+    public partial class HMSTEntities : DbContext
     {
-        public HMSDBEntities()
-            : base("name=HMSDBEntities")
+        public HMSTEntities()
+            : base("name=HMSTEntities")
         {
         }
     
@@ -46,6 +46,7 @@ namespace HMS.Entity
         public virtual DbSet<LabCategory> LabCategories { get; set; }
         public virtual DbSet<LabPayment> LabPayments { get; set; }
         public virtual DbSet<LabTest> LabTests { get; set; }
+        public virtual DbSet<MedicalEquipment> MedicalEquipments { get; set; }
         public virtual DbSet<MedicalPaymentDetail> MedicalPaymentDetails { get; set; }
         public virtual DbSet<PatientBill> PatientBills { get; set; }
         public virtual DbSet<PatientDetail> PatientDetails { get; set; }

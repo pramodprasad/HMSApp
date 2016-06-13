@@ -21,7 +21,7 @@ namespace HospitalManagement.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-        private readonly HMSDBEntities db = new HMSDBEntities();
+        private readonly HMSTEntities db = new HMSTEntities();
         public AccountController()
         {
         }
@@ -188,7 +188,7 @@ namespace HospitalManagement.Controllers
 
                     try
                     {
-                        using (HMSDBEntities context = new HMSDBEntities())
+                        using (HMSTEntities context = new HMSTEntities())
                         {
                             EmployeeDetail newEmp = model.EmpDetails;
                                 if (model.EmpDetails.EmployeeType_ID == 2)
@@ -213,6 +213,7 @@ namespace HospitalManagement.Controllers
                                     }
                                     catch (Exception ex)
                                     {
+                                        string exceptionmessage = ex.Message;
                                         ViewBag.BranchID = new SelectList(db.BranchDetails, "ID", "Name");
                                         ViewBag.EmployeeTypeID = new SelectList(db.EmployeeTypes, "ID", "Description");
                                         ViewBag.TitleID = new SelectList(db.Titles, "ID", "Name");

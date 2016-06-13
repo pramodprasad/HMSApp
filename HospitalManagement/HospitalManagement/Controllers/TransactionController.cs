@@ -10,7 +10,7 @@ namespace HospitalManagement.Controllers
 {
     public class TransactionController : Controller
     {
-        private HMSDBEntities db = new HMSDBEntities();
+        private HMSTEntities db = new HMSTEntities();
         // GET: Transaction
         public ActionResult Service(string searchType, string searchValue)
         {

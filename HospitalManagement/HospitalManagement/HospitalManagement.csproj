@@ -260,22 +260,27 @@
     <Compile Include="Controllers\LabTestsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
+    <Compile Include="Controllers\PatientStatusController.cs" />
     <Compile Include="Controllers\PatientTypesController.cs" />
     <Compile Include="Controllers\PatientVisitController.cs" />
     <Compile Include="Controllers\PaymentModesController.cs" />
     <Compile Include="Controllers\PaymentSectionsController.cs" />
+    <Compile Include="Controllers\QualificationController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\RoomDetailsController.cs" />
     <Compile Include="Controllers\ServicePaymentsController.cs" />
     <Compile Include="Controllers\ServicesController.cs" />
     <Compile Include="Controllers\ServiceSubCategoriesController.cs" />
+    <Compile Include="Controllers\ShiftDaysController.cs" />
     <Compile Include="Controllers\ShiftTypesController.cs" />
+    <Compile Include="Controllers\SpecializationController.cs" />
     <Compile Include="Controllers\StatesController.cs" />
     <Compile Include="Controllers\TitlesController.cs" />
     <Compile Include="Controllers\TransactionController.cs" />
     <Compile Include="Controllers\VisitReasonsController.cs" />
     <Compile Include="Controllers\WardCategoriesController.cs" />
     <Compile Include="Controllers\WardsController.cs" />
+    <Compile Include="Controllers\WeekDaysController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -677,9 +682,6 @@
     <Content Include="Views\LabCategories\Create.cshtml" />
     <Content Include="Views\LabCategories\Edit.cshtml" />
     <Content Include="Views\LabCategories\Index.cshtml" />
-    <Content Include="Views\LabTests\Create.cshtml" />
-    <Content Include="Views\LabTests\Edit.cshtml" />
-    <Content Include="Views\LabTests\Index.cshtml" />
     <Content Include="Views\Appointments\Create.cshtml" />
     <Content Include="Views\Appointments\Delete.cshtml" />
     <Content Include="Views\Appointments\Details.cshtml" />
@@ -714,10 +716,41 @@
     <Content Include="Views\Shared\_ReportHeading.cshtml" />
     <Content Include="Views\PatientVisit\DoctorsPriscription.cshtml" />
     <Content Include="Views\Account\MyProfile.cshtml" />
+    <Content Include="Views\Qualification\Create.cshtml" />
+    <Content Include="Views\Qualification\Delete.cshtml" />
+    <Content Include="Views\Qualification\Details.cshtml" />
+    <Content Include="Views\Qualification\Edit.cshtml" />
+    <Content Include="Views\Qualification\Index.cshtml" />
+    <Content Include="Views\Specialization\Create.cshtml" />
+    <Content Include="Views\Specialization\Delete.cshtml" />
+    <Content Include="Views\Specialization\Details.cshtml" />
+    <Content Include="Views\Specialization\Edit.cshtml" />
+    <Content Include="Views\Specialization\Index.cshtml" />
+    <Content Include="Views\PatientStatus\Create.cshtml" />
+    <Content Include="Views\PatientStatus\Delete.cshtml" />
+    <Content Include="Views\PatientStatus\Details.cshtml" />
+    <Content Include="Views\PatientStatus\Edit.cshtml" />
+    <Content Include="Views\PatientStatus\Index.cshtml" />
+    <Content Include="Views\Reports\Partial1.cshtml" />
+    <Content Include="Views\WeekDays\Create.cshtml" />
+    <Content Include="Views\WeekDays\Delete.cshtml" />
+    <Content Include="Views\WeekDays\Details.cshtml" />
+    <Content Include="Views\WeekDays\Edit.cshtml" />
+    <Content Include="Views\WeekDays\Index.cshtml" />
+    <Content Include="Views\ShiftDays\Create.cshtml" />
+    <Content Include="Views\ShiftDays\Delete.cshtml" />
+    <Content Include="Views\ShiftDays\Details.cshtml" />
+    <Content Include="Views\ShiftDays\Edit.cshtml" />
+    <Content Include="Views\ShiftDays\Index.cshtml" />
+    <Content Include="Views\LabCategories\Delete.cshtml" />
+    <Content Include="Views\LabTests\Index.cshtml" />
+    <Content Include="Views\LabTests\Details.cshtml" />
+    <Content Include="Views\LabTests\Create.cshtml" />
+    <Content Include="Views\LabTests\Edit.cshtml" />
+    <Content Include="Views\LabTests\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Reports\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -729,7 +762,7 @@
       <Name>HMS.BAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\HMS.Entity\HMS.Entity.csproj">
-      <Project>{b0e22f04-d0b5-4f95-9714-818cfddb196e}</Project>
+      <Project>{30a58f87-d226-4f7a-a8de-8a161557219a}</Project>
       <Name>HMS.Entity</Name>
     </ProjectReference>
   </ItemGroup>

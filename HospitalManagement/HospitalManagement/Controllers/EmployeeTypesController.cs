@@ -12,7 +12,7 @@ namespace HospitalManagement.Controllers
 {
     public class EmployeeTypesController : Controller
     {
-        private HMSDBEntities db = new HMSDBEntities();
+        private HMSTEntities db = new HMSTEntities();
 
         // GET: EmployeeTypes
         public ActionResult Index()

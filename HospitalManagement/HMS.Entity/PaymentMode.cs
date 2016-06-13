@@ -18,10 +18,13 @@ namespace HMS.Entity
         {
             this.DoctorBillDetails = new HashSet<DoctorBillDetail>();
             this.DoctorVisitPaymentDetails = new HashSet<DoctorVisitPaymentDetail>();
+            this.LabPayments = new HashSet<LabPayment>();
             this.MedicalPaymentDetails = new HashSet<MedicalPaymentDetail>();
             this.PatientBills = new HashSet<PatientBill>();
             this.PatientVisits = new HashSet<PatientVisit>();
             this.RegistrationPaymentDetails = new HashSet<RegistrationPaymentDetail>();
+            this.ServicePayments = new HashSet<ServicePayment>();
+            this.WardOrRoomChargeDetails = new HashSet<WardOrRoomChargeDetail>();
         }
     
         public int ID { get; set; }
@@ -29,9 +32,12 @@ namespace HMS.Entity
     
         public virtual ICollection<DoctorBillDetail> DoctorBillDetails { get; set; }
         public virtual ICollection<DoctorVisitPaymentDetail> DoctorVisitPaymentDetails { get; set; }
+        public virtual ICollection<LabPayment> LabPayments { get; set; }
         public virtual ICollection<MedicalPaymentDetail> MedicalPaymentDetails { get; set; }
         public virtual ICollection<PatientBill> PatientBills { get; set; }
         public virtual ICollection<PatientVisit> PatientVisits { get; set; }
         public virtual ICollection<RegistrationPaymentDetail> RegistrationPaymentDetails { get; set; }
+        public virtual ICollection<ServicePayment> ServicePayments { get; set; }
+        public virtual ICollection<WardOrRoomChargeDetail> WardOrRoomChargeDetails { get; set; }
     }
 }

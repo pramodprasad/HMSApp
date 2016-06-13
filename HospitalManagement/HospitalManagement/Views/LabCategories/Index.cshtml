@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<HMS.Entity.LabCategory>
 
 @{
-    ViewBag.Title = "Hospital Management | Lab Type";
+    ViewBag.Title = "Hospital Management | Lab Type"; 
 }
 
 <h4>Lab Type Master</h4>
@@ -33,6 +33,7 @@
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.ID }, htmlAttributes: new { @class = "labTypeDetails" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID }, htmlAttributes: new { @class = "serviceEdit" }) |
                     @Html.ActionLink("Add LabTest", "Create", "LabTests", new { id = item.ID }, htmlAttributes: new { @class = "labTypeDetails" }) |
                     @Html.ActionLink("View LabTest", "Index", "LabTests", new { id = item.ID }, htmlAttributes: new { @class = "labTypeDetails" })
                 </td>

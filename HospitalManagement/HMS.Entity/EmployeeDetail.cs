@@ -17,8 +17,17 @@ namespace HMS.Entity
         public EmployeeDetail()
         {
             this.Doctors = new HashSet<Doctor>();
+            this.Doctors1 = new HashSet<Doctor>();
+            this.Doctors2 = new HashSet<Doctor>();
+            this.DoctorVisitPaymentDetails = new HashSet<DoctorVisitPaymentDetail>();
             this.PatientBills = new HashSet<PatientBill>();
             this.RegistrationPaymentDetails = new HashSet<RegistrationPaymentDetail>();
+            this.LabPayments = new HashSet<LabPayment>();
+            this.LabPayments1 = new HashSet<LabPayment>();
+            this.PatientVisits = new HashSet<PatientVisit>();
+            this.ServicePayments = new HashSet<ServicePayment>();
+            this.ServicePayments1 = new HashSet<ServicePayment>();
+            this.WardOrRoomChargeDetails = new HashSet<WardOrRoomChargeDetail>();
         }
     
         public long ID { get; set; }
@@ -42,9 +51,18 @@ namespace HMS.Entity
         public virtual BranchDetail BranchDetail { get; set; }
         public virtual City City { get; set; }
         public virtual ICollection<Doctor> Doctors { get; set; }
+        public virtual ICollection<Doctor> Doctors1 { get; set; }
+        public virtual ICollection<Doctor> Doctors2 { get; set; }
+        public virtual ICollection<DoctorVisitPaymentDetail> DoctorVisitPaymentDetails { get; set; }
         public virtual EmployeeType EmployeeType { get; set; }
         public virtual Title Title { get; set; }
         public virtual ICollection<PatientBill> PatientBills { get; set; }
         public virtual ICollection<RegistrationPaymentDetail> RegistrationPaymentDetails { get; set; }
+        public virtual ICollection<LabPayment> LabPayments { get; set; }
+        public virtual ICollection<LabPayment> LabPayments1 { get; set; }
+        public virtual ICollection<PatientVisit> PatientVisits { get; set; }
+        public virtual ICollection<ServicePayment> ServicePayments { get; set; }
+        public virtual ICollection<ServicePayment> ServicePayments1 { get; set; }
+        public virtual ICollection<WardOrRoomChargeDetail> WardOrRoomChargeDetails { get; set; }
     }
 }

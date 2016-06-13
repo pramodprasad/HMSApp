@@ -13,7 +13,7 @@ namespace HMS.BAL
     {
         public static List<EmployeeType> GetAll()
        {
-           using (HMSDBEntities context = new HMSDBEntities())
+           using (HMSTEntities context = new HMSTEntities())
             {
                 return context.EmployeeTypes.AsEnumerable().ToList();
             }

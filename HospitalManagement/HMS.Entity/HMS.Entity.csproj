@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B0E22F04-D0B5-4F95-9714-818CFDDB196E}</ProjectGuid>
+    <ProjectGuid>{30A58F87-D226-4F7A-A8DE-8A161557219A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>HMS.Entity</RootNamespace>
@@ -119,6 +119,9 @@
       <DependentUpon>HMSDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="LabTest.cs">
+      <DependentUpon>HMSDBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MedicalEquipment.cs">
       <DependentUpon>HMSDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="MedicalPaymentDetail.cs">

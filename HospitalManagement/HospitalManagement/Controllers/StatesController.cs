@@ -12,7 +12,7 @@ namespace HospitalManagement.Controllers
 {
     public class StatesController : Controller
     {
-        private HMSDBEntities db = new HMSDBEntities();
+        private HMSTEntities db = new HMSTEntities();
 
         // GET: States
         public ActionResult Index()

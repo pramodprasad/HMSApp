@@ -10,7 +10,8 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.EmployeeDetail.FirstName)
+                @Html.Label("Name")
+               @* @Html.DisplayNameFor(model => model.EmployeeDetail.FirstName)*@
             </th>
             <th>
                 Qualification
@@ -33,7 +34,7 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.EmployeeDetail.FirstName)
+                    @Html.DisplayFor(modelItem => item.EmployeeDetail.FirstName) @Html.DisplayFor(modelItem => item.EmployeeDetail.LastName)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Qualification.Name)

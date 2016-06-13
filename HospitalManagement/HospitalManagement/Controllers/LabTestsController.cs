@@ -12,126 +12,112 @@ namespace HospitalManagement.Controllers
 {
     public class LabTestsController : Controller
     {
-        private HMSDBEntities db = new HMSDBEntities();
+        private HMSTEntities db = new HMSTEntities();
 
-        // GET: LabTests
-        public ActionResult Index(int id)
+        // GET: /LabTests/
+        public ActionResult Index()
         {
-            var labTests = db.LabTests.Include(l => l.LabCategory).Where(l => l.LabCategory_ID == id);
-            return View(labTests.ToList());
+            var labtests = db.LabTests.Include(l => l.LabCategory);
+            return View(labtests.ToList());
         }
 
-        // GET: LabTests/Details/5
+        // GET: /LabTests/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            LabTest labTest = db.LabTests.Find(id);
-            if (labTest == null)
+            LabTest labtest = db.LabTests.Find(id);
+            if (labtest == null)
             {
                 return HttpNotFound();
             }
-            return View(labTest);
+            return View(labtest);
         }
 
-        // GET: LabTests/Create
-        public ActionResult Create(int id)
+        // GET: /LabTests/Create
+        public ActionResult Create()
         {
-            LabTest model = new LabTest();
-            model.LabCategory_ID = id;
-            //ViewBag.LabCategory_ID = new SelectList(db.LabCategories, "ID", "Name");
-            return View(model);
+            ViewBag.LabCategory_ID = new SelectList(db.LabCategories, "ID", "Name");
+            return View();
         }
 
-        // POST: LabTests/Create
+        // POST: /LabTests/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name,LabTestCost,Remarks,Status,LabCategory_ID")] LabTest labTest)
+        public ActionResult Create([Bind(Include="ID,Name,LabTestCost,Remarks,Status,LabCategory_ID")] LabTest labtest)
         {
             if (ModelState.IsValid)
             {
-                db.LabTests.Add(labTest);
+                db.LabTests.Add(labtest);
                 db.SaveChanges();
-                return RedirectToAction("Index", "LabCategories");
+                return RedirectToAction("Index");
             }
 
-            //ViewBag.LabCategory_ID = new SelectList(db.LabCategories, "ID", "Name", labTest.LabCategory_ID);
-            return View(labTest);
+            ViewBag.LabCategory_ID = new SelectList(db.LabCategories, "ID", "Name", labtest.LabCategory_ID);
+            return View(labtest);
         }
 
-        // GET: LabTests/Edit/5
+        // GET: /LabTests/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            LabTest labTest = db.LabTests.Find(id);
-            if (labTest == null)
+            LabTest labtest = db.LabTests.Find(id);
+            if (labtest == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.LabCategory_ID = new SelectList(db.LabCategories, "ID", "Name", labTest.LabCategory_ID);
-            return View(labTest);
+            ViewBag.LabCategory_ID = new SelectList(db.LabCategories, "ID", "Name", labtest.LabCategory_ID);
+            return View(labtest);
         }
 
-        // POST: LabTests/Edit/5
+        // POST: /LabTests/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name,LabTestCost,Remarks,Status,LabCategory_ID")] LabTest labTest)
+        public ActionResult Edit([Bind(Include="ID,Name,LabTestCost,Remarks,Status,LabCategory_ID")] LabTest labtest)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(labTest).State = EntityState.Modified;
+                db.Entry(labtest).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.LabCategory_ID = new SelectList(db.LabCategories, "ID", "Name", labTest.LabCategory_ID);
-            return View(labTest);
+            ViewBag.LabCategory_ID = new SelectList(db.LabCategories, "ID", "Name", labtest.LabCategory_ID);
+            return View(labtest);
         }
 
-        // GET: LabTests/Delete/5
+        // GET: /LabTests/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            LabTest labTest = db.LabTests.Find(id);
-            if (labTest == null)
+            LabTest labtest = db.LabTests.Find(id);
+            if (labtest == null)
             {
                 return HttpNotFound();
             }
-            return View(labTest);
+            return View(labtest);
         }
 
-        public JsonResult FillLabTest(int LabTypeId)
-        {
-            var LabTests = db.LabTests.Where(l => l.LabCategory_ID == LabTypeId).ToList();
-            List<SelectListItem> LabTestList = new List<SelectListItem>();
-            foreach(var item in LabTests)
-            {
-                LabTestList.Add(new SelectListItem { Text = item.Name, Value = item.ID.ToString()});
-            }
-
-            return Json(LabTestList, JsonRequestBehavior.AllowGet);
-        }
-
-        // POST: LabTests/Delete/5
+        // POST: /LabTests/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            LabTest labTest = db.LabTests.Find(id);
-            db.LabTests.Remove(labTest);
+            LabTest labtest = db.LabTests.Find(id);
+            db.LabTests.Remove(labtest);
             db.SaveChanges();
-            return RedirectToAction("Index", "LabCategories");
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

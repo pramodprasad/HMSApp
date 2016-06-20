@@ -43,14 +43,20 @@ namespace HospitalManagement.Controllers
         // GET: ServicePayments/Create
         public ActionResult Create(int? id)
         {
-            var appointment = db.Appointments.Include(a => a.PatientDetail).Where(a => a.ID == id).FirstOrDefault();
-            ServicePayment model = new ServicePayment();
-            model.Appointment = appointment;
-            model.ServiceUnit = 1;
-            model.Appointment_ID = appointment.ID;
-            ViewBag.Doctor_ID = new SelectList(db.Doctors.Include(s => s.EmployeeDetail), "ID", "EmployeeDetail.FirstName");
-            ViewBag.Service_ID = new SelectList(db.Services, "ID", "Name");
-            ViewBag.ServiceSubCategory_ID = new SelectList(db.ServiceSubCategories, "ID", "Name");
+            ServicePaymentViewModel model = new ServicePaymentViewModel();
+            model.ServicePaymentList = new List<ServicePayment>();
+            var appointment = db.Appointments.Include(a => a.PatientDetail).Where(a => a.ID == id).OrderByDescending(a =>a.AppointmentDate).FirstOrDefault();
+            ServicePayment servicePayment = new ServicePayment();
+            servicePayment.Appointment = appointment;
+            servicePayment.ServiceUnit = 1;
+            servicePayment.Appointment_ID = appointment.ID;
+            model.ServicePayment = servicePayment;
+            model.ServicePayment.PaymentModeID = 0;
+            ViewBag.ServicePayment_Doctor_ID = new SelectList(db.Doctors.Include(s => s.EmployeeDetail), "ID", "EmployeeDetail.FirstName");
+            ViewBag.ServicePayment_Service_ID = new SelectList(db.Services, "ID", "Name");
+            ViewBag.ServicePayment_ServiceSubCategory_ID = new SelectList(db.ServiceSubCategories, "ID", "Name");
+            ViewBag.ServicePayment_PaymentModeID = new SelectList(db.PaymentModes, "ID", "Mode");
+
             return View(model);
         }
 
@@ -59,7 +65,7 @@ namespace HospitalManagement.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,ServiceUnit,ServiceCharge,Discount,NetAmount,PaidAmount,DueAmount,Doctor_ID,Service_ID,ServiceSubCategory_ID,Appointment_ID")] ServicePayment servicePayment)
+        public ActionResult Create(ServicePaymentViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -72,20 +78,25 @@ namespace HospitalManagement.Controllers
                     customerId = manager.FindById(currentUserId).HMSEmpID;
                 }
 
-                servicePayment.CreatedDate = DateTime.Now;
-                servicePayment.UpdatedDate = DateTime.Now;
-                servicePayment.CreatedBy = Convert.ToInt32(customerId);
-                servicePayment.UpdatedBy = Convert.ToInt32(customerId);
-                db.ServicePayments.Add(servicePayment);
+                foreach(ServicePayment item in model.ServicePaymentList)
+                {
+                    item.CreatedDate = DateTime.Now;
+                    item.UpdatedDate = DateTime.Now;
+                    item.CreatedBy = Convert.ToInt32(customerId);
+                    item.UpdatedBy = Convert.ToInt32(customerId);
+                    db.ServicePayments.Add(item);
+                }
+
                 db.SaveChanges();
                 return RedirectToAction("Index", "ServicePayments");
             }
 
-            ViewBag.Doctor_ID = new SelectList(db.Doctors, "ID", "OtherDetails", servicePayment.Doctor_ID);
+            ViewBag.ServicePayment_Doctor_ID = new SelectList(db.Doctors, "ID", "OtherDetails", model.ServicePayment.Doctor_ID);
             //ViewBag.PatientStatus_ID = new SelectList(db.PatientStatus, "ID", "ID", servicePayment.PatientStatus_ID);
-            ViewBag.Service_ID = new SelectList(db.Services, "ID", "Name", servicePayment.Service_ID);
-            ViewBag.ServiceSubCategory_ID = new SelectList(db.ServiceSubCategories, "ID", "Name", servicePayment.ServiceSubCategory_ID);
-            return View(servicePayment);
+            ViewBag.ServicePayment_Service_ID = new SelectList(db.Services, "ID", "Name", model.ServicePayment.Service_ID);
+            ViewBag.ServicePayment_ServiceSubCategory_ID = new SelectList(db.ServiceSubCategories, "ID", "Name", model.ServicePayment.ServiceSubCategory_ID);
+            ViewBag.ServicePayment_PaymentModeID = new SelectList(db.PaymentModes, "ID", "Mode", model.ServicePayment.PaymentModeID);
+            return View(model);
         }
 
         // GET: ServicePayments/Edit/5
@@ -104,6 +115,7 @@ namespace HospitalManagement.Controllers
             //ViewBag.PatientStatus_ID = new SelectList(db.PatientStatus, "ID", "ID", servicePayment.PatientStatus_ID);
             ViewBag.Service_ID = new SelectList(db.Services, "ID", "Name", servicePayment.Service_ID);
             ViewBag.ServiceSubCategory_ID = new SelectList(db.ServiceSubCategories, "ID", "Name", servicePayment.ServiceSubCategory_ID);
+            ViewBag.PaymentModeID = new SelectList(db.PaymentModes, "ID", "Mode",servicePayment.PaymentModeID);
             return View(servicePayment);
         }
 
@@ -124,6 +136,7 @@ namespace HospitalManagement.Controllers
             //ViewBag.PatientStatus_ID = new SelectList(db.PatientStatus, "ID", "ID", servicePayment.PatientStatus_ID);
             ViewBag.Service_ID = new SelectList(db.Services, "ID", "Name", servicePayment.Service_ID);
             ViewBag.ServiceSubCategory_ID = new SelectList(db.ServiceSubCategories, "ID", "Name", servicePayment.ServiceSubCategory_ID);
+            ViewBag.PaymentModeID = new SelectList(db.PaymentModes, "ID", "Mode", servicePayment.PaymentModeID);
             return View(servicePayment);
         }
 

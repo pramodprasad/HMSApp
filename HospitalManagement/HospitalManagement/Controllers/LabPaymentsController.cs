@@ -25,32 +25,21 @@ namespace HospitalManagement.Controllers
             return View(labPayments.ToList());
         }
 
-        // GET: LabPayments/Details/5
-        public ActionResult Details(long? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            LabPayment labPayment = db.LabPayments.Find(id);
-            if (labPayment == null)
-            {
-                return HttpNotFound();
-            }
-            return View(labPayment);
-        }
-
         // GET: LabPayments/Create
         public ActionResult Create(int ? id)
         {
+            LabPaymentViewModel model = new LabPaymentViewModel();
+            List<LabPayment> labPaymentList = new List<LabPayment>();
             var appointment = db.Appointments.Include(l => l.PatientDetail).Where(a => a.ID == id).FirstOrDefault();
-            LabPayment model = new LabPayment();
-            model.Appointment = appointment;
-            model.Appointment_ID = appointment.ID;
-            model.Quantity = 1;
-            ViewBag.Doctor_ID = new SelectList(db.Doctors.Include(s => s.EmployeeDetail), "ID", "EmployeeDetail.FirstName");
-            ViewBag.LabCategory_ID = new SelectList(db.LabCategories, "ID", "Name");
-            ViewBag.LabTest_ID = new SelectList(db.LabTests, "ID", "Name");
+            LabPayment labPayment = new LabPayment();
+            labPayment.Appointment = appointment;
+            labPayment.Appointment_ID = appointment.ID;
+            labPayment.Quantity = 1;
+            model.LabPayment = labPayment;
+            ViewBag.LabPayment_Doctor_ID = new SelectList(db.Doctors.Include(s => s.EmployeeDetail), "ID", "EmployeeDetail.FirstName");
+            ViewBag.LabPayment_LabCategory_ID = new SelectList(db.LabCategories, "ID", "Name");
+            ViewBag.LabPayment_LabTest_ID = new SelectList(db.LabTests, "ID", "Name");
+            ViewBag.LabPayment_PaymentModeID = new SelectList(db.PaymentModes, "ID", "Mode");
             return View(model);
         }
 
@@ -59,7 +48,7 @@ namespace HospitalManagement.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Quantity,LabCharge,Discount,NetAmount,PaidAmount,DueAmount,Appointment_ID,Doctor_ID,LabCategory_ID,LabTest_ID")] LabPayment labPayment)
+        public ActionResult Create(LabPaymentViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -72,21 +61,40 @@ namespace HospitalManagement.Controllers
                     customerId = manager.FindById(currentUserId).HMSEmpID;
                 }
 
-                labPayment.CreatedDate = DateTime.Now;
-                labPayment.UpdatedDate = DateTime.Now;
-                labPayment.CreatedBy = Convert.ToInt32(customerId);
-                labPayment.UpdatedBy = Convert.ToInt32(customerId);
+                foreach (LabPayment item in model.LabPayments)
+                {
+                    item.CreatedDate = DateTime.Now;
+                    item.UpdatedDate = DateTime.Now;
+                    item.CreatedBy = Convert.ToInt32(customerId);
+                    item.UpdatedBy = Convert.ToInt32(customerId);
+                    if(item.DueAmount == 0)
+                    {
+                        item.PaymentStatusID = 1;
+                    }
+                    else
+                    {
+                        item.PaymentStatusID = 2;
+                    }
+                    db.LabPayments.Add(item);
+                }
+                try
+                {
+                    db.SaveChanges();
+                    return RedirectToAction("Service", "Transaction");
+                }
+                catch(Exception ex)
+                {
+                    throw ex;
+                }
 
-                db.LabPayments.Add(labPayment);
-                db.SaveChanges();
-                return RedirectToAction("Service", "Transaction");
             }
 
-            ViewBag.Appointment_ID = new SelectList(db.Appointments, "ID", "ReferalDetails", labPayment.Appointment_ID);
-            ViewBag.Doctor_ID = new SelectList(db.Doctors, "ID", "OtherDetails", labPayment.Doctor_ID);
-            ViewBag.LabCategory_ID = new SelectList(db.LabCategories, "ID", "Name", labPayment.LabCategory_ID);
-            ViewBag.LabTest_ID = new SelectList(db.LabTests, "ID", "Name", labPayment.LabTest_ID);
-            return View(labPayment);
+            ViewBag.Appointment_ID = new SelectList(db.Appointments, "ID", "ReferalDetails", model.LabPayment.Appointment_ID);
+            ViewBag.Doctor_ID = new SelectList(db.Doctors, "ID", "OtherDetails", model.LabPayment.Doctor_ID);
+            ViewBag.LabCategory_ID = new SelectList(db.LabCategories, "ID", "Name", model.LabPayment.LabCategory_ID);
+            ViewBag.LabTest_ID = new SelectList(db.LabTests, "ID", "Name", model.LabPayment.LabTest_ID);
+            ViewBag.LabPayment_PaymentModeID = new SelectList(db.PaymentModes, "ID", "Mode", model.LabPayment.PaymentMode);
+            return View(model);
         }
 
         // GET: LabPayments/Edit/5
@@ -105,6 +113,7 @@ namespace HospitalManagement.Controllers
             ViewBag.Doctor_ID = new SelectList(db.Doctors, "ID", "OtherDetails", labPayment.Doctor_ID);
             ViewBag.LabCategory_ID = new SelectList(db.LabCategories, "ID", "Name", labPayment.LabCategory_ID);
             ViewBag.LabTest_ID = new SelectList(db.LabTests, "ID", "Name", labPayment.LabTest_ID);
+            ViewBag.LabPayment_PaymentModeID = new SelectList(db.PaymentModes, "ID", "Mode", labPayment.PaymentMode);
             return View(labPayment);
         }
 
@@ -125,6 +134,7 @@ namespace HospitalManagement.Controllers
             ViewBag.Doctor_ID = new SelectList(db.Doctors, "ID", "OtherDetails", labPayment.Doctor_ID);
             ViewBag.LabCategory_ID = new SelectList(db.LabCategories, "ID", "Name", labPayment.LabCategory_ID);
             ViewBag.LabTest_ID = new SelectList(db.LabTests, "ID", "Name", labPayment.LabTest_ID);
+            ViewBag.LabPayment_PaymentModeID = new SelectList(db.PaymentModes, "ID", "Mode", labPayment.PaymentMode);
             return View(labPayment);
         }
 

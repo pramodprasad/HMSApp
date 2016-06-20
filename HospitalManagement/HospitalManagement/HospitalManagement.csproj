@@ -296,9 +296,11 @@
     <Compile Include="ViewModels\AssignedShift.cs" />
     <Compile Include="ViewModels\AssignedWeekDays.cs" />
     <Compile Include="ViewModels\DoctorViewModel.cs" />
+    <Compile Include="ViewModels\LabPaymentViewModel.cs" />
     <Compile Include="ViewModels\LabViewModel.cs" />
     <Compile Include="ViewModels\PatientViewModel.cs" />
     <Compile Include="ViewModels\RegDetailsViewModel.cs" />
+    <Compile Include="ViewModels\ServicePaymentViewModel.cs" />
     <Compile Include="ViewModels\ServiceViewModel.cs" />
     <Compile Include="ViewModels\ShiftMapViewModel.cs" />
   </ItemGroup>
@@ -702,7 +704,6 @@
     <Content Include="Views\PatientVisit\Index.cshtml" />
     <Content Include="Views\LabPayments\Create.cshtml" />
     <Content Include="Views\LabPayments\Delete.cshtml" />
-    <Content Include="Views\LabPayments\Details.cshtml" />
     <Content Include="Views\LabPayments\Edit.cshtml" />
     <Content Include="Views\LabPayments\Index.cshtml" />
     <Content Include="Views\WardCategories\Create.cshtml" />

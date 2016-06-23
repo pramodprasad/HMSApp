@@ -5,10 +5,10 @@
     //this.Layout = null;
 }
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>
             Add service for patient: @Model.ServicePayment.Appointment.PatientDetail.FullName
@@ -98,7 +98,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div style="width:100%; float:left;">
                 <div class="left-div col-md-6">
                     <div class="form-group">
@@ -121,56 +121,48 @@
             </div>
             @Html.HiddenFor(m => m.ServicePayment.Appointment_ID)
         </fieldset>
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="button" value="Add" id="addRecord" class="btn btn-default" />
-                </div>
-            </div>
-
-        <br />
-
-        <table id="recordsTable" style="width:100%;">
-            <thead>
-                <tr>
-                    <th>Service Category</th>
-                    <th>Service Type</th>
-                    <th>Qty</th>
-                    <th>Service Charge</th>
-                    <th>Discount</th>
-                    <th>Net Amount</th>
-                </tr>
-            </thead>
-            <tbody>
-               
-            </tbody>
-        </table>
-<br />
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save Services" class="btn btn-default" />
+                <input type="button" value="Add" id="addRecord" class="btn btn-default" />
             </div>
         </div>
-</div>
+
+        <br />
+        <div id="listRecords" style="display:none;">
+            <table id="recordsTable" style="width:100%;">
+                <thead>
+                    <tr>
+                        <th>Service Category</th>
+                        <th>Service Type</th>
+                        <th>Qty</th>
+                        <th>Service Charge</th>
+                        <th>Discount</th>
+                        <th>Net Amount</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <br />
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save Services" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    </div>
 }
 
 <script>
-    //$('#recordsTable').dataTable({
-    //    //"bPaginate": false,
-    //    "bLengthChange": false,
-    //    "bFilter": false,
-    //    //"bInfo": false,
-    //    //"bAutoWidth": false,
-    //    //"info":     false,
-    //});
     function FillSubCategory() {
         var specId = $('#ServicePayment_Service_ID').val();
         $.ajax({
             url: '/ServicePayments/FillServiceSubCat',
             type: "GET",
             dataType: "JSON",
-            data: { serviceID: specId},
+            data: { serviceID: specId },
             success: function (result) {
-                $("#ServicePayment_ServiceSubCategory_ID").html("");// clear before appending new list 
+                $("#ServicePayment_ServiceSubCategory_ID").html("");// clear before appending new list
                 $("#ServicePayment_ServiceSubCategory_ID").append($('<option></option>').html('----Select----')); // Bind default select option
                 $.each(result, function (i, obj) {
                     $("#ServicePayment_ServiceSubCategory_ID").append(
@@ -191,12 +183,13 @@
                 $('#ServicePayment_ServiceCharge').val(result);
                 $('#ServicePayment_NetAmount').val(result);
                 $('#ServicePayment_DueAmount').val(result);
+                $('#ServicePayment_PaidAmount').val('0.00');
+                $('#ServicePayment_Discount').val('0.00');
             }
         });
     }
 
-    function updateValues()
-    {
+    function updateValues() {
         var qty = $('#ServicePayment_ServiceUnit').val();
         var serviceCharge = $('#ServicePayment_ServiceCharge').val();
         var discount = $('#ServicePayment_Discount').val();
@@ -221,30 +214,94 @@
         var paidAmt = $('#ServicePayment_PaidAmount').val();
         var dueAmt = $('#ServicePayment_DueAmount').val();
         var appointId = '@Model.ServicePayment.Appointment_ID';
+        var drId = $('#ServicePayment_Doctor_ID').val();
 
         var result = '<tr><td>' +
-                            $( "#ServicePayment_Service_ID option:selected" ).text() + '<input id="ServicePaymentList_' + i + '__Service_ID" type="hidden" value="' +
+                            $("#ServicePayment_Service_ID option:selected").text() + '<input id="ServicePaymentList_' + i + '__Service_ID" type="hidden" value="' +
                             serviceCategory + '" name="ServicePaymentList[' + i + '].Service_ID"></td><td>' +
-                            $( "#ServicePayment_ServiceSubCategory_ID option:selected" ).text() +'<input id="ServicePaymentList_' + i + '__ServiceSubCategory_ID" type="hidden" value="' +
+                            $("#ServicePayment_ServiceSubCategory_ID option:selected").text() + '<input id="ServicePaymentList_' + i + '__ServiceSubCategory_ID" type="hidden" value="' +
                             serviceType + '" name="ServicePaymentList[' + i + '].ServiceSubCategory_ID"></td><td>' +
-                            qty +'<input id="ServicePaymentList_' + i + '__ServiceUnit" type="hidden" value="' +
+                            qty + '<input id="ServicePaymentList_' + i + '__ServiceUnit" type="hidden" value="' +
                             qty + '" name="ServicePaymentList[' + i + '].ServiceUnit"></td><td>' +
-                            serviceCharge +'<input id="ServicePaymentList_' + i + '__ServiceCharge" type="hidden" value="' +
+                            serviceCharge + '<input id="ServicePaymentList_' + i + '__ServiceCharge" type="hidden" value="' +
                             serviceCharge + '" name="ServicePaymentList[' + i + '].ServiceCharge"></td><td>' +
-                            discount +'<input id="ServicePaymentList_' + i + '__Discount" type="hidden" value="' +
-                            discount + '" name="ServicePaymentList[' + i + '].Discount"></td><td>' +
-                            netAmt +'<input id="ServicePaymentList_' + i + '__NetAmount" type="hidden" value="' +
+                            discount + '<input id="ServicePaymentList_' + i + '__Discount" type="hidden" value="' +
+                            discount + '" name="ServicePaymentList[' + i + '].Discount"></td><td id=valueTd>' +
+                            netAmt + '<input id="ServicePaymentList_' + i + '__NetAmount" type="hidden" value="' +
                             netAmt + '" name="ServicePaymentList[' + i + '].NetAmount"/>' +
                             '<input id="ServicePaymentList_' + i + '__PaidAmount" type="hidden" value="' +
                             paidAmt + '" name="ServicePaymentList[' + i + '].PaidAmount"/>' +
                             '<input id="ServicePaymentList_' + i + '__DueAmount" type="hidden" value="' +
                             dueAmt + '" name="ServicePaymentList[' + i + '].DueAmount"/>' +
                             '<input id="ServicePaymentList_' + i + '__Appointment_ID" type="hidden" value="' +
-                            appointId + '" name="ServicePaymentList[' + i + '].Appointment_ID"/>'+
+                            appointId + '" name="ServicePaymentList[' + i + '].Appointment_ID"/>' +
                             '<input id="ServicePaymentList_' + i + '__PaymentModeID" type="hidden" value="' +
-                            appointId + '" name="ServicePaymentList[' + i + '].PaymentModeID"/>'
-                            '</td></tr>';
+                            appointId + '" name="ServicePaymentList[' + i + '].PaymentModeID"/></td>' +
+                            '<input id="ServicePaymentList_' + i + '__Doctor_ID" type="hidden" value="' +
+                            drId + '" name="ServicePaymentList[' + i + '].Doctor_ID"/></td>' +
+                            '<td><a class="deleteRow" style="text-decoration: none; cursor:pointer;">Delete</a></td></tr>';
         $('#recordsTable tbody').append(result);
-        i + 1;
+        i = i + 1;
+        if ($('#listRecords').css('display') == 'none') {
+            $('#listRecords').show();
+        }
+    });
+
+    $(document.body).on("click", ".deleteRow", function () {
+        if ($('#recordsTable tr').length > 1) {
+            $(this).closest('tr').remove();
+            var itemIndex = 0;
+            $('#recordsTable tr').each(function () {
+                var this_row = $(this);
+                var serviceId = this_row.find('input[id$="__Service_ID"]').val();
+                var serviceSubCat = this_row.find('input[id$="__ServiceSubCategory_ID"]').val();
+                var serviceUnit = this_row.find('input[id$="__ServiceUnit"]').val();
+                var serviceCharge = this_row.find('input[id$="__ServiceCharge"]').val();
+                var discount = this_row.find('input[id$="__Discount"]').val();
+                var netAmount = this_row.find('input[id$="__NetAmount"]').val();
+                var paidAmount = this_row.find('input[id$="__PaidAmount"]').val();
+                var dueAmount = this_row.find('input[id$="__DueAmount"]').val();
+                var paymentModeID = this_row.find('input[id$="__PaymentModeID"]').val();
+                var appointment_ID = this_row.find('input[id$="__Appointment_ID"]').val();
+                var drId = this_row.find('input[id$="__Doctor_ID"]').val();
+                this_row.find('input').each(function () {
+                    $(this).remove();
+                });
+
+                if (typeof serviceId === "undefined")
+                {
+                }
+                else
+                {
+                    var result = '<input id="ServicePaymentList_' + itemIndex + '__Service_ID" type="hidden" value="' +
+                    serviceId + '" name="ServicePaymentList[' + itemIndex + '].Service_ID">' +
+                    '<input id="ServicePaymentList_' + itemIndex + '__ServiceSubCategory_ID" type="hidden" value="' +
+                    serviceSubCat + '" name="ServicePaymentList[' + itemIndex + '].ServiceSubCategory_ID">' +
+                    '<input id="ServicePaymentList_' + itemIndex + '__ServiceUnit" type="hidden" value="' +
+                    serviceUnit + '" name="ServicePaymentList[' + itemIndex + '].ServiceUnit">' +
+                    '<input id="ServicePaymentList_' + itemIndex + '__ServiceCharge" type="hidden" value="' +
+                    serviceCharge + '" name="ServicePaymentList[' + itemIndex + '].ServiceCharge">' +
+                    '<input id="ServicePaymentList_' + itemIndex + '__Discount" type="hidden" value="' +
+                    discount + '" name="ServicePaymentList[' + itemIndex + '].Discount">' +
+                    '<input id="ServicePaymentList_' + itemIndex + '__NetAmount" type="hidden" value="' +
+                    netAmount + '" name="ServicePaymentList[' + itemIndex + '].NetAmount"/>' +
+                    '<input id="ServicePaymentList_' + itemIndex + '__PaidAmount" type="hidden" value="' +
+                    paidAmount + '" name="ServicePaymentList[' + itemIndex + '].PaidAmount"/>' +
+                    '<input id="ServicePaymentList_' + itemIndex + '__DueAmount" type="hidden" value="' +
+                    dueAmount + '" name="ServicePaymentList[' + itemIndex + '].DueAmount"/>' +
+                    '<input id="ServicePaymentList_' + itemIndex + '__Appointment_ID" type="hidden" value="' +
+                    appointment_ID + '" name="ServicePaymentList[' + itemIndex + '].Appointment_ID"/>' +
+                    '<input id="ServicePaymentList_' + itemIndex + '__PaymentModeID" type="hidden" value="' +
+                    paymentModeID + '" name="ServicePaymentList[' + itemIndex + '].PaymentModeID"/>' +
+                        '<input id="ServicePaymentList_' + itemIndex + '__Doctor_ID" type="hidden" value="' +
+                    drId + '" name="ServicePaymentList[' + itemIndex + '].Doctor_ID"/>';
+                    var lastTD = this_row.find('#valueTd');
+                    lastTD.append(result);
+                    itemIndex++;
+                    i = $('#recordsTable tr').length - 1;
+                }
+
+            });
+        }
     });
 </script>

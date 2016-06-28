@@ -66,6 +66,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="itextsharp">
+      <HintPath>..\packages\iTextSharp.5.5.9\lib\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp.xmlworker">
+      <HintPath>..\packages\itextsharp.xmlworker.5.5.9\lib\itextsharp.xmlworker.dll</HintPath>
+    </Reference>
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
     </Reference>
@@ -238,6 +244,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>cr_Prescription.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Content\cr_RegistrationPayment.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>cr_RegistrationPayment.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Content\cr_RegReceipt.cs">
@@ -704,6 +716,7 @@
     <Content Include="Views\PatientVisit\Index.cshtml" />
     <Content Include="Views\LabPayments\Create.cshtml" />
     <Content Include="Views\LabPayments\Delete.cshtml" />
+    <Content Include="Views\LabPayments\Details.cshtml" />
     <Content Include="Views\LabPayments\Edit.cshtml" />
     <Content Include="Views\LabPayments\Index.cshtml" />
     <Content Include="Views\WardCategories\Create.cshtml" />
@@ -749,6 +762,9 @@
     <Content Include="Views\LabTests\Create.cshtml" />
     <Content Include="Views\LabTests\Edit.cshtml" />
     <Content Include="Views\LabTests\Delete.cshtml" />
+    <Content Include="Views\PatientVisit\GetTodaysVisitedPatients.cshtml" />
+    <Content Include="Views\PatientVisit\CreateTodayPatientVisitDetails.cshtml" />
+    <Content Include="Views\Reports\GetTodayPatientVisitReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -778,6 +794,10 @@
     <EmbeddedResource Include="Content\cr_Prescription.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>cr_Prescription.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Content\cr_RegistrationPayment.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>cr_RegistrationPayment.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Content\cr_RegReceipt.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

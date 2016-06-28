@@ -2216,6 +2216,20 @@
     <FunctionImport Name="sp_GetReceipt" ReturnType="Collection(HMSTModel.sp_GetReceipt_Result)">
       <Parameter Name="PatientVisitID" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="sp_GetLabPayment" ReturnType="Collection(HMSTModel.sp_GetLabPayment_Result)">
+      <Parameter Name="AppointmentID" Mode="In" Type="Int32" />
+      <Parameter Name="PaymentMode" Mode="In" Type="String" />
+      <Parameter Name="PatientType" Mode="In" Type="Int32" />
+      <Parameter Name="DoctorID" Mode="In" Type="Int64" />
+      <Parameter Name="CreatedDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="sp_GetRegistrationPayment" ReturnType="Collection(HMSTModel.sp_GetRegistrationPayment_Result)">
+      <Parameter Name="PatientVisitID" Mode="In" Type="Int32" />
+      <Parameter Name="PaymentMode" Mode="In" Type="String" />
+      <Parameter Name="PatientType" Mode="In" Type="Int32" />
+      <Parameter Name="Doctor" Mode="In" Type="String" />
+      <Parameter Name="VisitedDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="sp_BranchDetails_Result">
     <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
@@ -2272,5 +2286,43 @@
     <Property Type="Int64" Name="Counter" Nullable="true" />
     <Property Type="String" Name="CreatedBy" Nullable="false" MaxLength="50" />
     <Property Type="String" Name="Doctorname" Nullable="false" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="sp_GetLabPayment_Result">
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="150" />
+    <Property Type="String" Name="Name1" Nullable="false" MaxLength="150" />
+    <Property Type="DateTime" Name="CreatedDate" Nullable="false" Precision="23" />
+    <Property Type="Decimal" Name="LabCharge" Nullable="false" Precision="18" Scale="2" />
+    <Property Type="Int32" Name="Quantity" Nullable="false" />
+    <Property Type="Decimal" Name="NetAmount" Nullable="false" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Discount" Nullable="false" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="PaidAmount" Nullable="false" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="DueAmount" Nullable="false" Precision="18" Scale="2" />
+    <Property Type="String" Name="Mode" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="FullName" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="Age" Nullable="false" />
+    <Property Type="Int64" Name="ContactNo" Nullable="false" />
+    <Property Type="String" Name="FatherOrHusbandName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Gender" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="Doctor" Nullable="false" MaxLength="101" />
+    <Property Type="Int64" Name="DoctorID" Nullable="false" />
+    <Property Type="String" Name="PatientType" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="PTypeID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_GetRegistrationPayment_Result">
+    <Property Type="Int32" Name="PatientVisitID" Nullable="false" />
+    <Property Type="DateTime" Name="VisitedDate" Nullable="false" Precision="23" />
+    <Property Type="Decimal" Name="RegistrationAmount" Nullable="false" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="DiscountAmount" Nullable="false" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="PayAmount" Nullable="false" Precision="18" Scale="2" />
+    <Property Type="String" Name="Mode" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Doctor" Nullable="false" MaxLength="101" />
+    <Property Type="String" Name="FullName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="FatherOrHusbandName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="PatientType" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="PTypeID" Nullable="false" />
+    <Property Type="String" Name="Address" Nullable="false" MaxLength="100" />
+    <Property Type="Int32" Name="Age" Nullable="false" />
+    <Property Type="String" Name="Gender" Nullable="false" MaxLength="1" />
+    <Property Type="Int64" Name="ContactNo" Nullable="false" />
   </ComplexType>
 </Schema>

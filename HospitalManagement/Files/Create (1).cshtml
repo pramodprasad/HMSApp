@@ -1,0 +1,303 @@
+﻿@model HospitalManagement.ViewModels.LabPaymentViewModel
+
+@{
+    ViewBag.Title = "";
+}
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Add Lab test for patient: @Model.LabPayment.Appointment.PatientDetail.FullName</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <fieldset style="width:100%;border: 2px #eeeeee solid;">
+            <br />
+            <div style="width:100%; float:left;">
+                <div class="left-div col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.LabPayment.Doctor_ID, "Doctor", htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.DropDownList("LabPayment_Doctor_ID", null, "----Select----", htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.LabPayment.Doctor_ID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="right-div col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.LabPayment.LabCategory_ID, "Lab Type", htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.DropDownList("LabPayment_LabCategory_ID", null, "----Select----", htmlAttributes: new { @class = "form-control", @onchange = "FillLabTests()" })
+                            @Html.ValidationMessageFor(model => model.LabPayment.LabCategory_ID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="width:100%; float:left;">
+                <div class="left-div col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.LabPayment.LabTest_ID, "Lab Test", htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.DropDownList("LabPayment_LabTest_ID", null, "----Select----", htmlAttributes: new { @class = "form-control", @onchange = "FillLabCharge()" })
+                            @Html.ValidationMessageFor(model => model.LabPayment.LabTest_ID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="right-div col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.LabPayment.Quantity, htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.LabPayment.Quantity, new { htmlAttributes = new { @class = "form-control", @onchange = "updateValues()" } })
+                            @Html.ValidationMessageFor(model => model.LabPayment.Quantity, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="width:100%; float:left;">
+                <div class="left-div col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.LabPayment.LabCharge, "Test Rate", htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.LabPayment.LabCharge, new { htmlAttributes = new { @class = "form-control", @onchange = "updateValues()" } })
+                            @Html.ValidationMessageFor(model => model.LabPayment.LabCharge, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="right-div col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.LabPayment.Discount, htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.LabPayment.Discount, new { htmlAttributes = new { @class = "form-control", @onchange = "updateValues()" } })
+                            @Html.ValidationMessageFor(model => model.LabPayment.Discount, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="width:100%; float:left;">
+                <div class="left-div col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.LabPayment.NetAmount, "Net Amt.", htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.LabPayment.NetAmount, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.LabPayment.NetAmount, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="right-div col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.LabPayment.PaidAmount, "Paid Amt.", htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.LabPayment.PaidAmount, new { htmlAttributes = new { @class = "form-control", @onchange = "updateValues()" } })
+                            @Html.ValidationMessageFor(model => model.LabPayment.PaidAmount, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="width:100%; float:left;">
+                <div class="left-div col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.LabPayment.DueAmount, "Due Payment", htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.LabPayment.DueAmount, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.LabPayment.DueAmount, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="right-div col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.LabPayment.PaymentModeID, "Payment Mode", htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.DropDownList("LabPayment_PaymentModeID", null, "----Select----", htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.LabPayment.PaymentModeID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @Html.HiddenFor(m => m.LabPayment.Appointment_ID)
+        </fieldset>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="button" value="Add" id="addRecord" class="btn btn-default" />
+            </div>
+        </div>
+        <br />
+        <div id="listRecords" style="display:none;">
+            <table id="recordsTable" style="width:100%;">
+                <thead>
+                    <tr>
+                        <th>Lab Category</th>
+                        <th>Lab Type</th>
+                        <th>Qty</th>
+                        <th>Lab Charge</th>
+                        <th>Discount</th>
+                        <th>Net Amount</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <br />
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save Services" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+<script>
+    function FillLabTests() {
+        var specId = $('#LabPayment_LabCategory_ID').val();
+        $.ajax({
+            url: '/LabTests/FillLabTest',
+            type: "GET",
+            dataType: "JSON",
+            data: { LabTypeId: specId},
+            success: function (result) {
+                $("#LabPayment_LabTest_ID").html("");// clear before appending new list 
+                $("#LabPayment_LabTest_ID").append($('<option></option>').html('----Select----')); // Bind default select option
+                $.each(result, function (i, obj) {
+                    $("#LabPayment_LabTest_ID").append(
+                        $('<option></option>').val(obj.Value).html(obj.Text));
+                });
+            }
+        });
+    }
+
+    function FillLabCharge() {
+        var labId = $('#LabPayment_LabTest_ID').val();
+        $.ajax({
+            url: '/LabPayments/FillLabCharge',
+            type: "GET",
+            dataType: "JSON",
+            data: { labCatId: labId },
+            success: function (result) {
+                $('#LabPayment_LabCharge').val(result);
+                $('#LabPayment_NetAmount').val(result);
+                $('#LabPayment_DueAmount').val(result);
+                $('#LabPayment_Discount').val('0.00');
+                $('#LabPayment_PaidAmount').val('0.00');
+            }
+        });
+    }
+
+    function updateValues() {
+        var qty = $('#LabPayment_Quantity').val();
+        var labCharge = $('#LabPayment_LabCharge').val();
+        var discount = $('#LabPayment_Discount').val();
+        var paidAmt = $('#LabPayment_PaidAmount').val();
+        // Manipulate all fields on the basis of above values
+        var netAmt = ((parseFloat(qty) * parseFloat(labCharge)) - (parseFloat(discount)));
+        var dueAmt = (netAmt - (parseFloat(paidAmt)));
+
+        $('#LabPayment_NetAmount').val(netAmt);
+        $('#LabPayment_DueAmount').val(dueAmt);
+    }
+    var i = 0;
+
+    $("#addRecord").click(function () {
+        var labCategory = $('#LabPayment_LabCategory_ID').val();
+        var labTest = $('#LabPayment_LabTest_ID').val();
+        var qty = $('#LabPayment_Quantity').val();
+        var labCharge = $('#LabPayment_LabCharge').val();
+        var discount = $('#LabPayment_Discount').val();
+        var doctor = $('#LabPayment_Doctor_ID').val();
+        var netAmt = $('#LabPayment_NetAmount').val();
+        var paidAmt = $('#LabPayment_PaidAmount').val();
+        var dueAmt = $('#LabPayment_DueAmount').val();
+        var paymentModeId = $('#LabPayment_PaymentModeID').val();
+        var appointId = '@Model.LabPayment.Appointment_ID';
+        var drId = $('#LabPayment_Doctor_ID').val();
+
+        var result = '<tr><td>' +
+                            $("#LabPayment_LabCategory_ID option:selected").text() + '<input id="LabPayments_' + i + '__LabCategory_ID" type="hidden" value="' +
+                            labCategory + '" name="LabPayments[' + i + '].LabCategory_ID"></td><td>' +
+                            $("#LabPayment_LabTest_ID option:selected").text() + '<input id="LabPayments_' + i + '__LabTest_ID" type="hidden" value="' +
+                            labTest + '" name="LabPayments[' + i + '].LabTest_ID"></td><td>' +
+                            qty + '<input id="LabPayments_' + i + '__Quantity" type="hidden" value="' +
+                            qty + '" name="LabPayments[' + i + '].Quantity"></td><td>' +
+                            labCharge + '<input id="LabPayments_' + i + '__LabCharge" type="hidden" value="' +
+                            labCharge + '" name="LabPayments[' + i + '].LabCharge"></td><td>' +
+                            discount + '<input id="LabPayments_' + i + '__Discount" type="hidden" value="' +
+                            discount + '" name="LabPayments[' + i + '].Discount"></td><td id=valueTd>' +
+                            netAmt + '<input id="LabPayments_' + i + '__NetAmount" type="hidden" value="' +
+                            netAmt + '" name="LabPayments[' + i + '].NetAmount"/>' +
+                            '<input id="LabPayments_' + i + '__PaidAmount" type="hidden" value="' +
+                            paidAmt + '" name="LabPayments[' + i + '].PaidAmount"/>' +
+                            '<input id="LabPayments_' + i + '__DueAmount" type="hidden" value="' +
+                            dueAmt + '" name="LabPayments[' + i + '].DueAmount"/>' +
+                            '<input id="LabPayments_' + i + '__Appointment_ID" type="hidden" value="' +
+                            appointId + '" name="LabPayments[' + i + '].Appointment_ID"/>' +
+                            '<input id="LabPayments_' + i + '__PaymentModeID" type="hidden" value="' +
+                            paymentModeId + '" name="LabPayments[' + i + '].PaymentModeID"/></td>' +
+                            '<input id="LabPayments_' + i + '__Doctor_ID" type="hidden" value="' +
+                            drId + '" name="LabPayments[' + i + '].Doctor_ID"/></td>' +
+                            '<td><a class="deleteRow" style="text-decoration: none; cursor:pointer;">Delete</a></td></tr>';
+        $('#recordsTable tbody').append(result);
+        i = i + 1;
+        if ($('#listRecords').css('display') == 'none') {
+            $('#listRecords').show();
+        }
+    });
+
+    $(document.body).on("click", ".deleteRow", function () {
+        if ($('#recordsTable tr').length > 1) {
+            $(this).closest('tr').remove();
+            var itemIndex = 0;
+            $('#recordsTable tr').each(function () {
+                var this_row = $(this);
+                var labCategory = this_row.find('input[id$="__LabCategory_ID"]').val();
+                var labTest = this_row.find('input[id$="__LabTest_ID"]').val();
+                var qty = this_row.find('input[id$="__Quantity"]').val();
+                var labCharge = this_row.find('input[id$="__LabCharge"]').val();
+                var discount = this_row.find('input[id$="__Discount"]').val();
+                var netAmount = this_row.find('input[id$="__NetAmount"]').val();
+                var paidAmount = this_row.find('input[id$="__PaidAmount"]').val();
+                var dueAmount = this_row.find('input[id$="__DueAmount"]').val();
+                var paymentModeID = this_row.find('input[id$="__PaymentModeID"]').val();
+                var appointment_ID = this_row.find('input[id$="__Appointment_ID"]').val();
+                var drId = this_row.find('input[id$="__Doctor_ID"]').val();
+                this_row.find('input').each(function () {
+                    $(this).remove();
+                });
+
+                if (typeof labCategory === "undefined") {
+                }
+                else {
+                    var result = '<input id="LabPayments_' + itemIndex + '__LabCategory_ID" type="hidden" value="' +
+                    labCategory + '" name="LabPayments[' + itemIndex + '].LabCategory_ID">' +
+                    '<input id="LabPayments_' + itemIndex + '__LabTest_ID" type="hidden" value="' +
+                    labTest + '" name="LabPayments[' + itemIndex + '].LabTest_ID">' +
+                    '<input id="LabPayments_' + itemIndex + '__Quantity" type="hidden" value="' +
+                    qty + '" name="LabPayments[' + itemIndex + '].Quantity">' +
+                    '<input id="LabPayments_' + itemIndex + '__LabCharge" type="hidden" value="' +
+                    labCharge + '" name="LabPayments[' + itemIndex + '].LabCharge">' +
+                    '<input id="LabPayments_' + itemIndex + '__Discount" type="hidden" value="' +
+                    discount + '" name="LabPayments[' + itemIndex + '].Discount">' +
+                    '<input id="LabPayments_' + itemIndex + '__NetAmount" type="hidden" value="' +
+                    netAmount + '" name="LabPayments[' + itemIndex + '].NetAmount"/>' +
+                    '<input id="LabPayments_' + itemIndex + '__PaidAmount" type="hidden" value="' +
+                    paidAmount + '" name="LabPayments[' + itemIndex + '].PaidAmount"/>' +
+                    '<input id="LabPayments_' + itemIndex + '__DueAmount" type="hidden" value="' +
+                    dueAmount + '" name="LabPayments[' + itemIndex + '].DueAmount"/>' +
+                    '<input id="LabPayments_' + itemIndex + '__Appointment_ID" type="hidden" value="' +
+                    appointment_ID + '" name="LabPayments[' + itemIndex + '].Appointment_ID"/>' +
+                    '<input id="LabPayments_' + itemIndex + '__PaymentModeID" type="hidden" value="' +
+                    paymentModeID + '" name="LabPayments[' + itemIndex + '].PaymentModeID"/>' +
+                        '<input id="LabPayments_' + itemIndex + '__Doctor_ID" type="hidden" value="' +
+                    drId + '" name="LabPayments[' + itemIndex + '].Doctor_ID"/>';
+                    var lastTD = this_row.find('#valueTd');
+                    lastTD.append(result);
+                    itemIndex++;
+                    i = $('#recordsTable tr').length - 1;
+                }
+
+            });
+        }
+    });
+</script>

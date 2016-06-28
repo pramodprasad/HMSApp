@@ -1667,11 +1667,25 @@
   <Function Name="sp_BranchDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="BranchID" Type="bigint" Mode="In" />
   </Function>
+  <Function Name="sp_GetLabPayment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="AppointmentID" Type="int" Mode="In" />
+    <Parameter Name="PaymentMode" Type="nvarchar" Mode="In" />
+    <Parameter Name="PatientType" Type="int" Mode="In" />
+    <Parameter Name="DoctorID" Type="bigint" Mode="In" />
+    <Parameter Name="CreatedDate" Type="datetime" Mode="In" />
+  </Function>
   <Function Name="sp_GetPrescription" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="PatientVisitID" Type="int" Mode="In" />
   </Function>
   <Function Name="sp_GetReceipt" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="PatientVisitID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_GetRegistrationPayment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PatientVisitID" Type="int" Mode="In" />
+    <Parameter Name="PaymentMode" Type="nvarchar" Mode="In" />
+    <Parameter Name="PatientType" Type="int" Mode="In" />
+    <Parameter Name="Doctor" Type="varchar" Mode="In" />
+    <Parameter Name="VisitedDate" Type="datetime" Mode="In" />
   </Function>
   <EntityContainer Name="HMSTModelStoreContainer">
     <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />

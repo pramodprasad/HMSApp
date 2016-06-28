@@ -94,18 +94,6 @@ namespace HospitalManagement.Controllers
             return View(labtest);
         }
 
-        public JsonResult FillLabTest(int LabTypeId)
-        {
-            var LabTests = db.LabTests.Where(l => l.LabCategory_ID == LabTypeId).ToList();
-            List<SelectListItem> LabTestList = new List<SelectListItem>();
-            foreach (var item in LabTests)
-            {
-                LabTestList.Add(new SelectListItem { Text = item.Name, Value = item.ID.ToString() });
-            }
-
-            return Json(LabTestList, JsonRequestBehavior.AllowGet);
-        }
-
         // GET: /LabTests/Delete/5
         public ActionResult Delete(int? id)
         {

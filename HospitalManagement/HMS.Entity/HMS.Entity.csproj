@@ -36,6 +36,12 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="itextsharp">
+      <HintPath>..\packages\iTextSharp.5.5.9\lib\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp.xmlworker">
+      <HintPath>..\packages\itextsharp.xmlworker.5.5.9\lib\itextsharp.xmlworker.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -185,10 +191,16 @@
     <Compile Include="sp_BranchDetails_Result.cs">
       <DependentUpon>HMSDBEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="sp_GetLabPayment_Result.cs">
+      <DependentUpon>HMSDBEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="sp_GetPrescription_Result.cs">
       <DependentUpon>HMSDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="sp_GetReceipt_Result.cs">
+      <DependentUpon>HMSDBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_GetRegistrationPayment_Result.cs">
       <DependentUpon>HMSDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="State.cs">

@@ -100,5 +100,55 @@ namespace HMS.Entity
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetReceipt_Result>("sp_GetReceipt", patientVisitIDParameter);
         }
+    
+        public virtual ObjectResult<sp_GetLabPayment_Result> sp_GetLabPayment(Nullable<int> appointmentID, string paymentMode, Nullable<int> patientType, Nullable<long> doctorID, Nullable<System.DateTime> createdDate)
+        {
+            var appointmentIDParameter = appointmentID.HasValue ?
+                new ObjectParameter("AppointmentID", appointmentID) :
+                new ObjectParameter("AppointmentID", typeof(int));
+    
+            var paymentModeParameter = paymentMode != null ?
+                new ObjectParameter("PaymentMode", paymentMode) :
+                new ObjectParameter("PaymentMode", typeof(string));
+    
+            var patientTypeParameter = patientType.HasValue ?
+                new ObjectParameter("PatientType", patientType) :
+                new ObjectParameter("PatientType", typeof(int));
+    
+            var doctorIDParameter = doctorID.HasValue ?
+                new ObjectParameter("DoctorID", doctorID) :
+                new ObjectParameter("DoctorID", typeof(long));
+    
+            var createdDateParameter = createdDate.HasValue ?
+                new ObjectParameter("CreatedDate", createdDate) :
+                new ObjectParameter("CreatedDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetLabPayment_Result>("sp_GetLabPayment", appointmentIDParameter, paymentModeParameter, patientTypeParameter, doctorIDParameter, createdDateParameter);
+        }
+    
+        public virtual ObjectResult<sp_GetRegistrationPayment_Result> sp_GetRegistrationPayment(Nullable<int> patientVisitID, string paymentMode, Nullable<int> patientType, string doctor, Nullable<System.DateTime> visitedDate)
+        {
+            var patientVisitIDParameter = patientVisitID.HasValue ?
+                new ObjectParameter("PatientVisitID", patientVisitID) :
+                new ObjectParameter("PatientVisitID", typeof(int));
+    
+            var paymentModeParameter = paymentMode != null ?
+                new ObjectParameter("PaymentMode", paymentMode) :
+                new ObjectParameter("PaymentMode", typeof(string));
+    
+            var patientTypeParameter = patientType.HasValue ?
+                new ObjectParameter("PatientType", patientType) :
+                new ObjectParameter("PatientType", typeof(int));
+    
+            var doctorParameter = doctor != null ?
+                new ObjectParameter("Doctor", doctor) :
+                new ObjectParameter("Doctor", typeof(string));
+    
+            var visitedDateParameter = visitedDate.HasValue ?
+                new ObjectParameter("VisitedDate", visitedDate) :
+                new ObjectParameter("VisitedDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetRegistrationPayment_Result>("sp_GetRegistrationPayment", patientVisitIDParameter, paymentModeParameter, patientTypeParameter, doctorParameter, visitedDateParameter);
+        }
     }
 }

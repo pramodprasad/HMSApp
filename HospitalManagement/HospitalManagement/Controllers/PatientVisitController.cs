@@ -9,6 +9,10 @@ using System.Web.Mvc;
 using HMS.Entity;
 using HospitalManagement.ViewModels;
 using HMS.BAL;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using System.IO;
+using System.Web.Helpers;  
 
 namespace HospitalManagement.Controllers
 {
@@ -93,7 +97,7 @@ namespace HospitalManagement.Controllers
                 db.PatientVisits.Add(model.PatientVisit);
                 db.SaveChanges();
                // return RedirectToAction("VisitedPatient", "Appointments");
-                return RedirectToAction("GetVisitedPatientDetails");
+                return RedirectToAction("GetTodaysVisitedPatients");
             }
 
             ViewBag.PaymentMode_ID = new SelectList(db.PaymentModes, "ID", "Mode", model.PatientVisit.PaymentMode_ID);
@@ -164,10 +168,17 @@ namespace HospitalManagement.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult GetVisitedPatientDetails()
+        public ActionResult GetTodaysVisitedPatients()
         {
             List<PatientVisit> visitedpatient = new List<PatientVisit>();
             visitedpatient = db.PatientVisits.Include(p => p.Appointment).Include(a => a.Appointment.PatientDetail).Include(a => a.Appointment.Doctor.EmployeeDetail).Include(a => a.Appointment.ShiftType).Where(w => w.Appointment.VisitStatus == 1 && (DbFunctions.TruncateTime(w.VisitedDate) == DbFunctions.TruncateTime(DateTime.Now))).ToList();
+            return View(visitedpatient.OrderByDescending(a => a.ID).ToList());
+        }
+
+        public ActionResult GetVisitedPatientDetails()
+        {
+            List<PatientVisit> visitedpatient = new List<PatientVisit>();
+            visitedpatient = db.PatientVisits.Include(p => p.Appointment).Include(a => a.Appointment.PatientDetail).Include(a => a.Appointment.Doctor.EmployeeDetail).Include(a => a.Appointment.ShiftType).Where(w => w.Appointment.VisitStatus == 1 ).ToList();
             return View(visitedpatient.OrderByDescending(a => a.ID).ToList());
         }
 
@@ -201,6 +212,54 @@ namespace HospitalManagement.Controllers
             return View(visitedpatient);
 
         }
+
+        public FileStreamResult CreateTodayPatientVisitDetails()
+        {
+            List<PatientVisit> patientvisits = new List<PatientVisit>();
+            patientvisits = db.PatientVisits.Include(a => a.Appointment).Include(p => p.PatientStatu).Include(m => m.PaymentMode).ToList();
+
+            //var all = db.sp_GetRegistrationPayment(null, null, null, null, DateTime.Now);
+            WebGrid grid = new WebGrid(source: patientvisits, canPage: false, canSort: false);
+            string gridHtml = grid.GetHtml(
+                        tableStyle: "webgrid-table",
+                        headerStyle: "webgrid-header",
+                        footerStyle: "webgrid-footer",
+                        alternatingRowStyle: "webgrid-alternating-row",
+                        selectedRowStyle: "webgrid-selected-row",
+                        rowStyle: "webgrid-row-style",
+                        mode: WebGridPagerModes.All,
+                   columns: grid.Columns(
+                            grid.Column("ID", "Visit ID"),
+                            grid.Column("VisitedDate", "Patient"),
+                            grid.Column("PatientStatusID", "Father/Husband"),
+                            grid.Column("UpdatedDate", "Patient Type"),
+                            grid.Column("RegistrationAmount", "Reg. Amount"),
+                            grid.Column("DiscountAmount", "Dis. Amount"),
+                            grid.Column("PayAmount", "Pay Amount"),
+                            grid.Column("CreatedBy", "Pay Mode"),
+                            grid.Column("Appointment_ID", "Doctor"),
+                            grid.Column("PaymentMode_ID", "PaymentMode_ID")
+                           )
+                    ).ToString();
+            string exportData = String.Format("{0}{1}", "", gridHtml);
+            var bytes = System.Text.Encoding.UTF8.GetBytes(exportData);
+            using (var input = new MemoryStream(bytes))
+            {
+                var output = new MemoryStream();
+                var document = new iTextSharp.text.Document(PageSize.A4, 50, 50, 50, 50);
+                string strDate = "Date :" + DateTime.Now.ToString("yyyy-MM-dd");
+                document.AddHeader("Registration Payment", strDate);
+              
+                var writer = PdfWriter.GetInstance(document, output);
+                writer.CloseStream = false;
+                document.Open();
+                var xmlWorker = iTextSharp.tool.xml.XMLWorkerHelper.GetInstance();
+                xmlWorker.ParseXHtml(writer, document, input, System.Text.Encoding.UTF8);
+                document.Close();
+                output.Position = 0;
+                return new FileStreamResult(output, "application/pdf");
+            }
+        }  
 
         protected override void Dispose(bool disposing)
         {

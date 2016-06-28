@@ -48,8 +48,9 @@ namespace HospitalManagement.Controllers
             model.Appointment = appointment;
             ViewBag.Specialization = new SelectList(db.Specializations.ToList(), "ID", "Name");
             List<DoctorName> doctornamelist = UtilityManager.GetName();
-            //ViewBag.Doctors = new SelectList(db.Doctors.Include("EmployeeDetail").ToList(), "ID", "EmployeeDetail.LastName");
             ViewBag.Doctors = new SelectList(doctornamelist, "ID", "Name");
+            //ViewBag.Doctors = new SelectList(db.Doctors.Include("EmployeeDetail").ToList(), "ID", "EmployeeDetail.LastName");
+           
             ViewBag.City = new SelectList(db.Cities.ToList(), "ID", "Name");
             ViewBag.ShiftType = new SelectList(db.ShiftTypes, "ID", "Name");
             ViewBag.PatientType = new SelectList(db.PatientTypes, "ID", "Type");

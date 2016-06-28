@@ -11,6 +11,7 @@ using HospitalManagement.Models;
 using HospitalManagement.ViewModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using HMS.BAL;
 
 namespace HospitalManagement.Controllers
 {
@@ -26,7 +27,8 @@ namespace HospitalManagement.Controllers
         }
 
         // GET: LabPayments/Create
-        public ActionResult Create(int ? id)
+        [OutputCache(Duration = 0, VaryByParam = "*", NoStore = true)]
+        public ActionResult Create(int? id)
         {
             LabPaymentViewModel model = new LabPaymentViewModel();
             List<LabPayment> labPaymentList = new List<LabPayment>();
@@ -36,7 +38,9 @@ namespace HospitalManagement.Controllers
             labPayment.Appointment_ID = appointment.ID;
             labPayment.Quantity = 1;
             model.LabPayment = labPayment;
-            ViewBag.LabPayment_Doctor_ID = new SelectList(db.Doctors.Include(s => s.EmployeeDetail), "ID", "EmployeeDetail.FirstName");
+            List<DoctorName> doctornamelist = UtilityManager.GetLabDoctor();
+            ViewBag.LabPayment_Doctor_ID = new SelectList(doctornamelist, "ID", "Name");
+            //ViewBag.LabPayment_Doctor_ID = new SelectList(db.Doctors.Include(s => s.EmployeeDetail), "ID", "EmployeeDetail.FirstName");
             ViewBag.LabPayment_LabCategory_ID = new SelectList(db.LabCategories, "ID", "Name");
             ViewBag.LabPayment_LabTest_ID = new SelectList(db.LabTests, "ID", "Name");
             ViewBag.LabPayment_PaymentModeID = new SelectList(db.PaymentModes, "ID", "Mode");
@@ -46,6 +50,7 @@ namespace HospitalManagement.Controllers
         // POST: LabPayments/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [OutputCache(Duration = 0, VaryByParam = "*", NoStore = true)]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(LabPaymentViewModel model)
@@ -67,22 +72,24 @@ namespace HospitalManagement.Controllers
                     item.UpdatedDate = DateTime.Now;
                     item.CreatedBy = Convert.ToInt32(customerId);
                     item.UpdatedBy = Convert.ToInt32(customerId);
-                    if(item.DueAmount == 0)
+                    item.PaymentModeID = item.PaymentModeID;
+                    if (item.DueAmount == 0)
                     {
                         item.PaymentStatusID = 1;
                     }
                     else
                     {
-                        item.PaymentStatusID = 2;
+                        item.PaymentStatusID = 3;
                     }
                     db.LabPayments.Add(item);
                 }
                 try
                 {
                     db.SaveChanges();
-                    return RedirectToAction("Service", "Transaction");
+                    return RedirectToAction("Index");
+                    //return RedirectToAction("Service", "Transaction");
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     throw ex;
                 }
@@ -166,7 +173,7 @@ namespace HospitalManagement.Controllers
 
         public JsonResult FillLabCharge(int labCatId)
         {
-            var serviceCharge = db.LabTests.Where(s => s.ID== labCatId).FirstOrDefault().LabTestCost;
+            var serviceCharge = db.LabTests.Where(s => s.ID == labCatId).FirstOrDefault().LabTestCost;
             if (serviceCharge == 0)
             {
                 serviceCharge = 1.0M;

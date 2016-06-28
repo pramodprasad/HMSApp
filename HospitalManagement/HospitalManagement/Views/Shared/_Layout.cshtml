@@ -117,7 +117,9 @@
                         <a href="#"><span class="icon7"></span>Patient Master</a>
                         <ul class="menu_body">
                             <li><a href="@Url.Action("Index", "Patient")"><span class="icon2"></span>Patient Details</a></li>
+                            <li><a href="@Url.Action("GetTodaysVisitedPatients", "PatientVisit")"><span class="icon2"></span>Todays Visited Patient</a></li>
                             <li><a href="@Url.Action("GetVisitedPatientDetails", "PatientVisit")"><span class="icon2"></span>Visited Patient</a></li>
+                            <li><a href="@Url.Action("CreateTodayPatientVisitDetails", "PatientVisit")"><span class="icon2"></span>Today's Patient Registration </a></li>
                         </ul>
                     </li>
                     <li class="menu_head"><a href="#"><span class="icon3"></span>Bills</a></li>
@@ -126,6 +128,14 @@
                         <ul class="menu_body">
                             <li><a href="@Url.Action("Service", "Transaction")"><span class="icon2"></span>Add Services</a></li>
                             <li><a href="@Url.Action("Index", "ServicePayments")"><span class="icon2"></span>Services Details</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu_head">
+                        <a href="#"><span class="icon5"></span>Transaction Reports</a>
+                        <ul class="menu_body">
+                            <li><a href="@Url.Action("GetTodayPatientVisitReport", "Reports")"><span class="icon2"></span>Registration Payment</a></li>
+                            <li><a href="@Url.Action("Index", "ServicePayments")"><span class="icon2"></span>Services Payment</a></li>
+                            <li><a href="@Url.Action("Index", "ServicePayments")"><span class="icon2"></span>Lab Payment</a></li>
                         </ul>
                     </li>
                     <li class="menu_head"><a href="#"><span class="icon6"></span>Medicine Tables</a></li>

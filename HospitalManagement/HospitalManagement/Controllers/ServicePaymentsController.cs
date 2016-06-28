@@ -11,6 +11,7 @@ using HospitalManagement.Models;
 using HospitalManagement.ViewModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using HMS.BAL;
 
 namespace HospitalManagement.Controllers
 {
@@ -45,14 +46,16 @@ namespace HospitalManagement.Controllers
         {
             ServicePaymentViewModel model = new ServicePaymentViewModel();
             model.ServicePaymentList = new List<ServicePayment>();
-            var appointment = db.Appointments.Include(a => a.PatientDetail).Where(a => a.ID == id).OrderByDescending(a =>a.AppointmentDate).FirstOrDefault();
+            var appointment = db.Appointments.Include(a => a.PatientDetail).Where(a => a.ID == id).OrderByDescending(a => a.AppointmentDate).FirstOrDefault();
             ServicePayment servicePayment = new ServicePayment();
             servicePayment.Appointment = appointment;
             servicePayment.ServiceUnit = 1;
             servicePayment.Appointment_ID = appointment.ID;
             model.ServicePayment = servicePayment;
             model.ServicePayment.PaymentModeID = 0;
-            ViewBag.ServicePayment_Doctor_ID = new SelectList(db.Doctors.Include(s => s.EmployeeDetail), "ID", "EmployeeDetail.FirstName");
+            List<DoctorName> doctornamelist = UtilityManager.GetRadiologyDoctor();
+            ViewBag.ServicePayment_Doctor_ID = new SelectList(doctornamelist, "ID", "Name");
+            //ViewBag.ServicePayment_Doctor_ID = new SelectList(db.Doctors.Include(s => s.EmployeeDetail), "ID", "EmployeeDetail.FirstName");
             ViewBag.ServicePayment_Service_ID = new SelectList(db.Services, "ID", "Name");
             ViewBag.ServicePayment_ServiceSubCategory_ID = new SelectList(db.ServiceSubCategories, "ID", "Name");
             ViewBag.ServicePayment_PaymentModeID = new SelectList(db.PaymentModes, "ID", "Mode");
@@ -78,12 +81,21 @@ namespace HospitalManagement.Controllers
                     customerId = manager.FindById(currentUserId).HMSEmpID;
                 }
 
-                foreach(ServicePayment item in model.ServicePaymentList)
+                foreach (ServicePayment item in model.ServicePaymentList)
                 {
                     item.CreatedDate = DateTime.Now;
                     item.UpdatedDate = DateTime.Now;
                     item.CreatedBy = Convert.ToInt32(customerId);
                     item.UpdatedBy = Convert.ToInt32(customerId);
+                    item.PaymentModeID = item.PaymentModeID;
+                    if (item.DueAmount == 0)
+                    {
+                        item.PaymentStatusID = 1;
+                    }
+                    else
+                    {
+                        item.PaymentStatusID = 3;
+                    }
                     db.ServicePayments.Add(item);
                 }
 
@@ -115,7 +127,7 @@ namespace HospitalManagement.Controllers
             //ViewBag.PatientStatus_ID = new SelectList(db.PatientStatus, "ID", "ID", servicePayment.PatientStatus_ID);
             ViewBag.Service_ID = new SelectList(db.Services, "ID", "Name", servicePayment.Service_ID);
             ViewBag.ServiceSubCategory_ID = new SelectList(db.ServiceSubCategories, "ID", "Name", servicePayment.ServiceSubCategory_ID);
-            ViewBag.PaymentModeID = new SelectList(db.PaymentModes, "ID", "Mode",servicePayment.PaymentModeID);
+            ViewBag.PaymentModeID = new SelectList(db.PaymentModes, "ID", "Mode", servicePayment.PaymentModeID);
             return View(servicePayment);
         }
 
@@ -183,7 +195,7 @@ namespace HospitalManagement.Controllers
         public JsonResult FillServiceCharge(int serviceSubCatId)
         {
             var serviceCharge = db.ServiceSubCategories.Where(s => s.ID == serviceSubCatId).FirstOrDefault().ServiceCharges;
-            if(serviceCharge == 0)
+            if (serviceCharge == 0)
             {
                 serviceCharge = 1.0M;
             }

@@ -26,7 +26,6 @@ namespace HospitalManagement.Controllers
         }
 
         // GET: LabPayments/Create
-        [OutputCache(Duration=0 , VaryByParam = "*", NoStore = true)]
         public ActionResult Create(int ? id)
         {
             LabPaymentViewModel model = new LabPaymentViewModel();
@@ -47,7 +46,6 @@ namespace HospitalManagement.Controllers
         // POST: LabPayments/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [OutputCache(Duration = 0, VaryByParam = "*", NoStore = true)]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(LabPaymentViewModel model)

@@ -271,6 +271,8 @@
     <Compile Include="Controllers\LabPaymentsController.cs" />
     <Compile Include="Controllers\LabTestsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MedicalEquipmentController.cs" />
+    <Compile Include="Controllers\MedicalPaymentController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Controllers\PatientStatusController.cs" />
     <Compile Include="Controllers\PatientTypesController.cs" />
@@ -311,6 +313,9 @@
     <Compile Include="ViewModels\LabPaymentViewModel.cs" />
     <Compile Include="ViewModels\LabViewModel.cs" />
     <Compile Include="ViewModels\PatientViewModel.cs" />
+    <Compile Include="ViewModels\Payments\LabPaymentModel.cs" />
+    <Compile Include="ViewModels\Payments\MedicalPaymentModel.cs" />
+    <Compile Include="ViewModels\Payments\ServicePaymentModel.cs" />
     <Compile Include="ViewModels\RegDetailsViewModel.cs" />
     <Compile Include="ViewModels\ServicePaymentViewModel.cs" />
     <Compile Include="ViewModels\ServiceViewModel.cs" />
@@ -765,6 +770,15 @@
     <Content Include="Views\PatientVisit\GetTodaysVisitedPatients.cshtml" />
     <Content Include="Views\PatientVisit\CreateTodayPatientVisitDetails.cshtml" />
     <Content Include="Views\Reports\GetTodayPatientVisitReport.cshtml" />
+    <Content Include="Views\MedicalPayment\Create.cshtml" />
+    <Content Include="Views\MedicalPayment\Delete.cshtml" />
+    <Content Include="Views\MedicalPayment\Details.cshtml" />
+    <Content Include="Views\MedicalPayment\Edit.cshtml" />
+    <Content Include="Views\MedicalPayment\Index.cshtml" />
+    <Content Include="Views\MedicalEquipment\Create.cshtml" />
+    <Content Include="Views\MedicalEquipment\Delete.cshtml" />
+    <Content Include="Views\MedicalEquipment\Edit.cshtml" />
+    <Content Include="Views\MedicalEquipment\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

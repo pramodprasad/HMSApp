@@ -1,0 +1,137 @@
+﻿@model IEnumerable<HMS.Entity.MedicalPaymentDetail>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MedicalAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaymentReceivedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaymentReceivedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiscountAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiscountedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiscountDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaymentDetails)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MedicalEquipmentID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NetAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PayAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DueAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Appointment.ReferalDetails)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Doctor.OtherDetails)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaymentMode.Mode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaymentSection.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaymentStau.Details)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MedicalAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentReceivedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentReceivedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiscountAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiscountedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiscountDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentDetails)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MedicalEquipmentID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NetAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PayAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DueAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Appointment.ReferalDetails)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Doctor.OtherDetails)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentMode.Mode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentSection.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentStau.Details)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

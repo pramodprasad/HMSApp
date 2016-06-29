@@ -51,7 +51,7 @@ textarea{ border:1px solid #EEE; min-height:40px; resize:vertical; border-radius
 .header table{ float:right; margin:5px 10px 10px 10px;}
 .header table span{color:#50a7d2 !important;}
 
-.container{width:1140px;height:auto;overflow:hidden;margin:0 auto}
+.container{width:1240px;height:auto;overflow:hidden;margin:0 auto}
 .left_section{width:243px;float:left;height:auto;margin:15px 0;}
 .left_heading{border-bottom:3px solid #50a7d2;float:left; width:205px; margin-bottom:15px; background:url(../Images/icons/left_panel.png) no-repeat bottom left; padding:10px 10px 10px 30px;}
 .left_heading span{ color:#ff7604; text-shadow:1px 2px 0 #EEE; font-size:18px; float:left; margin:0 0 0 0; padding:0; font-weight:bold;}
@@ -59,8 +59,8 @@ textarea{ border:1px solid #EEE; min-height:40px; resize:vertical; border-radius
 .bottom_logo img{ float:left; margin:10px 56px;}
 .bottom_logo p{ float:left; color:#999; width:100%; text-align:center;}
 
-.right_section{width:860px;float:right;height:auto;margin:15px 0;}
-.right_heading{border-bottom:3px solid #ff7604;float:left; width:880px; margin-bottom:15px; background:url(../Images/icons/dashboard.png) no-repeat bottom left; padding:10px 10px 10px 30px;}
+.right_section{width:960px;float:right;height:auto;margin:15px 0;}
+.right_heading{border-bottom:3px solid #ff7604;float:left; width:960px; margin-bottom:15px; background:url(../Images/icons/dashboard.png) no-repeat bottom left; padding:10px 10px 10px 30px;}
 .right_heading span{ color:#50a7d2; text-shadow:1px 2px 0 #EEE; font-size:18px; float:left; margin:0 0 0 0; padding:0; font-weight:bold;}
 .clear{ clear:both;}
 /*1*/

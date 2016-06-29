@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using HMS.Entity;
 using HospitalManagement.Models;
 using HospitalManagement.ViewModels;
+using HospitalManagement.ViewModels.Payments;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using HMS.BAL;
@@ -22,8 +23,25 @@ namespace HospitalManagement.Controllers
         // GET: ServicePayments
         public ActionResult Index()
         {
+            List<ServicePaymentModel> model = new List<ServicePaymentModel>();
             var servicePayments = db.ServicePayments.Include(s => s.Doctor).Include(s => s.Appointment).Include(s => s.Service).Include(s => s.ServiceSubCategory);
-            return View(servicePayments.ToList());
+
+            foreach(var item in servicePayments.Select(m => m.Appointment_ID).Distinct())
+            {
+                ServicePaymentModel service = new ServicePaymentModel();
+                var firstVal = servicePayments.Where(o => o.Appointment_ID == item.Value).First();
+                service.AppointmentId = item.Value;
+                service.PatientName = firstVal.Appointment.PatientDetail.FullName;
+                service.ServiceCharge = servicePayments.Where(o => o.Appointment_ID == item.Value).Sum(o => o.ServiceCharge);
+                service.Discount = servicePayments.Where(o => o.Appointment_ID == item.Value).Sum(o => o.Discount);
+                service.Qty = servicePayments.Where(o => o.Appointment_ID == item.Value).Sum(o => o.ServiceUnit);
+                service.NetAmount = servicePayments.Where(o => o.Appointment_ID == item.Value).Sum(o => o.NetAmount);
+                service.PaidAmount = servicePayments.Where(o => o.Appointment_ID == item.Value).Sum(o => o.PaidAmount);
+                service.DueAmount = servicePayments.Where(o => o.Appointment_ID == item.Value).Sum(o => o.DueAmount);
+                service.DoctorName = firstVal.Doctor.EmployeeDetail.FirstName + " " + firstVal.Doctor.EmployeeDetail.LastName;
+                model.Add(service);
+            }
+            return View(model);
         }
 
         // GET: ServicePayments/Details/5
@@ -33,12 +51,12 @@ namespace HospitalManagement.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ServicePayment servicePayment = db.ServicePayments.Find(id);
-            if (servicePayment == null)
+            var servicePaymentList = db.ServicePayments.Include(s => s.Doctor).Include(s => s.Appointment).Include(s => s.Service).Include(s => s.ServiceSubCategory).Where(o => o.Appointment_ID == id.Value);
+            if (servicePaymentList == null)
             {
                 return HttpNotFound();
             }
-            return View(servicePayment);
+            return View(servicePaymentList);
         }
 
         // GET: ServicePayments/Create
@@ -103,7 +121,8 @@ namespace HospitalManagement.Controllers
                 return RedirectToAction("Index", "ServicePayments");
             }
 
-            ViewBag.ServicePayment_Doctor_ID = new SelectList(db.Doctors, "ID", "OtherDetails", model.ServicePayment.Doctor_ID);
+            List<DoctorName> doctornamelist = UtilityManager.GetRadiologyDoctor();
+            ViewBag.ServicePayment_Doctor_ID = new SelectList(doctornamelist, "ID", "Name", model.ServicePayment.Doctor_ID);
             //ViewBag.PatientStatus_ID = new SelectList(db.PatientStatus, "ID", "ID", servicePayment.PatientStatus_ID);
             ViewBag.ServicePayment_Service_ID = new SelectList(db.Services, "ID", "Name", model.ServicePayment.Service_ID);
             ViewBag.ServicePayment_ServiceSubCategory_ID = new SelectList(db.ServiceSubCategories, "ID", "Name", model.ServicePayment.ServiceSubCategory_ID);
@@ -123,7 +142,8 @@ namespace HospitalManagement.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Doctor_ID = new SelectList(db.Doctors, "ID", "OtherDetails", servicePayment.Doctor_ID);
+            List<DoctorName> doctornamelist = UtilityManager.GetRadiologyDoctor();
+            ViewBag.Doctor_ID = new SelectList(doctornamelist, "ID", "Name", servicePayment.Doctor_ID);
             //ViewBag.PatientStatus_ID = new SelectList(db.PatientStatus, "ID", "ID", servicePayment.PatientStatus_ID);
             ViewBag.Service_ID = new SelectList(db.Services, "ID", "Name", servicePayment.Service_ID);
             ViewBag.ServiceSubCategory_ID = new SelectList(db.ServiceSubCategories, "ID", "Name", servicePayment.ServiceSubCategory_ID);
@@ -136,15 +156,26 @@ namespace HospitalManagement.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,ServiceUnit,ServiceCharge,Discount,NetAmount,PaidAmount,DueAmount,CreatedBy,CreatedDate,UpdatedBy,UpdatedDate,Doctor_ID,PatientStatus_ID,Service_ID,ServiceSubCategory_ID")] ServicePayment servicePayment)
+        public ActionResult Edit(ServicePayment servicePayment)
         {
             if (ModelState.IsValid)
             {
+                var currentUserId = User.Identity.GetUserId();
+                long customerId = 1;
+
+                if (currentUserId != null)
+                {
+                    var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+                    customerId = manager.FindById(currentUserId).HMSEmpID;
+                }
+                servicePayment.UpdatedDate = DateTime.Now;
+                servicePayment.UpdatedBy = customerId;
                 db.Entry(servicePayment).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Doctor_ID = new SelectList(db.Doctors, "ID", "OtherDetails", servicePayment.Doctor_ID);
+            List<DoctorName> doctornamelist = UtilityManager.GetRadiologyDoctor();
+            ViewBag.Doctor_ID = new SelectList(doctornamelist, "ID", "Name", servicePayment.Doctor_ID);
             //ViewBag.PatientStatus_ID = new SelectList(db.PatientStatus, "ID", "ID", servicePayment.PatientStatus_ID);
             ViewBag.Service_ID = new SelectList(db.Services, "ID", "Name", servicePayment.Service_ID);
             ViewBag.ServiceSubCategory_ID = new SelectList(db.ServiceSubCategories, "ID", "Name", servicePayment.ServiceSubCategory_ID);

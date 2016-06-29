@@ -1,176 +1,138 @@
-﻿@model IEnumerable<HMS.Entity.LabPayment>
+﻿@model IEnumerable<HospitalManagement.ViewModels.Payments.LabPaymentModel>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Hospital Management | Lab Payments";
 }
 
-<h2>Index</h2>
+<h4>Lab Payment Details</h4>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="tblLabPayment">
-    <tr>
-        <th>
-            @Html.Label("Patient")          
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Quantity)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LabCharge)
-        </th>      
-        <th>
-            @Html.DisplayNameFor(model => model.PaidAmount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DueAmount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedBy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UpdatedBy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UpdatedDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Appointment.ReferalDetails)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Doctor.OtherDetails)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LabCategory.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LabTest.Name)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Quantity)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LabCharge)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Discount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NetAmount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PaidAmount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DueAmount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UpdatedBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UpdatedDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Appointment.ReferalDetails)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Doctor.OtherDetails)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LabCategory.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LabTest.Name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
-
+<table class="tblLabPayment" style="width:100%;">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("Appointment ID")
+            </th>
+            <th>
+                @Html.Label("Patient Name")
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Qty)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LabCharge)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NetAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Discount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaidAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DueAmount)
+            </th>
+            <th>@Html.DisplayName("Actions")</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AppointmentId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PatientName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Qty)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LabCharge)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NetAmount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Discount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaidAmount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DueAmount)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.AppointmentId }) |
+                    @Html.ActionLink("Print Receipt", "Print", new { id = item.AppointmentId })
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
 
-                      <div class="modal fade" id="visitSlipModal" tabindex="-1" role="dialog" aria-labelledby="visitSliplable" aria-hidden="true">
-                          <div class="modal-dialog" style="width:525px;">
-                              <div class="modal-content" id="visitSlipContent" style="font-size: 14px; border-radius: 0px;">
-                                  <img src="~/Images/closebox.png" data-dismiss="modal" aria-hidden="false" />
-                                  <div class="modal-body" id="visitSlipBody" style="padding-top:0px;padding-bottom:0px;margin-top:0px; min-height:150px;margin-bottom:20px;">
+<div class="modal fade" id="visitSlipModal" tabindex="-1" role="dialog" aria-labelledby="visitSliplable" aria-hidden="true">
+    <div class="modal-dialog" style="width:525px;">
+        <div class="modal-content" id="visitSlipContent" style="font-size: 14px; border-radius: 0px;">
+            <img src="~/Images/closebox.png" data-dismiss="modal" aria-hidden="false" />
+            <div class="modal-body" id="visitSlipBody" style="padding-top:0px;padding-bottom:0px;margin-top:0px; min-height:150px;margin-bottom:20px;">
 
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                      <script>
-                          $('#tblLabPayment').dataTable({
-                              //"bPaginate": false,
-                              "bLengthChange": false,
-                              //"bFilter": true,
-                              //"bInfo": false,
-                              //"bAutoWidth": false,
-                              //"info":     false,
-                              "aoColumnDefs": [
-                                  { 'bSortable': false, 'aTargets': [7] }
-                              ]
-                          });
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $('#tblLabPayment').dataTable({
+        //"bPaginate": false,
+        "bLengthChange": false,
+        //"bFilter": true,
+        //"bInfo": false,
+        //"bAutoWidth": false,
+        //"info":     false,
+        "aoColumnDefs": [
+            { 'bSortable': false, 'aTargets': [8] }
+        ]
+    });
 
-                          $(document).ready(function () {
-                              $(function () {
-                                  $('.visitSlipDetails').click(function () {
-                                      var url = $(this).attr('href');
-                                      $('#visitSlipBody').html('');
-                                      $('#visitSlipBody').load(url, function () {
-                                          $('#visitSlipModal').modal({
-                                              keyboard: true
-                                          }, 'show');
-                                          bindVisitSlipForm(this);
-                                      });
-                                      return false;
-                                  });
-                              });
+    $(document).ready(function () {
+        $(function () {
+            $('.visitSlipDetails').click(function () {
+                var url = $(this).attr('href');
+                $('#visitSlipBody').html('');
+                $('#visitSlipBody').load(url, function () {
+                    $('#visitSlipModal').modal({
+                        keyboard: true
+                    }, 'show');
+                    bindVisitSlipForm(this);
+                });
+                return false;
+            });
+        });
 
-                              function bindVisitSlipForm(dialog) {
-                                  $('form', dialog).submit(function () {
-                                      $.ajax({
-                                          url: this.action,
-                                          type: this.method,
-                                          data: $(this).serialize(),
-                                          success: function (result) {
-                                              var value = $(result).find(".validation-summary-errors ul li").length;
-                                              if (value == 0) {
-                                                  window.location.reload(true);
-                                              }
-                                              else {
-                                                  $('#visitSlipBody').html('');
-                                                  $('#visitSlipBody').html(result);
-                                                  $("form").data("validator", null);
-                                                  $.validator.unobtrusive.parse($("form"));
-                                                  bindVisitSlipForm();
-                                              }
-                                          }
-                                      });
-                                      return false;
-                                  });
-                              }
-
-
-                          });
-
-
-                              </script>
+        function bindVisitSlipForm(dialog) {
+            $('form', dialog).submit(function () {
+                $.ajax({
+                    url: this.action,
+                    type: this.method,
+                    data: $(this).serialize(),
+                    success: function (result) {
+                        var value = $(result).find(".validation-summary-errors ul li").length;
+                        if (value == 0) {
+                            window.location.reload(true);
+                        }
+                        else {
+                            $('#visitSlipBody').html('');
+                            $('#visitSlipBody').html(result);
+                            $("form").data("validator", null);
+                            $.validator.unobtrusive.parse($("form"));
+                            bindVisitSlipForm();
+                        }
+                    }
+                });
+                return false;
+            });
+        }
+    });
+</script>

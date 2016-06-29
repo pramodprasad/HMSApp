@@ -1,4 +1,4 @@
-﻿@model IEnumerable<HMS.Entity.ServicePayment>
+﻿@model IEnumerable<HospitalManagement.ViewModels.Payments.ServicePaymentModel>
 
 @{
     ViewBag.Title = "Service Payment Details";
@@ -15,12 +15,12 @@
             <th>
                 @Html.DisplayName("Patient Name")
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayName("Service Name")
             </th>
             <th>
                 @Html.DisplayName("Sub Category")
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayName("Service Charge")
             </th>
@@ -51,22 +51,22 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Appointment_ID)
+                    @Html.DisplayFor(modelItem => item.AppointmentId)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Appointment.PatientDetail.FullName)
+                    @Html.DisplayFor(modelItem => item.PatientName)
                 </td>
-                <td>
+                @*<td>
                     @Html.DisplayFor(modelItem => item.Service.Name)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ServiceSubCategory.Name)
-                </td>
+                </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.ServiceCharge)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ServiceUnit)
+                    @Html.DisplayFor(modelItem => item.Qty)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.NetAmount)
@@ -81,21 +81,24 @@
                     @Html.DisplayFor(modelItem => item.DueAmount)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Doctor.EmployeeDetail.FirstName) @Html.DisplayFor(modelItem => item.Doctor.EmployeeDetail.LastName)
+                    @Html.DisplayFor(modelItem => item.DoctorName)
                 </td>
 
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                    @*@Html.ActionLink("Details", "Details", new { id = item.ID }) |*@
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ID }) |
-                    @Html.ActionLink("Print", "Index", new { id = item.ID })
+                    @*@Html.ActionLink("Edit", "Edit", new { id = item.AppointmentId }) |*@
+                    @Html.ActionLink("Details", "Details", new { id = item.AppointmentId }) |
+                    @*@Html.ActionLink("Delete", "Delete", new { id = item.AppointmentId }) |*@
+                    @Html.ActionLink("Print Receipt", "Index", new { id = item.AppointmentId })
                 </td>
             </tr>
         }
    </tbody>
 
 </table>
-
+<br />
+<div>
+    <p></p>
+</div>
 <script>
     $('#tblServiceDetails').dataTable({
         //"bPaginate": false,
@@ -105,7 +108,7 @@
         //"bAutoWidth": false,
         //"info":     false,
         "aoColumnDefs": [
-            { 'bSortable': false, 'aTargets': [7] }
+            { 'bSortable': false, 'aTargets': [9] }
         ]
     });
     </script>

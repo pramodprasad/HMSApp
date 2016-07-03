@@ -1,171 +1,353 @@
-﻿@model HMS.Entity.MedicalPaymentDetail
+﻿@model HospitalManagement.ViewModels.MedicalPaymentViewModel
 
 @{
-    Layout = null;
+    ViewBag.Title = "Hospital Man agement | Medical Payment";
 }
 
-<!DOCTYPE html>
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Add medical payments for patient: @Model.MedicalPayment.Appointment.PatientDetail.FullName</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(m => m.MedicalPayment.Appointment_ID)
+        <fieldset style="width:100%;border: 2px #eeeeee solid;">
+            <br />
+            <div style="width:100%; float:left;">
+                <div class="left-div col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.MedicalPayment.Doctor_ID, "Doctor", htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.DropDownList("MedicalPayment_Doctor_ID", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.MedicalPayment.Doctor_ID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="right-div col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.MedicalPayment.MedicalEquipmentID, "Medical Treatment", htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.DropDownList("MedicalPayment_MedicalEquipmentID", null, "----Select----", htmlAttributes: new { @class = "form-control", @onchange = "FillMedCharge()" })
+                            @Html.ValidationMessageFor(model => model.MedicalPayment.MedicalEquipmentID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="otherDetailsDiv" style="width:100%; float:left; display:none;">
+                <div class="left-div col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.MedicalPayment.OtherDetails, "Other Details", htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.MedicalPayment.OtherDetails, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.MedicalPayment.OtherDetails, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="right-div col-md-6">
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Create</title>
-</head>
-<body>
-    @using (Html.BeginForm()) 
-    {
-        @Html.AntiForgeryToken()
-        
-        <div class="form-horizontal">
-            <h4>MedicalPaymentDetail</h4>
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
-                @Html.LabelFor(model => model.MedicalAmount, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.MedicalAmount, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.MedicalAmount, "", new { @class = "text-danger" })
                 </div>
             </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.PaymentStatusID, "PaymentStatusID", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("PaymentStatusID", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.PaymentStatusID, "", new { @class = "text-danger" })
+            <div style="width:100%; float:left;">
+                <div class="left-div col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.MedicalPayment.Quantity, htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.MedicalPayment.Quantity, new { htmlAttributes = new { @class = "form-control" }, @onchange = "updateValues()" })
+                            @Html.ValidationMessageFor(model => model.MedicalPayment.Quantity, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="right-div col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.MedicalPayment.MedicalAmount, htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.MedicalPayment.MedicalAmount, new { htmlAttributes = new { @class = "form-control", @onchange = "updateValues()" } })
+                            @Html.ValidationMessageFor(model => model.MedicalPayment.MedicalAmount, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
                 </div>
             </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.PaymentReceivedBy, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.PaymentReceivedBy, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.PaymentReceivedBy, "", new { @class = "text-danger" })
+            <div style="width:100%; float:left;">
+                <div class="left-div col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.MedicalPayment.DiscountAmount, "Discount", htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.MedicalPayment.DiscountAmount, new { htmlAttributes = new { @class = "form-control", @onchange = "updateValues()" } })
+                            @Html.ValidationMessageFor(model => model.MedicalPayment.DiscountAmount, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="right-div col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.MedicalPayment.NetAmount, "Net Amt.", htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.MedicalPayment.NetAmount, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.MedicalPayment.NetAmount, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
                 </div>
             </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.PaymentReceivedDate, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.PaymentReceivedDate, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.PaymentReceivedDate, "", new { @class = "text-danger" })
+            <div style="width:100%; float:left;">
+                <div class="left-div col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.MedicalPayment.DiscountDescription, "Discount Descr.", htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.MedicalPayment.DiscountDescription, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.MedicalPayment.DiscountDescription, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="right-div col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.MedicalPayment.PaymentDetails, "Payment Details", htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.MedicalPayment.PaymentDetails, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.MedicalPayment.PaymentDetails, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
                 </div>
             </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.DiscountAmount, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.DiscountAmount, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.DiscountAmount, "", new { @class = "text-danger" })
+            <div style="width:100%; float:left;">
+                <div class="left-div col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.MedicalPayment.PayAmount, "Paid Amount", htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.MedicalPayment.PayAmount, new { htmlAttributes = new { @class = "form-control", @onchange = "updateValues()" } })
+                            @Html.ValidationMessageFor(model => model.MedicalPayment.PayAmount, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="right-div col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.MedicalPayment.DueAmount, "Due Amount", htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.MedicalPayment.DueAmount, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.MedicalPayment.DueAmount, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
                 </div>
             </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.DiscountedBy, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.DiscountedBy, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.DiscountedBy, "", new { @class = "text-danger" })
+            <div style="width:100%; float:left;">
+                <div class="left-div col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.MedicalPayment.PaymentSection_ID, "Payment Section", htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.DropDownList("MedicalPayment_PaymentSection_ID", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.MedicalPayment.PaymentSection_ID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="right-div col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.MedicalPayment.PaymentMode_ID, "Payment Mode", htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.DropDownList("MedicalPayment_PaymentMode_ID", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.MedicalPayment.PaymentMode_ID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
                 </div>
             </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.DiscountDescription, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.DiscountDescription, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.DiscountDescription, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.PaymentDetails, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.PaymentDetails, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.PaymentDetails, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.Doctor_ID, "Doctor_ID", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("Doctor_ID", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.Doctor_ID, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.PaymentMode_ID, "PaymentMode_ID", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("PaymentMode_ID", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.PaymentMode_ID, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.PaymentSection_ID, "PaymentSection_ID", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("PaymentSection_ID", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.PaymentSection_ID, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.Appointment_ID, "Appointment_ID", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("Appointment_ID", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.Appointment_ID, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.MedicalEquipmentID, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.MedicalEquipmentID, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.MedicalEquipmentID, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.NetAmount, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.NetAmount, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.NetAmount, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.PayAmount, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.PayAmount, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.PayAmount, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.DueAmount, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.DueAmount, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.DueAmount, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
-                </div>
+        </fieldset>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="button" value="Add" class="button-link" id="addRecord" />
             </div>
         </div>
-    }
-    
-    <div>
-        @Html.ActionLink("Back to List", "Index")
     </div>
-</body>
-</html>
+    <br />
+    <div id="listRecords" style="display:none;">
+        <table id="recordsTable" style="width:100%;">
+            <thead>
+                <tr>
+                    <th>Treatment</th>
+                    <th>Qty</th>
+                    <th>Charges</th>
+                    <th>Discount</th>
+                    <th>Net Amount</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <br />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save Services" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+   
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+<script>
+    function FillMedCharge() {
+        var medId = $('#MedicalPayment_MedicalEquipmentID').val();
+        if (medId == 2)
+        {
+            $("#otherDetailsDiv").show();
+        }
+        else
+        {
+            $("#otherDetailsDiv").hide();
+            $.ajax({
+                url: '/MedicalPayment/FillMedicalCharge',
+                type: "GET",
+                dataType: "JSON",
+                data: { medCatId: medId },
+                success: function (result) {
+                    $('#MedicalPayment_MedicalAmount').val(result);
+                    $('#MedicalPayment_NetAmount').val(result);
+                    $('#MedicalPayment_DueAmount').val(result);
+                    $('#MedicalPayment_DiscountAmount').val('0.00');
+                    $('#MedicalPayment_PayAmount').val('0.00');
+                }
+            });
+        }
+    }
+
+    function updateValues() {
+        var qty = $('#MedicalPayment_Quantity').val();
+        var labCharge = $('#MedicalPayment_MedicalAmount').val();
+        var discount = $('#MedicalPayment_DiscountAmount').val();
+        var paidAmt = $('#MedicalPayment_PayAmount').val();
+        // Manipulate all fields on the basis of above values
+        var netAmt = ((parseFloat(qty) * parseFloat(labCharge)) - (parseFloat(discount)));
+        var dueAmt = (netAmt - (parseFloat(paidAmt)));
+
+        $('#MedicalPayment_NetAmount').val(netAmt);
+        $('#MedicalPayment_DueAmount').val(dueAmt);
+    }
+    var i = 0;
+
+    $("#addRecord").click(function () {
+        var equipId = $('#MedicalPayment_MedicalEquipmentID').val();
+        var qty = $('#MedicalPayment_Quantity').val();
+        var medCharge = $('#MedicalPayment_MedicalAmount').val();
+        var discount = $('#MedicalPayment_DiscountAmount').val();
+        var doctor = $('#MedicalPayment_Doctor_ID').val();
+        var netAmt = $('#MedicalPayment_NetAmount').val();
+        var paidAmt = $('#MedicalPayment_PayAmount').val();
+        var dueAmt = $('#MedicalPayment_DueAmount').val();
+        var paymentModeId = $('#MedicalPayment_PaymentMode_ID').val();
+        var appointId = '@Model.MedicalPayment.Appointment_ID';
+        var drId = $('#MedicalPayment_Doctor_ID').val();
+        var otherdetails = "";
+        if ($("#MedicalPayment_OtherDetails").is(":visible"))
+        {
+           otherdetails = $("#MedicalPayment_OtherDetails").val();
+        }
+        
+        var paySec = $("#MedicalPayment_PaymentSection_ID").val();
+        var payDetails = $("#MedicalPayment_PaymentDetails").val();
+        var discDescr = $("#MedicalPayment_DiscountDescription").val();
+
+        var result = '<tr><td>' +
+                            $("#MedicalPayment_MedicalEquipmentID option:selected").text() + '<input id="MedicalPayments_' + i + '__MedicalEquipmentID" type="hidden" value="' +
+                            equipId + '" name="MedicalPayments[' + i + '].MedicalEquipmentID"></td><td>' +
+                            qty + '<input id="MedicalPayments_' + i + '__Quantity" type="hidden" value="' +
+                            qty + '" name="MedicalPayments[' + i + '].Quantity"></td><td>' +
+                            medCharge + '<input id="MedicalPayments_' + i + '__MedicalAmount" type="hidden" value="' +
+                            medCharge + '" name="MedicalPayments[' + i + '].MedicalAmount"></td><td>' +
+                            discount + '<input id="MedicalPayments_' + i + '__Discount" type="hidden" value="' +
+                            discount + '" name="MedicalPayments[' + i + '].Discount"></td><td id=valueTd>' +
+                            netAmt + '<input id="MedicalPayments_' + i + '__NetAmount" type="hidden" value="' +
+                            netAmt + '" name="MedicalPayments[' + i + '].NetAmount"/>' +
+                            '<input id="MedicalPayments_' + i + '__PaidAmount" type="hidden" value="' +
+                            paidAmt + '" name="MedicalPayments[' + i + '].PaidAmount"/>' +
+                            '<input id="MedicalPayments_' + i + '__DueAmount" type="hidden" value="' +
+                            dueAmt + '" name="MedicalPayments[' + i + '].DueAmount"/>' +
+                            '<input id="MedicalPayments_' + i + '__Appointment_ID" type="hidden" value="' +
+                            appointId + '" name="MedicalPayments[' + i + '].Appointment_ID"/>' +
+                            '<input id="MedicalPayments_' + i + '__PaymentModeID" type="hidden" value="' +
+                            paymentModeId + '" name="MedicalPayments[' + i + '].PaymentModeID"/></td>' +
+                            '<input id="MedicalPayments_' + i + '__Doctor_ID" type="hidden" value="' +
+                            drId + '" name="MedicalPayments[' + i + '].Doctor_ID"/></td>' +
+                            '<input id="MedicalPayments_' + i + '__OtherDetails" type="hidden" value="' +
+                            otherdetails + '" name="MedicalPayments[' + i + '].OtherDetails"/></td>' +
+                            '<input id="MedicalPayments_' + i + '__PaymentSection_ID" type="hidden" value="' +
+                            paySec + '" name="MedicalPayments[' + i + '].PaymentSection_ID"/></td>' +
+                            '<input id="MedicalPayments_' + i + '__OtherDetails" type="hidden" value="' +
+                            payDetails + '" name="MedicalPayments[' + i + '].PaymentDetails"/></td>' +
+                            '<input id="MedicalPayments_' + i + '__DiscountDescription" type="hidden" value="' +
+                            discDescr + '" name="MedicalPayments[' + i + '].DiscountDescription"/></td>' +
+                            '<td><a class="deleteRow" style="text-decoration: none; cursor:pointer;">Delete</a></td></tr>';
+        $('#recordsTable tbody').append(result);
+        i = i + 1;
+        if ($('#listRecords').css('display') == 'none') {
+            $('#listRecords').show();
+        }
+    });
+
+    $(document.body).on("click", ".deleteRow", function () {
+        if ($('#recordsTable tr').length > 1) {
+            $(this).closest('tr').remove();
+            var itemIndex = 0;
+            $('#recordsTable tr').each(function () {
+                var this_row = $(this);
+                var equipId = this_row.find('input[id$="__MedicalEquipmentID"]').val();
+                var qty = this_row.find('input[id$="__Quantity"]').val(); 
+                var medCharge = this_row.find('input[id$="__MedicalAmount"]').val(); 
+                var discount = this_row.find('input[id$="__DiscountAmount"]').val();
+                var doctor = this_row.find('input[id$="__Doctor_ID"]').val(); 
+                var netAmt = this_row.find('input[id$="__NetAmount"]').val(); 
+                var paidAmt = this_row.find('input[id$="__PayAmount"]').val();
+                var dueAmt = this_row.find('input[id$="__DueAmount"]').val(); 
+                var paymentModeId = this_row.find('input[id$="__PaymentMode_ID"]').val();
+                var appointId = '@Model.MedicalPayment.Appointment_ID';
+                var drId = this_row.find('input[id$="__Doctor_ID"]').val(); 
+                var otherdetails = this_row.find('input[id$="__OtherDetails"]').val(); 
+                var paySec = this_row.find('input[id$="__PaymentSection_Id"]').val(); 
+                var payDetails = this_row.find('input[id$="__PaymentDetails"]').val(); 
+                var discDescr = this_row.find('input[id$="__DiscountDescription"]').val(); 
+                this_row.find('input').each(function () {
+                    $(this).remove();
+                });
+
+                if (typeof equipId === "undefined") {
+                }
+                else {
+                    var result = '<tr><td>' +
+                                        $("#MedicalPayment_MedicalEquipmentID option:selected").text() + '<input id="MedicalPayments_' + itemIndex + '__MedicalEquipmentID" type="hidden" value="' +
+                                        equipId + '" name="MedicalPayments[' + itemIndex + '].MedicalEquipmentID"></td><td>' +
+                                        qty + '<input id="MedicalPayments_' + itemIndex + '__Quantity" type="hidden" value="' +
+                                        qty + '" name="MedicalPayments[' + itemIndex + '].Quantity"></td><td>' +
+                                        medCharge + '<input id="MedicalPayments_' + itemIndex + '__MedicalAmount" type="hidden" value="' +
+                                        medCharge + '" name="MedicalPayments[' + itemIndex + '].MedicalAmount"></td><td>' +
+                                        discount + '<input id="MedicalPayments_' + itemIndex + '__Discount" type="hidden" value="' +
+                                        discount + '" name="MedicalPayments[' + itemIndex + '].Discount"></td><td id=valueTd>' +
+                                        netAmt + '<input id="MedicalPayments_' + itemIndex + '__NetAmount" type="hidden" value="' +
+                                        netAmt + '" name="MedicalPayments[' + itemIndex + '].NetAmount"/>' +
+                                        '<input id="MedicalPayments_' + itemIndex + '__PaidAmount" type="hidden" value="' +
+                                        paidAmt + '" name="MedicalPayments[' + itemIndex + '].PaidAmount"/>' +
+                                        '<input id="MedicalPayments_' + itemIndex + '__DueAmount" type="hidden" value="' +
+                                        dueAmt + '" name="MedicalPayments[' + itemIndex + '].DueAmount"/>' +
+                                        '<input id="MedicalPayments_' + itemIndex + '__Appointment_ID" type="hidden" value="' +
+                                        appointId + '" name="MedicalPayments[' + itemIndex + '].Appointment_ID"/>' +
+                                        '<input id="MedicalPayments_' + itemIndex + '__PaymentModeID" type="hidden" value="' +
+                                        paymentModeId + '" name="MedicalPayments[' + itemIndex + '].PaymentModeID"/></td>' +
+                                        '<input id="MedicalPayments_' + itemIndex + '__Doctor_ID" type="hidden" value="' +
+                                        drId + '" name="MedicalPayments[' + itemIndex + '].Doctor_ID"/></td>' +
+                                        '<input id="MedicalPayments_' + itemIndex + '__OtherDetails" type="hidden" value="' +
+                                        otherdetails + '" name="MedicalPayments[' + itemIndex + '].OtherDetails"/></td>' +
+                                        '<input id="MedicalPayments_' + itemIndex + '__PaymentSection_Id" type="hidden" value="' +
+                                        paySec + '" name="MedicalPayments[' + itemIndex + '].PaymentSection_Id"/></td>' +
+                                        '<input id="MedicalPayments_' + itemIndex + '__OtherDetails" type="hidden" value="' +
+                                        payDetails + '" name="MedicalPayments[' + itemIndex + '].PaymentDetails"/></td>' +
+                                        '<input id="MedicalPayments_' + itemIndex + '__DiscountDescription" type="hidden" value="' +
+                                        discDescr + '" name="MedicalPayments[' + itemIndex + '].DiscountDescription"/></td>' +
+                                        '<td><a class="deleteRow" style="text-decoration: none; cursor:pointer;">Delete</a></td></tr>';
+                    var lastTD = this_row.find('#valueTd');
+                    lastTD.append(result);
+                    itemIndex++;
+                    i = $('#recordsTable tr').length - 1;
+                }
+
+            });
+        }
+    });
+</script>

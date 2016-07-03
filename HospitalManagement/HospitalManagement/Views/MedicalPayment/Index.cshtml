@@ -1,137 +1,138 @@
-﻿@model IEnumerable<HMS.Entity.MedicalPaymentDetail>
+﻿@model IEnumerable<HospitalManagement.ViewModels.Payments.MedicalPaymentModel>
 
 @{
-    Layout = null;
+    ViewBag.Title = "Hospital Management | Medical Payments";
 }
 
-<!DOCTYPE html>
+<h4>Medical Payment Details</h4>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <table class="table">
+<table class="tblMedPayment" style="width:100%;">
+    <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.MedicalAmount)
+                @Html.DisplayName("Appointment ID")
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PaymentReceivedBy)
+                @Html.Label("Patient Name")
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PaymentReceivedDate)
+                @Html.DisplayNameFor(model => model.Qty)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DiscountAmount)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DiscountedBy)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DiscountDescription)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PaymentDetails)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Quantity)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MedicalEquipmentID)
+                @Html.DisplayNameFor(model => model.MedicalCharge)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.NetAmount)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PayAmount)
+                @Html.DisplayNameFor(model => model.Discount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaidAmount)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.DueAmount)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Appointment.ReferalDetails)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Doctor.OtherDetails)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PaymentMode.Mode)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PaymentSection.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PaymentStau.Details)
-            </th>
-            <th></th>
+            <th>@Html.DisplayName("Actions")</th>
         </tr>
-    
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.MedicalAmount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PaymentReceivedBy)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PaymentReceivedDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DiscountAmount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DiscountedBy)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DiscountDescription)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PaymentDetails)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Quantity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MedicalEquipmentID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NetAmount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PayAmount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DueAmount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Appointment.ReferalDetails)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Doctor.OtherDetails)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PaymentMode.Mode)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PaymentSection.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PaymentStau.Details)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-                @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-            </td>
-        </tr>
-    }
-    
-    </table>
-</body>
-</html>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AppointmentId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PatientName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Qty)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MedicalCharge)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NetAmount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Discount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaidAmount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DueAmount)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.AppointmentId }) |
+                    @Html.ActionLink("Print Receipt", "Print", new { id = item.AppointmentId })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="modal fade" id="visitSlipModal" tabindex="-1" role="dialog" aria-labelledby="visitSliplable" aria-hidden="true">
+    <div class="modal-dialog" style="width:525px;">
+        <div class="modal-content" id="visitSlipContent" style="font-size: 14px; border-radius: 0px;">
+            <img src="~/Images/closebox.png" data-dismiss="modal" aria-hidden="false" />
+            <div class="modal-body" id="visitSlipBody" style="padding-top:0px;padding-bottom:0px;margin-top:0px; min-height:150px;margin-bottom:20px;">
+
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $('#tblMedPayment').dataTable({
+        //"bPaginate": false,
+        "bLengthChange": false,
+        //"bFilter": true,
+        //"bInfo": false,
+        //"bAutoWidth": false,
+        //"info":     false,
+        "aoColumnDefs": [
+            { 'bSortable': false, 'aTargets': [8] }
+        ]
+    });
+
+    $(document).ready(function () {
+        $(function () {
+            $('.visitSlipDetails').click(function () {
+                var url = $(this).attr('href');
+                $('#visitSlipBody').html('');
+                $('#visitSlipBody').load(url, function () {
+                    $('#visitSlipModal').modal({
+                        keyboard: true
+                    }, 'show');
+                    bindVisitSlipForm(this);
+                });
+                return false;
+            });
+        });
+
+        function bindVisitSlipForm(dialog) {
+            $('form', dialog).submit(function () {
+                $.ajax({
+                    url: this.action,
+                    type: this.method,
+                    data: $(this).serialize(),
+                    success: function (result) {
+                        var value = $(result).find(".validation-summary-errors ul li").length;
+                        if (value == 0) {
+                            window.location.reload(true);
+                        }
+                        else {
+                            $('#visitSlipBody').html('');
+                            $('#visitSlipBody').html(result);
+                            $("form").data("validator", null);
+                            $.validator.unobtrusive.parse($("form"));
+                            bindVisitSlipForm();
+                        }
+                    }
+                });
+                return false;
+            });
+        }
+    });
+</script>

@@ -32,6 +32,7 @@ namespace HMS.Entity
         public decimal NetAmount { get; set; }
         public decimal PayAmount { get; set; }
         public decimal DueAmount { get; set; }
+        public string OtherDetails { get; set; }
     
         public virtual Appointment Appointment { get; set; }
         public virtual Doctor Doctor { get; set; }

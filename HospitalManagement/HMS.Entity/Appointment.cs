@@ -24,6 +24,7 @@ namespace HMS.Entity
             this.PatientVisits = new HashSet<PatientVisit>();
             this.ServicePayments = new HashSet<ServicePayment>();
             this.WardOrRoomChargeDetails = new HashSet<WardOrRoomChargeDetail>();
+            this.DischargeSummaries = new HashSet<DischargeSummary>();
         }
     
         public int ID { get; set; }
@@ -54,5 +55,6 @@ namespace HMS.Entity
         public virtual ICollection<PatientVisit> PatientVisits { get; set; }
         public virtual ICollection<ServicePayment> ServicePayments { get; set; }
         public virtual ICollection<WardOrRoomChargeDetail> WardOrRoomChargeDetails { get; set; }
+        public virtual ICollection<DischargeSummary> DischargeSummaries { get; set; }
     }
 }

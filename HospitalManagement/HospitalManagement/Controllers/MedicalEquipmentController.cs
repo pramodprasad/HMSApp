@@ -13,7 +13,7 @@ namespace HospitalManagement.Controllers
 {
     public class MedicalEquipmentController : Controller
     {
-        private HMSTEntities db = new HMSTEntities();
+        private HMSDBEntities db = new HMSDBEntities();
 
         // GET: MedicalEquipment
         public async Task<ActionResult> Index()

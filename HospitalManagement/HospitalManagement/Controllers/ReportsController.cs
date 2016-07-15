@@ -51,7 +51,7 @@ namespace HospitalManagement.Controllers
         {
             DataTable dtbranchdetails = new DataTable();
             DataTable dtpatientvisit = new DataTable();
-            using (HMSTEntities context = new HMSTEntities())
+            using (HMSDBEntities context = new HMSDBEntities())
             {
                 var branchdetails = context.sp_BranchDetails(1);
                 var patientvisit = context.sp_GetReceipt(id);
@@ -72,7 +72,7 @@ namespace HospitalManagement.Controllers
         {
             DataTable dtbranchdetails = new DataTable();
             DataTable dtpatientvisit = new DataTable();
-            using (HMSTEntities context = new HMSTEntities())
+            using (HMSDBEntities context = new HMSDBEntities())
             {
                 var branchdetails = context.sp_BranchDetails(1);
                 var patientvisit = context.sp_GetPrescription(id);
@@ -94,7 +94,7 @@ namespace HospitalManagement.Controllers
         {
             DataTable dtbranchdetails = new DataTable();
             DataTable dtpatientvisit = new DataTable();
-            using (HMSTEntities context = new HMSTEntities())
+            using (HMSDBEntities context = new HMSDBEntities())
             {
                 var branchdetails = context.sp_BranchDetails(1);
                 var patientvisit = context.sp_GetRegistrationPayment(null, null, null, null, null);
@@ -103,6 +103,28 @@ namespace HospitalManagement.Controllers
                 ReportClass rptH = new ReportClass();
                 //rptH.FileName = Server.MapPath("~/Content/cr_Prescription.rpt");
                 rptH.FileName = @"C:/Users/tanmay/Documents/GitHub/HMSApp/HospitalManagement/HospitalManagement/Content/cr_RegistrationPayment.rpt";
+                rptH.Load();
+                rptH.Subreports["cr_BranchDetails.rpt"].SetDataSource(dtbranchdetails);//datasource for subreport
+                rptH.SetDataSource(dtpatientvisit);//Mainreport datasourcc       
+                rptH.VerifyDatabase();
+                Stream stream = rptH.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+                return File(stream, "application/pdf");
+            }
+        }
+
+        public ActionResult GetLabReceipt(int id)
+        {
+            DataTable dtbranchdetails = new DataTable();
+            DataTable dtpatientvisit = new DataTable();
+            using (HMSDBEntities context = new HMSDBEntities())
+            {
+                var branchdetails = context.sp_BranchDetails(1);
+                var patientvisit = context.sp_GetLabPayment(id,null,null,null,null);
+                dtbranchdetails = ExtensionMethods.ConvertToDataTable(branchdetails);
+                dtpatientvisit = ExtensionMethods.ConvertToDataTable(patientvisit);
+                ReportClass rptH = new ReportClass();
+                //rptH.FileName = Server.MapPath("~/Content/cr_Prescription.rpt");
+                rptH.FileName = @"C:/Users/tanmay/Documents/GitHub/HMSApp/HospitalManagement/HospitalManagement/Content/cr_LabReceipt.rpt";
                 rptH.Load();
                 rptH.Subreports["cr_BranchDetails.rpt"].SetDataSource(dtbranchdetails);//datasource for subreport
                 rptH.SetDataSource(dtpatientvisit);//Mainreport datasourcc       

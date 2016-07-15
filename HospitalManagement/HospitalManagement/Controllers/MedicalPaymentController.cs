@@ -19,7 +19,7 @@ namespace HospitalManagement.Controllers
 {
     public class MedicalPaymentController : Controller
     {
-        private HMSTEntities db = new HMSTEntities();
+        private HMSDBEntities db = new HMSDBEntities();
 
         // GET: MedicalPayment
         public async Task<ActionResult> Index()

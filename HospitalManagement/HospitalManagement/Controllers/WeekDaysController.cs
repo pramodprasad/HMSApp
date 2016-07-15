@@ -12,7 +12,7 @@ namespace HospitalManagement.Controllers
 {
     public class WeekDaysController : Controller
     {
-        private HMSTEntities db = new HMSTEntities();
+        private HMSDBEntities db = new HMSDBEntities();
 
         // GET: /WeekDays/
         public ActionResult Index()

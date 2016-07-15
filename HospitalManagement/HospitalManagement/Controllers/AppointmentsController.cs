@@ -14,7 +14,7 @@ namespace HospitalManagement.Controllers
     //Controller for appointment module
     public class AppointmentsController : Controller
     {
-        private HMSTEntities db = new HMSTEntities();
+        private HMSDBEntities db = new HMSDBEntities();
 
         // GET: Appointments
         public ActionResult Index()

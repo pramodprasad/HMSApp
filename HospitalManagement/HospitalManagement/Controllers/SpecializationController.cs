@@ -12,7 +12,7 @@ namespace HospitalManagement.Controllers
 {
     public class SpecializationController : Controller
     {
-        private HMSTEntities db = new HMSTEntities();
+        private HMSDBEntities db = new HMSDBEntities();
 
         // GET: /Specialization/
         public ActionResult Index()

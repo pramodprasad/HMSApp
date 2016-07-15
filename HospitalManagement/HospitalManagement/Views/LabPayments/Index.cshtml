@@ -65,8 +65,8 @@
                     @Html.DisplayFor(modelItem => item.DueAmount)
                 </td>
                 <td>
-                    @Html.ActionLink("Details", "Details", new { id = item.AppointmentId }) |
-                    @Html.ActionLink("Print Receipt", "Print", new { id = item.AppointmentId })
+                    @Html.ActionLink("Details", "Details", new { id = item.AppointmentId }) |                    
+                    @Html.ActionLink("Print Receipt", "GetLabReceipt","Reports", new { id = item.AppointmentId },null)
                 </td>
             </tr>
         }

@@ -1,106 +1,106 @@
-﻿@model IEnumerable<HMS.Entity.MedicalPaymentDetail>
+﻿@model IEnumerable<hms.entity.medicalpaymentdetail>
 
-@{
-    ViewBag.Title = "Details";
-}
+    @{
+        ViewBag.Title = "Details";
+    }
 
-<h4>Medical Payment Details</h4>
+    <h4>Medical Payment Details</h4>
 
-<table id="tblMedPayDetails">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayName("Patient ID")
-            </th>
-            <th>
-                @Html.DisplayName("Patient Name")
-            </th>
-            <th>
-                @Html.DisplayName("Medical Treatment")
-            </th>
-            <th>
-                @Html.DisplayName("Medical Charge")
-            </th>
-            <th>
-                @Html.DisplayName("Qty")
-            </th>
-            <th>
-                @Html.DisplayName("Net Amount")
-            </th>
-            <th>
-                @Html.DisplayName("Discount")
-            </th>
-            <th>
-                @Html.DisplayName("Paid Amount")
-            </th>
-            <th>
-                @Html.DisplayName("Due Amount")
-            </th>
-            <th>
-                @Html.DisplayName("Doctor")
-            </th>
-
-            <th>@Html.DisplayName("Actions")</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+    <table id="tblMedPayDetails">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Appointment_ID)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Appointment.PatientDetail.FullName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.MedicalEquipmentID)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.MedicalAmount)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Quantity)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NetAmount)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DiscountAmount)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PayAmount)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DueAmount)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Doctor.EmployeeDetail.FirstName) @Html.DisplayFor(modelItem => item.Doctor.EmployeeDetail.LastName)
-                </td>
+                <th>
+                    @Html.DisplayName("Patient ID")
+                </th>
+                <th>
+                    @Html.DisplayName("Patient Name")
+                </th>
+                <th>
+                    @Html.DisplayName("Medical Treatment")
+                </th>
+                <th>
+                    @Html.DisplayName("Medical Charge")
+                </th>
+                <th>
+                    @Html.DisplayName("Qty")
+                </th>
+                <th>
+                    @Html.DisplayName("Net Amount")
+                </th>
+                <th>
+                    @Html.DisplayName("Discount")
+                </th>
+                <th>
+                    @Html.DisplayName("Paid Amount")
+                </th>
+                <th>
+                    @Html.DisplayName("Due Amount")
+                </th>
+                <th>
+                    @Html.DisplayName("Doctor")
+                </th>
 
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-                </td>
+                <th>@Html.DisplayName("Actions")</th>
             </tr>
-        }
-    </tbody>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Appointment_ID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Appointment.PatientDetail.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MedicalEquipmentID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MedicalAmount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Quantity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NetAmount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DiscountAmount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PayAmount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DueAmount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Doctor.EmployeeDetail.FirstName) @Html.DisplayFor(modelItem => item.Doctor.EmployeeDetail.LastName)
+                    </td>
 
-</table>
-<br />
-<p>
-    @Html.ActionLink("Back to Lab List", "Index")
-</p>
-<script>
-    $('#tblLabPayDetails').dataTable({
-        //"bPaginate": false,
-        "bLengthChange": false,
-        //"bFilter": true,
-        //"bInfo": false,
-        //"bAutoWidth": false,
-        //"info":     false,
-        "aoColumnDefs": [
-            { 'bSortable': false, 'aTargets': [11] }
-        ]
-    });
-</script>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+    <br />
+    <p>
+        @Html.ActionLink("Back to Lab List", "Index")
+    </p>
+    <script>
+        $('#tblLabPayDetails').dataTable({
+            //"bPaginate": false,
+            "bLengthChange": false,
+            //"bFilter": true,
+            //"bInfo": false,
+            //"bAutoWidth": false,
+            //"info":     false,
+            "aoColumnDefs": [
+                { 'bSortable': false, 'aTargets': [11] }
+            ]
+        });
+    </script>

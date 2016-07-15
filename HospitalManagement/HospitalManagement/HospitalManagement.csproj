@@ -240,6 +240,18 @@
       <DependentUpon>cr_BranchDetails.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Content\cr_LabPaymentReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>cr_LabPaymentReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Content\cr_LabReceipt.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>cr_LabReceipt.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Content\cr_Prescription.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -312,6 +324,7 @@
     <Compile Include="ViewModels\DoctorViewModel.cs" />
     <Compile Include="ViewModels\LabPaymentViewModel.cs" />
     <Compile Include="ViewModels\LabViewModel.cs" />
+    <Compile Include="ViewModels\MedicalPaymentViewModel.cs" />
     <Compile Include="ViewModels\PatientViewModel.cs" />
     <Compile Include="ViewModels\Payments\LabPaymentModel.cs" />
     <Compile Include="ViewModels\Payments\MedicalPaymentModel.cs" />
@@ -779,6 +792,7 @@
     <Content Include="Views\MedicalEquipment\Delete.cshtml" />
     <Content Include="Views\MedicalEquipment\Edit.cshtml" />
     <Content Include="Views\MedicalEquipment\Index.cshtml" />
+    <Content Include="Views\Reports\GetLabReceipt.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -804,6 +818,14 @@
     <EmbeddedResource Include="Content\cr_BranchDetails.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>cr_BranchDetails.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Content\cr_LabPaymentReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>cr_LabPaymentReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Content\cr_LabReceipt.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>cr_LabReceipt.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Content\cr_Prescription.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

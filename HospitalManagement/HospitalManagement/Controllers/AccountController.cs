@@ -21,7 +21,7 @@ namespace HospitalManagement.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-        private readonly HMSTEntities db = new HMSTEntities();
+        private readonly HMSDBEntities db = new HMSDBEntities();
         public AccountController()
         {
         }
@@ -188,7 +188,7 @@ namespace HospitalManagement.Controllers
 
                     try
                     {
-                        using (HMSTEntities context = new HMSTEntities())
+                        using (HMSDBEntities context = new HMSDBEntities())
                         {
                             EmployeeDetail newEmp = model.EmpDetails;
                                 if (model.EmpDetails.EmployeeType_ID == 2)

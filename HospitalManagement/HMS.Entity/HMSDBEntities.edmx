@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="HMSTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="HMSDBEntitiesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -140,6 +140,25 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CountryCode" Type="nvarchar" MaxLength="5" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DischargeSummary">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AppointmentID" Type="int" Nullable="false" />
+          <Property Name="PatientDetailsID" Type="bigint" Nullable="false" />
+          <Property Name="DoctorID" Type="bigint" Nullable="false" />
+          <Property Name="DateOfAdmission" Type="datetime" Nullable="false" />
+          <Property Name="DateOfDischarge" Type="datetime" Nullable="false" />
+          <Property Name="Daignosis" Type="varchar" MaxLength="250" />
+          <Property Name="BriffSummary" Type="varchar" MaxLength="250" />
+          <Property Name="Investigation" Type="varchar" MaxLength="250" />
+          <Property Name="OperationNotes" Type="varchar" MaxLength="250" />
+          <Property Name="TreatmentGiven" Type="varchar" MaxLength="250" />
+          <Property Name="Advice" Type="varchar" MaxLength="250" />
+          <Property Name="ToattendClinicOnAfter" Type="varchar" MaxLength="250" />
+          <Property Name="OtherDetails" Type="varchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="DoctorBillDetails">
           <Key>
@@ -306,6 +325,7 @@
           <Property Name="NetAmount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="PayAmount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="DueAmount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="OtherDetails" Type="varchar" MaxLength="150" />
         </EntityType>
         <EntityType Name="PatientBills">
           <Key>
@@ -1417,6 +1437,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_DischargeSummary_Appointments">
+          <End Role="Appointments" Type="Self.Appointments" Multiplicity="1" />
+          <End Role="DischargeSummary" Type="Self.DischargeSummary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Appointments">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DischargeSummary">
+              <PropertyRef Name="AppointmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DischargeSummary_Doctors">
+          <End Role="Doctors" Type="Self.Doctors" Multiplicity="1" />
+          <End Role="DischargeSummary" Type="Self.DischargeSummary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doctors">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DischargeSummary">
+              <PropertyRef Name="DoctorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DischargeSummary_PatientDetails">
+          <End Role="PatientDetails" Type="Self.PatientDetails" Multiplicity="1" />
+          <End Role="DischargeSummary" Type="Self.DischargeSummary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PatientDetails">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DischargeSummary">
+              <PropertyRef Name="PatientDetailsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_DoctorBillDetails_PaymentStaus">
           <End Role="PaymentStaus" Type="Self.PaymentStaus" Multiplicity="1" />
           <End Role="DoctorBillDetails" Type="Self.DoctorBillDetails" Multiplicity="*" />
@@ -1692,7 +1748,7 @@
           <Parameter Name="Doctor" Type="varchar" Mode="In" />
           <Parameter Name="VisitedDate" Type="datetime" Mode="In" />
         </Function>
-        <EntityContainer Name="HMSTModelStoreContainer">
+        <EntityContainer Name="HMSDBEntitiesModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Appointments" EntityType="Self.Appointments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
@@ -1705,6 +1761,7 @@
           <EntitySet Name="Cities" EntityType="Self.Cities" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CounterTable" EntityType="Self.CounterTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Countries" EntityType="Self.Countries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DischargeSummary" EntityType="Self.DischargeSummary" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DoctorBillDetails" EntityType="Self.DoctorBillDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Doctors" EntityType="Self.Doctors" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DoctorVisitPaymentDetails" EntityType="Self.DoctorVisitPaymentDetails" Schema="dbo" store:Type="Tables" />
@@ -2012,6 +2069,18 @@
             <End Role="WardCategories" EntitySet="WardCategories" />
             <End Role="Wards" EntitySet="Wards" />
           </AssociationSet>
+          <AssociationSet Name="FK_DischargeSummary_Appointments" Association="Self.FK_DischargeSummary_Appointments">
+            <End Role="Appointments" EntitySet="Appointments" />
+            <End Role="DischargeSummary" EntitySet="DischargeSummary" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DischargeSummary_Doctors" Association="Self.FK_DischargeSummary_Doctors">
+            <End Role="Doctors" EntitySet="Doctors" />
+            <End Role="DischargeSummary" EntitySet="DischargeSummary" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DischargeSummary_PatientDetails" Association="Self.FK_DischargeSummary_PatientDetails">
+            <End Role="PatientDetails" EntitySet="PatientDetails" />
+            <End Role="DischargeSummary" EntitySet="DischargeSummary" />
+          </AssociationSet>
           <AssociationSet Name="FK_DoctorBillDetails_PaymentStaus" Association="Self.FK_DoctorBillDetails_PaymentStaus">
             <End Role="PaymentStaus" EntitySet="PaymentStaus" />
             <End Role="DoctorBillDetails" EntitySet="DoctorBillDetails" />
@@ -2097,10 +2166,11 @@
             <End Role="WardOrRoomChargeDetails" EntitySet="WardOrRoomChargeDetails" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="HMSTModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="HMSDBEntitiesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="C__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -2142,6 +2212,7 @@
           <NavigationProperty Name="PatientVisits" Relationship="Self.FK_dbo_PatientVisits_dbo_Appointments_Appointment_ID" FromRole="Appointments" ToRole="PatientVisits" />
           <NavigationProperty Name="ServicePayments" Relationship="Self.FK_dbo_ServicePayments_dbo_Appointments_Appointment_ID" FromRole="Appointments" ToRole="ServicePayments" />
           <NavigationProperty Name="WardOrRoomChargeDetails" Relationship="Self.FK_dbo_WardOrRoomChargeDetails_dbo_Appointments_Appointment_ID" FromRole="Appointments" ToRole="WardOrRoomChargeDetails" />
+          <NavigationProperty Name="DischargeSummaries" Relationship="Self.FK_DischargeSummary_Appointments" FromRole="Appointments" ToRole="DischargeSummary" />
         </EntityType>
         <EntityType Name="AspNetRole">
           <Key>
@@ -2262,6 +2333,28 @@
           <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="States" Relationship="Self.FK_dbo_States_dbo_Countries_Country_ID" FromRole="Countries" ToRole="States" />
         </EntityType>
+        <EntityType Name="DischargeSummary">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AppointmentID" Type="Int32" Nullable="false" />
+          <Property Name="PatientDetailsID" Type="Int64" Nullable="false" />
+          <Property Name="DoctorID" Type="Int64" Nullable="false" />
+          <Property Name="DateOfAdmission" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateOfDischarge" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Daignosis" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="BriffSummary" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Investigation" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="OperationNotes" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="TreatmentGiven" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Advice" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="ToattendClinicOnAfter" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="OtherDetails" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Appointment" Relationship="Self.FK_DischargeSummary_Appointments" FromRole="DischargeSummary" ToRole="Appointments" />
+          <NavigationProperty Name="Doctor" Relationship="Self.FK_DischargeSummary_Doctors" FromRole="DischargeSummary" ToRole="Doctors" />
+          <NavigationProperty Name="PatientDetail" Relationship="Self.FK_DischargeSummary_PatientDetails" FromRole="DischargeSummary" ToRole="PatientDetails" />
+        </EntityType>
         <EntityType Name="DoctorBillDetail">
           <Key>
             <PropertyRef Name="ID" />
@@ -2311,6 +2404,7 @@
           <Property Name="FormerlyAt" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="VisitingConsultant" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Appointments" Relationship="Self.FK_dbo_Appointments_dbo_Doctors_Doctor_ID" FromRole="Doctors" ToRole="Appointments" />
+          <NavigationProperty Name="DischargeSummaries" Relationship="Self.FK_DischargeSummary_Doctors" FromRole="Doctors" ToRole="DischargeSummary" />
           <NavigationProperty Name="DoctorBillDetails" Relationship="Self.FK_dbo_DoctorBillDetails_dbo_Doctors_Doctor_ID" FromRole="Doctors" ToRole="DoctorBillDetails" />
           <NavigationProperty Name="EmployeeDetail" Relationship="Self.FK_dbo_Doctors_dbo_EmployeeDetails_EmployeeDetail_ID" FromRole="Doctors" ToRole="EmployeeDetails" />
           <NavigationProperty Name="Qualification" Relationship="Self.FK_dbo_Doctors_dbo_Qualifications_Qualification_ID" FromRole="Doctors" ToRole="Qualifications" />
@@ -2482,6 +2576,7 @@
           <Property Name="NetAmount" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="PayAmount" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="DueAmount" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="OtherDetails" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Appointment" Relationship="Self.FK_dbo_MedicalPaymentDetails_dbo_Appointments_Appointment_ID" FromRole="MedicalPaymentDetails" ToRole="Appointments" />
           <NavigationProperty Name="Doctor" Relationship="Self.FK_dbo_MedicalPaymentDetails_dbo_Doctors_Doctor_ID" FromRole="MedicalPaymentDetails" ToRole="Doctors" />
           <NavigationProperty Name="PaymentMode" Relationship="Self.FK_dbo_MedicalPaymentDetails_dbo_PaymentModes_PaymentMode_ID" FromRole="MedicalPaymentDetails" ToRole="PaymentModes" />
@@ -2538,6 +2633,7 @@
           <Property Name="Gender" Type="Int32" />
           <NavigationProperty Name="Appointments" Relationship="Self.FK_dbo_Appointments_dbo_PatientDetails_PatientDetails_ID" FromRole="PatientDetails" ToRole="Appointments" />
           <NavigationProperty Name="City" Relationship="Self.FK_dbo_PatientDetails_dbo_Cities_City_ID" FromRole="PatientDetails" ToRole="Cities" />
+          <NavigationProperty Name="DischargeSummaries" Relationship="Self.FK_DischargeSummary_PatientDetails" FromRole="PatientDetails" ToRole="DischargeSummary" />
           <NavigationProperty Name="DoctorBillDetails" Relationship="Self.FK_dbo_DoctorBillDetails_dbo_PatientDetails_PatientDetails_ID" FromRole="PatientDetails" ToRole="DoctorBillDetails" />
         </EntityType>
         <EntityType Name="PatientStatu">
@@ -3025,6 +3121,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_DischargeSummary_Appointments">
+          <End Role="Appointments" Type="Self.Appointment" Multiplicity="1" />
+          <End Role="DischargeSummary" Type="Self.DischargeSummary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Appointments">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DischargeSummary">
+              <PropertyRef Name="AppointmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -3170,6 +3278,30 @@
             </Principal>
             <Dependent Role="States">
               <PropertyRef Name="Country_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DischargeSummary_Doctors">
+          <End Role="Doctors" Type="Self.Doctor" Multiplicity="1" />
+          <End Role="DischargeSummary" Type="Self.DischargeSummary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doctors">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DischargeSummary">
+              <PropertyRef Name="DoctorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DischargeSummary_PatientDetails">
+          <End Role="PatientDetails" Type="Self.PatientDetail" Multiplicity="1" />
+          <End Role="DischargeSummary" Type="Self.DischargeSummary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PatientDetails">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DischargeSummary">
+              <PropertyRef Name="PatientDetailsID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3909,7 +4041,7 @@
           <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="HMSTEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="HMSDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
           <EntitySet Name="Appointments" EntityType="Self.Appointment" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
@@ -3921,6 +4053,7 @@
           <EntitySet Name="Cities" EntityType="Self.City" />
           <EntitySet Name="CounterTables" EntityType="Self.CounterTable" />
           <EntitySet Name="Countries" EntityType="Self.Country" />
+          <EntitySet Name="DischargeSummaries" EntityType="Self.DischargeSummary" />
           <EntitySet Name="DoctorBillDetails" EntityType="Self.DoctorBillDetail" />
           <EntitySet Name="Doctors" EntityType="Self.Doctor" />
           <EntitySet Name="DoctorVisitPaymentDetails" EntityType="Self.DoctorVisitPaymentDetail" />
@@ -4012,6 +4145,10 @@
             <End Role="Appointments" EntitySet="Appointments" />
             <End Role="WardOrRoomChargeDetails" EntitySet="WardOrRoomChargeDetails" />
           </AssociationSet>
+          <AssociationSet Name="FK_DischargeSummary_Appointments" Association="Self.FK_DischargeSummary_Appointments">
+            <End Role="Appointments" EntitySet="Appointments" />
+            <End Role="DischargeSummary" EntitySet="DischargeSummaries" />
+          </AssociationSet>
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -4059,6 +4196,14 @@
           <AssociationSet Name="FK_dbo_States_dbo_Countries_Country_ID" Association="Self.FK_dbo_States_dbo_Countries_Country_ID">
             <End Role="Countries" EntitySet="Countries" />
             <End Role="States" EntitySet="States" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DischargeSummary_Doctors" Association="Self.FK_DischargeSummary_Doctors">
+            <End Role="Doctors" EntitySet="Doctors" />
+            <End Role="DischargeSummary" EntitySet="DischargeSummaries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DischargeSummary_PatientDetails" Association="Self.FK_DischargeSummary_PatientDetails">
+            <End Role="PatientDetails" EntitySet="PatientDetails" />
+            <End Role="DischargeSummary" EntitySet="DischargeSummaries" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_DoctorBillDetails_dbo_Doctors_Doctor_ID" Association="Self.FK_dbo_DoctorBillDetails_dbo_Doctors_Doctor_ID">
             <End Role="Doctors" EntitySet="Doctors" />
@@ -4308,23 +4453,23 @@
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
-          <FunctionImport Name="sp_BranchDetails" ReturnType="Collection(HMSTModel.sp_BranchDetails_Result)">
-          <Parameter Name="BranchID" Mode="In" Type="Int64" />
+          <FunctionImport Name="sp_BranchDetails" ReturnType="Collection(HMSDBEntitiesModel.sp_BranchDetails_Result)">
+            <Parameter Name="BranchID" Mode="In" Type="Int64" />
           </FunctionImport>
-          <FunctionImport Name="sp_GetPrescription" ReturnType="Collection(HMSTModel.sp_GetPrescription_Result)">
-          <Parameter Name="PatientVisitID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_GetReceipt" ReturnType="Collection(HMSTModel.sp_GetReceipt_Result)">
-          <Parameter Name="PatientVisitID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_GetLabPayment" ReturnType="Collection(HMSTModel.sp_GetLabPayment_Result)">
+          <FunctionImport Name="sp_GetLabPayment" ReturnType="Collection(HMSDBEntitiesModel.sp_GetLabPayment_Result)">
             <Parameter Name="AppointmentID" Mode="In" Type="Int32" />
             <Parameter Name="PaymentMode" Mode="In" Type="String" />
             <Parameter Name="PatientType" Mode="In" Type="Int32" />
             <Parameter Name="DoctorID" Mode="In" Type="Int64" />
             <Parameter Name="CreatedDate" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="sp_GetRegistrationPayment" ReturnType="Collection(HMSTModel.sp_GetRegistrationPayment_Result)">
+          <FunctionImport Name="sp_GetPrescription" ReturnType="Collection(HMSDBEntitiesModel.sp_GetPrescription_Result)">
+            <Parameter Name="PatientVisitID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GetReceipt" ReturnType="Collection(HMSDBEntitiesModel.sp_GetReceipt_Result)">
+            <Parameter Name="PatientVisitID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GetRegistrationPayment" ReturnType="Collection(HMSDBEntitiesModel.sp_GetRegistrationPayment_Result)">
             <Parameter Name="PatientVisitID" Mode="In" Type="Int32" />
             <Parameter Name="PaymentMode" Mode="In" Type="String" />
             <Parameter Name="PatientType" Mode="In" Type="Int32" />
@@ -4348,12 +4493,34 @@
           <Property Type="String" Name="State" Nullable="false" />
           <Property Type="String" Name="Country" Nullable="false" MaxLength="30" />
         </ComplexType>
+        <ComplexType Name="sp_GetLabPayment_Result">
+          <Property Type="String" Name="LabCategory" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="LabTestName" Nullable="false" MaxLength="150" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="false" Precision="23" />
+          <Property Type="Decimal" Name="LabCharge" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="Quantity" Nullable="false" />
+          <Property Type="Decimal" Name="NetAmount" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Discount" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="PaidAmount" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="DueAmount" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="Mode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="FullName" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Age" Nullable="false" />
+          <Property Type="Int64" Name="ContactNo" Nullable="false" />
+          <Property Type="String" Name="FatherOrHusbandName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Gender" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="Doctor" Nullable="false" MaxLength="101" />
+          <Property Type="Int64" Name="DoctorID" Nullable="false" />
+          <Property Type="String" Name="PatientType" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="PTypeID" Nullable="false" />
+          <Property Type="Int32" Name="AppointmentID" Nullable="false" />
+        </ComplexType>
         <ComplexType Name="sp_GetPrescription_Result">
           <Property Type="String" Name="FullName" Nullable="false" MaxLength="50" />
           <Property Type="Int32" Name="Age" Nullable="false" />
           <Property Type="String" Name="Gender" Nullable="false" MaxLength="1" />
           <Property Type="Int32" Name="PatientVisitID" Nullable="false" />
-          <Property Type="String" Name="PatientType" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="PatientType" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="PatientAddress" Nullable="false" MaxLength="100" />
           <Property Type="Int32" Name="AppointmentID" Nullable="false" />
           <Property Type="Decimal" Name="PayAmount" Nullable="false" Precision="18" Scale="2" />
@@ -4376,7 +4543,7 @@
           <Property Type="Int32" Name="Age" Nullable="false" />
           <Property Type="String" Name="Sex" Nullable="false" MaxLength="6" />
           <Property Type="Int32" Name="PatientVisitID" Nullable="false" />
-          <Property Type="String" Name="PatientType" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="PatientType" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="Address" Nullable="false" MaxLength="100" />
           <Property Type="String" Name="FatherOrHusbandName" Nullable="false" MaxLength="50" />
           <Property Type="Int32" Name="AppointmentID" Nullable="false" />
@@ -4387,27 +4554,6 @@
           <Property Type="Int64" Name="Counter" Nullable="true" />
           <Property Type="String" Name="CreatedBy" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="Doctorname" Nullable="false" MaxLength="100" />
-        </ComplexType>
-        <ComplexType Name="sp_GetLabPayment_Result">
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="150" />
-          <Property Type="String" Name="Name1" Nullable="false" MaxLength="150" />
-          <Property Type="DateTime" Name="CreatedDate" Nullable="false" Precision="23" />
-          <Property Type="Decimal" Name="LabCharge" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="Int32" Name="Quantity" Nullable="false" />
-          <Property Type="Decimal" Name="NetAmount" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="Discount" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="PaidAmount" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="DueAmount" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="String" Name="Mode" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="FullName" Nullable="false" MaxLength="50" />
-          <Property Type="Int32" Name="Age" Nullable="false" />
-          <Property Type="Int64" Name="ContactNo" Nullable="false" />
-          <Property Type="String" Name="FatherOrHusbandName" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Gender" Nullable="false" MaxLength="1" />
-          <Property Type="String" Name="Doctor" Nullable="false" MaxLength="101" />
-          <Property Type="Int64" Name="DoctorID" Nullable="false" />
-          <Property Type="String" Name="PatientType" Nullable="false" MaxLength="50" />
-          <Property Type="Int32" Name="PTypeID" Nullable="false" />
         </ComplexType>
         <ComplexType Name="sp_GetRegistrationPayment_Result">
           <Property Type="Int32" Name="PatientVisitID" Nullable="false" />
@@ -4431,9 +4577,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="HMSTModelStoreContainer" CdmEntityContainer="HMSTEntities">
+        <EntityContainerMapping StorageEntityContainer="HMSDBEntitiesModelStoreContainer" CdmEntityContainer="HMSDBEntities">
           <EntitySetMapping Name="C__MigrationHistory">
-            <EntityTypeMapping TypeName="HMSTModel.C__MigrationHistory">
+            <EntityTypeMapping TypeName="HMSDBEntitiesModel.C__MigrationHistory">
               <MappingFragment StoreEntitySet="__MigrationHistory">
                 <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
                 <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
@@ -4443,7 +4589,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Appointments">
-            <EntityTypeMapping TypeName="HMSTModel.Appointment">
+            <EntityTypeMapping TypeName="HMSDBEntitiesModel.Appointment">
               <MappingFragment StoreEntitySet="Appointments">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
@@ -4462,7 +4608,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetRoles">
-            <EntityTypeMapping TypeName="HMSTModel.AspNetRole">
+            <EntityTypeMapping TypeName="HMSDBEntitiesModel.AspNetRole">
               <MappingFragment StoreEntitySet="AspNetRoles">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -4470,7 +4616,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUserClaims">
-            <EntityTypeMapping TypeName="HMSTModel.AspNetUserClaim">
+            <EntityTypeMapping TypeName="HMSDBEntitiesModel.AspNetUserClaim">
               <MappingFragment StoreEntitySet="AspNetUserClaims">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -4480,7 +4626,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUserLogins">
-            <EntityTypeMapping TypeName="HMSTModel.AspNetUserLogin">
+            <EntityTypeMapping TypeName="HMSDBEntitiesModel.AspNetUserLogin">
               <MappingFragment StoreEntitySet="AspNetUserLogins">
                 <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
                 <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
@@ -4489,7 +4635,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUsers">
-            <EntityTypeMapping TypeName="HMSTModel.AspNetUser">
+            <EntityTypeMapping TypeName="HMSDBEntitiesModel.AspNetUser">
               <MappingFragment StoreEntitySet="AspNetUsers">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="HMSEmpID" ColumnName="HMSEmpID" />
@@ -4509,7 +4655,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="BedAllotments">
-            <EntityTypeMapping TypeName="HMSTModel.BedAllotment">
+            <EntityTypeMapping TypeName="HMSDBEntitiesModel.BedAllotment">
               <MappingFragment StoreEntitySet="BedAllotments">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="DateOfAllotment" ColumnName="DateOfAllotment" />
@@ -4521,7 +4667,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="BranchDetails">
-            <EntityTypeMapping TypeName="HMSTModel.BranchDetail">
+            <EntityTypeMapping TypeName="HMSDBEntitiesModel.BranchDetail">
               <MappingFragment StoreEntitySet="BranchDetails">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -4542,7 +4688,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Cities">
-            <EntityTypeMapping TypeName="HMSTModel.City">
+            <EntityTypeMapping TypeName="HMSDBEntitiesModel.City">
               <MappingFragment StoreEntitySet="Cities">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="name" ColumnName="name" />
@@ -4551,7 +4697,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CounterTables">
-            <EntityTypeMapping TypeName="HMSTModel.CounterTable">
+            <EntityTypeMapping TypeName="HMSDBEntitiesModel.CounterTable">
               <MappingFragment StoreEntitySet="CounterTable">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="CurrentDate" ColumnName="CurrentDate" />
@@ -4560,7 +4706,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Countries">
-            <EntityTypeMapping TypeName="HMSTModel.Country">
+            <EntityTypeMapping TypeName="HMSDBEntitiesModel.Country">
               <MappingFragment StoreEntitySet="Countries">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
@@ -4568,8 +4714,28 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="DischargeSummaries">
+            <EntityTypeMapping TypeName="HMSDBEntitiesModel.DischargeSummary">
+              <MappingFragment StoreEntitySet="DischargeSummary">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="AppointmentID" ColumnName="AppointmentID" />
+                <ScalarProperty Name="PatientDetailsID" ColumnName="PatientDetailsID" />
+                <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
+                <ScalarProperty Name="DateOfAdmission" ColumnName="DateOfAdmission" />
+                <ScalarProperty Name="DateOfDischarge" ColumnName="DateOfDischarge" />
+                <ScalarProperty Name="Daignosis" ColumnName="Daignosis" />
+                <ScalarProperty Name="BriffSummary" ColumnName="BriffSummary" />
+                <ScalarProperty Name="Investigation" ColumnName="Investigation" />
+                <ScalarProperty Name="OperationNotes" ColumnName="OperationNotes" />
+                <ScalarProperty Name="TreatmentGiven" ColumnName="TreatmentGiven" />
+                <ScalarProperty Name="Advice" ColumnName="Advice" />
+                <ScalarProperty Name="ToattendClinicOnAfter" ColumnName="ToattendClinicOnAfter" />
+                <ScalarProperty Name="OtherDetails" ColumnName="OtherDetails" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="DoctorBillDetails">
-            <EntityTypeMapping TypeName="HMSTModel.DoctorBillDetail">
+            <EntityTypeMapping TypeName="HMSDBEntitiesModel.DoctorBillDetail">
               <MappingFragment StoreEntitySet="DoctorBillDetails">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="VisitCharge" ColumnName="VisitCharge" />
@@ -4593,7 +4759,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Doctors">
-            <EntityTypeMapping TypeName="HMSTModel.Doctor">
+            <EntityTypeMapping TypeName="HMSDBEntitiesModel.Doctor">
               <MappingFragment StoreEntitySet="Doctors">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="OtherDetails" ColumnName="OtherDetails" />
@@ -4615,7 +4781,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DoctorVisitPaymentDetails">
-            <EntityTypeMapping TypeName="HMSTModel.DoctorVisitPaymentDetail">
+            <EntityTypeMapping TypeName="HMSDBEntitiesModel.DoctorVisitPaymentDetail">
               <MappingFragment StoreEntitySet="DoctorVisitPaymentDetails">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="VisitAmount" ColumnName="VisitAmount" />
@@ -4634,7 +4800,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="EmployeeDetails">
-            <EntityTypeMapping TypeName="HMSTModel.EmployeeDetail">
+            <EntityTypeMapping TypeName="HMSDBEntitiesModel.EmployeeDetail">
               <MappingFragment StoreEntitySet="EmployeeDetails">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
@@ -4657,7 +4823,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="EmployeeTypes">
-            <EntityTypeMapping TypeName="HMSTModel.EmployeeType">
+            <EntityTypeMapping TypeName="HMSDBEntitiesModel.EmployeeType">
               <MappingFragment StoreEntitySet="EmployeeTypes">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -4667,7 +4833,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="LabCategories">
-            <EntityTypeMapping TypeName="HMSTModel.LabCategory">
+            <EntityTypeMapping TypeName="HMSDBEntitiesModel.LabCategory">
               <MappingFragment StoreEntitySet="LabCategories">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -4676,7 +4842,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="LabPayments">
-            <EntityTypeMapping TypeName="HMSTModel.LabPayment">
+            <EntityTypeMapping TypeName="HMSDBEntitiesModel.LabPayment">
               <MappingFragment StoreEntitySet="LabPayments">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
@@ -4699,7 +4865,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="LabTests">
-            <EntityTypeMapping TypeName="HMSTModel.LabTest">
+            <EntityTypeMapping TypeName="HMSDBEntitiesModel.LabTest">
               <MappingFragment StoreEntitySet="LabTests">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -4711,7 +4877,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MedicalEquipments">
-            <EntityTypeMapping TypeName="HMSTModel.MedicalEquipment">
+            <EntityTypeMapping TypeName="HMSDBEntitiesModel.MedicalEquipment">
               <MappingFragment StoreEntitySet="MedicalEquipment">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="EquipmentName" ColumnName="EquipmentName" />
@@ -4721,7 +4887,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MedicalPaymentDetails">
-            <EntityTypeMapping TypeName="HMSTModel.MedicalPaymentDetail">
+            <EntityTypeMapping TypeName="HMSDBEntitiesModel.MedicalPaymentDetail">
               <MappingFragment StoreEntitySet="MedicalPaymentDetails">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="MedicalAmount" ColumnName="MedicalAmount" />
@@ -4741,11 +4907,12 @@
                 <ScalarProperty Name="NetAmount" ColumnName="NetAmount" />
                 <ScalarProperty Name="PayAmount" ColumnName="PayAmount" />
                 <ScalarProperty Name="DueAmount" ColumnName="DueAmount" />
+                <ScalarProperty Name="OtherDetails" ColumnName="OtherDetails" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PatientBills">
-            <EntityTypeMapping TypeName="HMSTModel.PatientBill">
+            <EntityTypeMapping TypeName="HMSDBEntitiesModel.PatientBill">
               <MappingFragment StoreEntitySet="PatientBills">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="ServiceAmount" ColumnName="ServiceAmount" />
@@ -4771,7 +4938,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PatientDetails">
-            <EntityTypeMapping TypeName="HMSTModel.PatientDetail">
+            <EntityTypeMapping TypeName="HMSDBEntitiesModel.PatientDetail">
               <MappingFragment StoreEntitySet="PatientDetails">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="FullName" ColumnName="FullName" />
@@ -4791,7 +4958,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PatientStatus">
-            <EntityTypeMapping TypeName="HMSTModel.PatientStatu">
+            <EntityTypeMapping TypeName="HMSDBEntitiesModel.PatientStatu">
               <MappingFragment StoreEntitySet="PatientStatus">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Details" ColumnName="Details" />
@@ -4800,7 +4967,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PatientTypes">
-            <EntityTypeMapping TypeName="HMSTModel.PatientType">
+            <EntityTypeMapping TypeName="HMSDBEntitiesModel.PatientType">
               <MappingFragment StoreEntitySet="PatientTypes">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
@@ -4809,7 +4976,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PatientVisits">
-            <EntityTypeMapping TypeName="HMSTModel.PatientVisit">
+            <EntityTypeMapping TypeName="HMSDBEntitiesModel.PatientVisit">
               <MappingFragment StoreEntitySet="PatientVisits">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="VisitedDate" ColumnName="VisitedDate" />
@@ -4825,7 +4992,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PaymentModes">
-            <EntityTypeMapping TypeName="HMSTModel.PaymentMode">
+            <EntityTypeMapping TypeName="HMSDBEntitiesModel.PaymentMode">
               <MappingFragment StoreEntitySet="PaymentModes">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Mode" ColumnName="Mode" />
@@ -4833,7 +5000,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PaymentSections">
-            <EntityTypeMapping TypeName="HMSTModel.PaymentSection">
+            <EntityTypeMapping TypeName="HMSDBEntitiesModel.PaymentSection">
               <MappingFragment StoreEntitySet="PaymentSections">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -4842,7 +5009,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PaymentStaus">
-            <EntityTypeMapping TypeName="HMSTModel.PaymentStau">
+            <EntityTypeMapping TypeName="HMSDBEntitiesModel.PaymentStau">
               <MappingFragment StoreEntitySet="PaymentStaus">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Details" ColumnName="Details" />
@@ -4851,7 +5018,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Qualifications">
-            <EntityTypeMapping TypeName="HMSTModel.Qualification">
+            <EntityTypeMapping TypeName="HMSDBEntitiesModel.Qualification">
               <MappingFragment StoreEntitySet="Qualifications">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -4860,7 +5027,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="RegistrationPaymentDetails">
-            <EntityTypeMapping TypeName="HMSTModel.RegistrationPaymentDetail">
+            <EntityTypeMapping TypeName="HMSDBEntitiesModel.RegistrationPaymentDetail">
               <MappingFragment StoreEntitySet="RegistrationPaymentDetails">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="RegistrationAmt" ColumnName="RegistrationAmt" />
@@ -4880,7 +5047,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="RoomDetails">
-            <EntityTypeMapping TypeName="HMSTModel.RoomDetail">
+            <EntityTypeMapping TypeName="HMSDBEntitiesModel.RoomDetail">
               <MappingFragment StoreEntitySet="RoomDetails">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Details" ColumnName="Details" />
@@ -4893,7 +5060,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ServicePayments">
-            <EntityTypeMapping TypeName="HMSTModel.ServicePayment">
+            <EntityTypeMapping TypeName="HMSDBEntitiesModel.ServicePayment">
               <MappingFragment StoreEntitySet="ServicePayments">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="ServiceUnit" ColumnName="ServiceUnit" />
@@ -4916,7 +5083,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Services">
-            <EntityTypeMapping TypeName="HMSTModel.Service">
+            <EntityTypeMapping TypeName="HMSDBEntitiesModel.Service">
               <MappingFragment StoreEntitySet="Services">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
@@ -4925,7 +5092,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ServiceSubCategories">
-            <EntityTypeMapping TypeName="HMSTModel.ServiceSubCategory">
+            <EntityTypeMapping TypeName="HMSDBEntitiesModel.ServiceSubCategory">
               <MappingFragment StoreEntitySet="ServiceSubCategories">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -4937,7 +5104,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ShiftDates">
-            <EntityTypeMapping TypeName="HMSTModel.ShiftDate">
+            <EntityTypeMapping TypeName="HMSDBEntitiesModel.ShiftDate">
               <MappingFragment StoreEntitySet="ShiftDates">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="DayAvailable" ColumnName="DayAvailable" />
@@ -4950,7 +5117,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ShiftDays">
-            <EntityTypeMapping TypeName="HMSTModel.ShiftDay">
+            <EntityTypeMapping TypeName="HMSDBEntitiesModel.ShiftDay">
               <MappingFragment StoreEntitySet="ShiftDays">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="StartTime" ColumnName="StartTime" />
@@ -4963,7 +5130,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ShiftTypes">
-            <EntityTypeMapping TypeName="HMSTModel.ShiftType">
+            <EntityTypeMapping TypeName="HMSDBEntitiesModel.ShiftType">
               <MappingFragment StoreEntitySet="ShiftTypes">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -4973,7 +5140,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Specializations">
-            <EntityTypeMapping TypeName="HMSTModel.Specialization">
+            <EntityTypeMapping TypeName="HMSDBEntitiesModel.Specialization">
               <MappingFragment StoreEntitySet="Specializations">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -4982,7 +5149,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="States">
-            <EntityTypeMapping TypeName="HMSTModel.State">
+            <EntityTypeMapping TypeName="HMSDBEntitiesModel.State">
               <MappingFragment StoreEntitySet="States">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -4991,7 +5158,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Titles">
-            <EntityTypeMapping TypeName="HMSTModel.Title">
+            <EntityTypeMapping TypeName="HMSDBEntitiesModel.Title">
               <MappingFragment StoreEntitySet="Titles">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -4999,7 +5166,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="VisitReasons">
-            <EntityTypeMapping TypeName="HMSTModel.VisitReason">
+            <EntityTypeMapping TypeName="HMSDBEntitiesModel.VisitReason">
               <MappingFragment StoreEntitySet="VisitReasons">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="VisitPurpose" ColumnName="VisitPurpose" />
@@ -5008,7 +5175,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="WardCategories">
-            <EntityTypeMapping TypeName="HMSTModel.WardCategory">
+            <EntityTypeMapping TypeName="HMSDBEntitiesModel.WardCategory">
               <MappingFragment StoreEntitySet="WardCategories">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -5017,7 +5184,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="WardOrRoomChargeDetails">
-            <EntityTypeMapping TypeName="HMSTModel.WardOrRoomChargeDetail">
+            <EntityTypeMapping TypeName="HMSDBEntitiesModel.WardOrRoomChargeDetail">
               <MappingFragment StoreEntitySet="WardOrRoomChargeDetails">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="StartDate" ColumnName="StartDate" />
@@ -5036,7 +5203,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Wards">
-            <EntityTypeMapping TypeName="HMSTModel.Ward">
+            <EntityTypeMapping TypeName="HMSDBEntitiesModel.Ward">
               <MappingFragment StoreEntitySet="Wards">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -5048,14 +5215,14 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="WeekDays">
-            <EntityTypeMapping TypeName="HMSTModel.WeekDay">
+            <EntityTypeMapping TypeName="HMSDBEntitiesModel.WeekDay">
               <MappingFragment StoreEntitySet="WeekDays">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="NameOfTheDay" ColumnName="NameOfTheDay" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="AspNetUserRoles" TypeName="HMSTModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="HMSDBEntitiesModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
             <EndProperty Name="AspNetRoles">
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>
@@ -5063,9 +5230,9 @@
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
-          <FunctionImportMapping FunctionImportName="sp_BranchDetails" FunctionName="HMSTModel.Store.sp_BranchDetails">
+          <FunctionImportMapping FunctionImportName="sp_BranchDetails" FunctionName="HMSDBEntitiesModel.Store.sp_BranchDetails">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="HMSTModel.sp_BranchDetails_Result">
+              <ComplexTypeMapping TypeName="HMSDBEntitiesModel.sp_BranchDetails_Result">
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
@@ -5083,9 +5250,35 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_GetPrescription" FunctionName="HMSTModel.Store.sp_GetPrescription">
+          <FunctionImportMapping FunctionImportName="sp_GetLabPayment" FunctionName="HMSDBEntitiesModel.Store.sp_GetLabPayment">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="HMSTModel.sp_GetPrescription_Result">
+              <ComplexTypeMapping TypeName="HMSDBEntitiesModel.sp_GetLabPayment_Result">
+                <ScalarProperty Name="LabCategory" ColumnName="LabCategory" />
+                <ScalarProperty Name="LabTestName" ColumnName="LabTestName" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="LabCharge" ColumnName="LabCharge" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="NetAmount" ColumnName="NetAmount" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="PaidAmount" ColumnName="PaidAmount" />
+                <ScalarProperty Name="DueAmount" ColumnName="DueAmount" />
+                <ScalarProperty Name="Mode" ColumnName="Mode" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+                <ScalarProperty Name="FatherOrHusbandName" ColumnName="FatherOrHusbandName" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Doctor" ColumnName="Doctor" />
+                <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
+                <ScalarProperty Name="PatientType" ColumnName="PatientType" />
+                <ScalarProperty Name="PTypeID" ColumnName="PTypeID" />
+                <ScalarProperty Name="AppointmentID" ColumnName="AppointmentID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetPrescription" FunctionName="HMSDBEntitiesModel.Store.sp_GetPrescription">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HMSDBEntitiesModel.sp_GetPrescription_Result">
                 <ScalarProperty Name="FullName" ColumnName="FullName" />
                 <ScalarProperty Name="Age" ColumnName="Age" />
                 <ScalarProperty Name="Gender" ColumnName="Gender" />
@@ -5110,9 +5303,9 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_GetReceipt" FunctionName="HMSTModel.Store.sp_GetReceipt">
+          <FunctionImportMapping FunctionImportName="sp_GetReceipt" FunctionName="HMSDBEntitiesModel.Store.sp_GetReceipt">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="HMSTModel.sp_GetReceipt_Result">
+              <ComplexTypeMapping TypeName="HMSDBEntitiesModel.sp_GetReceipt_Result">
                 <ScalarProperty Name="FullName" ColumnName="FullName" />
                 <ScalarProperty Name="Age" ColumnName="Age" />
                 <ScalarProperty Name="Sex" ColumnName="Sex" />
@@ -5131,34 +5324,9 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_GetLabPayment" FunctionName="HMSTModel.Store.sp_GetLabPayment">
+          <FunctionImportMapping FunctionImportName="sp_GetRegistrationPayment" FunctionName="HMSDBEntitiesModel.Store.sp_GetRegistrationPayment">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="HMSTModel.sp_GetLabPayment_Result">
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Name1" ColumnName="Name1" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="LabCharge" ColumnName="LabCharge" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="NetAmount" ColumnName="NetAmount" />
-                <ScalarProperty Name="Discount" ColumnName="Discount" />
-                <ScalarProperty Name="PaidAmount" ColumnName="PaidAmount" />
-                <ScalarProperty Name="DueAmount" ColumnName="DueAmount" />
-                <ScalarProperty Name="Mode" ColumnName="Mode" />
-                <ScalarProperty Name="FullName" ColumnName="FullName" />
-                <ScalarProperty Name="Age" ColumnName="Age" />
-                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
-                <ScalarProperty Name="FatherOrHusbandName" ColumnName="FatherOrHusbandName" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="Doctor" ColumnName="Doctor" />
-                <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
-                <ScalarProperty Name="PatientType" ColumnName="PatientType" />
-                <ScalarProperty Name="PTypeID" ColumnName="PTypeID" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_GetRegistrationPayment" FunctionName="HMSTModel.Store.sp_GetRegistrationPayment">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="HMSTModel.sp_GetRegistrationPayment_Result">
+              <ComplexTypeMapping TypeName="HMSDBEntitiesModel.sp_GetRegistrationPayment_Result">
                 <ScalarProperty Name="PatientVisitID" ColumnName="PatientVisitID" />
                 <ScalarProperty Name="VisitedDate" ColumnName="VisitedDate" />
                 <ScalarProperty Name="RegistrationAmount" ColumnName="RegistrationAmount" />

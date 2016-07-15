@@ -12,7 +12,7 @@ namespace HospitalManagement.Controllers
 {
     public class ServiceSubCategoriesController : Controller
     {
-        private HMSTEntities db = new HMSTEntities();
+        private HMSDBEntities db = new HMSDBEntities();
 
         // GET: ServiceSubCategories
         public ActionResult Index(int id)

@@ -78,7 +78,6 @@
     <Compile Include="City.cs">
       <DependentUpon>HMSDBEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Class1.cs" />
     <Compile Include="CounterTable.cs">
       <DependentUpon>HMSDBEntities.tt</DependentUpon>
     </Compile>
@@ -86,6 +85,9 @@
       <DependentUpon>HMSDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="C__MigrationHistory.cs">
+      <DependentUpon>HMSDBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DischargeSummary.cs">
       <DependentUpon>HMSDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Doctor.cs">
@@ -230,8 +232,6 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>HMSDBEntities.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.Config" />
     <None Include="HMSDBEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

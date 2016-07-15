@@ -15,7 +15,7 @@ namespace HospitalManagement.Controllers
 {
     public class BranchDetailsController : Controller
     {
-        private HMSTEntities db = new HMSTEntities();
+        private HMSDBEntities db = new HMSDBEntities();
 
         // GET: BranchDetails
         public ActionResult Index()

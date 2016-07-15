@@ -4,10 +4,10 @@
     ViewBag.Title = "Hospital Man agement | Medical Payment";
 }
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Add medical payments for patient: @Model.MedicalPayment.Appointment.PatientDetail.FullName</h4>
         <hr />
@@ -178,7 +178,7 @@
             </div>
         </div>
     </div>
-   
+
 }
 
 <div>
@@ -241,7 +241,7 @@
         {
            otherdetails = $("#MedicalPayment_OtherDetails").val();
         }
-        
+
         var paySec = $("#MedicalPayment_PaymentSection_ID").val();
         var payDetails = $("#MedicalPayment_PaymentDetails").val();
         var discDescr = $("#MedicalPayment_DiscountDescription").val();
@@ -290,20 +290,20 @@
             $('#recordsTable tr').each(function () {
                 var this_row = $(this);
                 var equipId = this_row.find('input[id$="__MedicalEquipmentID"]').val();
-                var qty = this_row.find('input[id$="__Quantity"]').val(); 
-                var medCharge = this_row.find('input[id$="__MedicalAmount"]').val(); 
+                var qty = this_row.find('input[id$="__Quantity"]').val();
+                var medCharge = this_row.find('input[id$="__MedicalAmount"]').val();
                 var discount = this_row.find('input[id$="__DiscountAmount"]').val();
-                var doctor = this_row.find('input[id$="__Doctor_ID"]').val(); 
-                var netAmt = this_row.find('input[id$="__NetAmount"]').val(); 
+                var doctor = this_row.find('input[id$="__Doctor_ID"]').val();
+                var netAmt = this_row.find('input[id$="__NetAmount"]').val();
                 var paidAmt = this_row.find('input[id$="__PayAmount"]').val();
-                var dueAmt = this_row.find('input[id$="__DueAmount"]').val(); 
+                var dueAmt = this_row.find('input[id$="__DueAmount"]').val();
                 var paymentModeId = this_row.find('input[id$="__PaymentMode_ID"]').val();
                 var appointId = '@Model.MedicalPayment.Appointment_ID';
-                var drId = this_row.find('input[id$="__Doctor_ID"]').val(); 
-                var otherdetails = this_row.find('input[id$="__OtherDetails"]').val(); 
-                var paySec = this_row.find('input[id$="__PaymentSection_Id"]').val(); 
-                var payDetails = this_row.find('input[id$="__PaymentDetails"]').val(); 
-                var discDescr = this_row.find('input[id$="__DiscountDescription"]').val(); 
+                var drId = this_row.find('input[id$="__Doctor_ID"]').val();
+                var otherdetails = this_row.find('input[id$="__OtherDetails"]').val();
+                var paySec = this_row.find('input[id$="__PaymentSection_Id"]').val();
+                var payDetails = this_row.find('input[id$="__PaymentDetails"]').val();
+                var discDescr = this_row.find('input[id$="__DiscountDescription"]').val();
                 this_row.find('input').each(function () {
                     $(this).remove();
                 });

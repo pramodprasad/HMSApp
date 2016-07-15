@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="HMSTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="HMSDBEntitiesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="__MigrationHistory">
     <Key>
       <PropertyRef Name="MigrationId" />
@@ -135,6 +135,25 @@
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="CountryCode" Type="nvarchar" MaxLength="5" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DischargeSummary">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AppointmentID" Type="int" Nullable="false" />
+    <Property Name="PatientDetailsID" Type="bigint" Nullable="false" />
+    <Property Name="DoctorID" Type="bigint" Nullable="false" />
+    <Property Name="DateOfAdmission" Type="datetime" Nullable="false" />
+    <Property Name="DateOfDischarge" Type="datetime" Nullable="false" />
+    <Property Name="Daignosis" Type="varchar" MaxLength="250" />
+    <Property Name="BriffSummary" Type="varchar" MaxLength="250" />
+    <Property Name="Investigation" Type="varchar" MaxLength="250" />
+    <Property Name="OperationNotes" Type="varchar" MaxLength="250" />
+    <Property Name="TreatmentGiven" Type="varchar" MaxLength="250" />
+    <Property Name="Advice" Type="varchar" MaxLength="250" />
+    <Property Name="ToattendClinicOnAfter" Type="varchar" MaxLength="250" />
+    <Property Name="OtherDetails" Type="varchar" MaxLength="250" />
   </EntityType>
   <EntityType Name="DoctorBillDetails">
     <Key>
@@ -301,6 +320,7 @@
     <Property Name="NetAmount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
     <Property Name="PayAmount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
     <Property Name="DueAmount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="OtherDetails" Type="varchar" MaxLength="150" />
   </EntityType>
   <EntityType Name="PatientBills">
     <Key>
@@ -1412,6 +1432,42 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_DischargeSummary_Appointments">
+    <End Role="Appointments" Type="Self.Appointments" Multiplicity="1" />
+    <End Role="DischargeSummary" Type="Self.DischargeSummary" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Appointments">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DischargeSummary">
+        <PropertyRef Name="AppointmentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DischargeSummary_Doctors">
+    <End Role="Doctors" Type="Self.Doctors" Multiplicity="1" />
+    <End Role="DischargeSummary" Type="Self.DischargeSummary" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Doctors">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DischargeSummary">
+        <PropertyRef Name="DoctorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DischargeSummary_PatientDetails">
+    <End Role="PatientDetails" Type="Self.PatientDetails" Multiplicity="1" />
+    <End Role="DischargeSummary" Type="Self.DischargeSummary" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PatientDetails">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DischargeSummary">
+        <PropertyRef Name="PatientDetailsID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_DoctorBillDetails_PaymentStaus">
     <End Role="PaymentStaus" Type="Self.PaymentStaus" Multiplicity="1" />
     <End Role="DoctorBillDetails" Type="Self.DoctorBillDetails" Multiplicity="*" />
@@ -1687,7 +1743,7 @@
     <Parameter Name="Doctor" Type="varchar" Mode="In" />
     <Parameter Name="VisitedDate" Type="datetime" Mode="In" />
   </Function>
-  <EntityContainer Name="HMSTModelStoreContainer">
+  <EntityContainer Name="HMSDBEntitiesModelStoreContainer">
     <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Appointments" EntityType="Self.Appointments" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
@@ -1700,6 +1756,7 @@
     <EntitySet Name="Cities" EntityType="Self.Cities" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CounterTable" EntityType="Self.CounterTable" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Countries" EntityType="Self.Countries" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DischargeSummary" EntityType="Self.DischargeSummary" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DoctorBillDetails" EntityType="Self.DoctorBillDetails" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Doctors" EntityType="Self.Doctors" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DoctorVisitPaymentDetails" EntityType="Self.DoctorVisitPaymentDetails" Schema="dbo" store:Type="Tables" />
@@ -2006,6 +2063,18 @@
     <AssociationSet Name="FK_dbo_Wards_dbo_WardCategories_WardCategory_ID" Association="Self.FK_dbo_Wards_dbo_WardCategories_WardCategory_ID">
       <End Role="WardCategories" EntitySet="WardCategories" />
       <End Role="Wards" EntitySet="Wards" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DischargeSummary_Appointments" Association="Self.FK_DischargeSummary_Appointments">
+      <End Role="Appointments" EntitySet="Appointments" />
+      <End Role="DischargeSummary" EntitySet="DischargeSummary" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DischargeSummary_Doctors" Association="Self.FK_DischargeSummary_Doctors">
+      <End Role="Doctors" EntitySet="Doctors" />
+      <End Role="DischargeSummary" EntitySet="DischargeSummary" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DischargeSummary_PatientDetails" Association="Self.FK_DischargeSummary_PatientDetails">
+      <End Role="PatientDetails" EntitySet="PatientDetails" />
+      <End Role="DischargeSummary" EntitySet="DischargeSummary" />
     </AssociationSet>
     <AssociationSet Name="FK_DoctorBillDetails_PaymentStaus" Association="Self.FK_DoctorBillDetails_PaymentStaus">
       <End Role="PaymentStaus" EntitySet="PaymentStaus" />

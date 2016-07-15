@@ -14,7 +14,7 @@ namespace HMS.BAL
             var specializationlist = new string[] { "Consultant Gen/Laproscopic Surgeon", "General Physician", "Obstetrician & Gynecologist", "Pediatrician", "Consultant Physician", "Ortho", "ENT Surgeon", "Physiotherapist" };
             DoctorName doctorname ;
             List<DoctorName> doctornamelist = new List<DoctorName>();
-            using (HMSTEntities context = new HMSTEntities())
+            using (HMSDBEntities context = new HMSDBEntities())
             {
                 
                 var doctorlist = context.Doctors.Include("EmployeeDetail").Where(d => specializationlist.Contains(d.Specialization.Name)).AsQueryable();
@@ -35,7 +35,7 @@ namespace HMS.BAL
             var specializationlist = new string[] { "Pathologist", "Bio Chemistry" };
             DoctorName doctorname;
             List<DoctorName> doctornamelist = new List<DoctorName>();
-            using (HMSTEntities context = new HMSTEntities())
+            using (HMSDBEntities context = new HMSDBEntities())
             {
 
                 var doctorlist = context.Doctors.Include("EmployeeDetail").Where(d => specializationlist.Contains(d.Specialization.Name)).AsQueryable();
@@ -56,7 +56,7 @@ namespace HMS.BAL
             var specializationlist = new string[] { "Radiologist", "Ultrasonically" };
             DoctorName doctorname;
             List<DoctorName> doctornamelist = new List<DoctorName>();
-            using (HMSTEntities context = new HMSTEntities())
+            using (HMSDBEntities context = new HMSDBEntities())
             {
 
                 var doctorlist = context.Doctors.Include("EmployeeDetail").Where(d => specializationlist.Contains(d.Specialization.Name)).AsQueryable();

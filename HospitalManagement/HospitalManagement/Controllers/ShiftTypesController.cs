@@ -12,7 +12,7 @@ namespace HospitalManagement.Controllers
 {
     public class ShiftTypesController : Controller
     {
-        private HMSTEntities db = new HMSTEntities();
+        private HMSDBEntities db = new HMSDBEntities();
 
         // GET: ShiftTypes
         public ActionResult Index()

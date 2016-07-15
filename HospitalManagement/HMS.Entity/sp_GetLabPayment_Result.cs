@@ -13,8 +13,8 @@ namespace HMS.Entity
     
     public partial class sp_GetLabPayment_Result
     {
-        public string Name { get; set; }
-        public string Name1 { get; set; }
+        public string LabCategory { get; set; }
+        public string LabTestName { get; set; }
         public System.DateTime CreatedDate { get; set; }
         public decimal LabCharge { get; set; }
         public int Quantity { get; set; }
@@ -32,5 +32,6 @@ namespace HMS.Entity
         public long DoctorID { get; set; }
         public string PatientType { get; set; }
         public int PTypeID { get; set; }
+        public int AppointmentID { get; set; }
     }
 }

@@ -10,4 +10,3 @@ C:\Users\tanmay\Documents\GitHub\HMSApp\HospitalManagement\HMS.Entity\obj\Debug\
 C:\Users\tanmay\Documents\GitHub\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\itextsharp.dll
 C:\Users\tanmay\Documents\GitHub\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\itextsharp.xmlworker.dll
 C:\Users\tanmay\Documents\GitHub\HMSApp\HospitalManagement\HMS.Entity\bin\Debug\itextsharp.xml
-C:\Users\tanmay\Documents\GitHub\HMSApp\HospitalManagement\HMS.Entity\obj\Debug\HMS.Entity.csprojResolveAssemblyReference.cache

@@ -15,10 +15,10 @@ namespace HMS.Entity
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class HMSTEntities : DbContext
+    public partial class HMSDBEntities : DbContext
     {
-        public HMSTEntities()
-            : base("name=HMSTEntities")
+        public HMSDBEntities()
+            : base("name=HMSDBEntities")
         {
         }
     
@@ -38,6 +38,7 @@ namespace HMS.Entity
         public virtual DbSet<City> Cities { get; set; }
         public virtual DbSet<CounterTable> CounterTables { get; set; }
         public virtual DbSet<Country> Countries { get; set; }
+        public virtual DbSet<DischargeSummary> DischargeSummaries { get; set; }
         public virtual DbSet<DoctorBillDetail> DoctorBillDetails { get; set; }
         public virtual DbSet<Doctor> Doctors { get; set; }
         public virtual DbSet<DoctorVisitPaymentDetail> DoctorVisitPaymentDetails { get; set; }
@@ -83,24 +84,6 @@ namespace HMS.Entity
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_BranchDetails_Result>("sp_BranchDetails", branchIDParameter);
         }
     
-        public virtual ObjectResult<sp_GetPrescription_Result> sp_GetPrescription(Nullable<int> patientVisitID)
-        {
-            var patientVisitIDParameter = patientVisitID.HasValue ?
-                new ObjectParameter("PatientVisitID", patientVisitID) :
-                new ObjectParameter("PatientVisitID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetPrescription_Result>("sp_GetPrescription", patientVisitIDParameter);
-        }
-    
-        public virtual ObjectResult<sp_GetReceipt_Result> sp_GetReceipt(Nullable<int> patientVisitID)
-        {
-            var patientVisitIDParameter = patientVisitID.HasValue ?
-                new ObjectParameter("PatientVisitID", patientVisitID) :
-                new ObjectParameter("PatientVisitID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetReceipt_Result>("sp_GetReceipt", patientVisitIDParameter);
-        }
-    
         public virtual ObjectResult<sp_GetLabPayment_Result> sp_GetLabPayment(Nullable<int> appointmentID, string paymentMode, Nullable<int> patientType, Nullable<long> doctorID, Nullable<System.DateTime> createdDate)
         {
             var appointmentIDParameter = appointmentID.HasValue ?
@@ -124,6 +107,24 @@ namespace HMS.Entity
                 new ObjectParameter("CreatedDate", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetLabPayment_Result>("sp_GetLabPayment", appointmentIDParameter, paymentModeParameter, patientTypeParameter, doctorIDParameter, createdDateParameter);
+        }
+    
+        public virtual ObjectResult<sp_GetPrescription_Result> sp_GetPrescription(Nullable<int> patientVisitID)
+        {
+            var patientVisitIDParameter = patientVisitID.HasValue ?
+                new ObjectParameter("PatientVisitID", patientVisitID) :
+                new ObjectParameter("PatientVisitID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetPrescription_Result>("sp_GetPrescription", patientVisitIDParameter);
+        }
+    
+        public virtual ObjectResult<sp_GetReceipt_Result> sp_GetReceipt(Nullable<int> patientVisitID)
+        {
+            var patientVisitIDParameter = patientVisitID.HasValue ?
+                new ObjectParameter("PatientVisitID", patientVisitID) :
+                new ObjectParameter("PatientVisitID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetReceipt_Result>("sp_GetReceipt", patientVisitIDParameter);
         }
     
         public virtual ObjectResult<sp_GetRegistrationPayment_Result> sp_GetRegistrationPayment(Nullable<int> patientVisitID, string paymentMode, Nullable<int> patientType, string doctor, Nullable<System.DateTime> visitedDate)

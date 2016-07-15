@@ -16,7 +16,7 @@ namespace HospitalManagement.Controllers
 {
     public class PatientController : Controller
     {
-        private HMSTEntities db = new HMSTEntities();
+        private HMSDBEntities db = new HMSDBEntities();
 
         // GET: Patient
         public ActionResult Index()

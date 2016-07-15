@@ -17,6 +17,7 @@ namespace HMS.Entity
         public Doctor()
         {
             this.Appointments = new HashSet<Appointment>();
+            this.DischargeSummaries = new HashSet<DischargeSummary>();
             this.DoctorBillDetails = new HashSet<DoctorBillDetail>();
             this.DoctorVisitPaymentDetails = new HashSet<DoctorVisitPaymentDetail>();
             this.LabPayments = new HashSet<LabPayment>();
@@ -45,6 +46,7 @@ namespace HMS.Entity
         public string VisitingConsultant { get; set; }
     
         public virtual ICollection<Appointment> Appointments { get; set; }
+        public virtual ICollection<DischargeSummary> DischargeSummaries { get; set; }
         public virtual ICollection<DoctorBillDetail> DoctorBillDetails { get; set; }
         public virtual EmployeeDetail EmployeeDetail { get; set; }
         public virtual Qualification Qualification { get; set; }

@@ -12,7 +12,7 @@ namespace HospitalManagement.Controllers
 {
     public class ShiftDaysController : Controller
     {
-        private HMSTEntities db = new HMSTEntities();
+        private HMSDBEntities db = new HMSDBEntities();
 
         // GET: /ShiftDays/
         public ActionResult Index()

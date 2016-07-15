@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="HMSTModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+<Schema Namespace="HMSDBEntitiesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="C__MigrationHistory">
     <Key>
       <PropertyRef Name="MigrationId" />
@@ -41,6 +41,7 @@
     <NavigationProperty Name="PatientVisits" Relationship="Self.FK_dbo_PatientVisits_dbo_Appointments_Appointment_ID" FromRole="Appointments" ToRole="PatientVisits" />
     <NavigationProperty Name="ServicePayments" Relationship="Self.FK_dbo_ServicePayments_dbo_Appointments_Appointment_ID" FromRole="Appointments" ToRole="ServicePayments" />
     <NavigationProperty Name="WardOrRoomChargeDetails" Relationship="Self.FK_dbo_WardOrRoomChargeDetails_dbo_Appointments_Appointment_ID" FromRole="Appointments" ToRole="WardOrRoomChargeDetails" />
+    <NavigationProperty Name="DischargeSummaries" Relationship="Self.FK_DischargeSummary_Appointments" FromRole="Appointments" ToRole="DischargeSummary" />
   </EntityType>
   <EntityType Name="AspNetRole">
     <Key>
@@ -161,6 +162,28 @@
     <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="States" Relationship="Self.FK_dbo_States_dbo_Countries_Country_ID" FromRole="Countries" ToRole="States" />
   </EntityType>
+  <EntityType Name="DischargeSummary">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AppointmentID" Type="Int32" Nullable="false" />
+    <Property Name="PatientDetailsID" Type="Int64" Nullable="false" />
+    <Property Name="DoctorID" Type="Int64" Nullable="false" />
+    <Property Name="DateOfAdmission" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateOfDischarge" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Daignosis" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="BriffSummary" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Investigation" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="OperationNotes" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="TreatmentGiven" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Advice" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="ToattendClinicOnAfter" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="OtherDetails" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Appointment" Relationship="Self.FK_DischargeSummary_Appointments" FromRole="DischargeSummary" ToRole="Appointments" />
+    <NavigationProperty Name="Doctor" Relationship="Self.FK_DischargeSummary_Doctors" FromRole="DischargeSummary" ToRole="Doctors" />
+    <NavigationProperty Name="PatientDetail" Relationship="Self.FK_DischargeSummary_PatientDetails" FromRole="DischargeSummary" ToRole="PatientDetails" />
+  </EntityType>
   <EntityType Name="DoctorBillDetail">
     <Key>
       <PropertyRef Name="ID" />
@@ -210,6 +233,7 @@
     <Property Name="FormerlyAt" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
     <Property Name="VisitingConsultant" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Appointments" Relationship="Self.FK_dbo_Appointments_dbo_Doctors_Doctor_ID" FromRole="Doctors" ToRole="Appointments" />
+    <NavigationProperty Name="DischargeSummaries" Relationship="Self.FK_DischargeSummary_Doctors" FromRole="Doctors" ToRole="DischargeSummary" />
     <NavigationProperty Name="DoctorBillDetails" Relationship="Self.FK_dbo_DoctorBillDetails_dbo_Doctors_Doctor_ID" FromRole="Doctors" ToRole="DoctorBillDetails" />
     <NavigationProperty Name="EmployeeDetail" Relationship="Self.FK_dbo_Doctors_dbo_EmployeeDetails_EmployeeDetail_ID" FromRole="Doctors" ToRole="EmployeeDetails" />
     <NavigationProperty Name="Qualification" Relationship="Self.FK_dbo_Doctors_dbo_Qualifications_Qualification_ID" FromRole="Doctors" ToRole="Qualifications" />
@@ -381,6 +405,7 @@
     <Property Name="NetAmount" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
     <Property Name="PayAmount" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
     <Property Name="DueAmount" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="OtherDetails" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Appointment" Relationship="Self.FK_dbo_MedicalPaymentDetails_dbo_Appointments_Appointment_ID" FromRole="MedicalPaymentDetails" ToRole="Appointments" />
     <NavigationProperty Name="Doctor" Relationship="Self.FK_dbo_MedicalPaymentDetails_dbo_Doctors_Doctor_ID" FromRole="MedicalPaymentDetails" ToRole="Doctors" />
     <NavigationProperty Name="PaymentMode" Relationship="Self.FK_dbo_MedicalPaymentDetails_dbo_PaymentModes_PaymentMode_ID" FromRole="MedicalPaymentDetails" ToRole="PaymentModes" />
@@ -437,6 +462,7 @@
     <Property Name="Gender" Type="Int32" />
     <NavigationProperty Name="Appointments" Relationship="Self.FK_dbo_Appointments_dbo_PatientDetails_PatientDetails_ID" FromRole="PatientDetails" ToRole="Appointments" />
     <NavigationProperty Name="City" Relationship="Self.FK_dbo_PatientDetails_dbo_Cities_City_ID" FromRole="PatientDetails" ToRole="Cities" />
+    <NavigationProperty Name="DischargeSummaries" Relationship="Self.FK_DischargeSummary_PatientDetails" FromRole="PatientDetails" ToRole="DischargeSummary" />
     <NavigationProperty Name="DoctorBillDetails" Relationship="Self.FK_dbo_DoctorBillDetails_dbo_PatientDetails_PatientDetails_ID" FromRole="PatientDetails" ToRole="DoctorBillDetails" />
   </EntityType>
   <EntityType Name="PatientStatu">
@@ -924,6 +950,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_DischargeSummary_Appointments">
+    <End Role="Appointments" Type="Self.Appointment" Multiplicity="1" />
+    <End Role="DischargeSummary" Type="Self.DischargeSummary" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Appointments">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DischargeSummary">
+        <PropertyRef Name="AppointmentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
     <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -1069,6 +1107,30 @@
       </Principal>
       <Dependent Role="States">
         <PropertyRef Name="Country_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DischargeSummary_Doctors">
+    <End Role="Doctors" Type="Self.Doctor" Multiplicity="1" />
+    <End Role="DischargeSummary" Type="Self.DischargeSummary" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Doctors">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DischargeSummary">
+        <PropertyRef Name="DoctorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DischargeSummary_PatientDetails">
+    <End Role="PatientDetails" Type="Self.PatientDetail" Multiplicity="1" />
+    <End Role="DischargeSummary" Type="Self.DischargeSummary" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PatientDetails">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DischargeSummary">
+        <PropertyRef Name="PatientDetailsID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1808,7 +1870,7 @@
     <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
     <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
   </Association>
-  <EntityContainer Name="HMSTEntities" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="HMSDBEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
     <EntitySet Name="Appointments" EntityType="Self.Appointment" />
     <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
@@ -1820,6 +1882,7 @@
     <EntitySet Name="Cities" EntityType="Self.City" />
     <EntitySet Name="CounterTables" EntityType="Self.CounterTable" />
     <EntitySet Name="Countries" EntityType="Self.Country" />
+    <EntitySet Name="DischargeSummaries" EntityType="Self.DischargeSummary" />
     <EntitySet Name="DoctorBillDetails" EntityType="Self.DoctorBillDetail" />
     <EntitySet Name="Doctors" EntityType="Self.Doctor" />
     <EntitySet Name="DoctorVisitPaymentDetails" EntityType="Self.DoctorVisitPaymentDetail" />
@@ -1911,6 +1974,10 @@
       <End Role="Appointments" EntitySet="Appointments" />
       <End Role="WardOrRoomChargeDetails" EntitySet="WardOrRoomChargeDetails" />
     </AssociationSet>
+    <AssociationSet Name="FK_DischargeSummary_Appointments" Association="Self.FK_DischargeSummary_Appointments">
+      <End Role="Appointments" EntitySet="Appointments" />
+      <End Role="DischargeSummary" EntitySet="DischargeSummaries" />
+    </AssociationSet>
     <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -1958,6 +2025,14 @@
     <AssociationSet Name="FK_dbo_States_dbo_Countries_Country_ID" Association="Self.FK_dbo_States_dbo_Countries_Country_ID">
       <End Role="Countries" EntitySet="Countries" />
       <End Role="States" EntitySet="States" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DischargeSummary_Doctors" Association="Self.FK_DischargeSummary_Doctors">
+      <End Role="Doctors" EntitySet="Doctors" />
+      <End Role="DischargeSummary" EntitySet="DischargeSummaries" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DischargeSummary_PatientDetails" Association="Self.FK_DischargeSummary_PatientDetails">
+      <End Role="PatientDetails" EntitySet="PatientDetails" />
+      <End Role="DischargeSummary" EntitySet="DischargeSummaries" />
     </AssociationSet>
     <AssociationSet Name="FK_dbo_DoctorBillDetails_dbo_Doctors_Doctor_ID" Association="Self.FK_dbo_DoctorBillDetails_dbo_Doctors_Doctor_ID">
       <End Role="Doctors" EntitySet="Doctors" />
@@ -2207,23 +2282,23 @@
       <End Role="AspNetRoles" EntitySet="AspNetRoles" />
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
     </AssociationSet>
-    <FunctionImport Name="sp_BranchDetails" ReturnType="Collection(HMSTModel.sp_BranchDetails_Result)">
+    <FunctionImport Name="sp_BranchDetails" ReturnType="Collection(HMSDBEntitiesModel.sp_BranchDetails_Result)">
       <Parameter Name="BranchID" Mode="In" Type="Int64" />
     </FunctionImport>
-    <FunctionImport Name="sp_GetPrescription" ReturnType="Collection(HMSTModel.sp_GetPrescription_Result)">
-      <Parameter Name="PatientVisitID" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="sp_GetReceipt" ReturnType="Collection(HMSTModel.sp_GetReceipt_Result)">
-      <Parameter Name="PatientVisitID" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="sp_GetLabPayment" ReturnType="Collection(HMSTModel.sp_GetLabPayment_Result)">
+    <FunctionImport Name="sp_GetLabPayment" ReturnType="Collection(HMSDBEntitiesModel.sp_GetLabPayment_Result)">
       <Parameter Name="AppointmentID" Mode="In" Type="Int32" />
       <Parameter Name="PaymentMode" Mode="In" Type="String" />
       <Parameter Name="PatientType" Mode="In" Type="Int32" />
       <Parameter Name="DoctorID" Mode="In" Type="Int64" />
       <Parameter Name="CreatedDate" Mode="In" Type="DateTime" />
     </FunctionImport>
-    <FunctionImport Name="sp_GetRegistrationPayment" ReturnType="Collection(HMSTModel.sp_GetRegistrationPayment_Result)">
+    <FunctionImport Name="sp_GetPrescription" ReturnType="Collection(HMSDBEntitiesModel.sp_GetPrescription_Result)">
+      <Parameter Name="PatientVisitID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_GetReceipt" ReturnType="Collection(HMSDBEntitiesModel.sp_GetReceipt_Result)">
+      <Parameter Name="PatientVisitID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_GetRegistrationPayment" ReturnType="Collection(HMSDBEntitiesModel.sp_GetRegistrationPayment_Result)">
       <Parameter Name="PatientVisitID" Mode="In" Type="Int32" />
       <Parameter Name="PaymentMode" Mode="In" Type="String" />
       <Parameter Name="PatientType" Mode="In" Type="Int32" />
@@ -2247,12 +2322,34 @@
     <Property Type="String" Name="State" Nullable="false" />
     <Property Type="String" Name="Country" Nullable="false" MaxLength="30" />
   </ComplexType>
+  <ComplexType Name="sp_GetLabPayment_Result">
+    <Property Type="String" Name="LabCategory" Nullable="false" MaxLength="150" />
+    <Property Type="String" Name="LabTestName" Nullable="false" MaxLength="150" />
+    <Property Type="DateTime" Name="CreatedDate" Nullable="false" Precision="23" />
+    <Property Type="Decimal" Name="LabCharge" Nullable="false" Precision="18" Scale="2" />
+    <Property Type="Int32" Name="Quantity" Nullable="false" />
+    <Property Type="Decimal" Name="NetAmount" Nullable="false" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Discount" Nullable="false" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="PaidAmount" Nullable="false" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="DueAmount" Nullable="false" Precision="18" Scale="2" />
+    <Property Type="String" Name="Mode" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="FullName" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="Age" Nullable="false" />
+    <Property Type="Int64" Name="ContactNo" Nullable="false" />
+    <Property Type="String" Name="FatherOrHusbandName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Gender" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="Doctor" Nullable="false" MaxLength="101" />
+    <Property Type="Int64" Name="DoctorID" Nullable="false" />
+    <Property Type="String" Name="PatientType" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="PTypeID" Nullable="false" />
+    <Property Type="Int32" Name="AppointmentID" Nullable="false" />
+  </ComplexType>
   <ComplexType Name="sp_GetPrescription_Result">
     <Property Type="String" Name="FullName" Nullable="false" MaxLength="50" />
     <Property Type="Int32" Name="Age" Nullable="false" />
     <Property Type="String" Name="Gender" Nullable="false" MaxLength="1" />
     <Property Type="Int32" Name="PatientVisitID" Nullable="false" />
-    <Property Type="String" Name="PatientType" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="PatientType" Nullable="false" MaxLength="50" />
     <Property Type="String" Name="PatientAddress" Nullable="false" MaxLength="100" />
     <Property Type="Int32" Name="AppointmentID" Nullable="false" />
     <Property Type="Decimal" Name="PayAmount" Nullable="false" Precision="18" Scale="2" />
@@ -2275,7 +2372,7 @@
     <Property Type="Int32" Name="Age" Nullable="false" />
     <Property Type="String" Name="Sex" Nullable="false" MaxLength="6" />
     <Property Type="Int32" Name="PatientVisitID" Nullable="false" />
-    <Property Type="String" Name="PatientType" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="PatientType" Nullable="false" MaxLength="50" />
     <Property Type="String" Name="Address" Nullable="false" MaxLength="100" />
     <Property Type="String" Name="FatherOrHusbandName" Nullable="false" MaxLength="50" />
     <Property Type="Int32" Name="AppointmentID" Nullable="false" />
@@ -2286,27 +2383,6 @@
     <Property Type="Int64" Name="Counter" Nullable="true" />
     <Property Type="String" Name="CreatedBy" Nullable="false" MaxLength="50" />
     <Property Type="String" Name="Doctorname" Nullable="false" MaxLength="100" />
-  </ComplexType>
-  <ComplexType Name="sp_GetLabPayment_Result">
-    <Property Type="String" Name="Name" Nullable="false" MaxLength="150" />
-    <Property Type="String" Name="Name1" Nullable="false" MaxLength="150" />
-    <Property Type="DateTime" Name="CreatedDate" Nullable="false" Precision="23" />
-    <Property Type="Decimal" Name="LabCharge" Nullable="false" Precision="18" Scale="2" />
-    <Property Type="Int32" Name="Quantity" Nullable="false" />
-    <Property Type="Decimal" Name="NetAmount" Nullable="false" Precision="18" Scale="2" />
-    <Property Type="Decimal" Name="Discount" Nullable="false" Precision="18" Scale="2" />
-    <Property Type="Decimal" Name="PaidAmount" Nullable="false" Precision="18" Scale="2" />
-    <Property Type="Decimal" Name="DueAmount" Nullable="false" Precision="18" Scale="2" />
-    <Property Type="String" Name="Mode" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="FullName" Nullable="false" MaxLength="50" />
-    <Property Type="Int32" Name="Age" Nullable="false" />
-    <Property Type="Int64" Name="ContactNo" Nullable="false" />
-    <Property Type="String" Name="FatherOrHusbandName" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="Gender" Nullable="false" MaxLength="1" />
-    <Property Type="String" Name="Doctor" Nullable="false" MaxLength="101" />
-    <Property Type="Int64" Name="DoctorID" Nullable="false" />
-    <Property Type="String" Name="PatientType" Nullable="false" MaxLength="50" />
-    <Property Type="Int32" Name="PTypeID" Nullable="false" />
   </ComplexType>
   <ComplexType Name="sp_GetRegistrationPayment_Result">
     <Property Type="Int32" Name="PatientVisitID" Nullable="false" />

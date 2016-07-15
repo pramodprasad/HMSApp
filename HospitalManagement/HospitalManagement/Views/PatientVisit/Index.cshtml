@@ -2,7 +2,6 @@
 
 @{
     ViewBag.Title = "Hospital Management | Patient Visit Details";
-    this.Layout = null;
 }
 
 <h4>Patient Visit Details</h4>
@@ -12,9 +11,6 @@
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.VisitedDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PatientStatus)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.UpdatedDate)
@@ -37,6 +33,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.PaymentMode.Mode)
             </th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -45,9 +42,6 @@
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.VisitedDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PatientStatus)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.UpdatedDate)
@@ -70,11 +64,12 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.PaymentMode.Mode)
                 </td>
-                @*<td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-                </td>*@
+                <td>
+                    @if(item.Appointment.PatientType_ID == 2)
+                    {
+                        @Html.ActionLink("Discharge Patient", "Create", "Discharge", new { id = item.ID },  null)
+                    }
+                </td>
             </tr>
         }
     </tbody>

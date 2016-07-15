@@ -1,0 +1,118 @@
+﻿@model IEnumerable<HMS.Entity.DischargeSummary>
+
+@{
+    ViewBag.Title = "Hospital Management | Discharge Patient Details";
+}
+
+<h2>Discharge patient Details</h2>
+
+<table id="dischrgTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DateOfAdmission)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateOfDischarge)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Daignosis)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BriffSummary)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Investigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OperationNotes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TreatmentGiven)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Advice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ToattendClinicOnAfter)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OtherDetails)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Appointment.ReferalDetails)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Doctor.OtherDetails)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PatientDetail.FullName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateOfAdmission)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateOfDischarge)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Daignosis)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BriffSummary)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Investigation)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OperationNotes)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TreatmentGiven)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Advice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ToattendClinicOnAfter)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OtherDetails)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Appointment.ReferalDetails)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Doctor.OtherDetails)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PatientDetail.FullName)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID })
+                    @*@Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })*@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script>
+    $('#dischrgTable').DataTable({
+        //"bPaginate": false,
+        "bLengthChange": false,
+        //"bFilter": true,
+        //"bInfo": false,
+        //"bAutoWidth": false,
+        //"info":     false,
+        "aoColumnDefs": [
+            { 'bSortable': false, 'aTargets': [13] }
+        ]
+    });
+</script>

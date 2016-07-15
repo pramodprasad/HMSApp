@@ -58,7 +58,7 @@
                 <td>
                     
                     @{
-                        var db = new HMSDBEntities();
+                        var db = new HMSTEntities();
                         var appointment = db.Appointments.Where(a => a.PatientDetails_ID == item.ID).OrderByDescending(a => a.ID).FirstOrDefault();
                         //var visitCount = db.PatientVisits.Where(p => p.Appointment_ID == appointment.ID).Count();
                         

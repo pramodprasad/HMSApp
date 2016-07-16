@@ -59,10 +59,10 @@
                     @Html.DisplayFor(modelItem => item.PatientDetail.FullName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.DateOfAdmission)
+                    @item.DateOfAdmission.ToString("dd/MM/yyyy")
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.DateOfDischarge)
+                    @item.DateOfDischarge.ToString("dd/MM/yyyy")
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Daignosis)

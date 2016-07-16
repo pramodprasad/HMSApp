@@ -275,6 +275,7 @@
     <Compile Include="Controllers\BranchDetailsController.cs" />
     <Compile Include="Controllers\CitiesController.cs" />
     <Compile Include="Controllers\CountriesController.cs" />
+    <Compile Include="Controllers\DischargeController.cs" />
     <Compile Include="Controllers\DoctorsController.cs" />
     <Compile Include="Controllers\EmployeeDetailsController.cs" />
     <Compile Include="Controllers\EmployeeTypesController.cs" />
@@ -628,11 +629,6 @@
     <Content Include="Views\EmployeeTypes\Edit.cshtml" />
     <Content Include="Views\EmployeeTypes\Index.cshtml" />
     <Content Include="Views\Account\EmpDetails.cshtml" />
-    <Content Include="Views\Patient\Create.cshtml" />
-    <Content Include="Views\Patient\Delete.cshtml" />
-    <Content Include="Views\Patient\Details.cshtml" />
-    <Content Include="Views\Patient\Edit.cshtml" />
-    <Content Include="Views\Patient\Index.cshtml" />
     <Content Include="Views\PatientTypes\Create.cshtml" />
     <Content Include="Views\PatientTypes\Delete.cshtml" />
     <Content Include="Views\PatientTypes\Details.cshtml" />
@@ -719,7 +715,6 @@
     <Content Include="Views\Appointments\Details.cshtml" />
     <Content Include="Views\Appointments\Edit.cshtml" />
     <Content Include="Views\Appointments\Index.cshtml" />
-    <Content Include="Views\Patient\Search.cshtml" />
     <Content Include="Views\Transaction\Service.cshtml" />
     <Content Include="Views\Transaction\AddService.cshtml" />
     <Content Include="Views\ServicePayments\Create.cshtml" />
@@ -793,6 +788,15 @@
     <Content Include="Views\MedicalEquipment\Edit.cshtml" />
     <Content Include="Views\MedicalEquipment\Index.cshtml" />
     <Content Include="Views\Reports\GetLabReceipt.cshtml" />
+    <Content Include="Views\Patient\Create.cshtml" />
+    <Content Include="Views\Patient\Delete.cshtml" />
+    <Content Include="Views\Patient\Details.cshtml" />
+    <Content Include="Views\Patient\Edit.cshtml" />
+    <Content Include="Views\Patient\Index.cshtml" />
+    <Content Include="Views\Patient\Search.cshtml" />
+    <Content Include="Views\Discharge\Create.cshtml" />
+    <Content Include="Views\Discharge\Edit.cshtml" />
+    <Content Include="Views\Discharge\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -64,9 +64,6 @@ namespace HospitalManagement.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.AppointmentID = new SelectList(db.Appointments, "ID", "ReferalDetails", dischargeSummary.AppointmentID);
-            ViewBag.DoctorID = new SelectList(db.Doctors, "ID", "OtherDetails", dischargeSummary.DoctorID);
-            ViewBag.PatientDetailsID = new SelectList(db.PatientDetails, "ID", "FullName", dischargeSummary.PatientDetailsID);
             return View(dischargeSummary);
         }
 
@@ -82,9 +79,7 @@ namespace HospitalManagement.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.AppointmentID = new SelectList(db.Appointments, "ID", "ReferalDetails", dischargeSummary.AppointmentID);
-            ViewBag.DoctorID = new SelectList(db.Doctors, "ID", "OtherDetails", dischargeSummary.DoctorID);
-            ViewBag.PatientDetailsID = new SelectList(db.PatientDetails, "ID", "FullName", dischargeSummary.PatientDetailsID);
+
             return View(dischargeSummary);
         }
 
@@ -101,9 +96,7 @@ namespace HospitalManagement.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.AppointmentID = new SelectList(db.Appointments, "ID", "ReferalDetails", dischargeSummary.AppointmentID);
-            ViewBag.DoctorID = new SelectList(db.Doctors, "ID", "OtherDetails", dischargeSummary.DoctorID);
-            ViewBag.PatientDetailsID = new SelectList(db.PatientDetails, "ID", "FullName", dischargeSummary.PatientDetailsID);
+
             return View(dischargeSummary);
         }
 

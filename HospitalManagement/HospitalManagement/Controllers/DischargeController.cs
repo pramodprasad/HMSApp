@@ -22,28 +22,32 @@ namespace HospitalManagement.Controllers
             return View(await dischargeSummaries.ToListAsync());
         }
 
-        // GET: Discharge/Details/5
-        public async Task<ActionResult> Details(long? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            DischargeSummary dischargeSummary = await db.DischargeSummaries.FindAsync(id);
-            if (dischargeSummary == null)
-            {
-                return HttpNotFound();
-            }
-            return View(dischargeSummary);
-        }
+        //// GET: Discharge/Details/5
+        //public async Task<ActionResult> Details(long? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    DischargeSummary dischargeSummary = await db.DischargeSummaries.FindAsync(id);
+        //    if (dischargeSummary == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(dischargeSummary);
+        //}
 
         // GET: Discharge/Create
-        public ActionResult Create()
+        public ActionResult Create(long id)
         {
-            ViewBag.AppointmentID = new SelectList(db.Appointments, "ID", "ReferalDetails");
-            ViewBag.DoctorID = new SelectList(db.Doctors, "ID", "OtherDetails");
-            ViewBag.PatientDetailsID = new SelectList(db.PatientDetails, "ID", "FullName");
-            return View();
+            DischargeSummary discharge = new DischargeSummary();
+            var appointment = db.Appointments.Include(p => p.PatientVisits).First(p => p.ID == id);
+            discharge.AppointmentID = appointment.ID;
+            discharge.DoctorID = appointment.Doctor_ID.Value;
+            discharge.PatientDetailsID = appointment.PatientDetails_ID.Value;
+            discharge.DateOfDischarge = DateTime.Now;
+            discharge.DateOfAdmission = DateTime.Now;
+            return View(discharge);
         }
 
         // POST: Discharge/Create
@@ -103,31 +107,31 @@ namespace HospitalManagement.Controllers
             return View(dischargeSummary);
         }
 
-        // GET: Discharge/Delete/5
-        public async Task<ActionResult> Delete(long? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            DischargeSummary dischargeSummary = await db.DischargeSummaries.FindAsync(id);
-            if (dischargeSummary == null)
-            {
-                return HttpNotFound();
-            }
-            return View(dischargeSummary);
-        }
+        //// GET: Discharge/Delete/5
+        //public async Task<ActionResult> Delete(long? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    DischargeSummary dischargeSummary = await db.DischargeSummaries.FindAsync(id);
+        //    if (dischargeSummary == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(dischargeSummary);
+        //}
 
-        // POST: Discharge/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(long id)
-        {
-            DischargeSummary dischargeSummary = await db.DischargeSummaries.FindAsync(id);
-            db.DischargeSummaries.Remove(dischargeSummary);
-            await db.SaveChangesAsync();
-            return RedirectToAction("Index");
-        }
+        //// POST: Discharge/Delete/5
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<ActionResult> DeleteConfirmed(long id)
+        //{
+        //    DischargeSummary dischargeSummary = await db.DischargeSummaries.FindAsync(id);
+        //    db.DischargeSummaries.Remove(dischargeSummary);
+        //    await db.SaveChangesAsync();
+        //    return RedirectToAction("Index");
+        //}
 
         protected override void Dispose(bool disposing)
         {

@@ -138,4 +138,5 @@
     $('.DateAvailable').datepicker({ format: "dd/mm/yyyy", useCurrent: false }).on('changeDate', function (e) {
         $(this).datepicker('hide');
     });
+    $('.DateAvailable').removeAttr("data-val-date");
 </script>

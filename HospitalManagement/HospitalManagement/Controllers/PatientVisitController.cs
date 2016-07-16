@@ -23,7 +23,7 @@ namespace HospitalManagement.Controllers
         // GET: /PatientVisit/
         public ActionResult Index(long? id)
         {
-            var patientvisits = db.PatientVisits.Include(p => p.Appointment).Include(p => p.PaymentMode);
+            var patientvisits = db.PatientVisits.Include(p => p.Appointment).Include(p => p.PaymentMode).Where(p => p.Appointment.PatientDetails_ID == id);
             return View(patientvisits.ToList());
         }
 

@@ -2,6 +2,11 @@
 
 @{
     ViewBag.Title = "Hospital Management | Patient Visit Details";
+    
+    if(IsAjax)
+    {
+        this.Layout = null;
+    }
 }
 
 <h4>Patient Visit Details</h4>
@@ -67,7 +72,7 @@
                 <td>
                     @if(item.Appointment.PatientType_ID == 2)
                     {
-                        @Html.ActionLink("Discharge Patient", "Create", "Discharge", new { id = item.ID },  null)
+                        @Html.ActionLink("Discharge Patient", "Create", "Discharge", new { id = item.Appointment_ID },  null)
                     }
                 </td>
             </tr>

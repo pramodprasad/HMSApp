@@ -10,43 +10,40 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.DateOfAdmission)
+                @Html.DisplayName("Doctor")
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DateOfDischarge)
+                @Html.DisplayName("Patient")
+            </th>
+            <th>
+                @Html.Display("Admission Date")
+            </th>
+            <th>
+                @Html.DisplayName("Discharge /date")
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Daignosis)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.BriffSummary)
+                @Html.DisplayName("Brief Summary")
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Investigation)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.OperationNotes)
+                @Html.DisplayName("Operation Notes")
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TreatmentGiven)
+                @Html.DisplayName("TreatmentGiven")
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Advice)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ToattendClinicOnAfter)
+                @Html.DisplayName("Next Visit")
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.OtherDetails)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Appointment.ReferalDetails)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Doctor.OtherDetails)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PatientDetail.FullName)
+                @Html.DisplayName("Other Details")
             </th>
             <th></th>
         </tr>
@@ -55,6 +52,12 @@
         @foreach (var item in Model)
         {
             <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Doctor.OtherDetails)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PatientDetail.FullName)
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.DateOfAdmission)
                 </td>
@@ -86,18 +89,7 @@
                     @Html.DisplayFor(modelItem => item.OtherDetails)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Appointment.ReferalDetails)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Doctor.OtherDetails)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PatientDetail.FullName)
-                </td>
-                <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.ID })
-                    @*@Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })*@
                 </td>
             </tr>
         }
@@ -112,7 +104,7 @@
         //"bAutoWidth": false,
         //"info":     false,
         "aoColumnDefs": [
-            { 'bSortable': false, 'aTargets': [13] }
+            { 'bSortable': false, 'aTargets': [12] }
         ]
     });
 </script>
